@@ -1,0 +1,744 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXNYCSTAT-BUS26",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXNYCSTAT-BUS26",
+          "key": "KXNYCSTAT-BUS26-AL8.3",
+          "no_sub_title": "At least 8.3 mph",
+          "rules_primary": "If the MTA\u2019s monthly key performance metric for overall citywide average weekday end-to-end route speed across New York City Transit and MTA Bus Company service is at least 8.3 mph for December 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-02-01T14:59:00Z",
+          "series": "KXNYCSTAT",
+          "subtitle": null,
+          "title": "Will the MTA\u2019s monthly key performance metric for overall citywide average weekday end-to-end route speed across New York City Transit and MTA Bus Company service be at least 8.3 mph for December 2026?",
+          "yes_sub_title": "At least 8.3 mph"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTRUMPRENAMEACTION-26SEP",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXTRUMPRENAMEACTION-26SEP",
+          "key": "KXTRUMPRENAMEACTION-26SEP-OCT01",
+          "no_sub_title": "Before Oct 1, 2026",
+          "rules_primary": "If Donald Trump has taken action by personally signing an executive order, presidential memorandum, proclamation, directive, determination, or finding adopting or directing adoption of a replacement for a preexisting official name, or restoring or directing restoration of a prior official name, for United States use after Issuance and before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The qualifying action must be of the specific type designated (executive order, presidential memorandum, proclamation, directive, determination, or finding), be signed by the President personally during the specified time period, and explicitly address the topic in the document's operative provisions, title, or official White House summary. Actions must have legal or policy effect - ceremonial proclamations without policy impact do not qualify unless specifically included. Actions that only incidentally mention the topic, statements without formal action, actions by cabinet members, legislative proposals without executive action, and signing statements do not qualify. The action must be publicly announced or documented by a Source Agency before expiration.\n\nA qualifying presidential action must adopt or direct adoption of a replacement for a preexisting official name, or restore or direct restoration of a prior official name, for United States use. Initially naming a previously unnamed subject does not qualify. A reversion or reinstatement of a prior name qualifies. Merely authorizing a secondary, alternate, honorary, or informal title does not qualify unless the action directs replacement of the preexisting official name. A map, database, registry, contract, or other record change by USGS, the U.S. Board on Geographic Names, the Department of the Interior, or another agency does not qualify without the President's qualifying action.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXTRUMPRENAMEACTION",
+          "subtitle": null,
+          "title": "Will Trump take another official renaming action?",
+          "yes_sub_title": "Before Oct 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXRELOCATEUNITED-26",
+      "markets": [
+        {
+          "category": "Companies",
+          "event_key": "KXRELOCATEUNITED-26",
+          "key": "KXRELOCATEUNITED-26-UNIT",
+          "no_sub_title": "United Airlines",
+          "rules_primary": "If United Airlines relocates its headquarters (or announces it will do so) to Denver CO before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRELOCATEUNITED",
+          "subtitle": null,
+          "title": "Will companies will leave NYC for Florida in 2026?",
+          "yes_sub_title": "United Airlines"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCAFAIRPLAN-26NOV16",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXCAFAIRPLAN-26NOV16",
+          "key": "KXCAFAIRPLAN-26NOV16-T710000",
+          "no_sub_title": "Above 710,000",
+          "rules_primary": "If the California FAIR Plan reports total FAIR Plan policies in force on September 30, 2026 are above 710,000, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the point-in-time total policies in force (PIF) reported by the California FAIR Plan Association as of September 30, 2026, including residential, commercial, and Businessowner\u2019s Program policies. This is a policy inventory, not policies written during the year or new business. \n\nThe market remains open past September 30 because the September 30 policy count is published later, typically in the following quarterly data release. Resolution uses the first official September 30, 2026 figure; subsequent revisions do not affect resolution.",
+          "scheduled_close": "2026-11-16T14:59:00Z",
+          "series": "KXCAFAIRPLAN",
+          "subtitle": null,
+          "title": "Will total FAIR Plan policies in force on September 30, 2026 be above 710,000?",
+          "yes_sub_title": "Above 710,000"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCAFAIRPLAN-26NOV16",
+          "key": "KXCAFAIRPLAN-26NOV16-T720000",
+          "no_sub_title": "Above 720,000",
+          "rules_primary": "If the California FAIR Plan reports total FAIR Plan policies in force on September 30, 2026 are above 720,000, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the point-in-time total policies in force (PIF) reported by the California FAIR Plan Association as of September 30, 2026, including residential, commercial, and Businessowner\u2019s Program policies. This is a policy inventory, not policies written during the year or new business. \n\nThe market remains open past September 30 because the September 30 policy count is published later, typically in the following quarterly data release. Resolution uses the first official September 30, 2026 figure; subsequent revisions do not affect resolution.",
+          "scheduled_close": "2026-11-16T14:59:00Z",
+          "series": "KXCAFAIRPLAN",
+          "subtitle": null,
+          "title": "Will total FAIR Plan policies in force on September 30, 2026 be above 720,000?",
+          "yes_sub_title": "Above 720,000"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCAFAIRPLAN-26NOV16",
+          "key": "KXCAFAIRPLAN-26NOV16-T730000",
+          "no_sub_title": "Above 730,000",
+          "rules_primary": "If the California FAIR Plan reports total FAIR Plan policies in force on September 30, 2026 are above 730,000, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the point-in-time total policies in force (PIF) reported by the California FAIR Plan Association as of September 30, 2026, including residential, commercial, and Businessowner\u2019s Program policies. This is a policy inventory, not policies written during the year or new business. \n\nThe market remains open past September 30 because the September 30 policy count is published later, typically in the following quarterly data release. Resolution uses the first official September 30, 2026 figure; subsequent revisions do not affect resolution.",
+          "scheduled_close": "2026-11-16T14:59:00Z",
+          "series": "KXCAFAIRPLAN",
+          "subtitle": null,
+          "title": "Will total FAIR Plan policies in force on September 30, 2026 be above 730,000?",
+          "yes_sub_title": "Above 730,000"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCAFAIRPLAN-26NOV16",
+          "key": "KXCAFAIRPLAN-26NOV16-T740000",
+          "no_sub_title": "Above 740,000",
+          "rules_primary": "If the California FAIR Plan reports total FAIR Plan policies in force on September 30, 2026 are above 740,000, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the point-in-time total policies in force (PIF) reported by the California FAIR Plan Association as of September 30, 2026, including residential, commercial, and Businessowner\u2019s Program policies. This is a policy inventory, not policies written during the year or new business. \n\nThe market remains open past September 30 because the September 30 policy count is published later, typically in the following quarterly data release. Resolution uses the first official September 30, 2026 figure; subsequent revisions do not affect resolution.",
+          "scheduled_close": "2026-11-16T14:59:00Z",
+          "series": "KXCAFAIRPLAN",
+          "subtitle": null,
+          "title": "Will total FAIR Plan policies in force on September 30, 2026 be above 740,000?",
+          "yes_sub_title": "Above 740,000"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCBDECISIONAUSTRALIA-26SEP28",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXCBDECISIONAUSTRALIA-26SEP28",
+          "key": "KXCBDECISIONAUSTRALIA-26SEP28-H25",
+          "no_sub_title": "Hike 1-25bps",
+          "rules_primary": "If the Reserve Bank of Australia takes the action of Hike 1-25bps at the September Monetary Policy Board meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-09-28T04:29:00Z",
+          "series": "KXCBDECISIONAUSTRALIA",
+          "subtitle": null,
+          "title": "Will the Reserve Bank of Australia Hike 1-25bps at the September Monetary Policy Board meeting?",
+          "yes_sub_title": "Hike 1-25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCBDECISIONAUSTRALIA-26SEP28",
+          "key": "KXCBDECISIONAUSTRALIA-26SEP28-HOLD",
+          "no_sub_title": "Maintain current rate",
+          "rules_primary": "If the Reserve Bank of Australia takes the action of Maintain current rate at the September Monetary Policy Board meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-09-28T04:29:00Z",
+          "series": "KXCBDECISIONAUSTRALIA",
+          "subtitle": null,
+          "title": "Will the Reserve Bank of Australia Maintain current rate at the September Monetary Policy Board meeting?",
+          "yes_sub_title": "Maintain current rate"
+        }
+      ]
+    },
+    {
+      "event_key": "KXLAIOUT-LCHI",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXLAIOUT-LCHI",
+          "key": "KXLAIOUT-LCHI-27JAN01",
+          "no_sub_title": "Before January 1, 2027",
+          "rules_primary": "If Lai Ching-te leaves office before January 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An announcement that Lai Ching-te will leave the office within the next year is also encompassed by the Payout Criterion. If Lai Ching-te leaves solely because they have died, the associated market will resolve and the Exchange will determine the payouts to the holders of long and short positions based upon the last traded price (prior to the death). If a last traded price is not available or is not logically consistent, or if the Exchange determines at its sole discretion that the last traded prices prior to death do not represent a fair settlement value, the Outcome Review Committee will be responsible for making a binding determination of fair allocation.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXLAIOUT",
+          "subtitle": null,
+          "title": "Will Lai Ching-te leave office before 2027-01-01T15:00:00.000Z?",
+          "yes_sub_title": "Before January 1, 2027"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXLAIOUT-LCHI",
+          "key": "KXLAIOUT-LCHI-27JUL01",
+          "no_sub_title": "Before July 1, 2027",
+          "rules_primary": "If Lai Ching-te leaves office before July 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An announcement that Lai Ching-te will leave the office within the next year is also encompassed by the Payout Criterion. If Lai Ching-te leaves solely because they have died, the associated market will resolve and the Exchange will determine the payouts to the holders of long and short positions based upon the last traded price (prior to the death). If a last traded price is not available or is not logically consistent, or if the Exchange determines at its sole discretion that the last traded prices prior to death do not represent a fair settlement value, the Outcome Review Committee will be responsible for making a binding determination of fair allocation.",
+          "scheduled_close": "2027-07-01T14:00:00Z",
+          "series": "KXLAIOUT",
+          "subtitle": null,
+          "title": "Will Lai Ching-te leave office before 2027-07-01T14:00:00.000Z?",
+          "yes_sub_title": "Before July 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNYCDEPTSAFETY-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXNYCDEPTSAFETY-27JAN01",
+          "key": "KXNYCDEPTSAFETY-27JAN01",
+          "no_sub_title": "Yes",
+          "rules_primary": "If a law establishing or renaming an existing agency to the Department of Community Safety has become law in New York City before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law. For standard legislation requiring executive approval, this includes final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods. For legislation not requiring executive approval, this includes final passage and completion of required waiting periods. For constitutional amendments, this includes passage with required supermajorities and completion of ratification processes. For executive orders, this includes official signature, publication in official government records, and legal effectiveness. Legislative passage without completed executive action, passage by only some required bodies, provisional passage, non-binding resolutions, and draft orders do not constitute enactment. Enactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXNYCDEPTSAFETY",
+          "subtitle": null,
+          "title": "Will Mamdani establish a Department of Community Safety before 2027?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMEDIAGUESTFALLON-27",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-ARI",
+          "no_sub_title": "Ariana Grande",
+          "rules_primary": "If Ariana Grande is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Ariana Grande appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Ariana Grande), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will Ariana Grande be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "Ariana Grande"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-BAD",
+          "no_sub_title": "Bad Bunny",
+          "rules_primary": "If Bad Bunny is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Bad Bunny appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Bad Bunny), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will Bad Bunny be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "Bad Bunny"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-BEY",
+          "no_sub_title": "Beyonc\u00e9",
+          "rules_primary": "If Beyonc\u00e9 is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Beyonc\u00e9 appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Beyonc\u00e9), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will Beyonc\u00e9 be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "Beyonc\u00e9"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-DWA",
+          "no_sub_title": "Dwayne \u201cThe Rock\u201d Johnson",
+          "rules_primary": "If Dwayne \u201cThe Rock\u201d Johnson is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Dwayne \u201cThe Rock\u201d Johnson appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Dwayne \u201cThe Rock\u201d Johnson), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will Dwayne \u201cThe Rock\u201d Johnson be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "Dwayne \u201cThe Rock\u201d Johnson"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-HAR",
+          "no_sub_title": "Harry Styles",
+          "rules_primary": "If Harry Styles is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Harry Styles appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Harry Styles), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will Harry Styles be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "Harry Styles"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-JEN",
+          "no_sub_title": "Jennifer Lawrence",
+          "rules_primary": "If Jennifer Lawrence is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Jennifer Lawrence appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Jennifer Lawrence), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will Jennifer Lawrence be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "Jennifer Lawrence"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-KIM",
+          "no_sub_title": "Kim Kardashian",
+          "rules_primary": "If Kim Kardashian is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Kim Kardashian appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Kim Kardashian), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will Kim Kardashian be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "Kim Kardashian"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-LEB",
+          "no_sub_title": "LeBron James",
+          "rules_primary": "If LeBron James is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If LeBron James appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by LeBron James), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will LeBron James be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "LeBron James"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-LIO",
+          "no_sub_title": "Lionel Messi",
+          "rules_primary": "If Lionel Messi is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Lionel Messi appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Lionel Messi), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will Lionel Messi be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "Lionel Messi"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-MAR",
+          "no_sub_title": "Margot Robbie",
+          "rules_primary": "If Margot Robbie is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Margot Robbie appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Margot Robbie), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will Margot Robbie be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "Margot Robbie"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-POS",
+          "no_sub_title": "Post Malone",
+          "rules_primary": "If Post Malone is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Post Malone appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Post Malone), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will Post Malone be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "Post Malone"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-TIM",
+          "no_sub_title": "Timoth\u00e9e Chalamet",
+          "rules_primary": "If Timoth\u00e9e Chalamet is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Timoth\u00e9e Chalamet appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Timoth\u00e9e Chalamet), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will Timoth\u00e9e Chalamet be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "Timoth\u00e9e Chalamet"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTFALLON-27",
+          "key": "KXMEDIAGUESTFALLON-27-TRA",
+          "no_sub_title": "Travis Kelce",
+          "rules_primary": "If Travis Kelce is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Travis Kelce appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Travis Kelce), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTFALLON",
+          "subtitle": null,
+          "title": "Will Travis Kelce be on The Tonight Show Starring Jimmy Fallon before 2027?",
+          "yes_sub_title": "Travis Kelce"
+        }
+      ]
+    },
+    {
+      "event_key": "KXEBOLACOUNTRY-27",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-ANG",
+          "no_sub_title": "Angola",
+          "rules_primary": "If a confirmed human case of Ebola disease in Angola is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Angola \u2014 a citizen of Angola diagnosed elsewhere does not count. Imported cases diagnosed within Angola do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in Angola be reported before Jan 1, 2027?",
+          "yes_sub_title": "Angola"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-BUR",
+          "no_sub_title": "Burundi",
+          "rules_primary": "If a confirmed human case of Ebola disease in Burundi is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Burundi \u2014 a citizen of Burundi diagnosed elsewhere does not count. Imported cases diagnosed within Burundi do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in Burundi be reported before Jan 1, 2027?",
+          "yes_sub_title": "Burundi"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-CAN",
+          "no_sub_title": "Canada",
+          "rules_primary": "If a confirmed human case of Ebola disease in Canada is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Canada \u2014 a citizen of Canada diagnosed elsewhere does not count. Imported cases diagnosed within Canada do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in Canada be reported before Jan 1, 2027?",
+          "yes_sub_title": "Canada"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-CAR",
+          "no_sub_title": "Central African Republic",
+          "rules_primary": "If a confirmed human case of Ebola disease in Central African Republic is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Central African Republic \u2014 a citizen of Central African Republic diagnosed elsewhere does not count. Imported cases diagnosed within Central African Republic do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in Central African Republic be reported before Jan 1, 2027?",
+          "yes_sub_title": "Central African Republic"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-CHI",
+          "no_sub_title": "China",
+          "rules_primary": "If a confirmed human case of Ebola disease in China is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in China \u2014 a citizen of China diagnosed elsewhere does not count. Imported cases diagnosed within China do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in China be reported before Jan 1, 2027?",
+          "yes_sub_title": "China"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-DOC",
+          "no_sub_title": "Republic of the Congo",
+          "rules_primary": "If a confirmed human case of Ebola disease in Republic of the Congo is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Republic of the Congo \u2014 a citizen of Republic of the Congo diagnosed elsewhere does not count. Imported cases diagnosed within Republic of the Congo do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in Republic of the Congo be reported before Jan 1, 2027?",
+          "yes_sub_title": "Republic of the Congo"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-ETHI",
+          "no_sub_title": "Ethiopia",
+          "rules_primary": "If a confirmed human case of Ebola disease in Ethiopia is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Ethiopia \u2014 a citizen of Ethiopia diagnosed elsewhere does not count. Imported cases diagnosed within Ethiopia do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in Ethiopia be reported before Jan 1, 2027?",
+          "yes_sub_title": "Ethiopia"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-IND",
+          "no_sub_title": "India",
+          "rules_primary": "If a confirmed human case of Ebola disease in India is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in India \u2014 a citizen of India diagnosed elsewhere does not count. Imported cases diagnosed within India do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in India be reported before Jan 1, 2027?",
+          "yes_sub_title": "India"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-NIGE",
+          "no_sub_title": "Nigeria",
+          "rules_primary": "If a confirmed human case of Ebola disease in Nigeria is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Nigeria \u2014 a citizen of Nigeria diagnosed elsewhere does not count. Imported cases diagnosed within Nigeria do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in Nigeria be reported before Jan 1, 2027?",
+          "yes_sub_title": "Nigeria"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-RWA",
+          "no_sub_title": "Rwanda",
+          "rules_primary": "If a confirmed human case of Ebola disease in Rwanda is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Rwanda \u2014 a citizen of Rwanda diagnosed elsewhere does not count. Imported cases diagnosed within Rwanda do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in Rwanda be reported before Jan 1, 2027?",
+          "yes_sub_title": "Rwanda"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-SUD",
+          "no_sub_title": "South Sudan",
+          "rules_primary": "If a confirmed human case of Ebola disease in South Sudan is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in South Sudan \u2014 a citizen of South Sudan diagnosed elsewhere does not count. Imported cases diagnosed within South Sudan do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in South Sudan be reported before Jan 1, 2027?",
+          "yes_sub_title": "South Sudan"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-TANZ",
+          "no_sub_title": "Tanzania",
+          "rules_primary": "If a confirmed human case of Ebola disease in Tanzania is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Tanzania \u2014 a citizen of Tanzania diagnosed elsewhere does not count. Imported cases diagnosed within Tanzania do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in Tanzania be reported before Jan 1, 2027?",
+          "yes_sub_title": "Tanzania"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-USA",
+          "no_sub_title": "United States",
+          "rules_primary": "If a confirmed human case of Ebola disease in United States is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in United States \u2014 a citizen of United States diagnosed elsewhere does not count. Imported cases diagnosed within United States do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": "United States",
+          "title": "Will a human case of Ebola disease in United States be reported before Jan 1, 2027?",
+          "yes_sub_title": "United States"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXEBOLACOUNTRY-27",
+          "key": "KXEBOLACOUNTRY-27-ZAMB",
+          "no_sub_title": "Zambia",
+          "rules_primary": "If a confirmed human case of Ebola disease in Zambia is officially reported after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Zambia \u2014 a citizen of Zambia diagnosed elsewhere does not count. Imported cases diagnosed within Zambia do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jan 1, 2027 do not qualify even if infection occurred earlier.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEBOLACOUNTRY",
+          "subtitle": null,
+          "title": "Will a human case of Ebola disease in Zambia be reported before Jan 1, 2027?",
+          "yes_sub_title": "Zambia"
+        }
+      ]
+    },
+    {
+      "event_key": "KXALBUMRELEASEDATE-NEWTAT",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXALBUMRELEASEDATE-NEWTAT",
+          "key": "KXALBUMRELEASEDATE-NEWTAT-26DEC01",
+          "no_sub_title": "Before Dec 1, 2026",
+          "rules_primary": "If Tate McRae releases a new album before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXALBUMRELEASEDATE",
+          "subtitle": "Before Dec 1, 2026",
+          "title": "Will Tate McRae release a new album before Dec 1, 2026?",
+          "yes_sub_title": "Before Dec 1, 2026"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXALBUMRELEASEDATE-NEWTAT",
+          "key": "KXALBUMRELEASEDATE-NEWTAT-27AUG01",
+          "no_sub_title": "Before Aug 1, 2027",
+          "rules_primary": "If Tate McRae releases a new album before Aug 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-08-01T14:00:00Z",
+          "series": "KXALBUMRELEASEDATE",
+          "subtitle": null,
+          "title": "Will Tate McRae release a new album before Aug 1, 2027?",
+          "yes_sub_title": "Before Aug 1, 2027"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXALBUMRELEASEDATE-NEWTAT",
+          "key": "KXALBUMRELEASEDATE-NEWTAT-27FEB01",
+          "no_sub_title": "Before Feb 1, 2027",
+          "rules_primary": "If Tate McRae releases a new album before Feb 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "KXALBUMRELEASEDATE",
+          "subtitle": null,
+          "title": "Will Tate McRae release a new album before Feb 1, 2027?",
+          "yes_sub_title": "Before Feb 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXPAHLAVIHEAD-27JAN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXPAHLAVIHEAD-27JAN",
+          "key": "KXPAHLAVIHEAD-27JAN-RPAH",
+          "no_sub_title": "Reza Pahlavi",
+          "rules_primary": "If Reza Pahlavi is appointed, elected, named, designated, or succeeded to the position as the head of state or government of Iran before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPAHLAVIHEAD",
+          "subtitle": null,
+          "title": "Who will be the next the head of state or government of Iran?",
+          "yes_sub_title": "Reza Pahlavi"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNDXREMOVEQ-26OCT01",
+      "markets": [
+        {
+          "category": "Financials",
+          "event_key": "KXNDXREMOVEQ-26OCT01",
+          "key": "KXNDXREMOVEQ-26OCT01-CPRT",
+          "no_sub_title": "Copart",
+          "rules_primary": "If Copart is announced to be or is officially removed from Nasdaq-100 during July 1, 2026 to September 30, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXNDXREMOVEQ",
+          "subtitle": null,
+          "title": "Will Copart be removed from the Nasdaq-100 in Q3 2026?",
+          "yes_sub_title": "Copart"
+        },
+        {
+          "category": "Financials",
+          "event_key": "KXNDXREMOVEQ-26OCT01",
+          "key": "KXNDXREMOVEQ-26OCT01-DXCM",
+          "no_sub_title": "DexCom",
+          "rules_primary": "If DexCom is announced to be or is officially removed from Nasdaq-100 during July 1, 2026 to September 30, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXNDXREMOVEQ",
+          "subtitle": null,
+          "title": "Will DexCom be removed from the Nasdaq-100 in Q3 2026?",
+          "yes_sub_title": "DexCom"
+        },
+        {
+          "category": "Financials",
+          "event_key": "KXNDXREMOVEQ-26OCT01",
+          "key": "KXNDXREMOVEQ-26OCT01-GEHC",
+          "no_sub_title": "GE HealthCare",
+          "rules_primary": "If GE HealthCare is announced to be or is officially removed from Nasdaq-100 during July 1, 2026 to September 30, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXNDXREMOVEQ",
+          "subtitle": null,
+          "title": "Will GE HealthCare be removed from the Nasdaq-100 in Q3 2026?",
+          "yes_sub_title": "GE HealthCare"
+        },
+        {
+          "category": "Financials",
+          "event_key": "KXNDXREMOVEQ-26OCT01",
+          "key": "KXNDXREMOVEQ-26OCT01-KHC",
+          "no_sub_title": "Kraft Heinz",
+          "rules_primary": "If Kraft Heinz is announced to be or is officially removed from Nasdaq-100 during July 1, 2026 to September 30, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXNDXREMOVEQ",
+          "subtitle": null,
+          "title": "Will Kraft Heinz be removed from the Nasdaq-100 in Q3 2026?",
+          "yes_sub_title": "Kraft Heinz"
+        },
+        {
+          "category": "Financials",
+          "event_key": "KXNDXREMOVEQ-26OCT01",
+          "key": "KXNDXREMOVEQ-26OCT01-WDAY",
+          "no_sub_title": "Workday",
+          "rules_primary": "If Workday is announced to be or is officially removed from Nasdaq-100 during July 1, 2026 to September 30, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXNDXREMOVEQ",
+          "subtitle": null,
+          "title": "Will Workday be removed from the Nasdaq-100 in Q3 2026?",
+          "yes_sub_title": "Workday"
+        }
+      ]
+    },
+    {
+      "event_key": "KXVOTEPRIMARY-MAPRIMARY08D26PROA",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXVOTEPRIMARY-MAPRIMARY08D26PROA",
+          "key": "KXVOTEPRIMARY-MAPRIMARY08D26PROA-45",
+          "no_sub_title": "At least 45%",
+          "rules_primary": "If the certified percentage of the popular vote received by Patrick Roath in the 2026 MA-08 Democratic primary is 45% to 100%, inclusive of both endpoints, then the market resolves to Yes.",
+          "rules_secondary": "The percentage is calculated as (total votes received by the specified person/party \u00f7 total valid votes cast) \u00d7 100, rounded to the specified decimal places. Resolution is based on certified/official results only, not preliminary results. Write-in votes are included if they appear in certified results. Invalid, spoiled, or rejected ballots are excluded from both numerator and denominator. If multiple rounds of voting occur (e.g., ranked choice voting), the percentage is based on the specified round or the first round if not specified. ",
+          "scheduled_close": "2027-09-01T14:00:00Z",
+          "series": "KXVOTEPRIMARY",
+          "subtitle": null,
+          "title": "Will Patrick Roath receive at least 45% of the popular vote in the 2026 MA-08 Democratic primary?",
+          "yes_sub_title": "At least 45%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXHLS-27",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXHLS-27",
+          "key": "KXHLS-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If Starship HLS has a test launch after Issuance and before 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXHLS",
+          "subtitle": null,
+          "title": "Will SpaceX test launch its Human Launch System before 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXENGAGEMENTMEGKLAY-26",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXENGAGEMENTMEGKLAY-26",
+          "key": "KXENGAGEMENTMEGKLAY-26",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If Klay Thompson and Megan Thee Stallion are reported to be engaged to be married before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXENGAGEMENTMEGKLAY",
+          "subtitle": "Before 2027",
+          "title": "Will Klay Thompson and Megan Thee Stallion be engaged in 2026?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

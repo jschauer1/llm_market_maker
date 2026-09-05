@@ -1,0 +1,887 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXMODELHIGH-27-1550",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXMODELHIGH-27-1550",
+          "key": "KXMODELHIGH-27-1550-CHAT",
+          "no_sub_title": "ChatGPT",
+          "rules_primary": "If a model by OpenAI is the first to hit 1550 on Text Arena before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMODELHIGH",
+          "subtitle": ":: OpenAI",
+          "title": "Will ChatGPT be the first to hit 1550 on Text Arena?",
+          "yes_sub_title": "ChatGPT"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXMODELHIGH-27-1550",
+          "key": "KXMODELHIGH-27-1550-CLAU",
+          "no_sub_title": "Claude",
+          "rules_primary": "If a model by Anthropic is the first to hit 1550 on Text Arena before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMODELHIGH",
+          "subtitle": ":: Anthropic",
+          "title": "Will Claude be the first to hit 1550 on Text Arena?",
+          "yes_sub_title": "Claude"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXMODELHIGH-27-1550",
+          "key": "KXMODELHIGH-27-1550-GEMI",
+          "no_sub_title": "Gemini",
+          "rules_primary": "If a model by Google is the first to hit 1550 on Text Arena before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMODELHIGH",
+          "subtitle": ":: Google",
+          "title": "Will Gemini be the first to hit 1550 on Text Arena?",
+          "yes_sub_title": "Gemini"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXMODELHIGH-27-1550",
+          "key": "KXMODELHIGH-27-1550-GROK",
+          "no_sub_title": "Grok",
+          "rules_primary": "If a model by xAI is the first to hit 1550 on Text Arena before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMODELHIGH",
+          "subtitle": ":: xAI",
+          "title": "Will Grok be the first to hit 1550 on Text Arena?",
+          "yes_sub_title": "Grok"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNECOF-26DEC18",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXNECOF-26DEC18",
+          "key": "KXNECOF-26DEC18-T2.67",
+          "no_sub_title": "Above 2.67 million head",
+          "rules_primary": "If USDA NASS reports that Nebraska\u2019s cattle-on-feed inventory for December 1, 2026 is above \n\n2.67 million head, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is Nebraska\u2019s Cattle on Feed Inventory on 1,000+ Capacity Feedlots as reported in USDA NASS\u2019s December 2026 Cattle on Feed report. The 2.67 million-head threshold is fixed.\n\nThis specifically covers feedlots with capacity of 1,000 or more head, which is the state-level monthly series in the Cattle on Feed report.\n\nUse Cattle on Feed \u2192 December 18, 2026 \u2192 Nebraska \u2192 December 1, 2026 Inventory.",
+          "scheduled_close": "2026-12-18T19:59:00Z",
+          "series": "KXNECOF",
+          "subtitle": null,
+          "title": "Will Nebraska\u2019s cattle-on-feed inventory for December 1, 2026 be above 2.67 million head?",
+          "yes_sub_title": "Above 2.67 million head"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCBDECISIONENGLAND-26NOV05",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXCBDECISIONENGLAND-26NOV05",
+          "key": "KXCBDECISIONENGLAND-26NOV05-C25",
+          "no_sub_title": "Cut 1-25bps",
+          "rules_primary": "If the Bank of England takes the action of Cut 1-25bps at November Monetary Policy Committee meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-11-05T11:54:00Z",
+          "series": "KXCBDECISIONENGLAND",
+          "subtitle": null,
+          "title": "Will the Bank of England Cut 1-25bps at the November Monetary Policy Committee meeting?",
+          "yes_sub_title": "Cut 1-25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCBDECISIONENGLAND-26NOV05",
+          "key": "KXCBDECISIONENGLAND-26NOV05-C25P",
+          "no_sub_title": "Cut more than 25bps",
+          "rules_primary": "If the Bank of England takes the action of Cut more than 25bps at November Monetary Policy Committee meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-11-05T11:54:00Z",
+          "series": "KXCBDECISIONENGLAND",
+          "subtitle": null,
+          "title": "Will the Bank of England Cut more than 25bps at the November Monetary Policy Committee meeting?",
+          "yes_sub_title": "Cut more than 25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCBDECISIONENGLAND-26NOV05",
+          "key": "KXCBDECISIONENGLAND-26NOV05-H25",
+          "no_sub_title": "Hike 1-25bps",
+          "rules_primary": "If the Bank of England takes the action of Hike 1-25bps at November Monetary Policy Committee meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-11-05T11:54:00Z",
+          "series": "KXCBDECISIONENGLAND",
+          "subtitle": null,
+          "title": "Will the Bank of England Hike 1-25bps at the November Monetary Policy Committee meeting?",
+          "yes_sub_title": "Hike 1-25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCBDECISIONENGLAND-26NOV05",
+          "key": "KXCBDECISIONENGLAND-26NOV05-H25P",
+          "no_sub_title": "Hike more than 25bps",
+          "rules_primary": "If the Bank of England takes the action of Hike more than 25bps at November Monetary Policy Committee meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-11-05T11:54:00Z",
+          "series": "KXCBDECISIONENGLAND",
+          "subtitle": null,
+          "title": "Will the Bank of England Hike more than 25bps at the November Monetary Policy Committee meeting?",
+          "yes_sub_title": "Hike more than 25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCBDECISIONENGLAND-26NOV05",
+          "key": "KXCBDECISIONENGLAND-26NOV05-HOLD",
+          "no_sub_title": "Maintain current rate",
+          "rules_primary": "If the Bank of England takes the action of Maintain current rate at November Monetary Policy Committee meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-11-05T11:54:00Z",
+          "series": "KXCBDECISIONENGLAND",
+          "subtitle": null,
+          "title": "Will the Bank of England Maintain current rate at the November Monetary Policy Committee meeting?",
+          "yes_sub_title": "Maintain current rate"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCBDSA-26SEP23",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXCBDSA-26SEP23",
+          "key": "KXCBDSA-26SEP23-H25",
+          "no_sub_title": "Hike 1-25bps",
+          "rules_primary": "If the South African Reserve Bank takes the action of Hike 1-25bps at its September Monetary Policy Committee meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-09-23T12:59:00Z",
+          "series": "KXCBDSA",
+          "subtitle": null,
+          "title": "Will the South African Reserve Bank Hike 1-25bps at the September Monetary Policy Committee meeting?",
+          "yes_sub_title": "Hike 1-25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCBDSA-26SEP23",
+          "key": "KXCBDSA-26SEP23-HOLD",
+          "no_sub_title": "Maintain current rate",
+          "rules_primary": "If the South African Reserve Bank takes the action of Maintain current rate at its September Monetary Policy Committee meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-09-23T12:59:00Z",
+          "series": "KXCBDSA",
+          "subtitle": null,
+          "title": "Will the South African Reserve Bank Maintain current rate at the September Monetary Policy Committee meeting?",
+          "yes_sub_title": "Maintain current rate"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMLBCBA-26DEC02",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXMLBCBA-26DEC02",
+          "key": "KXMLBCBA-26DEC02-YES",
+          "no_sub_title": "New CBA agreement before Dec 2, 2026",
+          "rules_primary": "If the MLBPA and MLB agree to any new CBA (Collective Bargaining Agreement) after Jul 8, 2026 and before Dec 2, 2026, then the market resolves to Yes.",
+          "rules_secondary": "A public announcement of a reached agreement or agreement in principle is sufficient to satisfy the Payout Criterion, unless otherwise specified. Formal execution or ratification is not required if such an announcement occurs within the specified time period. Likewise, if a formal execution of the agreement or a formal ratification by the relevant players' association membership occurs within the specified time period, the market will resolve Yes regardless of whether a public announcement was made before, at the same time as, or after such execution or ratification. Subsequent modifications, amendments, implementation details, or delays do not affect the resolution once a qualifying agreement, execution, or ratification has occurred.",
+          "scheduled_close": "2026-12-02T04:59:00Z",
+          "series": "KXMLBCBA",
+          "subtitle": null,
+          "title": "Will the MLBPA and MLB agree to a new CBA (Collective Bargaining Agreement) before Dec 2, 2026?",
+          "yes_sub_title": "New CBA agreement before Dec 2, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXWHVISIT-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-AAHM",
+          "no_sub_title": "Abiy Ahmed",
+          "rules_primary": "If Abiy Ahmed visits the White House after Jan 5, 2026 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Abiy Ahmed visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Abiy Ahmed"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-AALS",
+          "no_sub_title": "Abdel Fattah al-Sisi",
+          "rules_primary": "If Abdel Fattah al-Sisi visits the White House after Jan 5, 2026 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Abdel Fattah al-Sisi visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Abdel Fattah al-Sisi"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-BMAH",
+          "no_sub_title": "Bill Maher",
+          "rules_primary": "If Bill Maher visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Bill Maher visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Bill Maher"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-CRON",
+          "no_sub_title": "Cristiano Ronaldo",
+          "rules_primary": "If Cristiano Ronaldo visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Cristiano Ronaldo visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Cristiano Ronaldo"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-CSHE",
+          "no_sub_title": "Claudia Sheinbaum",
+          "rules_primary": "If Claudia Sheinbaum visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Claudia Sheinbaum visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Claudia Sheinbaum"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-EADA",
+          "no_sub_title": "Eric Adams",
+          "rules_primary": "If Eric Adams visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Eric Adams visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Eric Adams"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-EMUS",
+          "no_sub_title": "Elon Musk",
+          "rules_primary": "If Elon Musk visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Elon Musk visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Elon Musk"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-GNEW",
+          "no_sub_title": "Gavin Newsom",
+          "rules_primary": "If Gavin Newsom visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Gavin Newsom visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Gavin Newsom"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-HJEF",
+          "no_sub_title": "Hakeem Jeffries",
+          "rules_primary": "If Hakeem Jeffries visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Hakeem Jeffries visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Hakeem Jeffries"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-HMAN",
+          "no_sub_title": "Hun Manet",
+          "rules_primary": "If Hun Manet visits the White House after Jan 5, 2026 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Hun Manet visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Hun Manet"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-JBID",
+          "no_sub_title": "Joe Biden",
+          "rules_primary": "If Joe Biden visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Joe Biden visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Joe Biden"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-JPOW",
+          "no_sub_title": "Jerome Powell",
+          "rules_primary": "If Jerome Powell visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Jerome Powell visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Jerome Powell"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-JTER",
+          "no_sub_title": "John Ternus",
+          "rules_primary": "If John Ternus visits the White House after Apr 20, 2026 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will John Ternus visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "John Ternus"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-MCAR",
+          "no_sub_title": "Mark Carney",
+          "rules_primary": "If Mark Carney visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Mark Carney visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Mark Carney"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-MTG",
+          "no_sub_title": "Marjorie Taylor Greene",
+          "rules_primary": "If Marjorie Taylor Greene visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Marjorie Taylor Greene visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Marjorie Taylor Greene"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-OBAM",
+          "no_sub_title": "Barack Obama",
+          "rules_primary": "If Barack Obama visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Barack Obama visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Barack Obama"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-PLEO",
+          "no_sub_title": "Pope Leo XIV",
+          "rules_primary": "If Pope Leo XIV visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Pope Leo XIV visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Pope Leo XIV"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-RPAH",
+          "no_sub_title": "Reza Pahlavi",
+          "rules_primary": "If Reza Pahlavi visits the White House after Jan 15, 2026 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Reza Pahlavi visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Reza Pahlavi"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-VPUT",
+          "no_sub_title": "Vladimir Putin",
+          "rules_primary": "If Vladimir Putin visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Vladimir Putin visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Vladimir Putin"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHVISIT-27",
+          "key": "KXWHVISIT-27-XJIN",
+          "no_sub_title": "Xi Jinping",
+          "rules_primary": "If Xi Jinping visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXWHVISIT",
+          "subtitle": null,
+          "title": "Will Xi Jinping visit the White House before Jan 1, 2027?",
+          "yes_sub_title": "Xi Jinping"
+        }
+      ]
+    },
+    {
+      "event_key": "KXAKSENATEROUND-26",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXAKSENATEROUND-26",
+          "key": "KXAKSENATEROUND-26-1",
+          "no_sub_title": "1",
+          "rules_primary": "If the official ranked choice voting tabulation for the 2026 Alaska Senate election consists of exactly 1 rounds, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "KXAKSENATEROUND",
+          "subtitle": null,
+          "title": "Will the 2026 Alaska Senate election consist of 1 rounds?",
+          "yes_sub_title": "1"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXAKSENATEROUND-26",
+          "key": "KXAKSENATEROUND-26-2",
+          "no_sub_title": "2",
+          "rules_primary": "If the official ranked choice voting tabulation for the 2026 Alaska Senate election consists of exactly 2 rounds, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "KXAKSENATEROUND",
+          "subtitle": null,
+          "title": "Will the 2026 Alaska Senate election consist of 2 rounds?",
+          "yes_sub_title": "2"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXAKSENATEROUND-26",
+          "key": "KXAKSENATEROUND-26-3",
+          "no_sub_title": "3",
+          "rules_primary": "If the official ranked choice voting tabulation for the 2026 Alaska Senate election consists of exactly 3 rounds, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "KXAKSENATEROUND",
+          "subtitle": null,
+          "title": "Will the 2026 Alaska Senate election consist of 3 rounds?",
+          "yes_sub_title": "3"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCOMPANYACTIONTTWO-27",
+      "markets": [
+        {
+          "category": "Financials",
+          "event_key": "KXCOMPANYACTIONTTWO-27",
+          "key": "KXCOMPANYACTIONTTWO-27-27FEB01",
+          "no_sub_title": "Yes",
+          "rules_primary": "If Take-Two Interactive or Rockstar Games publicly disclose a numeric figure for Grand Theft Auto VI preorders before Feb 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must be made through official company channels including press releases, SEC filings (8-K, 10-K, 10-Q), earnings calls, investor presentations, verified social media accounts, or official statements to media subsequently confirmed by the company. CEO statements through official channels qualify. Rumors, speculation, unconfirmed reports, leaked information, third-party announcements without company confirmation, and preliminary discussions do not qualify. The announcement must occur after market issuance. Companies are tracked through rebranding and name changes representing the same business entity.",
+          "scheduled_close": "2027-02-01T04:59:00Z",
+          "series": "KXCOMPANYACTIONTTWO",
+          "subtitle": null,
+          "title": "Will Take-Two Interactive or Rockstar Games publicly disclose a numeric figure for Grand Theft Auto VI preorders before Feb 1, 2027?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXDODRENAME-26JUN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXDODRENAME-26JUN",
+          "key": "KXDODRENAME-26JUN",
+          "no_sub_title": "Yes",
+          "rules_primary": "If legislation that makes \u201cDepartment of War\u201d the official statutory name of the United States Department of Defense has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXDODRENAME",
+          "subtitle": "Yes",
+          "title": "Will legislation that makes \u201cDepartment of War\u201d the official statutory name of the United States Department of Defense become law before Jan 1, 2027?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTARIFFRATECAN-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXTARIFFRATECAN-27JAN01",
+          "key": "KXTARIFFRATECAN-27JAN01-10",
+          "no_sub_title": "20% or above",
+          "rules_primary": "If the general import tariff rate on imports from Canada into the United States on Jan 1, 2027 is at least 20%, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the general import tariff rate that is actually in effect (i.e., being collected) on the specified date. This includes both universal tariffs on all U.S. imports and country-specific tariffs on the specified country. Only tariffs that are currently active and being collected count - announced but not implemented tariffs, paused tariffs, or suspended tariffs do not qualify. The tariff rate refers to the general baseline rate, not including product-specific duties or exemptions. If multiple general rates apply, the general import tariff rate is the sum of all applicable general rates in effect.\n\nExamples (for date = Jan 1, 2026):\n\nIndia: 25% Reciprocal Tariff (EO 14326) + 25% Russian Oil Penalty (EO 14329) = 50%\nChina: 10% Reciprocal Tariff (EO 14358) + 10% Fentanyl Duty (EO 14357) = 20%\nEuropean Union: 15% Reciprocal Tariff \"Floor\" (EO 14326)\nFalkland Islands: 10% Reciprocal Tariff (EO 14326)",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTARIFFRATECAN",
+          "subtitle": null,
+          "title": "Will the tariff rate on Canada imports be at least 20% on Jan 1, 2027?",
+          "yes_sub_title": "20% or above"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTARIFFRATECAN-27JAN01",
+          "key": "KXTARIFFRATECAN-27JAN01-15",
+          "no_sub_title": "30% or above",
+          "rules_primary": "If the general import tariff rate on imports from Canada into the United States on Jan 1, 2027 is at least 30%, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the general import tariff rate that is actually in effect (i.e., being collected) on the specified date. This includes both universal tariffs on all U.S. imports and country-specific tariffs on the specified country. Only tariffs that are currently active and being collected count - announced but not implemented tariffs, paused tariffs, or suspended tariffs do not qualify. The tariff rate refers to the general baseline rate, not including product-specific duties or exemptions. If multiple general rates apply, the general import tariff rate is the sum of all applicable general rates in effect.\n\nExamples (for date = Jan 1, 2026):\n\nIndia: 25% Reciprocal Tariff (EO 14326) + 25% Russian Oil Penalty (EO 14329) = 50%\nChina: 10% Reciprocal Tariff (EO 14358) + 10% Fentanyl Duty (EO 14357) = 20%\nEuropean Union: 15% Reciprocal Tariff \"Floor\" (EO 14326)\nFalkland Islands: 10% Reciprocal Tariff (EO 14326)",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTARIFFRATECAN",
+          "subtitle": null,
+          "title": "Will the tariff rate on Canada imports be at least 30% on Jan 1, 2027?",
+          "yes_sub_title": "30% or above"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNECORNYIELD-27JAN31",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXNECORNYIELD-27JAN31",
+          "key": "KXNECORNYIELD-27JAN31-T170",
+          "no_sub_title": "Above 170 bu/acre",
+          "rules_primary": "If USDA NASS reports that Nebraska\u2019s corn for grain yield per harvested acre in 2026 is above \n\n170 bu/acre, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is Nebraska\u2019s corn for grain yield for the 2026 crop, measured in bushels per harvested acre, as reported by USDA NASS. Corn silage will not be considered.\n\nUse CORN \u2192 CORN, GRAIN \u2192 Yield.",
+          "scheduled_close": "2027-01-31T14:59:00Z",
+          "series": "KXNECORNYIELD",
+          "subtitle": null,
+          "title": "Will Nebraska\u2019s corn for grain yield per harvested acre in 2026 be above 170 bu/acre?",
+          "yes_sub_title": "Above 170 bu/acre"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNECORNYIELD-27JAN31",
+          "key": "KXNECORNYIELD-27JAN31-T175",
+          "no_sub_title": "Above 175 bu/acre",
+          "rules_primary": "If USDA NASS reports that Nebraska\u2019s corn for grain yield per harvested acre in 2026 is above \n\n175 bu/acre, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is Nebraska\u2019s corn for grain yield for the 2026 crop, measured in bushels per harvested acre, as reported by USDA NASS. Corn silage will not be considered.\n\nUse CORN \u2192 CORN, GRAIN \u2192 Yield.",
+          "scheduled_close": "2027-01-31T14:59:00Z",
+          "series": "KXNECORNYIELD",
+          "subtitle": null,
+          "title": "Will Nebraska\u2019s corn for grain yield per harvested acre in 2026 be above 175 bu/acre?",
+          "yes_sub_title": "Above 175 bu/acre"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNECORNYIELD-27JAN31",
+          "key": "KXNECORNYIELD-27JAN31-T180",
+          "no_sub_title": "Above 180 bu/acre",
+          "rules_primary": "If USDA NASS reports that Nebraska\u2019s corn for grain yield per harvested acre in 2026 is above \n\n180 bu/acre, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is Nebraska\u2019s corn for grain yield for the 2026 crop, measured in bushels per harvested acre, as reported by USDA NASS. Corn silage will not be considered.\n\nUse CORN \u2192 CORN, GRAIN \u2192 Yield.",
+          "scheduled_close": "2027-01-31T14:59:00Z",
+          "series": "KXNECORNYIELD",
+          "subtitle": null,
+          "title": "Will Nebraska\u2019s corn for grain yield per harvested acre in 2026 be above 180 bu/acre?",
+          "yes_sub_title": "Above 180 bu/acre"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNECORNYIELD-27JAN31",
+          "key": "KXNECORNYIELD-27JAN31-T185",
+          "no_sub_title": "Above 185 bu/acre",
+          "rules_primary": "If USDA NASS reports that Nebraska\u2019s corn for grain yield per harvested acre in 2026 is above \n\n185 bu/acre, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is Nebraska\u2019s corn for grain yield for the 2026 crop, measured in bushels per harvested acre, as reported by USDA NASS. Corn silage will not be considered.\n\nUse CORN \u2192 CORN, GRAIN \u2192 Yield.",
+          "scheduled_close": "2027-01-31T14:59:00Z",
+          "series": "KXNECORNYIELD",
+          "subtitle": null,
+          "title": "Will Nebraska\u2019s corn for grain yield per harvested acre in 2026 be above 185 bu/acre?",
+          "yes_sub_title": "Above 185 bu/acre"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNECORNYIELD-27JAN31",
+          "key": "KXNECORNYIELD-27JAN31-T190",
+          "no_sub_title": "Above 190 bu/acre",
+          "rules_primary": "If USDA NASS reports that Nebraska\u2019s corn for grain yield per harvested acre in 2026 is above \n\n190 bu/acre, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is Nebraska\u2019s corn for grain yield for the 2026 crop, measured in bushels per harvested acre, as reported by USDA NASS. Corn silage will not be considered.\n\nUse CORN \u2192 CORN, GRAIN \u2192 Yield.",
+          "scheduled_close": "2027-01-31T14:59:00Z",
+          "series": "KXNECORNYIELD",
+          "subtitle": null,
+          "title": "Will Nebraska\u2019s corn for grain yield per harvested acre in 2026 be above 190 bu/acre?",
+          "yes_sub_title": "Above 190 bu/acre"
+        }
+      ]
+    },
+    {
+      "event_key": "KXKOSOVOPRES-27JAN01",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXKOSOVOPRES-27JAN01",
+          "key": "KXKOSOVOPRES-27JAN01-AKOC",
+          "no_sub_title": "Arianit Koci",
+          "rules_primary": "If Arianit Koci formally holds the position of President of Kosovo before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity, as formally designated by the body or organization at which the position is held, is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nA person permanently holds the office after beginning the presidential mandate by taking the oath before the Assembly.\n\nService only as Acting President does NOT qualify.\n\nIf an unlisted person is the first to permanently hold the office after Issuance, every listed market resolves NO.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXKOSOVOPRES",
+          "subtitle": null,
+          "title": "Will Arianit Koci be the next President of Kosovo before Jan 1, 2027?",
+          "yes_sub_title": "Arianit Koci"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXKOSOVOPRES-27JAN01",
+          "key": "KXKOSOVOPRES-27JAN01-BSEJ",
+          "no_sub_title": "Bekim Sejdiu",
+          "rules_primary": "If Bekim Sejdiu formally holds the position of President of Kosovo before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity, as formally designated by the body or organization at which the position is held, is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nA person permanently holds the office after beginning the presidential mandate by taking the oath before the Assembly.\n\nService only as Acting President does NOT qualify.\n\nIf an unlisted person is the first to permanently hold the office after Issuance, every listed market resolves NO.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXKOSOVOPRES",
+          "subtitle": null,
+          "title": "Will Bekim Sejdiu be the next President of Kosovo before Jan 1, 2027?",
+          "yes_sub_title": "Bekim Sejdiu"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXKOSOVOPRES-27JAN01",
+          "key": "KXKOSOVOPRES-27JAN01-FBIS",
+          "no_sub_title": "Faton Bislimi",
+          "rules_primary": "If Faton Bislimi formally holds the position of President of Kosovo before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity, as formally designated by the body or organization at which the position is held, is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nA person permanently holds the office after beginning the presidential mandate by taking the oath before the Assembly.\n\nService only as Acting President does NOT qualify.\n\nIf an unlisted person is the first to permanently hold the office after Issuance, every listed market resolves NO.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXKOSOVOPRES",
+          "subtitle": null,
+          "title": "Will Faton Bislimi be the next President of Kosovo before Jan 1, 2027?",
+          "yes_sub_title": "Faton Bislimi"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXKOSOVOPRES-27JAN01",
+          "key": "KXKOSOVOPRES-27JAN01-FMUL",
+          "no_sub_title": "Fatmire Mulhaxha-Koll\u00e7aku",
+          "rules_primary": "If Fatmire Mulhaxha-Koll\u00e7aku formally holds the position of President of Kosovo before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity, as formally designated by the body or organization at which the position is held, is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nA person permanently holds the office after beginning the presidential mandate by taking the oath before the Assembly.\n\nService only as Acting President does NOT qualify.\n\nIf an unlisted person is the first to permanently hold the office after Issuance, every listed market resolves NO.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXKOSOVOPRES",
+          "subtitle": null,
+          "title": "Will Fatmire Mulhaxha-Koll\u00e7aku be the next President of Kosovo before Jan 1, 2027?",
+          "yes_sub_title": "Fatmire Mulhaxha-Koll\u00e7aku"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXKOSOVOPRES-27JAN01",
+          "key": "KXKOSOVOPRES-27JAN01-FRUS",
+          "no_sub_title": "Feride Rushiti",
+          "rules_primary": "If Feride Rushiti formally holds the position of President of Kosovo before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity, as formally designated by the body or organization at which the position is held, is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nA person permanently holds the office after beginning the presidential mandate by taking the oath before the Assembly.\n\nService only as Acting President does NOT qualify.\n\nIf an unlisted person is the first to permanently hold the office after Issuance, every listed market resolves NO.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXKOSOVOPRES",
+          "subtitle": null,
+          "title": "Will Feride Rushiti be the next President of Kosovo before Jan 1, 2027?",
+          "yes_sub_title": "Feride Rushiti"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXKOSOVOPRES-27JAN01",
+          "key": "KXKOSOVOPRES-27JAN01-GKON",
+          "no_sub_title": "Glauk Konjufca",
+          "rules_primary": "If Glauk Konjufca formally holds the position of President of Kosovo before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity, as formally designated by the body or organization at which the position is held, is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nA person permanently holds the office after beginning the presidential mandate by taking the oath before the Assembly.\n\nService only as Acting President does NOT qualify.\n\nIf an unlisted person is the first to permanently hold the office after Issuance, every listed market resolves NO.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXKOSOVOPRES",
+          "subtitle": null,
+          "title": "Will Glauk Konjufca be the next President of Kosovo before Jan 1, 2027?",
+          "yes_sub_title": "Glauk Konjufca"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXKOSOVOPRES-27JAN01",
+          "key": "KXKOSOVOPRES-27JAN01-HHOX",
+          "no_sub_title": "Hatixhe Hoxha",
+          "rules_primary": "If Hatixhe Hoxha formally holds the position of President of Kosovo before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity, as formally designated by the body or organization at which the position is held, is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nA person permanently holds the office after beginning the presidential mandate by taking the oath before the Assembly.\n\nService only as Acting President does NOT qualify.\n\nIf an unlisted person is the first to permanently hold the office after Issuance, every listed market resolves NO.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXKOSOVOPRES",
+          "subtitle": null,
+          "title": "Will Hatixhe Hoxha be the next President of Kosovo before Jan 1, 2027?",
+          "yes_sub_title": "Hatixhe Hoxha"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXKOSOVOPRES-27JAN01",
+          "key": "KXKOSOVOPRES-27JAN01-LABD",
+          "no_sub_title": "Lumir Abdixhiku",
+          "rules_primary": "If Lumir Abdixhiku formally holds the position of President of Kosovo before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity, as formally designated by the body or organization at which the position is held, is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nA person permanently holds the office after beginning the presidential mandate by taking the oath before the Assembly.\n\nService only as Acting President does NOT qualify.\n\nIf an unlisted person is the first to permanently hold the office after Issuance, every listed market resolves NO.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXKOSOVOPRES",
+          "subtitle": null,
+          "title": "Will Lumir Abdixhiku be the next President of Kosovo before Jan 1, 2027?",
+          "yes_sub_title": "Lumir Abdixhiku"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXKOSOVOPRES-27JAN01",
+          "key": "KXKOSOVOPRES-27JAN01-LHAZ",
+          "no_sub_title": "Lutfi Haziri",
+          "rules_primary": "If Lutfi Haziri formally holds the position of President of Kosovo before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity, as formally designated by the body or organization at which the position is held, is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nA person permanently holds the office after beginning the presidential mandate by taking the oath before the Assembly.\n\nService only as Acting President does NOT qualify.\n\nIf an unlisted person is the first to permanently hold the office after Issuance, every listed market resolves NO.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXKOSOVOPRES",
+          "subtitle": null,
+          "title": "Will Lutfi Haziri be the next President of Kosovo before Jan 1, 2027?",
+          "yes_sub_title": "Lutfi Haziri"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXKOSOVOPRES-27JAN01",
+          "key": "KXKOSOVOPRES-27JAN01-VOSM",
+          "no_sub_title": "Vjosa Osmani",
+          "rules_primary": "If Vjosa Osmani formally holds the position of President of Kosovo before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity, as formally designated by the body or organization at which the position is held, is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nA person permanently holds the office after beginning the presidential mandate by taking the oath before the Assembly.\n\nService only as Acting President does NOT qualify.\n\nIf an unlisted person is the first to permanently hold the office after Issuance, every listed market resolves NO.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXKOSOVOPRES",
+          "subtitle": null,
+          "title": "Will Vjosa Osmani be the next President of Kosovo before Jan 1, 2027?",
+          "yes_sub_title": "Vjosa Osmani"
+        }
+      ]
+    },
+    {
+      "event_key": "KXRIRESPOWER-27FEB28",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXRIRESPOWER-27FEB28",
+          "key": "KXRIRESPOWER-27FEB28-T28.5",
+          "no_sub_title": "Above 28.5\u00a2/kWh",
+          "rules_primary": "If EIA reports Rhode Island\u2019s average residential electricity price for calendar year 2026 is above \n\n28.5\u00a2/kWh, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will use Rhode Island\u2019s Residential value in EIA Electric Power Monthly Table 5.6.B, Average Price of Electricity to Ultimate Customers by End-Use Sector, by State, for the year-to-date period through December 2026.\n\nPrices are measured in cents per kilowatthour. EIA calculates average retail electricity prices from retail electricity revenue divided by retail electricity sales; they are not individual utility tariff rates.",
+          "scheduled_close": "2027-02-28T14:59:00Z",
+          "series": "KXRIRESPOWER",
+          "subtitle": null,
+          "title": "Will Rhode Island\u2019s average residential electricity price for 2026 be above 28.5\u00a2/kWh?",
+          "yes_sub_title": "Above 28.5\u00a2/kWh"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXRIRESPOWER-27FEB28",
+          "key": "KXRIRESPOWER-27FEB28-T29.0",
+          "no_sub_title": "Above 29.0\u00a2/kWh",
+          "rules_primary": "If EIA reports Rhode Island\u2019s average residential electricity price for calendar year 2026 is above \n\n29.0\u00a2/kWh, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will use Rhode Island\u2019s Residential value in EIA Electric Power Monthly Table 5.6.B, Average Price of Electricity to Ultimate Customers by End-Use Sector, by State, for the year-to-date period through December 2026.\n\nPrices are measured in cents per kilowatthour. EIA calculates average retail electricity prices from retail electricity revenue divided by retail electricity sales; they are not individual utility tariff rates.",
+          "scheduled_close": "2027-02-28T14:59:00Z",
+          "series": "KXRIRESPOWER",
+          "subtitle": null,
+          "title": "Will Rhode Island\u2019s average residential electricity price for 2026 be above 29.0\u00a2/kWh?",
+          "yes_sub_title": "Above 29.0\u00a2/kWh"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXRIRESPOWER-27FEB28",
+          "key": "KXRIRESPOWER-27FEB28-T29.5",
+          "no_sub_title": "Above 29.5\u00a2/kWh",
+          "rules_primary": "If EIA reports Rhode Island\u2019s average residential electricity price for calendar year 2026 is above \n\n29.5\u00a2/kWh, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will use Rhode Island\u2019s Residential value in EIA Electric Power Monthly Table 5.6.B, Average Price of Electricity to Ultimate Customers by End-Use Sector, by State, for the year-to-date period through December 2026.\n\nPrices are measured in cents per kilowatthour. EIA calculates average retail electricity prices from retail electricity revenue divided by retail electricity sales; they are not individual utility tariff rates.",
+          "scheduled_close": "2027-02-28T14:59:00Z",
+          "series": "KXRIRESPOWER",
+          "subtitle": null,
+          "title": "Will Rhode Island\u2019s average residential electricity price for 2026 be above 29.5\u00a2/kWh?",
+          "yes_sub_title": "Above 29.5\u00a2/kWh"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXRIRESPOWER-27FEB28",
+          "key": "KXRIRESPOWER-27FEB28-T30.0",
+          "no_sub_title": "Above 30.0\u00a2/kWh",
+          "rules_primary": "If EIA reports Rhode Island\u2019s average residential electricity price for calendar year 2026 is above \n\n30.0\u00a2/kWh, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will use Rhode Island\u2019s Residential value in EIA Electric Power Monthly Table 5.6.B, Average Price of Electricity to Ultimate Customers by End-Use Sector, by State, for the year-to-date period through December 2026.\n\nPrices are measured in cents per kilowatthour. EIA calculates average retail electricity prices from retail electricity revenue divided by retail electricity sales; they are not individual utility tariff rates.",
+          "scheduled_close": "2027-02-28T14:59:00Z",
+          "series": "KXRIRESPOWER",
+          "subtitle": null,
+          "title": "Will Rhode Island\u2019s average residential electricity price for 2026 be above 30.0\u00a2/kWh?",
+          "yes_sub_title": "Above 30.0\u00a2/kWh"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXRIRESPOWER-27FEB28",
+          "key": "KXRIRESPOWER-27FEB28-T31.0",
+          "no_sub_title": "Above 31.0\u00a2/kWh",
+          "rules_primary": "If EIA reports Rhode Island\u2019s average residential electricity price for calendar year 2026 is above \n\n31.0\u00a2/kWh, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will use Rhode Island\u2019s Residential value in EIA Electric Power Monthly Table 5.6.B, Average Price of Electricity to Ultimate Customers by End-Use Sector, by State, for the year-to-date period through December 2026.\n\nPrices are measured in cents per kilowatthour. EIA calculates average retail electricity prices from retail electricity revenue divided by retail electricity sales; they are not individual utility tariff rates.",
+          "scheduled_close": "2027-02-28T14:59:00Z",
+          "series": "KXRIRESPOWER",
+          "subtitle": null,
+          "title": "Will Rhode Island\u2019s average residential electricity price for 2026 be above 31.0\u00a2/kWh?",
+          "yes_sub_title": "Above 31.0\u00a2/kWh"
+        }
+      ]
+    },
+    {
+      "event_key": "KXHOEKSTRAOUT-26AUG",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXHOEKSTRAOUT-26AUG",
+          "key": "KXHOEKSTRAOUT-26AUG-26DEC12",
+          "no_sub_title": "Before Dec 12, 2026",
+          "rules_primary": "If Pete Hoekstra leaves as US Ambassador to Canada before Dec 12, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Pete Hoekstra must have an actual departure date and vacate the role within the time period.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role. This includes both voluntary and involuntary early departure and the natural expiration of a term. Temporary leaves of absence, suspensions, or recusals do not constitute leaving unless the individual formally and permanently ceases to hold the position.\n\nHouse of Commons petition e-7531 is NOT a resolution condition. Whether it is certified, presented, debated, answered or withdrawn has no bearing on settlement.",
+          "scheduled_close": "2026-12-12T04:59:00Z",
+          "series": "KXHOEKSTRAOUT",
+          "subtitle": null,
+          "title": "Will Pete Hoekstra be out as US Ambassador to Canada before Dec 12, 2026?",
+          "yes_sub_title": "Before Dec 12, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXAAAGASDNC-26SEP06",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXAAAGASDNC-26SEP06",
+          "key": "KXAAAGASDNC-26SEP06-3.8600",
+          "no_sub_title": "Above 3.8600",
+          "rules_primary": "If average regular gas prices for North Carolina are strictly greater than $3.8600 on Sep 6, 2026 according to AAA, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-06T03:59:00Z",
+          "series": "KXAAAGASDNC",
+          "subtitle": null,
+          "title": "Will average **gas prices** be above $3.8600?",
+          "yes_sub_title": "Above 3.8600"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

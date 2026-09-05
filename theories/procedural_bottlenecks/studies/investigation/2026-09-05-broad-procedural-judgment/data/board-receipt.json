@@ -1,0 +1,1 @@
+{"source": "tools.board.get_board, shared persisted snapshot", "snapshot_at": "2026-09-05T15:45:16Z", "markets": 115840, "file": "board.jsonl", "sha256": "8a08cf73c4f8f81050be85dec3ef6ef0b8575f6b63726ea16aae564e6fbdf14f", "snapshot_age_policy_minutes": 360, "purpose": "membership and cheap screen only; execution requires fresh quotes"}

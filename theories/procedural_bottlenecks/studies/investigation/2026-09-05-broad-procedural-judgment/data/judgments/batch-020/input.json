@@ -1,0 +1,939 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXNHHOMEPRICE-27FEB28",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXNHHOMEPRICE-27FEB28",
+          "key": "KXNHHOMEPRICE-27FEB28-T478.68",
+          "no_sub_title": "Above 478.68",
+          "rules_primary": "If FHFA reports that New Hampshire\u2019s seasonally adjusted Purchase-Only House Price Index for Q4 2026 is above \n\n478.68, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the New Hampshire (NH) Q4 2026 indexsa value in FHFA\u2019s quarterly Purchase-Only State HPI dataset. The 478.68 threshold is fixed and will not change if FHFA later revises its Q4 2025 value.\n\nUse NH \u2192 2026 \u2192 Q4 \u2192 indexsa.",
+          "scheduled_close": "2027-02-28T14:59:00Z",
+          "series": "KXNHHOMEPRICE",
+          "subtitle": null,
+          "title": "Will New Hampshire\u2019s seasonally adjusted Purchase-Only House Price Index for Q4 2026 be above 478.68?",
+          "yes_sub_title": "Above 478.68"
+        }
+      ]
+    },
+    {
+      "event_key": "KXIPOSTARLINK",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXIPOSTARLINK",
+          "key": "KXIPOSTARLINK-26DEC01",
+          "no_sub_title": "Before Dec 1, 2026",
+          "rules_primary": "If Starlink confirms an IPO before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Dec 1, 2026.",
+          "scheduled_close": "2026-12-01T04:59:00Z",
+          "series": "KXIPOSTARLINK",
+          "subtitle": null,
+          "title": "When will Starlink IPO?",
+          "yes_sub_title": "Before Dec 1, 2026"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXIPOSTARLINK",
+          "key": "KXIPOSTARLINK-27APR01",
+          "no_sub_title": "Before Apr 1, 2027",
+          "rules_primary": "If Starlink confirms an IPO before Apr 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Apr 1, 2027.",
+          "scheduled_close": "2027-04-01T03:59:00Z",
+          "series": "KXIPOSTARLINK",
+          "subtitle": null,
+          "title": "When will Starlink IPO?",
+          "yes_sub_title": "Before Apr 1, 2027"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXIPOSTARLINK",
+          "key": "KXIPOSTARLINK-27FEB01",
+          "no_sub_title": "Before Feb 1, 2027",
+          "rules_primary": "If Starlink confirms an IPO before Feb 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Feb 1, 2027.",
+          "scheduled_close": "2027-02-01T04:59:00Z",
+          "series": "KXIPOSTARLINK",
+          "subtitle": null,
+          "title": "When will Starlink IPO?",
+          "yes_sub_title": "Before Feb 1, 2027"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXIPOSTARLINK",
+          "key": "KXIPOSTARLINK-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Starlink confirms an IPO before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Jan 1, 2027.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXIPOSTARLINK",
+          "subtitle": null,
+          "title": "When will Starlink IPO?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXIPOSTARLINK",
+          "key": "KXIPOSTARLINK-27JUN30",
+          "no_sub_title": "Before Jun 30, 2027",
+          "rules_primary": "If Starlink confirms an IPO before Jun 30, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Jun 30, 2027.",
+          "scheduled_close": "2027-06-30T03:59:00Z",
+          "series": "KXIPOSTARLINK",
+          "subtitle": null,
+          "title": "When will Starlink IPO?",
+          "yes_sub_title": "Before Jun 30, 2027"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXIPOSTARLINK",
+          "key": "KXIPOSTARLINK-27MAR01",
+          "no_sub_title": "Before Mar 1, 2027",
+          "rules_primary": "If Starlink confirms an IPO before Mar 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Mar 1, 2027.",
+          "scheduled_close": "2027-03-01T04:59:00Z",
+          "series": "KXIPOSTARLINK",
+          "subtitle": null,
+          "title": "When will Starlink IPO?",
+          "yes_sub_title": "Before Mar 1, 2027"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXIPOSTARLINK",
+          "key": "KXIPOSTARLINK-27MAY01",
+          "no_sub_title": "Before May 1, 2027",
+          "rules_primary": "If Starlink confirms an IPO before May 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after May 1, 2027.",
+          "scheduled_close": "2027-05-01T03:59:00Z",
+          "series": "KXIPOSTARLINK",
+          "subtitle": null,
+          "title": "When will Starlink IPO?",
+          "yes_sub_title": "Before May 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXBERNIEENDORSE-26NOV03",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXBERNIEENDORSE-26NOV03",
+          "key": "KXBERNIEENDORSE-26NOV03-CBOO",
+          "no_sub_title": "Charles Booker",
+          "rules_primary": "If Bernie Sanders publicly endorses Charles Booker in the 2026 United States Senate election in Kentucky before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An endorsement requires a clear, affirmative statement of support for the nominee's election. The statement must be public (not private communications) and specifically reference the race or be clearly in context of the race. The endorsement must come directly from the person or through their official channels. Positive comments without explicit support, policy endorsements without nominee endorsement, or conditional endorsements do not qualify. Social media endorsements count only from verified accounts, and likes or retweets alone do not constitute endorsement. Quote tweets with additional supportive commentary do count. Sarcastic statements or those immediately clarified as jokes do not qualify.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXBERNIEENDORSE",
+          "subtitle": null,
+          "title": "Will Bernie Sanders endorse Charles Booker in the 2026 United States Senate election in Kentucky before Nov 3, 2026?",
+          "yes_sub_title": "Charles Booker"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBERNIEENDORSE-26NOV03",
+          "key": "KXBERNIEENDORSE-26NOV03-DOSB",
+          "no_sub_title": "Dan Osborn",
+          "rules_primary": "If Bernie Sanders publicly endorses Dan Osborn in the 2026 United States Senate election in Nebraska before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An endorsement requires a clear, affirmative statement of support for the nominee's election. The statement must be public (not private communications) and specifically reference the race or be clearly in context of the race. The endorsement must come directly from the person or through their official channels. Positive comments without explicit support, policy endorsements without nominee endorsement, or conditional endorsements do not qualify. Social media endorsements count only from verified accounts, and likes or retweets alone do not constitute endorsement. Quote tweets with additional supportive commentary do count. Sarcastic statements or those immediately clarified as jokes do not qualify.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXBERNIEENDORSE",
+          "subtitle": null,
+          "title": "Will Bernie Sanders endorse Dan Osborn in the 2026 United States Senate election in Nebraska before Nov 3, 2026?",
+          "yes_sub_title": "Dan Osborn"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBERNIEENDORSE-26NOV03",
+          "key": "KXBERNIEENDORSE-26NOV03-GHIN",
+          "no_sub_title": "Gina Hinojosa",
+          "rules_primary": "If Bernie Sanders publicly endorses Gina Hinojosa in the 2026 Texas gubernatorial race before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An endorsement requires a clear, affirmative statement of support for the nominee's election. The statement must be public (not private communications) and specifically reference the race or be clearly in context of the race. The endorsement must come directly from the person or through their official channels. Positive comments without explicit support, policy endorsements without nominee endorsement, or conditional endorsements do not qualify. Social media endorsements count only from verified accounts, and likes or retweets alone do not constitute endorsement. Quote tweets with additional supportive commentary do count. Sarcastic statements or those immediately clarified as jokes do not qualify.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXBERNIEENDORSE",
+          "subtitle": null,
+          "title": "Will Bernie Sanders endorse Gina Hinojosa in the 2026 Texas gubernatorial race before Nov 3, 2026?",
+          "yes_sub_title": "Gina Hinojosa"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBERNIEENDORSE-26NOV03",
+          "key": "KXBERNIEENDORSE-26NOV03-JSTR",
+          "no_sub_title": "Juliana Stratton",
+          "rules_primary": "If Bernie Sanders publicly endorses Juliana Stratton in the 2026 United States Senate election in Illinois before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An endorsement requires a clear, affirmative statement of support for the nominee's election. The statement must be public (not private communications) and specifically reference the race or be clearly in context of the race. The endorsement must come directly from the person or through their official channels. Positive comments without explicit support, policy endorsements without nominee endorsement, or conditional endorsements do not qualify. Social media endorsements count only from verified accounts, and likes or retweets alone do not constitute endorsement. Quote tweets with additional supportive commentary do count. Sarcastic statements or those immediately clarified as jokes do not qualify.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXBERNIEENDORSE",
+          "subtitle": null,
+          "title": "Will Bernie Sanders endorse Juliana Stratton in the 2026 United States Senate election in Illinois before Nov 3, 2026?",
+          "yes_sub_title": "Juliana Stratton"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBERNIEENDORSE-26NOV03",
+          "key": "KXBERNIEENDORSE-26NOV03-JTAL",
+          "no_sub_title": "James Talarico",
+          "rules_primary": "If Bernie Sanders publicly endorses James Talarico in the 2026 United States Senate election in Texas before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An endorsement requires a clear, affirmative statement of support for the nominee's election. The statement must be public (not private communications) and specifically reference the race or be clearly in context of the race. The endorsement must come directly from the person or through their official channels. Positive comments without explicit support, policy endorsements without nominee endorsement, or conditional endorsements do not qualify. Social media endorsements count only from verified accounts, and likes or retweets alone do not constitute endorsement. Quote tweets with additional supportive commentary do count. Sarcastic statements or those immediately clarified as jokes do not qualify.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXBERNIEENDORSE",
+          "subtitle": null,
+          "title": "Will Bernie Sanders endorse James Talarico in the 2026 United States Senate election in Texas before Nov 3, 2026?",
+          "yes_sub_title": "James Talarico"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBERNIEENDORSE-26NOV03",
+          "key": "KXBERNIEENDORSE-26NOV03-JTUR",
+          "no_sub_title": "Josh Turek",
+          "rules_primary": "If Bernie Sanders publicly endorses Josh Turek in the 2026 United States Senate election in Iowa before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An endorsement requires a clear, affirmative statement of support for the nominee's election. The statement must be public (not private communications) and specifically reference the race or be clearly in context of the race. The endorsement must come directly from the person or through their official channels. Positive comments without explicit support, policy endorsements without nominee endorsement, or conditional endorsements do not qualify. Social media endorsements count only from verified accounts, and likes or retweets alone do not constitute endorsement. Quote tweets with additional supportive commentary do count. Sarcastic statements or those immediately clarified as jokes do not qualify.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXBERNIEENDORSE",
+          "subtitle": null,
+          "title": "Will Bernie Sanders endorse Josh Turek in Iowa Senate Race before Nov 3, 2026?",
+          "yes_sub_title": "Josh Turek"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBERNIEENDORSE-26NOV03",
+          "key": "KXBERNIEENDORSE-26NOV03-MPEL",
+          "no_sub_title": "Mary Peltola",
+          "rules_primary": "If Bernie Sanders publicly endorses Mary Peltola in the 2026 United States Senate election in Alaska before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An endorsement requires a clear, affirmative statement of support for the nominee's election. The statement must be public (not private communications) and specifically reference the race or be clearly in context of the race. The endorsement must come directly from the person or through their official channels. Positive comments without explicit support, policy endorsements without nominee endorsement, or conditional endorsements do not qualify. Social media endorsements count only from verified accounts, and likes or retweets alone do not constitute endorsement. Quote tweets with additional supportive commentary do count. Sarcastic statements or those immediately clarified as jokes do not qualify.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXBERNIEENDORSE",
+          "subtitle": null,
+          "title": "Will Bernie Sanders endorse Mary Peltola in the 2026 United States Senate election in Alaska before Nov 3, 2026?",
+          "yes_sub_title": "Mary Peltola"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBERNIEENDORSE-26NOV03",
+          "key": "KXBERNIEENDORSE-26NOV03-NRAM",
+          "no_sub_title": "Nithya Raman",
+          "rules_primary": "If Bernie Sanders publicly endorses Nithya Raman in the 2026 Los Angeles Mayoral race before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An endorsement requires a clear, affirmative statement of support for the nominee's election. The statement must be public (not private communications) and specifically reference the race or be clearly in context of the race. The endorsement must come directly from the person or through their official channels. Positive comments without explicit support, policy endorsements without nominee endorsement, or conditional endorsements do not qualify. Social media endorsements count only from verified accounts, and likes or retweets alone do not constitute endorsement. Quote tweets with additional supportive commentary do count. Sarcastic statements or those immediately clarified as jokes do not qualify.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXBERNIEENDORSE",
+          "subtitle": null,
+          "title": "Will Bernie Sanders endorse Nithya Raman in the 2026 Los Angeles Mayoral race before Nov 3, 2026?",
+          "yes_sub_title": "Nithya Raman"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBERNIEENDORSE-26NOV03",
+          "key": "KXBERNIEENDORSE-26NOV03-OFAT",
+          "no_sub_title": "Omar Fateh",
+          "rules_primary": "If Bernie Sanders publicly endorses Omar Fateh in the 2026 Minnesota State Senate election in District 62 before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An endorsement requires a clear, affirmative statement of support for the nominee's election. The statement must be public (not private communications) and specifically reference the race or be clearly in context of the race. The endorsement must come directly from the person or through their official channels. Positive comments without explicit support, policy endorsements without nominee endorsement, or conditional endorsements do not qualify. Social media endorsements count only from verified accounts, and likes or retweets alone do not constitute endorsement. Quote tweets with additional supportive commentary do count. Sarcastic statements or those immediately clarified as jokes do not qualify.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXBERNIEENDORSE",
+          "subtitle": null,
+          "title": "Will Bernie Sanders endorse Omar Fateh in the 2026 Minnesota State Senate election in District 62 before Nov 3, 2026?",
+          "yes_sub_title": "Omar Fateh"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBERNIEENDORSE-26NOV03",
+          "key": "KXBERNIEENDORSE-26NOV03-XBEC",
+          "no_sub_title": "Xavier Becerra",
+          "rules_primary": "If Bernie Sanders publicly endorses Xavier Becerra in the 2026 California gubernatorial race before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An endorsement requires a clear, affirmative statement of support for the nominee's election. The statement must be public (not private communications) and specifically reference the race or be clearly in context of the race. The endorsement must come directly from the person or through their official channels. Positive comments without explicit support, policy endorsements without nominee endorsement, or conditional endorsements do not qualify. Social media endorsements count only from verified accounts, and likes or retweets alone do not constitute endorsement. Quote tweets with additional supportive commentary do count. Sarcastic statements or those immediately clarified as jokes do not qualify.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXBERNIEENDORSE",
+          "subtitle": null,
+          "title": "Will Bernie Sanders endorse Xavier Becerra in the 2026 California gubernatorial race before Nov 3, 2026?",
+          "yes_sub_title": "Xavier Becerra"
+        }
+      ]
+    },
+    {
+      "event_key": "KXVISITGREENLAND-26JUL07",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXVISITGREENLAND-26JUL07",
+          "key": "KXVISITGREENLAND-26JUL07-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If the President of the United States has physically travelled to and been present within the geographic boundaries of Greenland before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXVISITGREENLAND",
+          "subtitle": "Before Jan 1, 2027",
+          "title": "Will the President of the United States visit Greenland before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXPOPEVISIT-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXPOPEVISIT-27JAN01",
+          "key": "KXPOPEVISIT-27JAN01-ARG",
+          "no_sub_title": "Argentina",
+          "rules_primary": "If Pope Leo XIV has physically travelled to and been present within the geographic boundaries of Argentina before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPOPEVISIT",
+          "subtitle": null,
+          "title": "Will Pope Leo XIV visit Argentina before Jan 1, 2027?",
+          "yes_sub_title": "Argentina"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPOPEVISIT-27JAN01",
+          "key": "KXPOPEVISIT-27JAN01-BRA",
+          "no_sub_title": "Brazil",
+          "rules_primary": "If Pope Leo XIV has physically travelled to and been present within the geographic boundaries of Brazil before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPOPEVISIT",
+          "subtitle": null,
+          "title": "Will Pope Leo XIV visit Brazil before Jan 1, 2027?",
+          "yes_sub_title": "Brazil"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPOPEVISIT-27JAN01",
+          "key": "KXPOPEVISIT-27JAN01-ISR",
+          "no_sub_title": "Israel",
+          "rules_primary": "If Pope Leo XIV has physically travelled to and been present within the geographic boundaries of Israel before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPOPEVISIT",
+          "subtitle": null,
+          "title": "Will Pope Leo XIV visit Israel before Jan 1, 2027?",
+          "yes_sub_title": "Israel"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPOPEVISIT-27JAN01",
+          "key": "KXPOPEVISIT-27JAN01-JOR",
+          "no_sub_title": "Jordan",
+          "rules_primary": "If Pope Leo XIV has physically travelled to and been present within the geographic boundaries of Jordan before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPOPEVISIT",
+          "subtitle": null,
+          "title": "Will Pope Leo XIV visit Jordan before Jan 1, 2027?",
+          "yes_sub_title": "Jordan"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPOPEVISIT-27JAN01",
+          "key": "KXPOPEVISIT-27JAN01-MEX",
+          "no_sub_title": "Mexico",
+          "rules_primary": "If Pope Leo XIV has physically travelled to and been present within the geographic boundaries of Mexico before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPOPEVISIT",
+          "subtitle": null,
+          "title": "Will Pope Leo XIV visit Mexico before Jan 1, 2027?",
+          "yes_sub_title": "Mexico"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPOPEVISIT-27JAN01",
+          "key": "KXPOPEVISIT-27JAN01-PER",
+          "no_sub_title": "Peru",
+          "rules_primary": "If Pope Leo XIV has physically travelled to and been present within the geographic boundaries of Peru before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPOPEVISIT",
+          "subtitle": "Peru",
+          "title": "Will Pope Leo XIV visit Peru before Jan 1, 2027?",
+          "yes_sub_title": "Peru"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPOPEVISIT-27JAN01",
+          "key": "KXPOPEVISIT-27JAN01-PHI",
+          "no_sub_title": "Philippines",
+          "rules_primary": "If Pope Leo XIV has physically travelled to and been present within the geographic boundaries of Philippines before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPOPEVISIT",
+          "subtitle": null,
+          "title": "Will Pope Leo XIV visit Philippines before Jan 1, 2027?",
+          "yes_sub_title": "Philippines"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPOPEVISIT-27JAN01",
+          "key": "KXPOPEVISIT-27JAN01-POR",
+          "no_sub_title": "Portugal",
+          "rules_primary": "If Pope Leo XIV has physically travelled to and been present within the geographic boundaries of Portugal before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPOPEVISIT",
+          "subtitle": null,
+          "title": "Will Pope Leo XIV visit Portugal before Jan 1, 2027?",
+          "yes_sub_title": "Portugal"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPOPEVISIT-27JAN01",
+          "key": "KXPOPEVISIT-27JAN01-SSUD",
+          "no_sub_title": "South Sudan",
+          "rules_primary": "If Pope Leo XIV has physically travelled to and been present within the geographic boundaries of South Sudan before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPOPEVISIT",
+          "subtitle": null,
+          "title": "Will Pope Leo XIV visit South Sudan before Jan 1, 2027?",
+          "yes_sub_title": "South Sudan"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPOPEVISIT-27JAN01",
+          "key": "KXPOPEVISIT-27JAN01-UKR",
+          "no_sub_title": "Ukraine",
+          "rules_primary": "If Pope Leo XIV has physically travelled to and been present within the geographic boundaries of Ukraine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPOPEVISIT",
+          "subtitle": null,
+          "title": "Will Pope Leo XIV visit Ukraine before Jan 1, 2027?",
+          "yes_sub_title": "Ukraine"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPOPEVISIT-27JAN01",
+          "key": "KXPOPEVISIT-27JAN01-URU",
+          "no_sub_title": "Uruguay",
+          "rules_primary": "If Pope Leo XIV has physically travelled to and been present within the geographic boundaries of Uruguay before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPOPEVISIT",
+          "subtitle": null,
+          "title": "Will Pope Leo XIV visit Uruguay before Jan 1, 2027?",
+          "yes_sub_title": "Uruguay"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPOPEVISIT-27JAN01",
+          "key": "KXPOPEVISIT-27JAN01-USA",
+          "no_sub_title": "USA",
+          "rules_primary": "If Pope Leo XIV has physically travelled to and been present within the geographic boundaries of the United States of America before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPOPEVISIT",
+          "subtitle": null,
+          "title": "Will Pope Leo XIV visit United States before Jan 1, 2027?",
+          "yes_sub_title": "USA"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTRDBAN-25DEC31",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXTRDBAN-25DEC31",
+          "key": "KXTRDBAN-25DEC31-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If a Congressional stock trading ban becomes law between Issuance and December 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "A Congressional stock trading ban can still allow members of Congress to place their stocks in a blind trust or to invest in \"diversified assets\" (e.g. ETFs) and still resolve to Yes. Please refer to the full rules for examples.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRDBAN",
+          "subtitle": null,
+          "title": "Will a Congressional stock trading ban become law by December 31, 2026?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXKRAKENBANKPUBLIC-27JAN01",
+      "markets": [
+        {
+          "category": "Companies",
+          "event_key": "KXKRAKENBANKPUBLIC-27JAN01",
+          "key": "KXKRAKENBANKPUBLIC-27JAN01-BOA",
+          "no_sub_title": "Bank of America",
+          "rules_primary": "If Bank of America serves as a lead underwriter for Kraken's initial public offering in the United States before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The bank must serve as lead underwriter, book-running manager, or global coordinator as documented in SEC filings (Form S-1 or final prospectus) or official announcements. Joint book-running managers qualify. Direct listings, SPAC mergers, secondary offerings, and private placements do not qualify. If the bank merges with another institution, the surviving entity under any name qualifies. For dual listings, only the U.S. portion is considered. Even if the IPO is later shelved, the market resolves Yes based on the announcement of the underwriting relationship.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXKRAKENBANKPUBLIC",
+          "subtitle": null,
+          "title": "Will Bank of America take Kraken public before Jan 1, 2027?",
+          "yes_sub_title": "Bank of America"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXKRAKENBANKPUBLIC-27JAN01",
+          "key": "KXKRAKENBANKPUBLIC-27JAN01-CITI",
+          "no_sub_title": "Citigroup",
+          "rules_primary": "If Citigroup serves as a lead underwriter for Kraken's initial public offering in the United States before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The bank must serve as lead underwriter, book-running manager, or global coordinator as documented in SEC filings (Form S-1 or final prospectus) or official announcements. Joint book-running managers qualify. Direct listings, SPAC mergers, secondary offerings, and private placements do not qualify. If the bank merges with another institution, the surviving entity under any name qualifies. For dual listings, only the U.S. portion is considered. Even if the IPO is later shelved, the market resolves Yes based on the announcement of the underwriting relationship.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXKRAKENBANKPUBLIC",
+          "subtitle": null,
+          "title": "Will Citigroup take Kraken public before Jan 1, 2027?",
+          "yes_sub_title": "Citigroup"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXKRAKENBANKPUBLIC-27JAN01",
+          "key": "KXKRAKENBANKPUBLIC-27JAN01-GS",
+          "no_sub_title": "Goldman Sachs",
+          "rules_primary": "If Goldman Sachs serves as a lead underwriter for Kraken's initial public offering in the United States before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The bank must serve as lead underwriter, book-running manager, or global coordinator as documented in SEC filings (Form S-1 or final prospectus) or official announcements. Joint book-running managers qualify. Direct listings, SPAC mergers, secondary offerings, and private placements do not qualify. If the bank merges with another institution, the surviving entity under any name qualifies. For dual listings, only the U.S. portion is considered. Even if the IPO is later shelved, the market resolves Yes based on the announcement of the underwriting relationship.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXKRAKENBANKPUBLIC",
+          "subtitle": null,
+          "title": "Will Goldman Sachs take Kraken public before Jan 1, 2027?",
+          "yes_sub_title": "Goldman Sachs"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXKRAKENBANKPUBLIC-27JAN01",
+          "key": "KXKRAKENBANKPUBLIC-27JAN01-JPM",
+          "no_sub_title": "JPMorgan Chase",
+          "rules_primary": "If JPMorgan Chase serves as a lead underwriter for Kraken's initial public offering in the United States before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The bank must serve as lead underwriter, book-running manager, or global coordinator as documented in SEC filings (Form S-1 or final prospectus) or official announcements. Joint book-running managers qualify. Direct listings, SPAC mergers, secondary offerings, and private placements do not qualify. If the bank merges with another institution, the surviving entity under any name qualifies. For dual listings, only the U.S. portion is considered. Even if the IPO is later shelved, the market resolves Yes based on the announcement of the underwriting relationship.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXKRAKENBANKPUBLIC",
+          "subtitle": null,
+          "title": "Will JPMorgan Chase take Kraken public before Jan 1, 2027?",
+          "yes_sub_title": "JPMorgan Chase"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXKRAKENBANKPUBLIC-27JAN01",
+          "key": "KXKRAKENBANKPUBLIC-27JAN01-MS",
+          "no_sub_title": "Morgan Stanley",
+          "rules_primary": "If Morgan Stanley serves as a lead underwriter for Kraken's initial public offering in the United States before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The bank must serve as lead underwriter, book-running manager, or global coordinator as documented in SEC filings (Form S-1 or final prospectus) or official announcements. Joint book-running managers qualify. Direct listings, SPAC mergers, secondary offerings, and private placements do not qualify. If the bank merges with another institution, the surviving entity under any name qualifies. For dual listings, only the U.S. portion is considered. Even if the IPO is later shelved, the market resolves Yes based on the announcement of the underwriting relationship.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXKRAKENBANKPUBLIC",
+          "subtitle": null,
+          "title": "Will Morgan Stanley take Kraken public before Jan 1, 2027?",
+          "yes_sub_title": "Morgan Stanley"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCANHOUSTART-27JAN182",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXCANHOUSTART-27JAN182",
+          "key": "KXCANHOUSTART-27JAN182-T300",
+          "no_sub_title": "Above 300K",
+          "rules_primary": "If the total number of Canada housing starts is above 300K in any monthly release covering January 2026 through December 2026, then the market resolves to Yes.",
+          "rules_secondary": "The relevant statistic is the headline monthly seasonally adjusted annual rate of housing starts for Canada, expressed in units, as reported on Trading Economics\u2019 Canada Housing Starts page and sourced from Canada Mortgage and Housing Corporation. For clarity, the market will use the monthly seasonally adjusted annual rate for all areas in Canada, not actual monthly starts, year-to-date starts, the six-month moving average trend, urban-only starts, provincial starts, or the calendar-year total number of starts.",
+          "scheduled_close": "2027-01-18T13:14:00Z",
+          "series": "KXCANHOUSTART",
+          "subtitle": null,
+          "title": "Will Canada housing starts be above 300,000 units in any release covering 2026?",
+          "yes_sub_title": "Above 300K"
+        }
+      ]
+    },
+    {
+      "event_key": "KXUSTYLD-26SEP30",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXUSTYLD-26SEP30",
+          "key": "KXUSTYLD-26SEP30-T4.00",
+          "no_sub_title": "Above 4.00%",
+          "rules_primary": "If U.S. Treasury Daily Yield Curve Rate (2 Yr) for Sep 30, 2026 (end of Q3 2026) is above 4.00%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-30T19:29:00Z",
+          "series": "KXUSTYLD",
+          "subtitle": null,
+          "title": "Will UST Par Yield Curve (2Y) for Q3 2026 be above 4.00%?",
+          "yes_sub_title": "Above 4.00%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXUSTYLD-26SEP30",
+          "key": "KXUSTYLD-26SEP30-T4.30",
+          "no_sub_title": "Above 4.30%",
+          "rules_primary": "If U.S. Treasury Daily Yield Curve Rate (2 Yr) for Sep 30, 2026 (end of Q3 2026) is above 4.30%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-30T19:29:00Z",
+          "series": "KXUSTYLD",
+          "subtitle": null,
+          "title": "Will UST Par Yield Curve (2Y) for Q3 2026 be above 4.30%?",
+          "yes_sub_title": "Above 4.30%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXUSTYLD-26SEP30",
+          "key": "KXUSTYLD-26SEP30-T4.40",
+          "no_sub_title": "Above 4.40%",
+          "rules_primary": "If U.S. Treasury Daily Yield Curve Rate (2 Yr) for Sep 30, 2026 (end of Q3 2026) is above 4.40%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-30T19:29:00Z",
+          "series": "KXUSTYLD",
+          "subtitle": null,
+          "title": "Will UST Par Yield Curve (2Y) for Q3 2026 be above 4.40%?",
+          "yes_sub_title": "Above 4.40%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXUSRETAIL-26SEP16",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXUSRETAIL-26SEP16",
+          "key": "KXUSRETAIL-26SEP16-T-0.2",
+          "no_sub_title": "Above -0.2%",
+          "rules_primary": "If the United States retail sales MoM for August 2026 is above -0.2%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-16T12:25:00Z",
+          "series": "KXUSRETAIL",
+          "subtitle": null,
+          "title": "Will United States retail sales MoM for August 2026 be above -0.2%?",
+          "yes_sub_title": "Above -0.2%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXUSRETAIL-26SEP16",
+          "key": "KXUSRETAIL-26SEP16-T0.0",
+          "no_sub_title": "Above 0.0%",
+          "rules_primary": "If the United States retail sales MoM for August 2026 is above 0.0%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-16T12:25:00Z",
+          "series": "KXUSRETAIL",
+          "subtitle": null,
+          "title": "Will United States retail sales MoM for August 2026 be above 0.0%?",
+          "yes_sub_title": "Above 0.0%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXUSRETAIL-26SEP16",
+          "key": "KXUSRETAIL-26SEP16-T0.6",
+          "no_sub_title": "Above 0.6%",
+          "rules_primary": "If the United States retail sales MoM for August 2026 is above 0.6%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-16T12:25:00Z",
+          "series": "KXUSRETAIL",
+          "subtitle": null,
+          "title": "Will United States retail sales MoM for August 2026 be above 0.6%?",
+          "yes_sub_title": "Above 0.6%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXEPSTEINLIST-27JAN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-ABAL",
+          "no_sub_title": "Alec Baldwin",
+          "rules_primary": "If Alec Baldwin is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Alec Baldwin is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Alec Baldwin, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Alec Baldwin"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-BCLI",
+          "no_sub_title": "Bill Clinton",
+          "rules_primary": "If Bill Clinton is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Bill Clinton is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Bill Clinton, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Bill Clinton"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-BGAT",
+          "no_sub_title": "Bill Gates",
+          "rules_primary": "If Bill Gates is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Bill Gates is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Bill Gates, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Bill Gates"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-BOBA",
+          "no_sub_title": "Barack Obama",
+          "rules_primary": "If Barack Obama is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Barack Obama is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Barack Obama, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Barack Obama"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-DJT",
+          "no_sub_title": "Donald Trump",
+          "rules_primary": "If Donald Trump is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Donald Trump is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Donald Trump, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Donald Trump"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-EBAR",
+          "no_sub_title": "Ehud Barak",
+          "rules_primary": "If Ehud Barak is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Ehud Barak is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Ehud Barak, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Ehud Barak"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-HCLI",
+          "no_sub_title": "Hillary Clinton",
+          "rules_primary": "If Hillary Clinton is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Hillary Clinton is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Hillary Clinton, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Hillary Clinton"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-JBID",
+          "no_sub_title": "Joe Biden",
+          "rules_primary": "If Joe Biden is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Joe Biden is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Joe Biden, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Joe Biden"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-KHAR",
+          "no_sub_title": "Kamala Harris",
+          "rules_primary": "If Kamala Harris is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Kamala Harris is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Kamala Harris, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Kamala Harris"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-KSPA",
+          "no_sub_title": "Kevin Spacey",
+          "rules_primary": "If Kevin Spacey is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Kevin Spacey is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Kevin Spacey, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Kevin Spacey"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-MJAC",
+          "no_sub_title": "Michael Jackson",
+          "rules_primary": "If Michael Jackson is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Michael Jackson is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Michael Jackson, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Michael Jackson"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-NCAM",
+          "no_sub_title": "Naomi Campbell",
+          "rules_primary": "If Naomi Campbell is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Naomi Campbell is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Naomi Campbell, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Naomi Campbell"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-PAND",
+          "no_sub_title": "Prince Andrew",
+          "rules_primary": "If Prince Andrew is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Prince Andrew is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Prince Andrew, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Prince Andrew"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-SCOM",
+          "no_sub_title": "Sean Combs",
+          "rules_primary": "If Sean Combs is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Sean Combs is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Sean Combs, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Sean Combs"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-SHAW",
+          "no_sub_title": "Stephen Hawking",
+          "rules_primary": "If Stephen Hawking is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Stephen Hawking is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Stephen Hawking, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Stephen Hawking"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXEPSTEINLIST-27JAN",
+          "key": "KXEPSTEINLIST-27JAN-WALL",
+          "no_sub_title": "Woody Allen",
+          "rules_primary": "If Woody Allen is named in any context in any documents held by the federal government directly regarding Jeffrey Epstein released before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Woody Allen is considered to appear in the documents when either the exact term, phrase, or name specified appears in the content of the documents, or is present by way of commonly used abbreviation, direct synonym, or unmistakable reference including in any official appendices, footnotes, or tables. \n\nThe documents must be publicly released after Issuance and before the expiration date. If a document is publicly released for the first time after Issuance, it is considered novel in its entirety. For example, a newly released email containing a previously published news article as an attachment counts. However, documents that were already fully public do not count.\n\nDocuments directly issued and officially published by the relevant institution or entity count, leaks of the documents count, and media coverage by Source Agencies count, unless otherwise specified by the Exchange. If the documents are revised after publication, all publicly released versions prior to Expiration will be used. If a correction or update nullifies the appearance of Woody Allen, the market may still resolve to Yes based on original reporting.\n\nThe release time of the documents is noted to be when the documents are made available to the public either directly or through third-party media reports. If the documents are heavily redacted, only visible, legible, and unambiguous references count. \"Documents\" may include, but is not limited to: specific documents or sets of documents, conversations, meetings, or communications, draft documents, proposals, or internal deliberations, court filings, depositions, orders, and exhibits; officially unsealed records from prior sealed proceedings",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEPSTEINLIST",
+          "subtitle": null,
+          "title": "Who will be named in Epstein documents released in 2026?",
+          "yes_sub_title": "Woody Allen"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMARIJUANA280E-26MAY",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXMARIJUANA280E-26MAY",
+          "key": "KXMARIJUANA280E-26MAY-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If the U.S. Department of the Treasury or the Internal Revenue Service (IRS) announces prior-year Section 280E relief for state-licensed medical marijuana businesses before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXMARIJUANA280E",
+          "subtitle": null,
+          "title": "Will the U.S. Department of the Treasury or the Internal Revenue Service (IRS) announce prior-year Section 280E relief for state-licensed medical marijuana businesses before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTOPUSAGEAI-26AUG31",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXTOPUSAGEAI-26AUG31",
+          "key": "KXTOPUSAGEAI-26AUG31-DEEP",
+          "no_sub_title": "DeepSeek",
+          "rules_primary": "If DeepSeek is the Highest usage model company model on OpenRouter Top Model by weekly usage on week of Aug 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "This event will resolve based on the updated values for the week of Aug 31, 2026. The \"Highest usage model company\" refers to the model author company of the single model with the greatest weekly token volume as displayed on the OpenRouter Top Models chart, not the company with the greatest aggregate token volume across all of its models.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-07T03:59:00Z",
+          "series": "KXTOPUSAGEAI",
+          "subtitle": null,
+          "title": "Most popular AI this week?",
+          "yes_sub_title": "DeepSeek"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXTOPUSAGEAI-26AUG31",
+          "key": "KXTOPUSAGEAI-26AUG31-TENC",
+          "no_sub_title": "Tencent",
+          "rules_primary": "If Tencent is the Highest usage model company model on OpenRouter Top Model by weekly usage on week of Aug 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "This event will resolve based on the updated values for the week of Aug 31, 2026. The \"Highest usage model company\" refers to the model author company of the single model with the greatest weekly token volume as displayed on the OpenRouter Top Models chart, not the company with the greatest aggregate token volume across all of its models.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-07T03:59:00Z",
+          "series": "KXTOPUSAGEAI",
+          "subtitle": null,
+          "title": "Most popular AI this week?",
+          "yes_sub_title": "Tencent"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXTOPUSAGEAI-26AUG31",
+          "key": "KXTOPUSAGEAI-26AUG31-ZAI",
+          "no_sub_title": "Z.ai",
+          "rules_primary": "If Z.ai is the Highest usage model company model on OpenRouter Top Model by weekly usage on week of Aug 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "This event will resolve based on the updated values for the week of Aug 31, 2026. The \"Highest usage model company\" refers to the model author company of the single model with the greatest weekly token volume as displayed on the OpenRouter Top Models chart, not the company with the greatest aggregate token volume across all of its models.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-07T03:59:00Z",
+          "series": "KXTOPUSAGEAI",
+          "subtitle": null,
+          "title": "Most popular AI this week?",
+          "yes_sub_title": "Z.ai"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNYCTAXMILLIONS-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXNYCTAXMILLIONS-27JAN01",
+          "key": "KXNYCTAXMILLIONS-27JAN01",
+          "no_sub_title": "Yes",
+          "rules_primary": "If a law authorizing a new personal income tax bracket or surcharge on incomes over $1 million for New York City residents has become law in New York City before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Laws passed by New York State are encompassed within the Payout Criterion if they apply to or govern New York City. Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law. For standard legislation requiring executive approval, this includes final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods. For legislation not requiring executive approval, this includes final passage and completion of required waiting periods. For constitutional amendments, this includes passage with required supermajorities and completion of ratification processes. For executive orders, this includes official signature, publication in official government records, and legal effectiveness. Legislative passage without completed executive action, passage by only some required bodies, provisional passage, non-binding resolutions, and draft orders do not constitute enactment. Enactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXNYCTAXMILLIONS",
+          "subtitle": null,
+          "title": "Will Mamdani tax incomes over $1M before 2027?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMOVIERELEASEDATE-GRO",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOVIERELEASEDATE-GRO",
+          "key": "KXMOVIERELEASEDATE-GRO-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If A full-length film adaptation of The Odyssey made using Grok Imagine and officially released by Grok or an official account controlled by Elon Musk, pursuant to Elon Musk\u2019s July 22, 2026 announcement is been publicly released through official channels before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXMOVIERELEASEDATE",
+          "subtitle": "Before Jan 1, 2027",
+          "title": "Will A full-length film adaptation of The Odyssey made using Grok Imagine and officially released by Grok or an official account controlled by Elon Musk, pursuant to Elon Musk\u2019s July 22, 2026 announcement be released before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

@@ -1,0 +1,445 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXSAFEBANK-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXSAFEBANK-27JAN01",
+          "key": "KXSAFEBANK-27JAN01",
+          "no_sub_title": "Yes",
+          "rules_primary": "If legislation that forbids federal banking regulators from terminating or limiting FDIC/NCUA insurance solely because a depository institution provides financial services to a state/tribal-legal cannabis business has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSAFEBANK",
+          "subtitle": "Yes",
+          "title": "Will  becomes law before Jan 1, 2027?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXYORKSIMCOEBY-26SEP03",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXYORKSIMCOEBY-26SEP03",
+          "key": "KXYORKSIMCOEBY-26SEP03-SLAH",
+          "no_sub_title": "Susan Lahey",
+          "rules_primary": "If Susan Lahey wins the 2026 York-Simcoe provincial by-election, then the market resolves to Yes.",
+          "rules_secondary": "This market is eligible for accelerated resolution by a consensus of media calls. See full rules for details.",
+          "scheduled_close": "2027-09-03T14:00:00Z",
+          "series": "KXYORKSIMCOEBY",
+          "subtitle": ":: PC Party of Ontario",
+          "title": "Will Susan Lahey win the 2026 York-Simcoe provincial by-election?",
+          "yes_sub_title": "Susan Lahey"
+        }
+      ]
+    },
+    {
+      "event_key": "KXDEMSCHUMER-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXDEMSCHUMER-27",
+          "key": "KXDEMSCHUMER-27-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If any\u00a0current member of the Democratic Senate caucus (including independents who caucus with Democrats) publicly states that Chuck Schumer should step down, resign, or be replaced as Senate Democratic Leader before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXDEMSCHUMER",
+          "subtitle": null,
+          "title": "Will any current member of the Democratic Senate caucus (including independents who caucus with Democrats) publicly states that Chuck Schumer should step down, resign, or be replaced as Senate Democratic Leader before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXDEMSCHUMER-27",
+          "key": "KXDEMSCHUMER-27-NOV03",
+          "no_sub_title": "Before Nov 3, 2026",
+          "rules_primary": "If any\u00a0current member of the Democratic Senate caucus (including independents who caucus with Democrats) publicly states that Chuck Schumer should step down, resign, or be replaced as Senate Democratic Leader before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-11-03T04:59:00Z",
+          "series": "KXDEMSCHUMER",
+          "subtitle": null,
+          "title": "Will any current member of the Democratic Senate caucus (including independents who caucus with Democrats) publicly states that Chuck Schumer should step down, resign, or be replaced as Senate Democratic Leader before Nov 3, 2026?",
+          "yes_sub_title": "Before Nov 3, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXUSAEXPANDTERRITORY",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXUSAEXPANDTERRITORY",
+          "key": "KXUSAEXPANDTERRITORY-27JAN01",
+          "no_sub_title": "Before Jan 2027",
+          "rules_primary": "If the United States gains control of any territory outside its sovereignty as of Issuance before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An announcement by the United States and the entity that controls the territory that it will happen is also encompassed by the Payout Criterion. The territory must come under formal governance or jurisdiction of the United States, either as a state, territory, or other classification within the US system, where it was not previously. Merely leasing a given part in territory \u2013 for example, setting up a military base on leased territory \u2013 is not encompassed by the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXUSAEXPANDTERRITORY",
+          "subtitle": null,
+          "title": "Will the United States acquire any territory not under its sovereignty (as of Issuance) before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXLOCALLAW-CAJEWISH-26OCT01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXLOCALLAW-CAJEWISH-26OCT01",
+          "key": "KXLOCALLAW-CAJEWISH-26OCT01",
+          "no_sub_title": "Yes",
+          "rules_primary": "If legislation requiring California state agencies that collect ancestry or ethnicity data to provide a separate category for Jewish ancestry or ethnicity is enacted in California before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law.\n\nStandard legislation requiring executive approval: final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods\nLegislation not requiring executive approval: final passage and completion of required waiting periods\nConstitutional amendments: passage with required supermajorities and completion of ratification processes\nExecutive orders: official signature, publication in official government records, and legal effectiveness\n\nThe following do NOT constitute enactment:\n\nLegislative passage without completed executive action\nPassage by only some required bodies\nProvisional passage\nNon-binding resolutions\nDraft orders\n\nEnactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXLOCALLAW",
+          "subtitle": ":: California",
+          "title": "Will California recognize Jewish identity as an ethnicity?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXETHMINY-27JAN01",
+      "markets": [
+        {
+          "category": "Crypto",
+          "event_key": "KXETHMINY-27JAN01",
+          "key": "KXETHMINY-27JAN01-1000",
+          "no_sub_title": "Below $1,000.00",
+          "rules_primary": "If the spot price of Ethereum in U.S. dollars is below 1000.00 by Jan 1, 2027 at 12:00AM ET, then the market resolves to Yes.",
+          "rules_secondary": "The Ethereum price is measured using the CF Ethereum Real-Time Index (ETHUSD_RTI) with a trimmed mean calculation that excludes the top 20% and bottom 20% of minute-by-minute values between market issuance and the target time. The market resolves based on whether the trimmed mean price reaches the specified level by the deadline. If no data is available at expiration, the market resolves to No. Price data from CF Benchmarks is considered authoritative and revisions after expiration do not affect market resolution.",
+          "scheduled_close": "2027-01-01T05:00:00Z",
+          "series": "KXETHMINY",
+          "subtitle": null,
+          "title": "Will Ethereum reach below $1000.00 by Jan 1, 2027 at 12:00AM ET?",
+          "yes_sub_title": "Below $1,000.00"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXETHMINY-27JAN01",
+          "key": "KXETHMINY-27JAN01-1250",
+          "no_sub_title": "Below $1,250.00",
+          "rules_primary": "If the spot price of Ethereum in U.S. dollars is below 1250.00 by Jan 1, 2027 at 12:00AM ET, then the market resolves to Yes.",
+          "rules_secondary": "The Ethereum price is measured using the CF Ethereum Real-Time Index (ETHUSD_RTI) with a trimmed mean calculation that excludes the top 20% and bottom 20% of minute-by-minute values between market issuance and the target time. The market resolves based on whether the trimmed mean price reaches the specified level by the deadline. If no data is available at expiration, the market resolves to No. Price data from CF Benchmarks is considered authoritative and revisions after expiration do not affect market resolution.",
+          "scheduled_close": "2027-01-01T05:00:00Z",
+          "series": "KXETHMINY",
+          "subtitle": null,
+          "title": "Will Ethereum reach below $1250.00 by Jan 1, 2027 at 12:00AM ET?",
+          "yes_sub_title": "Below $1,250.00"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXETHMINY-27JAN01",
+          "key": "KXETHMINY-27JAN01-1500",
+          "no_sub_title": "Below $1,500.00",
+          "rules_primary": "If the spot price of Ethereum in U.S. dollars is below 1500.00 by Jan 1, 2027 at 12:00AM ET, then the market resolves to Yes.",
+          "rules_secondary": "The Ethereum price is measured using the CF Ethereum Real-Time Index (ETHUSD_RTI) with a trimmed mean calculation that excludes the top 20% and bottom 20% of minute-by-minute values between market issuance and the target time. The market resolves based on whether the trimmed mean price reaches the specified level by the deadline. If no data is available at expiration, the market resolves to No. Price data from CF Benchmarks is considered authoritative and revisions after expiration do not affect market resolution.",
+          "scheduled_close": "2027-01-01T05:00:00Z",
+          "series": "KXETHMINY",
+          "subtitle": null,
+          "title": "Will Ethereum reach below $1500.00 by Jan 1, 2027 at 12:00AM ET?",
+          "yes_sub_title": "Below $1,500.00"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXETHMINY-27JAN01",
+          "key": "KXETHMINY-27JAN01-750",
+          "no_sub_title": "Below $750.00",
+          "rules_primary": "If the spot price of Ethereum in U.S. dollars is below 750.00 by Jan 1, 2027 at 12:00AM ET, then the market resolves to Yes.",
+          "rules_secondary": "The Ethereum price is measured using the CF Ethereum Real-Time Index (ETHUSD_RTI) with a trimmed mean calculation that excludes the top 20% and bottom 20% of minute-by-minute values between market issuance and the target time. The market resolves based on whether the trimmed mean price reaches the specified level by the deadline. If no data is available at expiration, the market resolves to No. Price data from CF Benchmarks is considered authoritative and revisions after expiration do not affect market resolution.",
+          "scheduled_close": "2027-01-01T05:00:00Z",
+          "series": "KXETHMINY",
+          "subtitle": null,
+          "title": "Will Ethereum reach below $750.00 by Jan 1, 2027 at 12:00AM ET?",
+          "yes_sub_title": "Below $750.00"
+        }
+      ]
+    },
+    {
+      "event_key": "KXPRICEINCREASESPOTIFYDUO-26B",
+      "markets": [
+        {
+          "category": "Financials",
+          "event_key": "KXPRICEINCREASESPOTIFYDUO-26B",
+          "key": "KXPRICEINCREASESPOTIFYDUO-26B",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If Spotify Premium Duo Plan (monthly) has a national price increase of anything greater than 0% announced before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "As of May 28th, 2026, the Spotify Premium Duo Plan costs $18.99/month\n\n",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXPRICEINCREASESPOTIFYDUO",
+          "subtitle": null,
+          "title": "Spotify Premium Duo Plan (monthly) price increase in 2026?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXELECTIONEMERGENCY",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXELECTIONEMERGENCY",
+          "key": "KXELECTIONEMERGENCY-26NOV04",
+          "no_sub_title": "Before Nov 4, 2026",
+          "rules_primary": "If Donald Trump has taken any executive action declaring a national emergency regarding the 2026 United States midterm election before Nov 4, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The qualifying action must be of the specific type designated (executive order, presidential memorandum, proclamation, directive, determination, or finding), be signed by the President personally during the specified time period, and explicitly address the topic in the document's operative provisions, title, or official White House summary. Actions must have legal or policy effect - ceremonial proclamations without policy impact do not qualify unless specifically included. Actions that only incidentally mention the topic, statements without formal action, actions by cabinet members, legislative proposals without executive action, and signing statements do not qualify. The action must be publicly announced or documented by a Source Agency before expiration.",
+          "scheduled_close": "2026-11-04T04:59:00Z",
+          "series": "KXELECTIONEMERGENCY",
+          "subtitle": null,
+          "title": "Will Donald Trump issue any executive action on declaring a national emergency regarding the 2026 United States midterm election before Nov 4, 2026?",
+          "yes_sub_title": "Before Nov 4, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXWIMILK-27FEB28",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXWIMILK-27FEB28",
+          "key": "KXWIMILK-27FEB28-T32.75",
+          "no_sub_title": "Above 32.75 billion pounds",
+          "rules_primary": "If USDA NASS reports Wisconsin\u2019s total milk production for 2026 is above \n\n32.75 billion pounds, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will be based on total milk production in Wisconsin during calendar year 2026, measured in pounds, as reported by USDA NASS in its Wisconsin \u2014 Milk Production Historical Data Series.",
+          "scheduled_close": "2027-02-28T16:29:00Z",
+          "series": "KXWIMILK",
+          "subtitle": null,
+          "title": "Will Wisconsin\u2019s total milk production for 2026 be above 32.75 billion pounds?",
+          "yes_sub_title": "Above 32.75 billion pounds"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXWIMILK-27FEB28",
+          "key": "KXWIMILK-27FEB28-T33.00",
+          "no_sub_title": "Above 33.00 billion pounds",
+          "rules_primary": "If USDA NASS reports Wisconsin\u2019s total milk production for 2026 is above \n\n33.00 billion pounds, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will be based on total milk production in Wisconsin during calendar year 2026, measured in pounds, as reported by USDA NASS in its Wisconsin \u2014 Milk Production Historical Data Series.",
+          "scheduled_close": "2027-02-28T16:29:00Z",
+          "series": "KXWIMILK",
+          "subtitle": null,
+          "title": "Will Wisconsin\u2019s total milk production for 2026 be above 33.00 billion pounds?",
+          "yes_sub_title": "Above 33.00 billion pounds"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXWIMILK-27FEB28",
+          "key": "KXWIMILK-27FEB28-T33.25",
+          "no_sub_title": "Above 33.25 billion pounds",
+          "rules_primary": "If USDA NASS reports Wisconsin\u2019s total milk production for 2026 is above \n\n33.25 billion pounds, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will be based on total milk production in Wisconsin during calendar year 2026, measured in pounds, as reported by USDA NASS in its Wisconsin \u2014 Milk Production Historical Data Series.",
+          "scheduled_close": "2027-02-28T16:29:00Z",
+          "series": "KXWIMILK",
+          "subtitle": null,
+          "title": "Will Wisconsin\u2019s total milk production for 2026 be above 33.25 billion pounds?",
+          "yes_sub_title": "Above 33.25 billion pounds"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXWIMILK-27FEB28",
+          "key": "KXWIMILK-27FEB28-T33.50",
+          "no_sub_title": "Above 33.50 billion pounds",
+          "rules_primary": "If USDA NASS reports Wisconsin\u2019s total milk production for 2026 is above \n\n33.50 billion pounds, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will be based on total milk production in Wisconsin during calendar year 2026, measured in pounds, as reported by USDA NASS in its Wisconsin \u2014 Milk Production Historical Data Series.",
+          "scheduled_close": "2027-02-28T16:29:00Z",
+          "series": "KXWIMILK",
+          "subtitle": null,
+          "title": "Will Wisconsin\u2019s total milk production for 2026 be above 33.50 billion pounds?",
+          "yes_sub_title": "Above 33.50 billion pounds"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXWIMILK-27FEB28",
+          "key": "KXWIMILK-27FEB28-T33.75",
+          "no_sub_title": "Above 33.75 billion pounds",
+          "rules_primary": "If USDA NASS reports Wisconsin\u2019s total milk production for 2026 is above \n\n33.75 billion pounds, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will be based on total milk production in Wisconsin during calendar year 2026, measured in pounds, as reported by USDA NASS in its Wisconsin \u2014 Milk Production Historical Data Series.",
+          "scheduled_close": "2027-02-28T16:29:00Z",
+          "series": "KXWIMILK",
+          "subtitle": null,
+          "title": "Will Wisconsin\u2019s total milk production for 2026 be above 33.75 billion pounds?",
+          "yes_sub_title": "Above 33.75 billion pounds"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSOCKEYERUN-27",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXSOCKEYERUN-27",
+          "key": "KXSOCKEYERUN-27-B29P00-36P99",
+          "no_sub_title": "Between 29 and 36.99 million",
+          "rules_primary": "If the preseason total run forecast issued by ADF&G for Bristol Bay sockeye salmon for the 2027 season is between 29 million and 36.99 million fish, then the market resolves to Yes.",
+          "rules_secondary": "The relevant figure is the Bristol Bay-wide aggregate point estimate shown in the \u201cForecast\u201d column on the row labeled \u201cTotal run.\u201d The separate \u201cInshore Run\u201d figure will not be used. The market also will not use the forecast range or prediction interval, escapement, harvestable-surplus figures, individual river or district forecasts, or the actual observed 2027 run.\n\nOnly ADF&G\u2019s initial non-preliminary preseason forecast will be used. In-season estimates, postseason run reconstructions, and revisions made after expiration will not affect resolution. If ADF&G provides only a forecast range without a point estimate, the midpoint of that range will be used.\n\nIf ADF&G does not use the label \u201cTotal run,\u201d the functionally equivalent Bristol Bay-wide figure, \"projected total catch plus projected total escapement\", will be used.",
+          "scheduled_close": "2026-12-04T15:00:00Z",
+          "series": "KXSOCKEYERUN",
+          "subtitle": null,
+          "title": "2027 sockeye run forecast: between 29 and 36.99 million fish?",
+          "yes_sub_title": "Between 29 and 36.99 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSOCKEYERUN-27",
+          "key": "KXSOCKEYERUN-27-B37P00-42P99",
+          "no_sub_title": "Between 37 and 42.99 million",
+          "rules_primary": "If the preseason total run forecast issued by ADF&G for Bristol Bay sockeye salmon for the 2027 season is between 37 million and 42.99 million fish, then the market resolves to Yes.",
+          "rules_secondary": "The relevant figure is the Bristol Bay-wide aggregate point estimate shown in the \u201cForecast\u201d column on the row labeled \u201cTotal run.\u201d The separate \u201cInshore Run\u201d figure will not be used. The market also will not use the forecast range or prediction interval, escapement, harvestable-surplus figures, individual river or district forecasts, or the actual observed 2027 run.\n\nOnly ADF&G\u2019s initial non-preliminary preseason forecast will be used. In-season estimates, postseason run reconstructions, and revisions made after expiration will not affect resolution. If ADF&G provides only a forecast range without a point estimate, the midpoint of that range will be used.\n\nIf ADF&G does not use the label \u201cTotal run,\u201d the functionally equivalent Bristol Bay-wide figure, \"projected total catch plus projected total escapement\", will be used.",
+          "scheduled_close": "2026-12-04T15:00:00Z",
+          "series": "KXSOCKEYERUN",
+          "subtitle": null,
+          "title": "2027 sockeye run forecast: between 37 and 42.99 million fish?",
+          "yes_sub_title": "Between 37 and 42.99 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSOCKEYERUN-27",
+          "key": "KXSOCKEYERUN-27-B43P00-48P99",
+          "no_sub_title": "Between 43 and 48.99 million",
+          "rules_primary": "If the preseason total run forecast issued by ADF&G for Bristol Bay sockeye salmon for the 2027 season is between 43 million and 48.99 million fish, then the market resolves to Yes.",
+          "rules_secondary": "The relevant figure is the Bristol Bay-wide aggregate point estimate shown in the \u201cForecast\u201d column on the row labeled \u201cTotal run.\u201d The separate \u201cInshore Run\u201d figure will not be used. The market also will not use the forecast range or prediction interval, escapement, harvestable-surplus figures, individual river or district forecasts, or the actual observed 2027 run.\n\nOnly ADF&G\u2019s initial non-preliminary preseason forecast will be used. In-season estimates, postseason run reconstructions, and revisions made after expiration will not affect resolution. If ADF&G provides only a forecast range without a point estimate, the midpoint of that range will be used.\n\nIf ADF&G does not use the label \u201cTotal run,\u201d the functionally equivalent Bristol Bay-wide figure, \"projected total catch plus projected total escapement\", will be used.",
+          "scheduled_close": "2026-12-04T15:00:00Z",
+          "series": "KXSOCKEYERUN",
+          "subtitle": null,
+          "title": "2027 sockeye run forecast: between 43 and 48.99 million fish?",
+          "yes_sub_title": "Between 43 and 48.99 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSOCKEYERUN-27",
+          "key": "KXSOCKEYERUN-27-B49P00-55P00",
+          "no_sub_title": "Between 49 and 55 million",
+          "rules_primary": "If the preseason total run forecast issued by ADF&G for Bristol Bay sockeye salmon for the 2027 season is between 49 million and 55 million fish, then the market resolves to Yes.",
+          "rules_secondary": "The relevant figure is the Bristol Bay-wide aggregate point estimate shown in the \u201cForecast\u201d column on the row labeled \u201cTotal run.\u201d The separate \u201cInshore Run\u201d figure will not be used. The market also will not use the forecast range or prediction interval, escapement, harvestable-surplus figures, individual river or district forecasts, or the actual observed 2027 run.\n\nOnly ADF&G\u2019s initial non-preliminary preseason forecast will be used. In-season estimates, postseason run reconstructions, and revisions made after expiration will not affect resolution. If ADF&G provides only a forecast range without a point estimate, the midpoint of that range will be used.\n\nIf ADF&G does not use the label \u201cTotal run,\u201d the functionally equivalent Bristol Bay-wide figure, \"projected total catch plus projected total escapement\", will be used.",
+          "scheduled_close": "2026-12-04T15:00:00Z",
+          "series": "KXSOCKEYERUN",
+          "subtitle": null,
+          "title": "2027 sockeye run forecast: between 49 and 55 million fish?",
+          "yes_sub_title": "Between 49 and 55 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSOCKEYERUN-27",
+          "key": "KXSOCKEYERUN-27-L29P00",
+          "no_sub_title": "Below 29 million",
+          "rules_primary": "If the preseason total run forecast issued by ADF&G for Bristol Bay sockeye salmon for the 2027 season is below 29 million fish, then the market resolves to Yes.",
+          "rules_secondary": "The relevant figure is the Bristol Bay-wide aggregate point estimate shown in the \u201cForecast\u201d column on the row labeled \u201cTotal run.\u201d The separate \u201cInshore Run\u201d figure will not be used. The market also will not use the forecast range or prediction interval, escapement, harvestable-surplus figures, individual river or district forecasts, or the actual observed 2027 run.\n\nOnly ADF&G\u2019s initial non-preliminary preseason forecast will be used. In-season estimates, postseason run reconstructions, and revisions made after expiration will not affect resolution. If ADF&G provides only a forecast range without a point estimate, the midpoint of that range will be used.\n\nIf ADF&G does not use the label \u201cTotal run,\u201d the functionally equivalent Bristol Bay-wide figure, \"projected total catch plus projected total escapement\", will be used.",
+          "scheduled_close": "2026-12-04T15:00:00Z",
+          "series": "KXSOCKEYERUN",
+          "subtitle": null,
+          "title": "2027 sockeye run forecast: below 29 million fish?",
+          "yes_sub_title": "Below 29 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSOCKEYERUN-27",
+          "key": "KXSOCKEYERUN-27-T55P00",
+          "no_sub_title": "Above 55 million",
+          "rules_primary": "If the preseason total run forecast issued by ADF&G for Bristol Bay sockeye salmon for the 2027 season is above 55 million fish, then the market resolves to Yes.",
+          "rules_secondary": "The relevant figure is the Bristol Bay-wide aggregate point estimate shown in the \u201cForecast\u201d column on the row labeled \u201cTotal run.\u201d The separate \u201cInshore Run\u201d figure will not be used. The market also will not use the forecast range or prediction interval, escapement, harvestable-surplus figures, individual river or district forecasts, or the actual observed 2027 run.\n\nOnly ADF&G\u2019s initial non-preliminary preseason forecast will be used. In-season estimates, postseason run reconstructions, and revisions made after expiration will not affect resolution. If ADF&G provides only a forecast range without a point estimate, the midpoint of that range will be used.\n\nIf ADF&G does not use the label \u201cTotal run,\u201d the functionally equivalent Bristol Bay-wide figure, \"projected total catch plus projected total escapement\", will be used.",
+          "scheduled_close": "2026-12-04T15:00:00Z",
+          "series": "KXSOCKEYERUN",
+          "subtitle": null,
+          "title": "2027 sockeye run forecast: above 55 million fish?",
+          "yes_sub_title": "Above 55 million"
+        }
+      ]
+    },
+    {
+      "event_key": "KXIMPEACHJUDGE-25",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXIMPEACHJUDGE-25",
+          "key": "KXIMPEACHJUDGE-25-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If a federal judge is impeached by the U.S. House of Representatives before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXIMPEACHJUDGE",
+          "subtitle": null,
+          "title": "Will the House impeach a federal judge before 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXBBP418-27",
+      "markets": [
+        {
+          "category": "Financials",
+          "event_key": "KXBBP418-27",
+          "key": "KXBBP418-27-Y",
+          "no_sub_title": "a full approval or an accelerated approval",
+          "rules_primary": "If the FDA's decision on BBP-418 by Ml Bio Solutions Inc. in 2026 is a full approval or an accelerated approval, the market resolves to Yes.",
+          "rules_secondary": "This market will resolve to No if the FDA's decision is a denial (CRL issued), a withdrawal by the sponsor, or a conditional approval \u2014 or if no decision is issued.\n\nBBP-418 (also known by its chemical name ribitol) is an experimental oral small-molecule drug being developed by BridgeBio to treat a rare inherited muscle disease called limb-girdle muscular dystrophy type 2I (LGMD2I/R9). Think of it like a missing ingredient in a factory: the disease prevents muscle cells from attaching a critical sugar coating to a key protective protein, and BBP-418 supplies the raw material the factory needs to get that process running again. It is taken orally and was shown in the FORTIFY trial to significantly boost levels of the properly-coated protein in patients, which appears to translate into meaningful improvements in muscle and lung function.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXBBP418",
+          "subtitle": null,
+          "title": "What will the FDA's decision be on BBP-418 by Ml Bio Solutions Inc. in 2026?",
+          "yes_sub_title": "a full approval or an accelerated approval"
+        }
+      ]
+    },
+    {
+      "event_key": "KXZELENSKYPUTIN-29",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXZELENSKYPUTIN-29",
+          "key": "KXZELENSKYPUTIN-29-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If Volodymyr Zelenskyy and Vladimir Putin  meet (including phone calls) before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "For the purposes of this market, a meeting must be direct and in real time. In-person encounters where both parties are physically present in the same location will count. Virtual meetings or calls where both parties speak directly to each other will also count. However, simply being present at the same event without direct interaction will not count. Exchanging written correspondences, communicating through intermediaries, or other asynchronous communication will not count. Cancelled meetings and near-misses will not count.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXZELENSKYPUTIN",
+          "subtitle": null,
+          "title": "Volodymyr Zelenskyy and Vladimir Putin meet before Jan 1, 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSENPARL-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXSENPARL-27",
+          "key": "KXSENPARL-27",
+          "no_sub_title": "Yes",
+          "rules_primary": "If Elizabeth MacDonough has either officially announced their intention to leave as Parliamentarian of the United States Senate or has actually left as Parliamentarian of the United States Senate before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXSENPARL",
+          "subtitle": "Yes",
+          "title": "Will Elizabeth MacDonough leave Parliamentarian of the United States Senate before Jan 1, 2027?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXDOTPLOTPUB-26",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXDOTPLOTPUB-26",
+          "key": "KXDOTPLOTPUB-26-DOT",
+          "no_sub_title": "In September 2026",
+          "rules_primary": "If the Federal Reserve publishing a dot plot for its September 2026 Summary of Economic Projections is confirmed by any of the Source Agencies after Issuance and before Sep 17, 2026, then the market resolves to Yes.",
+          "rules_secondary": "A \u201cdot plot\u201d means Federal Reserve projection materials showing individual FOMC participants\u2019 projections for the appropriate federal funds rate. It is sufficient if the projection materials include those individual federal funds rate projections, even if the exact phrase \u201cdot plot\u201d is not used. Mere reporting that the Fed is expected to publish, may publish, may discontinue, or is reviewing changes to the dot plot will not count.",
+          "scheduled_close": "2026-09-16T17:59:00Z",
+          "series": "KXDOTPLOTPUB",
+          "subtitle": null,
+          "title": "Will the Federal Reserve publish a dot plot for its September 2026 Summary of Economic Projections?",
+          "yes_sub_title": "In September 2026"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

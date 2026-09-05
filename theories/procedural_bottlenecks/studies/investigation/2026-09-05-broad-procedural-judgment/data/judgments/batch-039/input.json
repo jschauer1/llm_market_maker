@@ -1,0 +1,122 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXGREENLAND-29",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXGREENLAND-29",
+          "key": "KXGREENLAND-29-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If the United States purchases at least part of Greenland from Denmark before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXGREENLAND",
+          "subtitle": null,
+          "title": "Will Trump buy Greenland?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFEDMEET-27",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXFEDMEET-27",
+          "key": "KXFEDMEET-27-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If the Federal Open market Committee has an unscheduled meeting before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXFEDMEET",
+          "subtitle": null,
+          "title": "Will the Fed have an emergency meeting before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXIAETHANOL-27JAN31",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXIAETHANOL-27JAN31",
+          "key": "KXIAETHANOL-27JAN31-T4.4",
+          "no_sub_title": "Above 4.4 billion gallons",
+          "rules_primary": "If IRFA reports that Iowa ethanol production for calendar year 2026 is above \n\n4.4 billion gallons, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the Iowa Renewable Fuels Association\u2019s reported Iowa ethanol production for calendar year 2026, measured in gallons.",
+          "scheduled_close": "2027-01-31T14:59:00Z",
+          "series": "KXIAETHANOL",
+          "subtitle": null,
+          "title": "Will Iowa ethanol production for 2026 be above 4.4 billion gallons?",
+          "yes_sub_title": "Above 4.4 billion gallons"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXIAETHANOL-27JAN31",
+          "key": "KXIAETHANOL-27JAN31-T4.5",
+          "no_sub_title": "Above 4.5 billion gallons",
+          "rules_primary": "If IRFA reports that Iowa ethanol production for calendar year 2026 is above \n\n4.5 billion gallons, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the Iowa Renewable Fuels Association\u2019s reported Iowa ethanol production for calendar year 2026, measured in gallons.",
+          "scheduled_close": "2027-01-31T14:59:00Z",
+          "series": "KXIAETHANOL",
+          "subtitle": null,
+          "title": "Will Iowa ethanol production for 2026 be above 4.5 billion gallons?",
+          "yes_sub_title": "Above 4.5 billion gallons"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXIAETHANOL-27JAN31",
+          "key": "KXIAETHANOL-27JAN31-T5.0",
+          "no_sub_title": "Above 5.0 billion gallons",
+          "rules_primary": "If IRFA reports that Iowa ethanol production for calendar year 2026 is above \n\n5.0 billion gallons, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the Iowa Renewable Fuels Association\u2019s reported Iowa ethanol production for calendar year 2026, measured in gallons.",
+          "scheduled_close": "2027-01-31T14:59:00Z",
+          "series": "KXIAETHANOL",
+          "subtitle": null,
+          "title": "Will Iowa ethanol production for 2026 be above 5.0 billion gallons?",
+          "yes_sub_title": "Above 5.0 billion gallons"
+        }
+      ]
+    },
+    {
+      "event_key": "KXBOLOJANOUT-26JUL",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXBOLOJANOUT-26JUL",
+          "key": "KXBOLOJANOUT-26JUL-OCT01",
+          "no_sub_title": "Before Oct 1, 2026",
+          "rules_primary": "If Ilie Bolojan leaves as Prime Minister of Romania before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Ilie Bolojan must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXBOLOJANOUT",
+          "subtitle": "::",
+          "title": "Will Ilie Bolojan be out as Prime Minister of Romania before Oct 1, 2026?",
+          "yes_sub_title": "Before Oct 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCTMINWAGE-27JUL30",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXCTMINWAGE-27JUL30",
+          "key": "KXCTMINWAGE-27JUL30-T18.00",
+          "no_sub_title": "Above $18.00 per hour",
+          "rules_primary": "If the June 2027 BLS Employment Cost Index value used under Connecticut General Statutes \u00a731-58 produces a Connecticut minimum fair wage for January 1, 2028 that is above \n\n$18.00 per hour, then the market resolves to Yes.",
+          "rules_secondary": "Under Connecticut law, the January 1, 2028 rate is determined by the 12-month percentage change in the applicable ECI through June 30, 2027, with the resulting wage rounded to the nearest cent.\n\nResolution uses the 12-month percent change ending June 2027, not seasonally adjusted, for wages and salaries for all civilian workers. The January 1, 2028 minimum wage is calculated by applying that percentage change to the January 1, 2027 Connecticut minimum wage of $17.48 and rounding the resulting hourly wage to the nearest cent, consistent with Connecticut General Statutes \u00a731-58. The market does not rely on the timing or wording of a subsequent Connecticut government announcement.\n\nResolution source: United States Department of Labor, Bureau of Labor Statistics - Employment Cost Index, Table 8: Employment Cost Index for wages and salaries, for civilian workers, by occupational group and industry, not seasonally adjusted.",
+          "scheduled_close": "2027-07-30T12:34:00Z",
+          "series": "KXCTMINWAGE",
+          "subtitle": null,
+          "title": "Will Connecticut minimum fair wage for January 1, 2028 be above $18.00 per hour?",
+          "yes_sub_title": "Above $18.00 per hour"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

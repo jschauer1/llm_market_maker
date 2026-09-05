@@ -1,0 +1,458 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXSAVEACT-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXSAVEACT-27",
+          "key": "KXSAVEACT-27-JAN04",
+          "no_sub_title": "Before Jan 4, 2027",
+          "rules_primary": "If the SAVE Act (H.R. 22) becomes law before Jan 4, 2027, then the market resolves to Yes.",
+          "rules_secondary": "|| Additional Info ||",
+          "scheduled_close": "2027-01-04T15:00:00Z",
+          "series": "KXSAVEACT",
+          "subtitle": "Before Jan 4, 2027",
+          "title": "Will \"SAVE Act\" (H.R. 22) becomes law before Jan 4, 2027?",
+          "yes_sub_title": "Before Jan 4, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSNOWCRABCATCH-26",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXSNOWCRABCATCH-26",
+          "key": "KXSNOWCRABCATCH-26-B1-6999999",
+          "no_sub_title": "Between 1 and 6,999,999 pounds",
+          "rules_primary": "If the total allowable catch set by ADF&G for the 2026/27 Bering Sea District snow crab fishery is between 1 and 6,999,999 pounds, then the market resolves to Yes.",
+          "rules_secondary": "The settling figure is the amount labeled \u201cTotal\u201d in ADF&G\u2019s official annual harvest specifications for the Bering Sea District snow crab fishery. This is the combined Individual Fishing Quota (IFQ) and Community Development Quota (CDQ) amount and includes any additional allocation that ADF&G incorporates into the Total, including an allocation for hybrid crab. A separately stated base, recommended, IFQ-only, or CDQ-only amount will not be used.\n\nIf ADF&G initially announces a TAC and subsequently revises it before expiration, the most recently announced TAC as of expiration will control. Revisions announced after expiration will not affect settlement.\n\nIf ADF&G expresses the TAC as a range, the midpoint will be used unless ADF&G announces a single figure before expiration.\n\nIf the directed fishery is closed or no TAC is issued by expiration, the Closed outcome will resolve Yes and every numeric outcome will resolve No.",
+          "scheduled_close": "2026-10-16T14:00:00Z",
+          "series": "KXSNOWCRABCATCH",
+          "subtitle": null,
+          "title": "2026/27 snow crab TAC: 1-6,999,999 lb?",
+          "yes_sub_title": "Between 1 and 6,999,999 pounds"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSNOWCRABCATCH-26",
+          "key": "KXSNOWCRABCATCH-26-B11000000-15999999",
+          "no_sub_title": "Between 11 million and 15,999,999 pounds",
+          "rules_primary": "If the total allowable catch set by ADF&G for the 2026/27 Bering Sea District snow crab fishery is between 11 million and 15,999,999 pounds, then the market resolves to Yes.",
+          "rules_secondary": "The settling figure is the amount labeled \u201cTotal\u201d in ADF&G\u2019s official annual harvest specifications for the Bering Sea District snow crab fishery. This is the combined Individual Fishing Quota (IFQ) and Community Development Quota (CDQ) amount and includes any additional allocation that ADF&G incorporates into the Total, including an allocation for hybrid crab. A separately stated base, recommended, IFQ-only, or CDQ-only amount will not be used.\n\nIf ADF&G initially announces a TAC and subsequently revises it before expiration, the most recently announced TAC as of expiration will control. Revisions announced after expiration will not affect settlement.\n\nIf ADF&G expresses the TAC as a range, the midpoint will be used unless ADF&G announces a single figure before expiration.\n\nIf the directed fishery is closed or no TAC is issued by expiration, the Closed outcome will resolve Yes and every numeric outcome will resolve No.",
+          "scheduled_close": "2026-10-16T14:00:00Z",
+          "series": "KXSNOWCRABCATCH",
+          "subtitle": null,
+          "title": "2026/27 snow crab TAC: 11 million-15,999,999 lb?",
+          "yes_sub_title": "Between 11 million and 15,999,999 pounds"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSNOWCRABCATCH-26",
+          "key": "KXSNOWCRABCATCH-26-B16000000-22999999",
+          "no_sub_title": "Between 16 million and 22,999,999 pounds",
+          "rules_primary": "If the total allowable catch set by ADF&G for the 2026/27 Bering Sea District snow crab fishery is between 16 million and 22,999,999 pounds, then the market resolves to Yes.",
+          "rules_secondary": "The settling figure is the amount labeled \u201cTotal\u201d in ADF&G\u2019s official annual harvest specifications for the Bering Sea District snow crab fishery. This is the combined Individual Fishing Quota (IFQ) and Community Development Quota (CDQ) amount and includes any additional allocation that ADF&G incorporates into the Total, including an allocation for hybrid crab. A separately stated base, recommended, IFQ-only, or CDQ-only amount will not be used.\n\nIf ADF&G initially announces a TAC and subsequently revises it before expiration, the most recently announced TAC as of expiration will control. Revisions announced after expiration will not affect settlement.\n\nIf ADF&G expresses the TAC as a range, the midpoint will be used unless ADF&G announces a single figure before expiration.\n\nIf the directed fishery is closed or no TAC is issued by expiration, the Closed outcome will resolve Yes and every numeric outcome will resolve No.",
+          "scheduled_close": "2026-10-16T14:00:00Z",
+          "series": "KXSNOWCRABCATCH",
+          "subtitle": null,
+          "title": "2026/27 snow crab TAC: 16 million-22,999,999 lb?",
+          "yes_sub_title": "Between 16 million and 22,999,999 pounds"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSNOWCRABCATCH-26",
+          "key": "KXSNOWCRABCATCH-26-B7000000-10999999",
+          "no_sub_title": "Between 7 million and 10,999,999 pounds",
+          "rules_primary": "If the total allowable catch set by ADF&G for the 2026/27 Bering Sea District snow crab fishery is between 7 million and 10,999,999 pounds, then the market resolves to Yes.",
+          "rules_secondary": "The settling figure is the amount labeled \u201cTotal\u201d in ADF&G\u2019s official annual harvest specifications for the Bering Sea District snow crab fishery. This is the combined Individual Fishing Quota (IFQ) and Community Development Quota (CDQ) amount and includes any additional allocation that ADF&G incorporates into the Total, including an allocation for hybrid crab. A separately stated base, recommended, IFQ-only, or CDQ-only amount will not be used.\n\nIf ADF&G initially announces a TAC and subsequently revises it before expiration, the most recently announced TAC as of expiration will control. Revisions announced after expiration will not affect settlement.\n\nIf ADF&G expresses the TAC as a range, the midpoint will be used unless ADF&G announces a single figure before expiration.\n\nIf the directed fishery is closed or no TAC is issued by expiration, the Closed outcome will resolve Yes and every numeric outcome will resolve No.",
+          "scheduled_close": "2026-10-16T14:00:00Z",
+          "series": "KXSNOWCRABCATCH",
+          "subtitle": null,
+          "title": "2026/27 snow crab TAC: 7 million-10,999,999 lb?",
+          "yes_sub_title": "Between 7 million and 10,999,999 pounds"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSNOWCRABCATCH-26",
+          "key": "KXSNOWCRABCATCH-26-NONE",
+          "no_sub_title": "Closed",
+          "rules_primary": "If the total allowable catch set by ADF&G for the 2026/27 Bering Sea District snow crab fishery is exactly None, then the market resolves to Yes.",
+          "rules_secondary": "The settling figure is the amount labeled \u201cTotal\u201d in ADF&G\u2019s official annual harvest specifications for the Bering Sea District snow crab fishery. This is the combined Individual Fishing Quota (IFQ) and Community Development Quota (CDQ) amount and includes any additional allocation that ADF&G incorporates into the Total, including an allocation for hybrid crab. A separately stated base, recommended, IFQ-only, or CDQ-only amount will not be used.\n\nIf ADF&G initially announces a TAC and subsequently revises it before expiration, the most recently announced TAC as of expiration will control. Revisions announced after expiration will not affect settlement.\n\nIf ADF&G expresses the TAC as a range, the midpoint will be used unless ADF&G announces a single figure before expiration.\n\nIf the directed fishery is closed or no TAC is issued by expiration, the Closed outcome will resolve Yes and every numeric outcome will resolve No.",
+          "scheduled_close": "2026-10-16T14:00:00Z",
+          "series": "KXSNOWCRABCATCH",
+          "subtitle": null,
+          "title": "2026/27 Bering Sea snow crab fishery closed?",
+          "yes_sub_title": "Closed"
+        }
+      ]
+    },
+    {
+      "event_key": "KXAITECH-26OCT01",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXAITECH-26OCT01",
+          "key": "KXAITECH-26OCT01-T80.5",
+          "no_sub_title": "Above 80.5%",
+          "rules_primary": "If the Ramp AI Index: Sector adoption rate - Technology and media for August 2026 is above 80.5%, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index: Sector adoption rate - Technology and media for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXAITECH",
+          "subtitle": null,
+          "title": "Will Ramp AI Index: Sector adoption rate - Technology and media for August 2026 be above 80.5%?",
+          "yes_sub_title": "Above 80.5%"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXAITECH-26OCT01",
+          "key": "KXAITECH-26OCT01-T81",
+          "no_sub_title": "Above 81%",
+          "rules_primary": "If the Ramp AI Index: Sector adoption rate - Technology and media for August 2026 is above 81%, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index: Sector adoption rate - Technology and media for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXAITECH",
+          "subtitle": null,
+          "title": "Will Ramp AI Index: Sector adoption rate - Technology and media for August 2026 be above 81%?",
+          "yes_sub_title": "Above 81%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFEDGOVNOM-29",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXFEDGOVNOM-29",
+          "key": "KXFEDGOVNOM-29-26OCT01",
+          "no_sub_title": "Before Oct 1, 2026",
+          "rules_primary": "If any person is nominated to be a member of the Federal Reserve Board of Governors after Issuance and before Oct 1, 2026. then the market resolves to Yes.",
+          "rules_secondary": "Official announcements made by the President of a nomination shall satisfy the Payout Criterion, even if they are not yet sent to the Senate.",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXFEDGOVNOM",
+          "subtitle": null,
+          "title": "Will someone be nominated for a member of the Federal Reserve Board of Governors before Oct 1, 2026?",
+          "yes_sub_title": "Before Oct 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTRADEDEALCUBA-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXTRADEDEALCUBA-27",
+          "key": "KXTRADEDEALCUBA-27-B270101",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If the United States announces a new free trade agreement, multilateral trade agreement, trade framework, or economic cooperation arrangement with Cuba before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Preliminary agreements, frameworks, or agreements in principle do count as long as they are presented as a new trade-related agreement.\nCuba must also acknowledge the agreement.\nA mere declaration of intent to start negotiations or \"explore a trade deal\" is not sufficient.\nIf the U.S. and Cuba are part of a multilateral trade agreement announced within the timeframe, it is included.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRADEDEALCUBA",
+          "subtitle": null,
+          "title": "Will Trump announce a trade deal with Cuba before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFESTIVALEVENTDNCMIDTERMS-26NOV03",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXFESTIVALEVENTDNCMIDTERMS-26NOV03",
+          "key": "KXFESTIVALEVENTDNCMIDTERMS-26NOV03-DNC",
+          "no_sub_title": "Before Nov 3, 2026",
+          "rules_primary": "If a pre-midterm DNC convention happens by Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXFESTIVALEVENTDNCMIDTERMS",
+          "subtitle": null,
+          "title": "Will a pre-midterm DNC convention happen by Nov 3, 2026",
+          "yes_sub_title": "Before Nov 3, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXESVI",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXESVI",
+          "key": "KXESVI-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If Elder Scrolls VI is released on any console before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXESVI",
+          "subtitle": null,
+          "title": "Will Elder Scrolls VI be released before 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNOMGDPGROWTH-27JAN28",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXNOMGDPGROWTH-27JAN28",
+          "key": "KXNOMGDPGROWTH-27JAN28-T4.5",
+          "no_sub_title": "Above 4.5%",
+          "rules_primary": "If the annual percent change in U.S. current-dollar gross domestic product for calendar year 2026 is above 4.5%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the 2026 annual value for GDP under \u201cCurrent-dollar measures\u201d in the U.S. Bureau of Economic Analysis release titled \u201cGDP (Advance Estimate), 4th Quarter and Year 2026,\u201d or its equivalent successor publication.\n\nThe value will be taken as reported by BEA, in percentage terms and to the precision published by BEA. Subsequent estimates, revisions, annual updates, or benchmark revisions will not affect resolution.",
+          "scheduled_close": "2027-01-28T13:29:00Z",
+          "series": "KXNOMGDPGROWTH",
+          "subtitle": null,
+          "title": "Will annual percent change in U.S. current-dollar gross domestic product for 2026 be above 4.5%?",
+          "yes_sub_title": "Above 4.5%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNOMGDPGROWTH-27JAN28",
+          "key": "KXNOMGDPGROWTH-27JAN28-T5.5",
+          "no_sub_title": "Above 5.5%",
+          "rules_primary": "If the annual percent change in U.S. current-dollar gross domestic product for calendar year 2026 is above 5.5%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the 2026 annual value for GDP under \u201cCurrent-dollar measures\u201d in the U.S. Bureau of Economic Analysis release titled \u201cGDP (Advance Estimate), 4th Quarter and Year 2026,\u201d or its equivalent successor publication.\n\nThe value will be taken as reported by BEA, in percentage terms and to the precision published by BEA. Subsequent estimates, revisions, annual updates, or benchmark revisions will not affect resolution.",
+          "scheduled_close": "2027-01-28T13:29:00Z",
+          "series": "KXNOMGDPGROWTH",
+          "subtitle": null,
+          "title": "Will annual percent change in U.S. current-dollar gross domestic product for 2026 be above 5.5%?",
+          "yes_sub_title": "Above 5.5%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXALITOANNOUNCERETIRE-26JUN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXALITOANNOUNCERETIRE-26JUN",
+          "key": "KXALITOANNOUNCERETIRE-26JUN-27JUL01",
+          "no_sub_title": "Before Jul 1, 2027",
+          "rules_primary": "If Samuel Alito retires as Supreme Court justice before Jul 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXALITOANNOUNCERETIRE",
+          "subtitle": null,
+          "title": "Will Samuel Alito announce their departure as Supreme Court justice before Jul 1, 2027?",
+          "yes_sub_title": "Before Jul 1, 2027"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXALITOANNOUNCERETIRE-26JUN",
+          "key": "KXALITOANNOUNCERETIRE-26JUN-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Samuel Alito retires as Supreme Court justice before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXALITOANNOUNCERETIRE",
+          "subtitle": "::",
+          "title": "Will Samuel Alito announce their departure as Supreme Court justice before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXALITOANNOUNCERETIRE-26JUN",
+          "key": "KXALITOANNOUNCERETIRE-26JUN-OCT01",
+          "no_sub_title": "Before Oct 1, 2026",
+          "rules_primary": "If Samuel Alito retires as Supreme Court justice before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXALITOANNOUNCERETIRE",
+          "subtitle": "::",
+          "title": "Will Samuel Alito announce their departure as Supreme Court justice before Oct 1, 2026?",
+          "yes_sub_title": "Before Oct 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXHYPEMAXMON-HYPE-26SEP30",
+      "markets": [
+        {
+          "category": "Crypto",
+          "event_key": "KXHYPEMAXMON-HYPE-26SEP30",
+          "key": "KXHYPEMAXMON-HYPE-26SEP30-9250",
+          "no_sub_title": "Above $92.50",
+          "rules_primary": "If the price of HYPE after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n92.50, then the market resolves to Yes.",
+          "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF HYPEUSD_RTI price for HYPE. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+          "scheduled_close": "2026-10-01T03:59:59Z",
+          "series": "KXHYPEMAXMON",
+          "subtitle": null,
+          "title": "Will HYPE trimmed mean be above $92.50 by 11:59 PM ET on Sep 30, 2026?",
+          "yes_sub_title": "Above $92.50"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXHYPEMAXMON-HYPE-26SEP30",
+          "key": "KXHYPEMAXMON-HYPE-26SEP30-9500",
+          "no_sub_title": "Above $95.00",
+          "rules_primary": "If the price of HYPE after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n95.00, then the market resolves to Yes.",
+          "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF HYPEUSD_RTI price for HYPE. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+          "scheduled_close": "2026-10-01T03:59:59Z",
+          "series": "KXHYPEMAXMON",
+          "subtitle": null,
+          "title": "Will HYPE trimmed mean be above $95.00 by 11:59 PM ET on Sep 30, 2026?",
+          "yes_sub_title": "Above $95.00"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFEDDECISION-27JUN",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27JUN",
+          "key": "KXFEDDECISION-27JUN-C25",
+          "no_sub_title": "Cut 25bps",
+          "rules_primary": "If the Federal Reserve does a Cut of 25bps on June 09, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-06-09T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Cut 25bps",
+          "title": "Will the Federal Reserve Cut rates by 25bps at their June 2027 meeting?",
+          "yes_sub_title": "Cut 25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27JUN",
+          "key": "KXFEDDECISION-27JUN-C26",
+          "no_sub_title": "Cut >25bps",
+          "rules_primary": "If the Federal Reserve does a Cut of   25bps on June 09, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-06-09T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Cut >25bps",
+          "title": "Will the Federal Reserve Cut rates by >25bps at their June 2027 meeting?",
+          "yes_sub_title": "Cut >25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27JUN",
+          "key": "KXFEDDECISION-27JUN-H0",
+          "no_sub_title": "Fed maintains rate",
+          "rules_primary": "If the Federal Reserve does a Hike of 0bps on June 09, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-06-09T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Hike 0bps",
+          "title": "Will the Federal Reserve Hike rates by 0bps at their June 2027 meeting?",
+          "yes_sub_title": "Fed maintains rate"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27JUN",
+          "key": "KXFEDDECISION-27JUN-H25",
+          "no_sub_title": "Hike 25bps",
+          "rules_primary": "If the Federal Reserve does a Hike of 25bps on June 09, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-06-09T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Hike 25bps",
+          "title": "Will the Federal Reserve Hike rates by 25bps at their June 2027 meeting?",
+          "yes_sub_title": "Hike 25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27JUN",
+          "key": "KXFEDDECISION-27JUN-H26",
+          "no_sub_title": "Hike >25bps",
+          "rules_primary": "If the Federal Reserve does a Hike of >25bps on June 09, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-06-09T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Hike >25bps",
+          "title": "Will the Federal Reserve Hike rates by >25bps at their June 2027 meeting?",
+          "yes_sub_title": "Hike >25bps"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCONGESTIONEND-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXCONGESTIONEND-27",
+          "key": "KXCONGESTIONEND-27",
+          "no_sub_title": "In 2027",
+          "rules_primary": "If New York City\u2019s congestion relief fee (the \u201cCentral Business District Tolling Program\u201d) has ended, or its fee has been set to $0, after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An announcement (or, for example, legislation forcing it) that it will end is sufficient to resolve the market to Yes, even if that has not yet taken effect. A pause or injunction on the congestion pricing toll is not sufficient to resolve this market to Yes.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXCONGESTIONEND",
+          "subtitle": null,
+          "title": "Will congestion pricing in NYC end in 2027?",
+          "yes_sub_title": "In 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXLEAVETISCH-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXLEAVETISCH-27JAN01",
+          "key": "KXLEAVETISCH-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Jessica Tisch has either officially announced their intention to leave NYPD Commissioner or has actually left NYPD Commissioner before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves to Yes upon either an official announcement of departure or actual departure from office. An announcement must be made by the person themselves, their authorized representative, or the governing body of the office and reported by at least one Source Agency. Announcements of leaving more than one year from the statement do not resolve the market to Yes. Leaving office includes resignation, termination, removal, impeachment and removal, recall, or term expiration without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining office do NOT qualify. Death does NOT satisfy the Payout Criterion. Forced departures satisfy the criterion even without prior announcement.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXLEAVETISCH",
+          "subtitle": "Yes",
+          "title": "Will Jessica Tisch leave NYPD Commissioner before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "MOON",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "MOON",
+          "key": "MOON-26DEC31",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If an announcement indicates that a manned NASA mission landed on the Moon after Issuance and by December 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "MOON",
+          "subtitle": "Before 2027",
+          "title": "Will NASA land a person on the Moon before 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXDEBTLIMITINCREASE-26JUL",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXDEBTLIMITINCREASE-26JUL",
+          "key": "KXDEBTLIMITINCREASE-26JUL-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If legislation that increases the statutory limit on the public debt has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXDEBTLIMITINCREASE",
+          "subtitle": null,
+          "title": "Will legislation that increases the statutory limit on the public debt become law before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXDEBTLIMITINCREASE-26JUL",
+          "key": "KXDEBTLIMITINCREASE-26JUL-27MAR01",
+          "no_sub_title": "Before Mar 1, 2027",
+          "rules_primary": "If legislation that increases the statutory limit on the public debt has become law after Issuance and before Mar 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-03-01T15:00:00Z",
+          "series": "KXDEBTLIMITINCREASE",
+          "subtitle": null,
+          "title": "Will legislation that increases the statutory limit on the public debt become law before Mar 1, 2027?",
+          "yes_sub_title": "Before Mar 1, 2027"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

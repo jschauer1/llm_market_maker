@@ -1,0 +1,640 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXMOBILEGAMEAD-27JAN01",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOBILEGAMEAD-27JAN01",
+          "key": "KXMOBILEGAMEAD-27JAN01-ROC",
+          "no_sub_title": "The Rock",
+          "rules_primary": "If The Rock makes a qualifying appearance in any paid promotional content whose primary purpose is to market, promote, or advertise a mobile game that is available, or intended to be available, on smartphones or tablets before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXMOBILEGAMEAD",
+          "subtitle": null,
+          "title": "Will The Rock appear in mobile game advertisement this year?",
+          "yes_sub_title": "The Rock"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOBILEGAMEAD-27JAN01",
+          "key": "KXMOBILEGAMEAD-27JAN01-SHA",
+          "no_sub_title": "Shaquille O'Neal",
+          "rules_primary": "If Shaquille O'Neal makes a qualifying appearance in any paid promotional content whose primary purpose is to market, promote, or advertise a mobile game that is available, or intended to be available, on smartphones or tablets before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXMOBILEGAMEAD",
+          "subtitle": null,
+          "title": "Will Shaquille O'Neal appear in mobile game advertisement this year?",
+          "yes_sub_title": "Shaquille O'Neal"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOBILEGAMEAD-27JAN01",
+          "key": "KXMOBILEGAMEAD-27JAN01-TIM",
+          "no_sub_title": "Timoth\u00e9e Chalamet",
+          "rules_primary": "If Timoth\u00e9e Chalamet makes a qualifying appearance in any paid promotional content whose primary purpose is to market, promote, or advertise a mobile game that is available, or intended to be available, on smartphones or tablets before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXMOBILEGAMEAD",
+          "subtitle": null,
+          "title": "Will Timoth\u00e9e Chalamet appear in mobile game advertisement this year?",
+          "yes_sub_title": "Timoth\u00e9e Chalamet"
+        }
+      ]
+    },
+    {
+      "event_key": "KXAUTODELQ-26NOV03",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXAUTODELQ-26NOV03",
+          "key": "KXAUTODELQ-26NOV03-T4.8",
+          "no_sub_title": "Above 4.8%",
+          "rules_primary": "If the share of U.S. auto-loan balances 90 or more days delinquent for Q3 2026 is above 4.8%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the value reported by the Federal Reserve Bank of New York in its Quarterly Report on Household Debt and Credit / Household Debt and Credit Data Bank for Auto Loans in the series \u201cPercent of Balance 90+ Days Delinquent by Loan Type.\u201d\n\nUse the first value reported by the Federal Reserve Bank of New York for Q3 2026. Subsequent revisions will not affect the market.",
+          "scheduled_close": "2026-11-03T15:59:00Z",
+          "series": "KXAUTODELQ",
+          "subtitle": null,
+          "title": "Will the share of U.S. auto-loan balances 90 or more days delinquent for Q3 2026 be above 4.8%?",
+          "yes_sub_title": "Above 4.8%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXAUTODELQ-26NOV03",
+          "key": "KXAUTODELQ-26NOV03-T5.6",
+          "no_sub_title": "Above 5.6%",
+          "rules_primary": "If the share of U.S. auto-loan balances 90 or more days delinquent for Q3 2026 is above 5.6%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the value reported by the Federal Reserve Bank of New York in its Quarterly Report on Household Debt and Credit / Household Debt and Credit Data Bank for Auto Loans in the series \u201cPercent of Balance 90+ Days Delinquent by Loan Type.\u201d\n\nUse the first value reported by the Federal Reserve Bank of New York for Q3 2026. Subsequent revisions will not affect the market.",
+          "scheduled_close": "2026-11-03T15:59:00Z",
+          "series": "KXAUTODELQ",
+          "subtitle": null,
+          "title": "Will the share of U.S. auto-loan balances 90 or more days delinquent for Q3 2026 be above 5.6%?",
+          "yes_sub_title": "Above 5.6%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXAUTODELQ-26NOV03",
+          "key": "KXAUTODELQ-26NOV03-T5.8",
+          "no_sub_title": "Above 5.8%",
+          "rules_primary": "If the share of U.S. auto-loan balances 90 or more days delinquent for Q3 2026 is above 5.8%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the value reported by the Federal Reserve Bank of New York in its Quarterly Report on Household Debt and Credit / Household Debt and Credit Data Bank for Auto Loans in the series \u201cPercent of Balance 90+ Days Delinquent by Loan Type.\u201d\n\nUse the first value reported by the Federal Reserve Bank of New York for Q3 2026. Subsequent revisions will not affect the market.",
+          "scheduled_close": "2026-11-03T15:59:00Z",
+          "series": "KXAUTODELQ",
+          "subtitle": null,
+          "title": "Will the share of U.S. auto-loan balances 90 or more days delinquent for Q3 2026 be above 5.8%?",
+          "yes_sub_title": "Above 5.8%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXAUTODELQ-26NOV03",
+          "key": "KXAUTODELQ-26NOV03-T6.0",
+          "no_sub_title": "Above 6.0%",
+          "rules_primary": "If the share of U.S. auto-loan balances 90 or more days delinquent for Q3 2026 is above 6.0%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the value reported by the Federal Reserve Bank of New York in its Quarterly Report on Household Debt and Credit / Household Debt and Credit Data Bank for Auto Loans in the series \u201cPercent of Balance 90+ Days Delinquent by Loan Type.\u201d\n\nUse the first value reported by the Federal Reserve Bank of New York for Q3 2026. Subsequent revisions will not affect the market.",
+          "scheduled_close": "2026-11-03T15:59:00Z",
+          "series": "KXAUTODELQ",
+          "subtitle": null,
+          "title": "Will the share of U.S. auto-loan balances 90 or more days delinquent for Q3 2026 be above 6.0%?",
+          "yes_sub_title": "Above 6.0%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXOSSOFFRUN-28",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXOSSOFFRUN-28",
+          "key": "KXOSSOFFRUN-28-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Jon Ossoff has announced that he will run for President of the United States in 2028 before Jan 1, 2027, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXOSSOFFRUN",
+          "subtitle": "Before Jan 1, 2027",
+          "title": "Will Jon Ossoff announce a run for President of the United States before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXOSSOFFRUN-28",
+          "key": "KXOSSOFFRUN-28-27JUL01",
+          "no_sub_title": "Before Jul 1, 2027",
+          "rules_primary": "If Jon Ossoff has announced that he will run for President of the United States in 2028 before Jul 1, 2027, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2027-07-01T14:00:00Z",
+          "series": "KXOSSOFFRUN",
+          "subtitle": null,
+          "title": "Will Jon Ossoff announce a run for President of the United States before Jul 1, 2027?",
+          "yes_sub_title": "Before Jul 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCBRATEHIKE-27",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXCBRATEHIKE-27",
+          "key": "KXCBRATEHIKE-27-SNB",
+          "no_sub_title": "Swiss National Bank",
+          "rules_primary": "If the Swiss National Bank raising the SNB policy rate is confirmed by the relevant Source Agency after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A rate increase qualifies whether announced at a scheduled or unscheduled policy meeting. Forward guidance, speeches, projections, dissents, meeting minutes, analyst forecasts, or market-implied probabilities do not qualify unless the central bank officially announces an increase in the applicable policy rate.\n\nThe market resolves based on the official announcement date of the rate increase, not the effective date, unless the announcement does not specify a decision date, in which case the effective date will be used.\n\nIf the named central bank changes its monetary policy framework, renames its policy rate, or replaces the applicable policy rate before Jan. 1, 2027, the Exchange will use the central bank\u2019s new main policy interest rate that is most directly comparable to the rate specified above.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXCBRATEHIKE",
+          "subtitle": null,
+          "title": "Will the Swiss National Bank raise the SNB policy rate before 2027?",
+          "yes_sub_title": "Swiss National Bank"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNEXTLEGAFFAIRS-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXNEXTLEGAFFAIRS-27JAN01",
+          "key": "KXNEXTLEGAFFAIRS-27JAN01-JFRE",
+          "no_sub_title": "Jeff Freeland",
+          "rules_primary": "If Jeff Freeland formally holds the position of White House Director of Legislative Affairs before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded.\n\nFor the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity - as formally designated by the body or organization at which the position is held - is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nIf a person serves only in an acting or interim capacity as of this market's date, No new Director of Legislative Affairs is the outcome. If that person is later designated permanently before this market's date, their own market becomes the outcome instead.\n\nNo new Director of Legislative Affairs is also the outcome if no person has formally taken the position in a permanent capacity, or the person who has taken it is not among those named in this event.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXNEXTLEGAFFAIRS",
+          "subtitle": null,
+          "title": "Will Jeff Freeland be the next White House Director of Legislative Affairs before Jan 1, 2027?",
+          "yes_sub_title": "Jeff Freeland"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNEXTLEGAFFAIRS-27JAN01",
+          "key": "KXNEXTLEGAFFAIRS-27JAN01-NONE",
+          "no_sub_title": "No new Director of Legislative Affairs",
+          "rules_primary": "If No new Director of Legislative Affairs formally holds the position of White House Director of Legislative Affairs before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded.\n\nFor the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity - as formally designated by the body or organization at which the position is held - is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nIf a person serves only in an acting or interim capacity as of this market's date, No new Director of Legislative Affairs is the outcome. If that person is later designated permanently before this market's date, their own market becomes the outcome instead.\n\nNo new Director of Legislative Affairs is also the outcome if no person has formally taken the position in a permanent capacity, or the person who has taken it is not among those named in this event.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXNEXTLEGAFFAIRS",
+          "subtitle": null,
+          "title": "Will No new Director of Legislative Affairs be the next White House Director of Legislative Affairs before Jan 1, 2027?",
+          "yes_sub_title": "No new Director of Legislative Affairs"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNEXTLEGAFFAIRS-27JAN01",
+          "key": "KXNEXTLEGAFFAIRS-27JAN01-TAND",
+          "no_sub_title": "Tommy Andrews",
+          "rules_primary": "If Tommy Andrews formally holds the position of White House Director of Legislative Affairs before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded.\n\nFor the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity - as formally designated by the body or organization at which the position is held - is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nIf a person serves only in an acting or interim capacity as of this market's date, No new Director of Legislative Affairs is the outcome. If that person is later designated permanently before this market's date, their own market becomes the outcome instead.\n\nNo new Director of Legislative Affairs is also the outcome if no person has formally taken the position in a permanent capacity, or the person who has taken it is not among those named in this event.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXNEXTLEGAFFAIRS",
+          "subtitle": null,
+          "title": "Will Tommy Andrews be the next White House Director of Legislative Affairs before Jan 1, 2027?",
+          "yes_sub_title": "Tommy Andrews"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNEXTLEGAFFAIRS-27JAN01",
+          "key": "KXNEXTLEGAFFAIRS-27JAN01-WBAR",
+          "no_sub_title": "Walker Barrett",
+          "rules_primary": "If Walker Barrett formally holds the position of White House Director of Legislative Affairs before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+          "rules_secondary": "The holder of the position at the time of Issuance is excluded.\n\nFor the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity - as formally designated by the body or organization at which the position is held - is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.\n\nIf a person serves only in an acting or interim capacity as of this market's date, No new Director of Legislative Affairs is the outcome. If that person is later designated permanently before this market's date, their own market becomes the outcome instead.\n\nNo new Director of Legislative Affairs is also the outcome if no person has formally taken the position in a permanent capacity, or the person who has taken it is not among those named in this event.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXNEXTLEGAFFAIRS",
+          "subtitle": null,
+          "title": "Will Walker Barrett be the next White House Director of Legislative Affairs before Jan 1, 2027?",
+          "yes_sub_title": "Walker Barrett"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMOVIERELEASEDATE-007",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOVIERELEASEDATE-007",
+          "key": "KXMOVIERELEASEDATE-007-27JUL01",
+          "no_sub_title": "Before Jul 1, 2027",
+          "rules_primary": "If next James Bond has been publicly released in the USA through official channels before Before Jul 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This is for the next film in the James Bond series, which goes back to Dr. No (1962); spin-offs and unauthorized productions are not included.\n\nThe media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXMOVIERELEASEDATE",
+          "subtitle": null,
+          "title": "Will the next James Bond be released in the USA before Jul 1, 2027?",
+          "yes_sub_title": "Before Jul 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSTATELAW-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXSTATELAW-27",
+          "key": "KXSTATELAW-27-15MIN",
+          "no_sub_title": "$15 Minimum Wage by 2029",
+          "rules_primary": "If legislation that would raise Pennsylvania's $7.25 minimum wage in steps to $15 by 2029 and index to inflation has become law in Pennsylvania before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law.\n\nStandard legislation requiring executive approval: final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods\nLegislation not requiring executive approval: final passage and completion of required waiting periods\nConstitutional amendments: passage with required supermajorities and completion of ratification processes\nExecutive orders: official signature, publication in official government records, and legal effectiveness\n\nThe following do NOT constitute enactment:\n\nLegislative passage without completed executive action\nPassage by only some required bodies\nProvisional passage\nNon-binding resolutions\nDraft orders\n\nEnactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXSTATELAW",
+          "subtitle": ":: Pennsylvania",
+          "title": "Will $15 Minimum Wage by 2029 become law in Pennsylvania before Jan 1, 2027?",
+          "yes_sub_title": "$15 Minimum Wage by 2029"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXSTATELAW-27",
+          "key": "KXSTATELAW-27-AIAD",
+          "no_sub_title": "AI Anti-Discrimination",
+          "rules_primary": "If legislation that would regulate automated decision systems for consequential decisions (employment, housing, credit) has become law in California before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law.\n\nStandard legislation requiring executive approval: final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods\nLegislation not requiring executive approval: final passage and completion of required waiting periods\nConstitutional amendments: passage with required supermajorities and completion of ratification processes\nExecutive orders: official signature, publication in official government records, and legal effectiveness\n\nThe following do NOT constitute enactment:\n\nLegislative passage without completed executive action\nPassage by only some required bodies\nProvisional passage\nNon-binding resolutions\nDraft orders\n\nEnactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXSTATELAW",
+          "subtitle": ":: California",
+          "title": "Will AI Anti-Discrimination become law in California before Jan 1, 2027?",
+          "yes_sub_title": "AI Anti-Discrimination"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXSTATELAW-27",
+          "key": "KXSTATELAW-27-HIPA",
+          "no_sub_title": "Health Information Privacy Act",
+          "rules_primary": "If legislation that would require affirmative opt-in authorization before processing consumer health data not covered by HIPAA has become law in New York before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law.\n\nStandard legislation requiring executive approval: final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods\nLegislation not requiring executive approval: final passage and completion of required waiting periods\nConstitutional amendments: passage with required supermajorities and completion of ratification processes\nExecutive orders: official signature, publication in official government records, and legal effectiveness\n\nThe following do NOT constitute enactment:\n\nLegislative passage without completed executive action\nPassage by only some required bodies\nProvisional passage\nNon-binding resolutions\nDraft orders\n\nEnactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXSTATELAW",
+          "subtitle": ":: New York",
+          "title": "Will Health Information Privacy Act become law in New York before Jan 1, 2027?",
+          "yes_sub_title": "Health Information Privacy Act"
+        }
+      ]
+    },
+    {
+      "event_key": "KXHHSYOUTHCARE-26OCT20",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXHHSYOUTHCARE-26OCT20",
+          "key": "KXHHSYOUTHCARE-26OCT20",
+          "no_sub_title": "Yes",
+          "rules_primary": "If the taking effect of CMS-2451-F in at least one U.S. jurisdiction on October 13, 2026 is confirmed by any of the Source Agencies after Issuance and before Oct 20, 2026, then the market resolves to Yes.",
+          "rules_secondary": "This must be confirmed, verified, or established as factual by at least one Source Agency.\n\nNews confirmation is defined as a published article, broadcast segment, or official news report by a Source Agency, that A) explicitly states the taking effect of CMS-2451-F in at least one U.S. jurisdiction on October 13, 2026 occurred, is true, or has been verified, B) based on journalistic investigation, sources, or evidence, and C) presented as factual reporting rather than speculation, rumor, or unverified allegation.\n\nFor this market, taking effect means CMS-2451-F operates in at least one U.S. jurisdiction on Oct. 13. Announcement, publication, or scheduling alone does not qualify. Nationwide relief preventing operation anywhere in the United States that day means No; limited relief does not if the rule operates elsewhere. The existing hormone-therapy taper and continued mental-health funding do not negate legal effect.",
+          "scheduled_close": "2026-10-20T03:59:00Z",
+          "series": "KXHHSYOUTHCARE",
+          "subtitle": null,
+          "title": "Will HHS's transgender Medicaid rule take effect Oct. 13?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXUSGDPSHARE-27JUL01",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXUSGDPSHARE-27JUL01",
+          "key": "KXUSGDPSHARE-27JUL01-T25.1",
+          "no_sub_title": "Above 25.1%",
+          "rules_primary": "If the U.S. share of global GDP for 2026 is above 25.1%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the United States\u2019 percentage share of World gross domestic product in current U.S. dollars for 2026, calculated using the World Bank\u2019s World Development Indicators.\n\nThe Expiration Value will be calculated as: 100 \u00d7 United States GDP \u00f7 World GDP\n\n\u201cUnited States GDP\u201d and \u201cWorld GDP\u201d refer to the values attributed to 2026 for the World Bank indicator \u201cGDP (current US$),\u201d series code NY.GDP.MKTP.CD, for the economies United States and World, respectively.\n\nBoth inputs must be taken from the first World Development Indicators database release in which values attributed to 2026 are available for both the United States and World.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXUSGDPSHARE",
+          "subtitle": null,
+          "title": "Will U.S. share of global GDP for 2026 be above 25.1%?",
+          "yes_sub_title": "Above 25.1%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXUSGDPSHARE-27JUL01",
+          "key": "KXUSGDPSHARE-27JUL01-T25.2",
+          "no_sub_title": "Above 25.2%",
+          "rules_primary": "If the U.S. share of global GDP for 2026 is above 25.2%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the United States\u2019 percentage share of World gross domestic product in current U.S. dollars for 2026, calculated using the World Bank\u2019s World Development Indicators.\n\nThe Expiration Value will be calculated as: 100 \u00d7 United States GDP \u00f7 World GDP\n\n\u201cUnited States GDP\u201d and \u201cWorld GDP\u201d refer to the values attributed to 2026 for the World Bank indicator \u201cGDP (current US$),\u201d series code NY.GDP.MKTP.CD, for the economies United States and World, respectively.\n\nBoth inputs must be taken from the first World Development Indicators database release in which values attributed to 2026 are available for both the United States and World.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXUSGDPSHARE",
+          "subtitle": null,
+          "title": "Will U.S. share of global GDP for 2026 be above 25.2%?",
+          "yes_sub_title": "Above 25.2%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXUSGDPSHARE-27JUL01",
+          "key": "KXUSGDPSHARE-27JUL01-T25.3",
+          "no_sub_title": "Above 25.3%",
+          "rules_primary": "If the U.S. share of global GDP for 2026 is above 25.3%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the United States\u2019 percentage share of World gross domestic product in current U.S. dollars for 2026, calculated using the World Bank\u2019s World Development Indicators.\n\nThe Expiration Value will be calculated as: 100 \u00d7 United States GDP \u00f7 World GDP\n\n\u201cUnited States GDP\u201d and \u201cWorld GDP\u201d refer to the values attributed to 2026 for the World Bank indicator \u201cGDP (current US$),\u201d series code NY.GDP.MKTP.CD, for the economies United States and World, respectively.\n\nBoth inputs must be taken from the first World Development Indicators database release in which values attributed to 2026 are available for both the United States and World.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXUSGDPSHARE",
+          "subtitle": null,
+          "title": "Will U.S. share of global GDP for 2026 be above 25.3%?",
+          "yes_sub_title": "Above 25.3%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXUSGDPSHARE-27JUL01",
+          "key": "KXUSGDPSHARE-27JUL01-T25.4",
+          "no_sub_title": "Above 25.4%",
+          "rules_primary": "If the U.S. share of global GDP for 2026 is above 25.4%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the United States\u2019 percentage share of World gross domestic product in current U.S. dollars for 2026, calculated using the World Bank\u2019s World Development Indicators.\n\nThe Expiration Value will be calculated as: 100 \u00d7 United States GDP \u00f7 World GDP\n\n\u201cUnited States GDP\u201d and \u201cWorld GDP\u201d refer to the values attributed to 2026 for the World Bank indicator \u201cGDP (current US$),\u201d series code NY.GDP.MKTP.CD, for the economies United States and World, respectively.\n\nBoth inputs must be taken from the first World Development Indicators database release in which values attributed to 2026 are available for both the United States and World.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXUSGDPSHARE",
+          "subtitle": null,
+          "title": "Will U.S. share of global GDP for 2026 be above 25.4%?",
+          "yes_sub_title": "Above 25.4%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXUSGDPSHARE-27JUL01",
+          "key": "KXUSGDPSHARE-27JUL01-T25.5",
+          "no_sub_title": "Above 25.5%",
+          "rules_primary": "If the U.S. share of global GDP for 2026 is above 25.5%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the United States\u2019 percentage share of World gross domestic product in current U.S. dollars for 2026, calculated using the World Bank\u2019s World Development Indicators.\n\nThe Expiration Value will be calculated as: 100 \u00d7 United States GDP \u00f7 World GDP\n\n\u201cUnited States GDP\u201d and \u201cWorld GDP\u201d refer to the values attributed to 2026 for the World Bank indicator \u201cGDP (current US$),\u201d series code NY.GDP.MKTP.CD, for the economies United States and World, respectively.\n\nBoth inputs must be taken from the first World Development Indicators database release in which values attributed to 2026 are available for both the United States and World.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXUSGDPSHARE",
+          "subtitle": null,
+          "title": "Will U.S. share of global GDP for 2026 be above 25.5%?",
+          "yes_sub_title": "Above 25.5%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXUSGDPSHARE-27JUL01",
+          "key": "KXUSGDPSHARE-27JUL01-T25.6",
+          "no_sub_title": "Above 25.6%",
+          "rules_primary": "If the U.S. share of global GDP for 2026 is above 25.6%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the United States\u2019 percentage share of World gross domestic product in current U.S. dollars for 2026, calculated using the World Bank\u2019s World Development Indicators.\n\nThe Expiration Value will be calculated as: 100 \u00d7 United States GDP \u00f7 World GDP\n\n\u201cUnited States GDP\u201d and \u201cWorld GDP\u201d refer to the values attributed to 2026 for the World Bank indicator \u201cGDP (current US$),\u201d series code NY.GDP.MKTP.CD, for the economies United States and World, respectively.\n\nBoth inputs must be taken from the first World Development Indicators database release in which values attributed to 2026 are available for both the United States and World.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXUSGDPSHARE",
+          "subtitle": null,
+          "title": "Will U.S. share of global GDP for 2026 be above 25.6%?",
+          "yes_sub_title": "Above 25.6%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXUSGDPSHARE-27JUL01",
+          "key": "KXUSGDPSHARE-27JUL01-T25.8",
+          "no_sub_title": "Above 25.8%",
+          "rules_primary": "If the U.S. share of global GDP for 2026 is above 25.8%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the United States\u2019 percentage share of World gross domestic product in current U.S. dollars for 2026, calculated using the World Bank\u2019s World Development Indicators.\n\nThe Expiration Value will be calculated as: 100 \u00d7 United States GDP \u00f7 World GDP\n\n\u201cUnited States GDP\u201d and \u201cWorld GDP\u201d refer to the values attributed to 2026 for the World Bank indicator \u201cGDP (current US$),\u201d series code NY.GDP.MKTP.CD, for the economies United States and World, respectively.\n\nBoth inputs must be taken from the first World Development Indicators database release in which values attributed to 2026 are available for both the United States and World.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXUSGDPSHARE",
+          "subtitle": null,
+          "title": "Will U.S. share of global GDP for 2026 be above 25.8%?",
+          "yes_sub_title": "Above 25.8%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXUSGDPSHARE-27JUL01",
+          "key": "KXUSGDPSHARE-27JUL01-T25.9",
+          "no_sub_title": "Above 25.9%",
+          "rules_primary": "If the U.S. share of global GDP for 2026 is above 25.9%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the United States\u2019 percentage share of World gross domestic product in current U.S. dollars for 2026, calculated using the World Bank\u2019s World Development Indicators.\n\nThe Expiration Value will be calculated as: 100 \u00d7 United States GDP \u00f7 World GDP\n\n\u201cUnited States GDP\u201d and \u201cWorld GDP\u201d refer to the values attributed to 2026 for the World Bank indicator \u201cGDP (current US$),\u201d series code NY.GDP.MKTP.CD, for the economies United States and World, respectively.\n\nBoth inputs must be taken from the first World Development Indicators database release in which values attributed to 2026 are available for both the United States and World.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXUSGDPSHARE",
+          "subtitle": null,
+          "title": "Will U.S. share of global GDP for 2026 be above 25.9%?",
+          "yes_sub_title": "Above 25.9%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXUSGDPSHARE-27JUL01",
+          "key": "KXUSGDPSHARE-27JUL01-T26.1",
+          "no_sub_title": "Above 26.1%",
+          "rules_primary": "If the U.S. share of global GDP for 2026 is above 26.1%, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the United States\u2019 percentage share of World gross domestic product in current U.S. dollars for 2026, calculated using the World Bank\u2019s World Development Indicators.\n\nThe Expiration Value will be calculated as: 100 \u00d7 United States GDP \u00f7 World GDP\n\n\u201cUnited States GDP\u201d and \u201cWorld GDP\u201d refer to the values attributed to 2026 for the World Bank indicator \u201cGDP (current US$),\u201d series code NY.GDP.MKTP.CD, for the economies United States and World, respectively.\n\nBoth inputs must be taken from the first World Development Indicators database release in which values attributed to 2026 are available for both the United States and World.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXUSGDPSHARE",
+          "subtitle": null,
+          "title": "Will U.S. share of global GDP for 2026 be above 26.1%?",
+          "yes_sub_title": "Above 26.1%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCOLLEGEDROP-27",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXCOLLEGEDROP-27",
+          "key": "KXCOLLEGEDROP-27-COL",
+          "no_sub_title": "Columbia",
+          "rules_primary": "If Columbia has a lower ranking in the first U.S. News & World Report Best National University Rankings released after Issuance than its ranking as of Issuance, the market resolves to Yes.",
+          "rules_secondary": "Resolution is based solely on the numerical rank assigned to Columbia \u2014 moving from an unshared rank to a tied rank at the same number does not constitute a drop. If Columbia is no longer listed in the rankings, the market resolves to Yes. If the rank is unchanged, the market resolves to No.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXCOLLEGEDROP",
+          "subtitle": null,
+          "title": "Will Columbia drop in national university rankings?",
+          "yes_sub_title": "Columbia"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXCOLLEGEDROP-27",
+          "key": "KXCOLLEGEDROP-27-NOT",
+          "no_sub_title": "Notre Dame",
+          "rules_primary": "If Notre Dame has a lower ranking in the first U.S. News & World Report Best National University Rankings released after Issuance than its ranking as of Issuance, the market resolves to Yes.",
+          "rules_secondary": "Resolution is based solely on the numerical rank assigned to Notre Dame \u2014 moving from an unshared rank to a tied rank at the same number does not constitute a drop. If Notre Dame is no longer listed in the rankings, the market resolves to Yes. If the rank is unchanged, the market resolves to No.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXCOLLEGEDROP",
+          "subtitle": null,
+          "title": "Will Notre Dame drop in national university rankings?",
+          "yes_sub_title": "Notre Dame"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXCOLLEGEDROP-27",
+          "key": "KXCOLLEGEDROP-27-PRI",
+          "no_sub_title": "Princeton",
+          "rules_primary": "If Princeton has a lower ranking in the first U.S. News & World Report Best National University Rankings released after Issuance than its ranking as of Issuance, the market resolves to Yes.",
+          "rules_secondary": "Resolution is based solely on the numerical rank assigned to Princeton \u2014 moving from an unshared rank to a tied rank at the same number does not constitute a drop. If Princeton is no longer listed in the rankings, the market resolves to Yes. If the rank is unchanged, the market resolves to No.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXCOLLEGEDROP",
+          "subtitle": null,
+          "title": "Will Princeton drop in national university rankings?",
+          "yes_sub_title": "Princeton"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXCOLLEGEDROP-27",
+          "key": "KXCOLLEGEDROP-27-UCL",
+          "no_sub_title": "UCLA",
+          "rules_primary": "If UCLA has a lower ranking in the first U.S. News & World Report Best National University Rankings released after Issuance than its ranking as of Issuance, the market resolves to Yes.",
+          "rules_secondary": "Resolution is based solely on the numerical rank assigned to UCLA \u2014 moving from an unshared rank to a tied rank at the same number does not constitute a drop. If UCLA is no longer listed in the rankings, the market resolves to Yes. If the rank is unchanged, the market resolves to No.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXCOLLEGEDROP",
+          "subtitle": null,
+          "title": "Will UCLA drop in national university rankings?",
+          "yes_sub_title": "UCLA"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXCOLLEGEDROP-27",
+          "key": "KXCOLLEGEDROP-27-UTA",
+          "no_sub_title": "University of Texas at Austin",
+          "rules_primary": "If University of Texas at Austin has a lower ranking in the first U.S. News & World Report Best National University Rankings released after Issuance than its ranking as of Issuance, the market resolves to Yes.",
+          "rules_secondary": "Resolution is based solely on the numerical rank assigned to University of Texas at Austin \u2014 moving from an unshared rank to a tied rank at the same number does not constitute a drop. If University of Texas at Austin is no longer listed in the rankings, the market resolves to Yes. If the rank is unchanged, the market resolves to No.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXCOLLEGEDROP",
+          "subtitle": null,
+          "title": "Will University of Texas at Austin drop in national university rankings?",
+          "yes_sub_title": "University of Texas at Austin"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXCOLLEGEDROP-27",
+          "key": "KXCOLLEGEDROP-27-YAL",
+          "no_sub_title": "Yale",
+          "rules_primary": "If Yale has a lower ranking in the first U.S. News & World Report Best National University Rankings released after Issuance than its ranking as of Issuance, the market resolves to Yes.",
+          "rules_secondary": "Resolution is based solely on the numerical rank assigned to Yale \u2014 moving from an unshared rank to a tied rank at the same number does not constitute a drop. If Yale is no longer listed in the rankings, the market resolves to Yes. If the rank is unchanged, the market resolves to No.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXCOLLEGEDROP",
+          "subtitle": null,
+          "title": "Will Yale drop in national university rankings?",
+          "yes_sub_title": "Yale"
+        }
+      ]
+    },
+    {
+      "event_key": "KXGOVRINOMD-26",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXGOVRINOMD-26",
+          "key": "KXGOVRINOMD-26-DMCK",
+          "no_sub_title": "Dan McKee",
+          "rules_primary": "If Dan McKee wins the nomination for the Democratic Party to contest the 2026 Rhode Island Governorship, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXGOVRINOMD",
+          "subtitle": ":: Current incumbent",
+          "title": "Will Dan McKee be the Democratic nominee for Governor in Rhode Island?",
+          "yes_sub_title": "Dan McKee"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXGOVRINOMD-26",
+          "key": "KXGOVRINOMD-26-HFOU",
+          "no_sub_title": "Helena Foulkes",
+          "rules_primary": "If Helena Foulkes wins the nomination for the Democratic Party to contest the 2026 Rhode Island Governorship, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXGOVRINOMD",
+          "subtitle": null,
+          "title": "Will Helena Foulkes be the Democratic nominee for Governor in Rhode Island?",
+          "yes_sub_title": "Helena Foulkes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXDESANTISRUN-28",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXDESANTISRUN-28",
+          "key": "KXDESANTISRUN-28-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Ron DeSantis has announced that he will run for President of the United States in 2028 before Jan 1, 2027, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXDESANTISRUN",
+          "subtitle": "Before Jan 1, 2027",
+          "title": "Will Ron DeSantis announce a run for President of the United States before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNJONTIME-26NOV30",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXNJONTIME-26NOV30",
+          "key": "KXNJONTIME-26NOV30-T90",
+          "no_sub_title": "Above 90%",
+          "rules_primary": "If NJ TRANSIT's systemwide monthly rail on-time performance, all causes (not the Amtrak-adjusted figure) is above 90% in November 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-05T14:59:00Z",
+          "series": "KXNJONTIME",
+          "subtitle": null,
+          "title": "Will NJ TRANSIT's systemwide monthly rail on-time performance, all causes (not the Amtrak-adjusted figure) be above 90 in November 2026?",
+          "yes_sub_title": "Above 90%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXDOGEMINY-DOGE-26DEC31",
+      "markets": [
+        {
+          "category": "Crypto",
+          "event_key": "KXDOGEMINY-DOGE-26DEC31",
+          "key": "KXDOGEMINY-DOGE-26DEC31-002",
+          "no_sub_title": "Below $0.02",
+          "rules_primary": "If the price of DOGE after issuance and through 11:59 PM ET on Dec 31, 2026 is ever below $0.02, then the market resolves to Yes.",
+          "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF DOGEUSD_RTI price for DOGE. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+          "scheduled_close": "2027-01-01T04:59:59Z",
+          "series": "KXDOGEMINY",
+          "subtitle": null,
+          "title": "Will DOGE trimmed mean be below $0.02 by 11:59 PM ET on Dec 31, 2026?",
+          "yes_sub_title": "Below $0.02"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMUSKPRIMARY-26",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXMUSKPRIMARY-26",
+          "key": "KXMUSKPRIMARY-26-JTHU",
+          "no_sub_title": "John Thune",
+          "rules_primary": "If Elon Musk backs a challenger to John Thune before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "KXMUSKPRIMARY",
+          "subtitle": null,
+          "title": "Who will Elon Musk back a primary against in 2026?",
+          "yes_sub_title": "John Thune"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXMUSKPRIMARY-26",
+          "key": "KXMUSKPRIMARY-26-KCRA",
+          "no_sub_title": "Kevin Cramer",
+          "rules_primary": "If Elon Musk backs a challenger to Kevin Cramer before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "KXMUSKPRIMARY",
+          "subtitle": null,
+          "title": "Who will Elon Musk back a primary against in 2026?",
+          "yes_sub_title": "Kevin Cramer"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXMUSKPRIMARY-26",
+          "key": "KXMUSKPRIMARY-26-MJOH",
+          "no_sub_title": "Mike Johnson",
+          "rules_primary": "If Elon Musk backs a challenger to Mike Johnson before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "KXMUSKPRIMARY",
+          "subtitle": null,
+          "title": "Who will Elon Musk back a primary against in 2026?",
+          "yes_sub_title": "Mike Johnson"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXMUSKPRIMARY-26",
+          "key": "KXMUSKPRIMARY-26-TCOL",
+          "no_sub_title": "Tom Cole",
+          "rules_primary": "If Elon Musk backs a challenger to Tom Cole before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "KXMUSKPRIMARY",
+          "subtitle": null,
+          "title": "Who will Elon Musk back a primary against in 2026?",
+          "yes_sub_title": "Tom Cole"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

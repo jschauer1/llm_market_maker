@@ -91,3 +91,25 @@ board, book, fees and judgment receipts; no sibling-theory imports or generic
 replay framework. Preserve the original narrow procedure and sealed tests.
 After results, retain useful compressed findings and paid/source data. Only a
 qualifying implemented broad procedure replaces the production procedure.
+
+## Pre-judgment screen amendment (2026-09-05)
+
+Before any labels, sources, or outcomes were inspected, a blind audit found
+that generic words in full settlement rules were overriding the contract's
+subject. The final mechanical gate therefore applies generic action, quantity,
+ranking, and price patterns only to the title and displayed subject fields.
+Full rules are used only for the recognized Carbon Arc vendor-panel template.
+Mentions remain excluded; sport and weather subjects remain excluded unless
+their headline states an institutional action such as a transfer or approval.
+Economics, finance, crypto, and commodities are not category-wide exclusions:
+unknown mechanics pass. Explicit market-price, statistical-release, ranking,
+and reported-quantity subjects are removed, while zero-threshold first
+production/delivery proxies remain for judgment.
+
+The original census is retained unchanged. The final prospective blind census
+is `data/census-v5`: 115,840 board contracts reduce to 3,563 surviving
+contracts, 1,037 events, and 983 series. The matching outcome-free historical
+frame is `data/historical/census`: 110,628 board contracts reduce to 3,508
+surviving contracts, 1,021 events, and 964 series. Of those historical
+survivors, 271 contracts in 110 events had a frozen scheduled close no later
+than 2026-09-05T15:45:16Z. Scheduled close does not assert resolution.

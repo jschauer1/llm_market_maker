@@ -1,0 +1,991 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXACQANNOUNCEWDAY-27JAN01",
+      "markets": [
+        {
+          "category": "Financials",
+          "event_key": "KXACQANNOUNCEWDAY-27JAN01",
+          "key": "KXACQANNOUNCEWDAY-27JAN01-SILVWDAY",
+          "no_sub_title": "Silver Lake",
+          "rules_primary": "If Silver Lake announces an agreement to acquire Workday before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEWDAY",
+          "subtitle": null,
+          "title": "Will Silver Lake announce acquisition of Workday before Jan 1, 2027?",
+          "yes_sub_title": "Silver Lake"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNBATRADE-27FEB12",
+      "markets": [
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-ABLACK0",
+          "no_sub_title": "Anthony Black",
+          "rules_primary": "If Anthony Black is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Anthony Black later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Orlando",
+          "title": "Will Anthony Black be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Anthony Black"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-ADAVIS23",
+          "no_sub_title": "Anthony Davis",
+          "rules_primary": "If Anthony Davis is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Anthony Davis later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Washington",
+          "title": "Will Anthony Davis be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Anthony Davis"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-DBROOKS3",
+          "no_sub_title": "Dillon Brooks",
+          "rules_primary": "If Dillon Brooks is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Dillon Brooks later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Phoenix",
+          "title": "Will Dillon Brooks be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Dillon Brooks"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-DDEROZAN10",
+          "no_sub_title": "DeMar DeRozan",
+          "rules_primary": "If DeMar DeRozan is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If DeMar DeRozan later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Sacramento",
+          "title": "Will DeMar DeRozan be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "DeMar DeRozan"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-DFOX4",
+          "no_sub_title": "De'Aaron Fox",
+          "rules_primary": "If De'Aaron Fox is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If De'Aaron Fox later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: San Antonio",
+          "title": "Will De'Aaron Fox be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "De'Aaron Fox"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-DGAFFORD21",
+          "no_sub_title": "Daniel Gafford",
+          "rules_primary": "If Daniel Gafford is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Daniel Gafford later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Dallas",
+          "title": "Will Daniel Gafford be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Daniel Gafford"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-DMITCHELL45",
+          "no_sub_title": "Donovan Mitchell",
+          "rules_primary": "If Donovan Mitchell is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Donovan Mitchell later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Cleveland",
+          "title": "Will Donovan Mitchell be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Donovan Mitchell"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-DSABONIS11",
+          "no_sub_title": "Domantas Sabonis",
+          "rules_primary": "If Domantas Sabonis is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Domantas Sabonis later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Sacramento",
+          "title": "Will Domantas Sabonis be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Domantas Sabonis"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-DWHITE9",
+          "no_sub_title": "Derrick White",
+          "rules_primary": "If Derrick White is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Derrick White later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Boston",
+          "title": "Will Derrick White be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Derrick White"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-FWAGNER22",
+          "no_sub_title": "Franz Wagner",
+          "rules_primary": "If Franz Wagner is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Franz Wagner later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Orlando",
+          "title": "Will Franz Wagner be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Franz Wagner"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-HJONES2",
+          "no_sub_title": "Herbert Jones",
+          "rules_primary": "If Herbert Jones is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Herbert Jones later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: New Orleans",
+          "title": "Will Herbert Jones be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Herbert Jones"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-IHARTENSTEIN55",
+          "no_sub_title": "Isaiah Hartenstein",
+          "rules_primary": "If Isaiah Hartenstein is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Isaiah Hartenstein later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Oklahoma City",
+          "title": "Will Isaiah Hartenstein be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Isaiah Hartenstein"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-JBUTLER10",
+          "no_sub_title": "Jimmy Butler",
+          "rules_primary": "If Jimmy Butler is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Jimmy Butler later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Golden State",
+          "title": "Will Jimmy Butler be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Jimmy Butler"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-JDUREN0",
+          "no_sub_title": "Jalen Duren",
+          "rules_primary": "If Jalen Duren is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Jalen Duren later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Detroit",
+          "title": "Will Jalen Duren be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Jalen Duren"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-JEMBIID21",
+          "no_sub_title": "Joel Embiid",
+          "rules_primary": "If Joel Embiid is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Joel Embiid later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Philadelphia",
+          "title": "Will Joel Embiid be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Joel Embiid"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-JMCDANIELS3",
+          "no_sub_title": "Jaden McDaniels",
+          "rules_primary": "If Jaden McDaniels is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Jaden McDaniels later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Minnesota",
+          "title": "Will Jaden McDaniels be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Jaden McDaniels"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-JMURRAY27",
+          "no_sub_title": "Jamal Murray",
+          "rules_primary": "If Jamal Murray is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Jamal Murray later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Denver",
+          "title": "Will Jamal Murray be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Jamal Murray"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-JPOELTL19",
+          "no_sub_title": "Jakob Poeltl",
+          "rules_primary": "If Jakob Poeltl is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Jakob Poeltl later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Toronto",
+          "title": "Will Jakob Poeltl be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Jakob Poeltl"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-JVANDERBILT2",
+          "no_sub_title": "Jarred Vanderbilt",
+          "rules_primary": "If Jarred Vanderbilt is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Jarred Vanderbilt later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": "Jarred Vanderbilt:: Los Angeles L",
+          "title": "Will Jarred Vanderbilt be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Jarred Vanderbilt"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-KDURANT7",
+          "no_sub_title": "Kevin Durant",
+          "rules_primary": "If Kevin Durant is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Kevin Durant later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Houston",
+          "title": "Will Kevin Durant be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Kevin Durant"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-KIRVING11",
+          "no_sub_title": "Kyrie Irving",
+          "rules_primary": "If Kyrie Irving is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Kyrie Irving later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Dallas",
+          "title": "Will Kyrie Irving be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Kyrie Irving"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-KPORZINGIS7",
+          "no_sub_title": "Kristaps Porzingis",
+          "rules_primary": "If Kristaps Porzingis is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Kristaps Porzingis later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Golden State",
+          "title": "Will Kristaps Porzingis be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Kristaps Porzingis"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-KTHOMPSON31",
+          "no_sub_title": "Klay Thompson",
+          "rules_primary": "If Klay Thompson is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Klay Thompson later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Dallas",
+          "title": "Will Klay Thompson be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Klay Thompson"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-MPORTER17",
+          "no_sub_title": "Michael Porter Jr.",
+          "rules_primary": "If Michael Porter Jr. is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Michael Porter Jr. later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Brooklyn",
+          "title": "Will Michael Porter Jr. be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Michael Porter Jr."
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-NMARSHALL13",
+          "no_sub_title": "Naji Marshall",
+          "rules_primary": "If Naji Marshall is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Naji Marshall later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Dallas",
+          "title": "Will Naji Marshall be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Naji Marshall"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-PBANCHERO5",
+          "no_sub_title": "Paolo Banchero",
+          "rules_primary": "If Paolo Banchero is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Paolo Banchero later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Orlando",
+          "title": "Will Paolo Banchero be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Paolo Banchero"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-SHAUSER30",
+          "no_sub_title": "Sam Hauser",
+          "rules_primary": "If Sam Hauser is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Sam Hauser later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Boston",
+          "title": "Will Sam Hauser be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Sam Hauser"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-TMURPHY25",
+          "no_sub_title": "Trey Murphy",
+          "rules_primary": "If Trey Murphy is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Trey Murphy later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: New Orleans",
+          "title": "Will Trey Murphy be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Trey Murphy"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-ZLAVINE8",
+          "no_sub_title": "Zach LaVine",
+          "rules_primary": "If Zach LaVine is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Zach LaVine later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: Sacramento",
+          "title": "Will Zach LaVine be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Zach LaVine"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNBATRADE-27FEB12",
+          "key": "KXNBATRADE-27FEB12-ZWILLIAMSON1",
+          "no_sub_title": "Zion Williamson",
+          "rules_primary": "If Zion Williamson is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by the Governing League before Feb 12, 2027 for market to resolve to Yes. If Zion Williamson later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-02-12T04:59:00Z",
+          "series": "KXNBATRADE",
+          "subtitle": ":: New Orleans",
+          "title": "Will Zion Williamson be traded after Issuance and before Feb 12, 2027?",
+          "yes_sub_title": "Zion Williamson"
+        }
+      ]
+    },
+    {
+      "event_key": "KXJUSTICEDEMWIN-26NOV03",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXJUSTICEDEMWIN-26NOV03",
+          "key": "KXJUSTICEDEMWIN-26NOV03-A7",
+          "no_sub_title": "Above 7",
+          "rules_primary": "If the total count of candidates endorsed by Justice Democrats who win a 2026 federal primary election scheduled on or after June 25, 2026 is above 7, then the market resolves to Yes.",
+          "rules_secondary": "The endorsement must occur before the candidate wins the primary.",
+          "scheduled_close": "2026-11-03T14:59:00Z",
+          "series": "KXJUSTICEDEMWIN",
+          "subtitle": null,
+          "title": "Will the total count of candidates endorsed by Justice Democrats who win a 2026 federal primary election scheduled on or after June 25, 2026 be above 7 primary elections scheduled on or after June 25, 2026?",
+          "yes_sub_title": "Above 7"
+        }
+      ]
+    },
+    {
+      "event_key": "KXETHD-26SEP1117",
+      "markets": [
+        {
+          "category": "Crypto",
+          "event_key": "KXETHD-26SEP1117",
+          "key": "KXETHD-26SEP1117-T2179.99",
+          "no_sub_title": "$2,180 or above",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' Ethereum Real-Time Index (ERTI) before 5 PM EDT is above 2179.99 at 5 PM EDT on Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2026-09-11T21:00:00Z",
+          "series": "KXETHD",
+          "subtitle": "$2,180 or above",
+          "title": "Ethereum price at Sep 11, 2026 at 5pm EDT?",
+          "yes_sub_title": "$2,180 or above"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXETHD-26SEP1117",
+          "key": "KXETHD-26SEP1117-T2219.99",
+          "no_sub_title": "$2,220 or above",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' Ethereum Real-Time Index (ERTI) before 5 PM EDT is above 2219.99 at 5 PM EDT on Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2026-09-11T21:00:00Z",
+          "series": "KXETHD",
+          "subtitle": "$2,220 or above",
+          "title": "Ethereum price at Sep 11, 2026 at 5pm EDT?",
+          "yes_sub_title": "$2,220 or above"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXETHD-26SEP1117",
+          "key": "KXETHD-26SEP1117-T2299.99",
+          "no_sub_title": "$2,300 or above",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' Ethereum Real-Time Index (ERTI) before 5 PM EDT is above 2299.99 at 5 PM EDT on Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2026-09-11T21:00:00Z",
+          "series": "KXETHD",
+          "subtitle": "$2,300 or above",
+          "title": "Ethereum price at Sep 11, 2026 at 5pm EDT?",
+          "yes_sub_title": "$2,300 or above"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXETHD-26SEP1117",
+          "key": "KXETHD-26SEP1117-T2419.99",
+          "no_sub_title": "$2,420 or above",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' Ethereum Real-Time Index (ERTI) before 5 PM EDT is above 2419.99 at 5 PM EDT on Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2026-09-11T21:00:00Z",
+          "series": "KXETHD",
+          "subtitle": "$2,420 or above",
+          "title": "Ethereum price at Sep 11, 2026 at 5pm EDT?",
+          "yes_sub_title": "$2,420 or above"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXETHD-26SEP1117",
+          "key": "KXETHD-26SEP1117-T2539.99",
+          "no_sub_title": "$2,540 or above",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' Ethereum Real-Time Index (ERTI) before 5 PM EDT is above 2539.99 at 5 PM EDT on Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2026-09-11T21:00:00Z",
+          "series": "KXETHD",
+          "subtitle": "$2,540 or above",
+          "title": "Ethereum price at Sep 11, 2026 at 5pm EDT?",
+          "yes_sub_title": "$2,540 or above"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXETHD-26SEP1117",
+          "key": "KXETHD-26SEP1117-T2619.99",
+          "no_sub_title": "$2,620 or above",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' Ethereum Real-Time Index (ERTI) before 5 PM EDT is above 2619.99 at 5 PM EDT on Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2026-09-11T21:00:00Z",
+          "series": "KXETHD",
+          "subtitle": "$2,620 or above",
+          "title": "Ethereum price at Sep 11, 2026 at 5pm EDT?",
+          "yes_sub_title": "$2,620 or above"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXETHD-26SEP1117",
+          "key": "KXETHD-26SEP1117-T2739.99",
+          "no_sub_title": "$2,740 or above",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' Ethereum Real-Time Index (ERTI) before 5 PM EDT is above 2739.99 at 5 PM EDT on Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2026-09-11T21:00:00Z",
+          "series": "KXETHD",
+          "subtitle": "$2,740 or above",
+          "title": "Ethereum price at Sep 11, 2026 at 5pm EDT?",
+          "yes_sub_title": "$2,740 or above"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMOMAPCOURT-MOMAP26",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXMOMAPCOURT-MOMAP26",
+          "key": "KXMOMAPCOURT-MOMAP26",
+          "no_sub_title": "Before Nov 3, 2026",
+          "rules_primary": "If the U.S. Supreme Court issues an order permitting Missouri's HB 1 congressional map to govern the November 3, 2026 general election in any U.S. Supreme Court proceeding arising from People Not Politicians and Richard von Glahn v. Denny Hoskins, Missouri Supreme Court No. SC101805 before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The ruling must:\nBe issued by the U.S. Supreme Court in any U.S. Supreme Court proceeding arising from People Not Politicians and Richard von Glahn v. Denny Hoskins, Missouri Supreme Court No. SC101805\nAddress the matter described by the specified judgment\nBe issued through a written order, opinion, judgment, or decision\n\nThe following do NOT satisfy the Payout Criterion:\nOral rulings from the bench unless reduced to a written order\nTentative rulings that are not made final\nDraft opinions that leak but are not officially issued\nSettlements or voluntary dismissals\nAdministrative or scheduling orders\nOrders to show cause\nMinute orders that do not address the substantive issue in the specified judgment\n\nFor clarity:\nIf the case is dismissed for lack of jurisdiction, that counts as a ruling only if the judgment refers to jurisdiction\nSua sponte rulings count if they match the specified judgment\nPer curiam opinions and summary orders count as rulings\nIf multiple judges issue separate opinions, the majority/plurality opinion controls",
+          "scheduled_close": "2026-11-03T04:59:00Z",
+          "series": "KXMOMAPCOURT",
+          "subtitle": null,
+          "title": "Will SCOTUS permit Missouri's HB 1 House map?",
+          "yes_sub_title": "Before Nov 3, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXVTPERMITS-27MAY03",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXVTPERMITS-27MAY03",
+          "key": "KXVTPERMITS-27MAY03-T1600",
+          "no_sub_title": "Above 1,600 units",
+          "rules_primary": "If the number of privately owned housing units authorized by building permits in Vermont in calendar year 2026 is strictly above 1,600 units, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the total number of new privately owned housing units authorized by building permits in Vermont, across all structure types.\n\nResolution will use the first finalized annual 2026 figure published by the U.S. Census Bureau. Preliminary monthly and year-to-date estimates will not determine the market.",
+          "scheduled_close": "2027-05-03T11:54:00Z",
+          "series": "KXVTPERMITS",
+          "subtitle": null,
+          "title": "Will privately owned housing units authorized by building permits in Vermont in 2026 be above 1,600 units?",
+          "yes_sub_title": "Above 1,600 units"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXVTPERMITS-27MAY03",
+          "key": "KXVTPERMITS-27MAY03-T1700",
+          "no_sub_title": "Above 1,700 units",
+          "rules_primary": "If the number of privately owned housing units authorized by building permits in Vermont in calendar year 2026 is strictly above 1,700 units, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the total number of new privately owned housing units authorized by building permits in Vermont, across all structure types.\n\nResolution will use the first finalized annual 2026 figure published by the U.S. Census Bureau. Preliminary monthly and year-to-date estimates will not determine the market.",
+          "scheduled_close": "2027-05-03T11:54:00Z",
+          "series": "KXVTPERMITS",
+          "subtitle": null,
+          "title": "Will privately owned housing units authorized by building permits in Vermont in 2026 be above 1,700 units?",
+          "yes_sub_title": "Above 1,700 units"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXVTPERMITS-27MAY03",
+          "key": "KXVTPERMITS-27MAY03-T1800",
+          "no_sub_title": "Above 1,800 units",
+          "rules_primary": "If the number of privately owned housing units authorized by building permits in Vermont in calendar year 2026 is strictly above 1,800 units, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the total number of new privately owned housing units authorized by building permits in Vermont, across all structure types.\n\nResolution will use the first finalized annual 2026 figure published by the U.S. Census Bureau. Preliminary monthly and year-to-date estimates will not determine the market.",
+          "scheduled_close": "2027-05-03T11:54:00Z",
+          "series": "KXVTPERMITS",
+          "subtitle": null,
+          "title": "Will privately owned housing units authorized by building permits in Vermont in 2026 be above 1,800 units?",
+          "yes_sub_title": "Above 1,800 units"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXVTPERMITS-27MAY03",
+          "key": "KXVTPERMITS-27MAY03-T1900",
+          "no_sub_title": "Above 1,900 units",
+          "rules_primary": "If the number of privately owned housing units authorized by building permits in Vermont in calendar year 2026 is strictly above 1,900 units, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the total number of new privately owned housing units authorized by building permits in Vermont, across all structure types.\n\nResolution will use the first finalized annual 2026 figure published by the U.S. Census Bureau. Preliminary monthly and year-to-date estimates will not determine the market.",
+          "scheduled_close": "2027-05-03T11:54:00Z",
+          "series": "KXVTPERMITS",
+          "subtitle": null,
+          "title": "Will privately owned housing units authorized by building permits in Vermont in 2026 be above 1,900 units?",
+          "yes_sub_title": "Above 1,900 units"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXVTPERMITS-27MAY03",
+          "key": "KXVTPERMITS-27MAY03-T2000",
+          "no_sub_title": "Above 2,000 units",
+          "rules_primary": "If the number of privately owned housing units authorized by building permits in Vermont in calendar year 2026 is strictly above 2,000 units, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the total number of new privately owned housing units authorized by building permits in Vermont, across all structure types.\n\nResolution will use the first finalized annual 2026 figure published by the U.S. Census Bureau. Preliminary monthly and year-to-date estimates will not determine the market.",
+          "scheduled_close": "2027-05-03T11:54:00Z",
+          "series": "KXVTPERMITS",
+          "subtitle": null,
+          "title": "Will privately owned housing units authorized by building permits in Vermont in 2026 be above 2,000 units?",
+          "yes_sub_title": "Above 2,000 units"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXVTPERMITS-27MAY03",
+          "key": "KXVTPERMITS-27MAY03-T2100",
+          "no_sub_title": "Above 2,100 units",
+          "rules_primary": "If the number of privately owned housing units authorized by building permits in Vermont in calendar year 2026 is strictly above 2,100 units, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the total number of new privately owned housing units authorized by building permits in Vermont, across all structure types.\n\nResolution will use the first finalized annual 2026 figure published by the U.S. Census Bureau. Preliminary monthly and year-to-date estimates will not determine the market.",
+          "scheduled_close": "2027-05-03T11:54:00Z",
+          "series": "KXVTPERMITS",
+          "subtitle": null,
+          "title": "Will privately owned housing units authorized by building permits in Vermont in 2026 be above 2,100 units?",
+          "yes_sub_title": "Above 2,100 units"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXVTPERMITS-27MAY03",
+          "key": "KXVTPERMITS-27MAY03-T2200",
+          "no_sub_title": "Above 2,200 units",
+          "rules_primary": "If the number of privately owned housing units authorized by building permits in Vermont in calendar year 2026 is strictly above 2,200 units, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the total number of new privately owned housing units authorized by building permits in Vermont, across all structure types.\n\nResolution will use the first finalized annual 2026 figure published by the U.S. Census Bureau. Preliminary monthly and year-to-date estimates will not determine the market.",
+          "scheduled_close": "2027-05-03T11:54:00Z",
+          "series": "KXVTPERMITS",
+          "subtitle": null,
+          "title": "Will privately owned housing units authorized by building permits in Vermont in 2026 be above 2,200 units?",
+          "yes_sub_title": "Above 2,200 units"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXVTPERMITS-27MAY03",
+          "key": "KXVTPERMITS-27MAY03-T2300",
+          "no_sub_title": "Above 2,300 units",
+          "rules_primary": "If the number of privately owned housing units authorized by building permits in Vermont in calendar year 2026 is strictly above 2,300 units, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the total number of new privately owned housing units authorized by building permits in Vermont, across all structure types.\n\nResolution will use the first finalized annual 2026 figure published by the U.S. Census Bureau. Preliminary monthly and year-to-date estimates will not determine the market.",
+          "scheduled_close": "2027-05-03T11:54:00Z",
+          "series": "KXVTPERMITS",
+          "subtitle": null,
+          "title": "Will privately owned housing units authorized by building permits in Vermont in 2026 be above 2,300 units?",
+          "yes_sub_title": "Above 2,300 units"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXVTPERMITS-27MAY03",
+          "key": "KXVTPERMITS-27MAY03-T2400",
+          "no_sub_title": "Above 2,400 units",
+          "rules_primary": "If the number of privately owned housing units authorized by building permits in Vermont in calendar year 2026 is strictly above 2,400 units, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the total number of new privately owned housing units authorized by building permits in Vermont, across all structure types.\n\nResolution will use the first finalized annual 2026 figure published by the U.S. Census Bureau. Preliminary monthly and year-to-date estimates will not determine the market.",
+          "scheduled_close": "2027-05-03T11:54:00Z",
+          "series": "KXVTPERMITS",
+          "subtitle": null,
+          "title": "Will privately owned housing units authorized by building permits in Vermont in 2026 be above 2,400 units?",
+          "yes_sub_title": "Above 2,400 units"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXVTPERMITS-27MAY03",
+          "key": "KXVTPERMITS-27MAY03-T2500",
+          "no_sub_title": "Above 2,500 units",
+          "rules_primary": "If the number of privately owned housing units authorized by building permits in Vermont in calendar year 2026 is strictly above 2,500 units, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the total number of new privately owned housing units authorized by building permits in Vermont, across all structure types.\n\nResolution will use the first finalized annual 2026 figure published by the U.S. Census Bureau. Preliminary monthly and year-to-date estimates will not determine the market.",
+          "scheduled_close": "2027-05-03T11:54:00Z",
+          "series": "KXVTPERMITS",
+          "subtitle": null,
+          "title": "Will privately owned housing units authorized by building permits in Vermont in 2026 be above 2,500 units?",
+          "yes_sub_title": "Above 2,500 units"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXVTPERMITS-27MAY03",
+          "key": "KXVTPERMITS-27MAY03-T2600",
+          "no_sub_title": "Above 2,600 units",
+          "rules_primary": "If the number of privately owned housing units authorized by building permits in Vermont in calendar year 2026 is strictly above 2,600 units, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the total number of new privately owned housing units authorized by building permits in Vermont, across all structure types.\n\nResolution will use the first finalized annual 2026 figure published by the U.S. Census Bureau. Preliminary monthly and year-to-date estimates will not determine the market.",
+          "scheduled_close": "2027-05-03T11:54:00Z",
+          "series": "KXVTPERMITS",
+          "subtitle": null,
+          "title": "Will privately owned housing units authorized by building permits in Vermont in 2026 be above 2,600 units?",
+          "yes_sub_title": "Above 2,600 units"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCONGRESSTRADES-25",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXCONGRESSTRADES-25",
+          "key": "KXCONGRESSTRADES-25-DKUS",
+          "no_sub_title": "David Kustoff",
+          "rules_primary": "If David Kustoff is the person in Congress that has the highest return on their assets in 2025, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying for this Contract is the identity of the member of Congress with the greatest percent difference in the value of their assets in their end of year report for 2025 compared to the previous year (2025 value minus the previous year's value, all divided by the previous year's value, times one hundred). This will be calculated using Congress' annual personal financial disclosures (OGE Form 278e). Because each asset is given as a range of values in the disclosures, we use the midpoint of each range as an estimated value for that asset. The midpoint is calculated by taking the lower bound of the reported range plus the upper bound, and dividing by two. For example, if an asset is reported in the $15,001 \u2013 $50,000 range, the midpoint used would be $32,500.5 (the average of 15,001 and 50,000). In cases where the disclosure uses an open-ended top category (for instance, some forms list \"Over $50,000,000\" as the highest category for an asset value, with no upper limit), we will assign a value of $50,000,001 for that asset.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXCONGRESSTRADES",
+          "subtitle": null,
+          "title": "Which member of Congress will have the biggest returns this year?",
+          "yes_sub_title": "David Kustoff"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXCONGRESSTRADES-25",
+          "key": "KXCONGRESSTRADES-25-LBUC",
+          "no_sub_title": "Larry Bucshon",
+          "rules_primary": "If Larry Bucshon is the person in Congress that has the highest return on their assets in 2025, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying for this Contract is the identity of the member of Congress with the greatest percent difference in the value of their assets in their end of year report for 2025 compared to the previous year (2025 value minus the previous year's value, all divided by the previous year's value, times one hundred). This will be calculated using Congress' annual personal financial disclosures (OGE Form 278e). Because each asset is given as a range of values in the disclosures, we use the midpoint of each range as an estimated value for that asset. The midpoint is calculated by taking the lower bound of the reported range plus the upper bound, and dividing by two. For example, if an asset is reported in the $15,001 \u2013 $50,000 range, the midpoint used would be $32,500.5 (the average of 15,001 and 50,000). In cases where the disclosure uses an open-ended top category (for instance, some forms list \"Over $50,000,000\" as the highest category for an asset value, with no upper limit), we will assign a value of $50,000,001 for that asset.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXCONGRESSTRADES",
+          "subtitle": null,
+          "title": "Which member of Congress will have the biggest returns this year?",
+          "yes_sub_title": "Larry Bucshon"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXCONGRESSTRADES-25",
+          "key": "KXCONGRESSTRADES-25-NPEL",
+          "no_sub_title": "Nancy Pelosi",
+          "rules_primary": "If Nancy Pelosi is the person in Congress that has the highest return on their assets in 2025, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying for this Contract is the identity of the member of Congress with the greatest percent difference in the value of their assets in their end of year report for 2025 compared to the previous year (2025 value minus the previous year's value, all divided by the previous year's value, times one hundred). This will be calculated using Congress' annual personal financial disclosures (OGE Form 278e). Because each asset is given as a range of values in the disclosures, we use the midpoint of each range as an estimated value for that asset. The midpoint is calculated by taking the lower bound of the reported range plus the upper bound, and dividing by two. For example, if an asset is reported in the $15,001 \u2013 $50,000 range, the midpoint used would be $32,500.5 (the average of 15,001 and 50,000). In cases where the disclosure uses an open-ended top category (for instance, some forms list \"Over $50,000,000\" as the highest category for an asset value, with no upper limit), we will assign a value of $50,000,001 for that asset.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXCONGRESSTRADES",
+          "subtitle": null,
+          "title": "Which member of Congress will have the biggest returns this year?",
+          "yes_sub_title": "Nancy Pelosi"
+        }
+      ]
+    },
+    {
+      "event_key": "KXDIESELD-26SEP06",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXDIESELD-26SEP06",
+          "key": "KXDIESELD-26SEP06-T5.830",
+          "no_sub_title": "Above $5.830",
+          "rules_primary": "If the Diesel Price on September 6, 2026 is above $5.830, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-06T05:59:00Z",
+          "series": "KXDIESELD",
+          "subtitle": null,
+          "title": "Will Diesel Price on September 6, 2026 be above $5.830?",
+          "yes_sub_title": "Above $5.830"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFDAAPPROVALDATENTLA-LONV",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXFDAAPPROVALDATENTLA-LONV",
+          "key": "KXFDAAPPROVALDATENTLA-LONV-27JUL01",
+          "no_sub_title": "Before July 2027",
+          "rules_primary": "If the FDA approves Lonvoguran Ziclumeran (lonvo-z) for Hereditary Angioedema for marketing before Jul 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXFDAAPPROVALDATENTLA",
+          "subtitle": null,
+          "title": "When will the FDA approve Lonvoguran Ziclumeran (lonvo-z) for Hereditary Angioedema?",
+          "yes_sub_title": "Before July 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KX250DOLLARBILL-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KX250DOLLARBILL-27",
+          "key": "KX250DOLLARBILL-27-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If bill that mandates the creation and issuance of a $250 U.S. bill featuring Donald J. Trump's likeness becomes law before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "|| Additional Info ||",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KX250DOLLARBILL",
+          "subtitle": "Before Jan 1, 2027",
+          "title": "Will bill that mandates the creation and issuance of a $250 U.S. bill featuring Donald J. Trump's likeness becomes law before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXLOSEREELECTIONGOV-2026",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXLOSEREELECTIONGOV-2026",
+          "key": "KXLOSEREELECTIONGOV-2026-0",
+          "no_sub_title": "Exactly 0",
+          "rules_primary": "If exactly 0 governors lose re-election in 2026, then the market resolves to Yes.",
+          "rules_secondary": "Members count as losing re-election if they actively seek re-election (by filing candidacy or appearing on ballot) but fail to win. This includes losses in primaries, general elections, runoffs, retention elections, or recalls. Members who retire, withdraw before primaries, die, resign, or are disqualified do not count as losses. If redistricting forces two group members against each other, the loser counts. Members who switch parties after issuance remain part of the original group. If a member loses their party primary but wins as an independent, they did not lose re-election.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLOSEREELECTIONGOV",
+          "subtitle": null,
+          "title": "Will exactly 0 governors lose re-election in 2026?",
+          "yes_sub_title": "Exactly 0"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXLOSEREELECTIONGOV-2026",
+          "key": "KXLOSEREELECTIONGOV-2026-1",
+          "no_sub_title": "Exactly 1",
+          "rules_primary": "If exactly 1 governor lose re-election in 2026, then the market resolves to Yes.",
+          "rules_secondary": "Members count as losing re-election if they actively seek re-election (by filing candidacy or appearing on ballot) but fail to win. This includes losses in primaries, general elections, runoffs, retention elections, or recalls. Members who retire, withdraw before primaries, die, resign, or are disqualified do not count as losses. If redistricting forces two group members against each other, the loser counts. Members who switch parties after issuance remain part of the original group. If a member loses their party primary but wins as an independent, they did not lose re-election.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLOSEREELECTIONGOV",
+          "subtitle": null,
+          "title": "Will exactly 1 governor lose re-election in 2026?",
+          "yes_sub_title": "Exactly 1"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXLOSEREELECTIONGOV-2026",
+          "key": "KXLOSEREELECTIONGOV-2026-2",
+          "no_sub_title": "Exactly 2",
+          "rules_primary": "If exactly 2 governors lose re-election in 2026, then the market resolves to Yes.",
+          "rules_secondary": "Members count as losing re-election if they actively seek re-election (by filing candidacy or appearing on ballot) but fail to win. This includes losses in primaries, general elections, runoffs, retention elections, or recalls. Members who retire, withdraw before primaries, die, resign, or are disqualified do not count as losses. If redistricting forces two group members against each other, the loser counts. Members who switch parties after issuance remain part of the original group. If a member loses their party primary but wins as an independent, they did not lose re-election.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLOSEREELECTIONGOV",
+          "subtitle": null,
+          "title": "Will exactly 2 governors lose re-election in 2026?",
+          "yes_sub_title": "Exactly 2"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXLOSEREELECTIONGOV-2026",
+          "key": "KXLOSEREELECTIONGOV-2026-3",
+          "no_sub_title": "Exactly 3",
+          "rules_primary": "If exactly 3 governors lose re-election in 2026, then the market resolves to Yes.",
+          "rules_secondary": "Members count as losing re-election if they actively seek re-election (by filing candidacy or appearing on ballot) but fail to win. This includes losses in primaries, general elections, runoffs, retention elections, or recalls. Members who retire, withdraw before primaries, die, resign, or are disqualified do not count as losses. If redistricting forces two group members against each other, the loser counts. Members who switch parties after issuance remain part of the original group. If a member loses their party primary but wins as an independent, they did not lose re-election.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLOSEREELECTIONGOV",
+          "subtitle": null,
+          "title": "Will exactly 3 governors lose re-election in 2026?",
+          "yes_sub_title": "Exactly 3"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXLOSEREELECTIONGOV-2026",
+          "key": "KXLOSEREELECTIONGOV-2026-4",
+          "no_sub_title": "Exactly 4",
+          "rules_primary": "If exactly 4 governors lose re-election in 2026, then the market resolves to Yes.",
+          "rules_secondary": "Members count as losing re-election if they actively seek re-election (by filing candidacy or appearing on ballot) but fail to win. This includes losses in primaries, general elections, runoffs, retention elections, or recalls. Members who retire, withdraw before primaries, die, resign, or are disqualified do not count as losses. If redistricting forces two group members against each other, the loser counts. Members who switch parties after issuance remain part of the original group. If a member loses their party primary but wins as an independent, they did not lose re-election.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLOSEREELECTIONGOV",
+          "subtitle": null,
+          "title": "Will exactly 4 governors lose re-election in 2026?",
+          "yes_sub_title": "Exactly 4"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXLOSEREELECTIONGOV-2026",
+          "key": "KXLOSEREELECTIONGOV-2026-5",
+          "no_sub_title": "5 or more",
+          "rules_primary": "If at least 5 governors lose re-election in 2026, then the market resolves to Yes.",
+          "rules_secondary": "Members count as losing re-election if they actively seek re-election (by filing candidacy or appearing on ballot) but fail to win. This includes losses in primaries, general elections, runoffs, retention elections, or recalls. Members who retire, withdraw before primaries, die, resign, or are disqualified do not count as losses. If redistricting forces two group members against each other, the loser counts. Members who switch parties after issuance remain part of the original group. If a member loses their party primary but wins as an independent, they did not lose re-election.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLOSEREELECTIONGOV",
+          "subtitle": null,
+          "title": "Will at least 5 governors lose re-election in 2026?",
+          "yes_sub_title": "5 or more"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFLVISITORS-27FEB26",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXFLVISITORS-27FEB26",
+          "key": "KXFLVISITORS-27FEB26-T143.33",
+          "no_sub_title": "Above 143.33 million visitors",
+          "rules_primary": "If VISIT FLORIDA reports that Florida visitors in calendar year 2026 are above \n\n143.33 million visitors, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the statewide total visitor estimate for calendar year 2026, measured in visitor person-trips, as reported by VISIT FLORIDA. The total includes domestic, Canadian, and overseas visitors and excludes Florida residents. It does not use airport passengers, hotel stays, visitor days, or tourism spending.\n\nResolution uses the first official VISIT FLORIDA publication containing a complete calendar-year 2026 visitor estimate; subsequent revisions do not affect resolution.",
+          "scheduled_close": "2027-02-26T14:59:00Z",
+          "series": "KXFLVISITORS",
+          "subtitle": ":: 2025 baseline",
+          "title": "Will Florida visitors in 2026 be above 143.33 million visitors?",
+          "yes_sub_title": "Above 143.33 million visitors"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNHMAPLE-27JUN30",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXNHMAPLE-27JUN30",
+          "key": "KXNHMAPLE-27JUN30-T130000",
+          "no_sub_title": "Above 130,000 gallons",
+          "rules_primary": "If USDA NASS reports that New Hampshire\u2019s maple syrup production in 2027 is above 130,000 gallons, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 New Hampshire maple syrup production, measured in gallons.\n\nUse Maple Syrup \u2192 Production \u2192 Gallons.",
+          "scheduled_close": "2027-06-30T13:59:00Z",
+          "series": "KXNHMAPLE",
+          "subtitle": null,
+          "title": "Will New Hampshire\u2019s maple syrup production in 2027 be above 130,000 gallons?",
+          "yes_sub_title": "Above 130,000 gallons"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNHMAPLE-27JUN30",
+          "key": "KXNHMAPLE-27JUN30-T140000",
+          "no_sub_title": "Above 140,000 gallons",
+          "rules_primary": "If USDA NASS reports that New Hampshire\u2019s maple syrup production in 2027 is above 140,000 gallons, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 New Hampshire maple syrup production, measured in gallons.\n\nUse Maple Syrup \u2192 Production \u2192 Gallons.",
+          "scheduled_close": "2027-06-30T13:59:00Z",
+          "series": "KXNHMAPLE",
+          "subtitle": null,
+          "title": "Will New Hampshire\u2019s maple syrup production in 2027 be above 140,000 gallons?",
+          "yes_sub_title": "Above 140,000 gallons"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNHMAPLE-27JUN30",
+          "key": "KXNHMAPLE-27JUN30-T160000",
+          "no_sub_title": "Above 160,000 gallons",
+          "rules_primary": "If USDA NASS reports that New Hampshire\u2019s maple syrup production in 2027 is above 160,000 gallons, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 New Hampshire maple syrup production, measured in gallons.\n\nUse Maple Syrup \u2192 Production \u2192 Gallons.",
+          "scheduled_close": "2027-06-30T13:59:00Z",
+          "series": "KXNHMAPLE",
+          "subtitle": null,
+          "title": "Will New Hampshire\u2019s maple syrup production in 2027 be above 160,000 gallons?",
+          "yes_sub_title": "Above 160,000 gallons"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNHMAPLE-27JUN30",
+          "key": "KXNHMAPLE-27JUN30-T170000",
+          "no_sub_title": "Above 170,000 gallons",
+          "rules_primary": "If USDA NASS reports that New Hampshire\u2019s maple syrup production in 2027 is above 170,000 gallons, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 New Hampshire maple syrup production, measured in gallons.\n\nUse Maple Syrup \u2192 Production \u2192 Gallons.",
+          "scheduled_close": "2027-06-30T13:59:00Z",
+          "series": "KXNHMAPLE",
+          "subtitle": null,
+          "title": "Will New Hampshire\u2019s maple syrup production in 2027 be above 170,000 gallons?",
+          "yes_sub_title": "Above 170,000 gallons"
+        }
+      ]
+    },
+    {
+      "event_key": "KXALBUMRELEASEDATEJB-SWAG3",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXALBUMRELEASEDATEJB-SWAG3",
+          "key": "KXALBUMRELEASEDATEJB-SWAG3-OCT01-26",
+          "no_sub_title": "Before October",
+          "rules_primary": "If Justin Bieber releases an album titled SWAG 3 before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "If the album is NOT titled 'SWAG 3', then the market will resolve to NO.",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXALBUMRELEASEDATEJB",
+          "subtitle": null,
+          "title": "Will Justin Bieber release SWAG 3 before Oct 1, 2026?",
+          "yes_sub_title": "Before October"
+        }
+      ]
+    },
+    {
+      "event_key": "KXBEPIROVIRSEN-27",
+      "markets": [
+        {
+          "category": "Financials",
+          "event_key": "KXBEPIROVIRSEN-27",
+          "key": "KXBEPIROVIRSEN-27-Y",
+          "no_sub_title": "a full approval or an accelerated approval",
+          "rules_primary": "If the FDA's decision on Bepirovirsen by GlaxoSmithKline in 2026 is a full approval or an accelerated approval, the market resolves to Yes.",
+          "rules_secondary": "This market will resolve to No if the FDA's decision is a denial (CRL issued), a withdrawal by the sponsor, or a conditional approval \u2014 or if no decision is issued. \n\nBepirovirsen is an experimental antiviral medicine developed by GlaxoSmithKline that is designed to clear the hepatitis B virus from the body rather than just keeping it asleep. It belongs to a modern class of gene-silencing therapies that hunt down and destroy the virus's replication instructions. This is similar to intercepting and shredding a virus\u2019s blueprints before its cell-invading factory has a chance to read them and build new viral copies.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXBEPIROVIRSEN",
+          "subtitle": null,
+          "title": "What will the FDA's decision be on Bepirovirsen by GlaxoSmithKline in 2026?",
+          "yes_sub_title": "a full approval or an accelerated approval"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

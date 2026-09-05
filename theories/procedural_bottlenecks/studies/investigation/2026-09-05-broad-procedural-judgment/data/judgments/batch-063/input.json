@@ -1,0 +1,913 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXNFLTRADE-26DEC01",
+      "markets": [
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-ARIC",
+          "no_sub_title": "Anthony Richardson Sr.",
+          "rules_primary": "If Anthony Richardson Sr. is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Anthony Richardson Sr. later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Anthony Richardson Sr.",
+          "title": "Will Anthony Richardson Sr. be traded before Dec 1, 2026?",
+          "yes_sub_title": "Anthony Richardson Sr."
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-BAIY",
+          "no_sub_title": "Brandon Aiyuk",
+          "rules_primary": "If Brandon Aiyuk is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Brandon Aiyuk later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Brandon Aiyuk",
+          "title": "Will Brandon Aiyuk be traded before Dec 1, 2026?",
+          "yes_sub_title": "Brandon Aiyuk"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-BTHO",
+          "no_sub_title": "Brian Thomas Jr.",
+          "rules_primary": "If Brian Thomas Jr. is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Brian Thomas Jr. later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Brian Thomas Jr.",
+          "title": "Will Brian Thomas Jr. be traded before Dec 1, 2026?",
+          "yes_sub_title": "Brian Thomas Jr."
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-DACH",
+          "no_sub_title": "De\u2019Von Achane",
+          "rules_primary": "If De\u2019Von Achane is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If De\u2019Von Achane later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "De\u2019Von Achane",
+          "title": "Will De\u2019Von Achane be traded before Dec 1, 2026?",
+          "yes_sub_title": "De\u2019Von Achane"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-DLON",
+          "no_sub_title": "Drake London",
+          "rules_primary": "If Drake London is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Drake London later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Drake London",
+          "title": "Will Drake London be traded before Dec 1, 2026?",
+          "yes_sub_title": "Drake London"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-FWAR",
+          "no_sub_title": "Fred Warner",
+          "rules_primary": "If Fred Warner is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Fred Warner later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Fred Warner",
+          "title": "Will Fred Warner be traded before Dec 1, 2026?",
+          "yes_sub_title": "Fred Warner"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-GKIT",
+          "no_sub_title": "George Kittle",
+          "rules_primary": "If George Kittle is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If George Kittle later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "George Kittle",
+          "title": "Will George Kittle be traded before Dec 1, 2026?",
+          "yes_sub_title": "George Kittle"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-GWIL",
+          "no_sub_title": "Garrett Wilson",
+          "rules_primary": "If Garrett Wilson is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Garrett Wilson later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Garrett Wilson",
+          "title": "Will Garrett Wilson be traded before Dec 1, 2026?",
+          "yes_sub_title": "Garrett Wilson"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-JBAT",
+          "no_sub_title": "Jessie Bates III",
+          "rules_primary": "If Jessie Bates III is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Jessie Bates III later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Jessie Bates III",
+          "title": "Will Jessie Bates III be traded before Dec 1, 2026?",
+          "yes_sub_title": "Jessie Bates III"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-JCAR",
+          "no_sub_title": "Jalen Carter",
+          "rules_primary": "If Jalen Carter is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Jalen Carter later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Jalen Carter",
+          "title": "Will Jalen Carter be traded before Dec 1, 2026?",
+          "yes_sub_title": "Jalen Carter"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-JELL",
+          "no_sub_title": "Jonah Elliss",
+          "rules_primary": "If Jonah Elliss is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Jonah Elliss later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Jonah Elliss",
+          "title": "Will Jonah Elliss be traded before Dec 1, 2026?",
+          "yes_sub_title": "Jonah Elliss"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-JJEF",
+          "no_sub_title": "Justin Jefferson",
+          "rules_primary": "If Justin Jefferson is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Justin Jefferson later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Justin Jefferson",
+          "title": "Will Justin Jefferson be traded before Dec 1, 2026?",
+          "yes_sub_title": "Justin Jefferson"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-KMUR",
+          "no_sub_title": "Kyler Murray",
+          "rules_primary": "If Kyler Murray is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Kyler Murray later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Kyler Murray",
+          "title": "Will Kyler Murray be traded before Dec 1, 2026?",
+          "yes_sub_title": "Kyler Murray"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-KTHI",
+          "no_sub_title": "Kayvon Thibodeaux",
+          "rules_primary": "If Kayvon Thibodeaux is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Kayvon Thibodeaux later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Kayvon Thibodeaux",
+          "title": "Will Kayvon Thibodeaux be traded before Dec 1, 2026?",
+          "yes_sub_title": "Kayvon Thibodeaux"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-MCRO",
+          "no_sub_title": "Maxx Crosby",
+          "rules_primary": "If Maxx Crosby is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Maxx Crosby later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Maxx Crosby",
+          "title": "Will Maxx Crosby be traded before Dec 1, 2026?",
+          "yes_sub_title": "Maxx Crosby"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-MJON",
+          "no_sub_title": "Mac Jones",
+          "rules_primary": "If Mac Jones is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Mac Jones later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Mac Jones",
+          "title": "Will Mac Jones be traded before Dec 1, 2026?",
+          "yes_sub_title": "Mac Jones"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-RBAT",
+          "no_sub_title": "Rashod Bateman",
+          "rules_primary": "If Rashod Bateman is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Rashod Bateman later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Rashod Bateman",
+          "title": "Will Rashod Bateman be traded before Dec 1, 2026?",
+          "yes_sub_title": "Rashod Bateman"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-RDOW",
+          "no_sub_title": "Rico Dowdle",
+          "rules_primary": "If Rico Dowdle is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Rico Dowdle later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Rico Dowdle",
+          "title": "Will Rico Dowdle be traded before Dec 1, 2026?",
+          "yes_sub_title": "Rico Dowdle"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-RWOO",
+          "no_sub_title": "Riq Woolen",
+          "rules_primary": "If Riq Woolen is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Riq Woolen later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Riq Woolen",
+          "title": "Will Riq Woolen be traded before Dec 1, 2026?",
+          "yes_sub_title": "Riq Woolen"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-SRAT",
+          "no_sub_title": "Spencer Rattler",
+          "rules_primary": "If Spencer Rattler is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Spencer Rattler later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Spencer Rattler",
+          "title": "Will Spencer Rattler be traded before Dec 1, 2026?",
+          "yes_sub_title": "Spencer Rattler"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-THIG",
+          "no_sub_title": "Tee Higgins",
+          "rules_primary": "If Tee Higgins is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Tee Higgins later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Tee Higgins",
+          "title": "Will Tee Higgins be traded before Dec 1, 2026?",
+          "yes_sub_title": "Tee Higgins"
+        },
+        {
+          "category": "Sports",
+          "event_key": "KXNFLTRADE-26DEC01",
+          "key": "KXNFLTRADE-26DEC01-TTAG",
+          "no_sub_title": "Tua Tagovailoa",
+          "rules_primary": "If Tua Tagovailoa is traded before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The trade must be officially processed and approved by NFL before Dec 1, 2026 for market to resolve to Yes. If Tua Tagovailoa later fails their physical and/or the trade is rescinded for any reason after being officially processed, the market nonetheless resolves to Yes.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNFLTRADE",
+          "subtitle": "Tua Tagovailoa",
+          "title": "Will Tua Tagovailoa be traded before Dec 1, 2026?",
+          "yes_sub_title": "Tua Tagovailoa"
+        }
+      ]
+    },
+    {
+      "event_key": "KXABRAHAMSA-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXABRAHAMSA-27",
+          "key": "KXABRAHAMSA-27-JAN01",
+          "no_sub_title": "Saudi Arabia",
+          "rules_primary": "If Israel and Saudi Arabia normalize diplomatic relations before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The agreement must be ratified before Jan 1, 2027 to be included within the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXABRAHAMSA",
+          "subtitle": null,
+          "title": "Will Israel and Saudi Arabia normalize relations before Jan 1, 2027?",
+          "yes_sub_title": "Saudi Arabia"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXABRAHAMSA-27",
+          "key": "KXABRAHAMSA-27-JAN01-BELI",
+          "no_sub_title": "Belize",
+          "rules_primary": "If Israel and Belize normalize diplomatic relations before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The agreement must be ratified before Jan 1, 2027 to be included within the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXABRAHAMSA",
+          "subtitle": null,
+          "title": "Will Israel and Belize normalize relations before Jan 1, 2027?",
+          "yes_sub_title": "Belize"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXABRAHAMSA-27",
+          "key": "KXABRAHAMSA-27-JAN01-DJIB",
+          "no_sub_title": "Djibouti",
+          "rules_primary": "If Israel and Djibouti normalize diplomatic relations before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The agreement must be ratified before Jan 1, 2027 to be included within the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXABRAHAMSA",
+          "subtitle": null,
+          "title": "Will Israel and Djibouti normalize relations before Jan 1, 2027?",
+          "yes_sub_title": "Djibouti"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXABRAHAMSA-27",
+          "key": "KXABRAHAMSA-27-JAN01-INDO",
+          "no_sub_title": "Indonesia",
+          "rules_primary": "If Israel and Indonesia normalize diplomatic relations before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The agreement must be ratified before Jan 1, 2027 to be included within the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXABRAHAMSA",
+          "subtitle": null,
+          "title": "Will Israel and Indonesia normalize relations before Jan 1, 2027?",
+          "yes_sub_title": "Indonesia"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXABRAHAMSA-27",
+          "key": "KXABRAHAMSA-27-JAN01-IRAN",
+          "no_sub_title": "Iran",
+          "rules_primary": "If Israel and Iran normalize diplomatic relations before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The agreement must be ratified before Jan 1, 2027 to be included within the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXABRAHAMSA",
+          "subtitle": null,
+          "title": "Will Israel and Iran normalize relations before Jan 1, 2027?",
+          "yes_sub_title": "Iran"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXABRAHAMSA-27",
+          "key": "KXABRAHAMSA-27-JAN01-LEB",
+          "no_sub_title": "Lebanon",
+          "rules_primary": "If Israel and Lebanon normalize diplomatic relations before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The agreement must be ratified before Jan 1, 2027 to be included within the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXABRAHAMSA",
+          "subtitle": null,
+          "title": "Will Israel and Lebanon normalize relations before Jan 1, 2027?",
+          "yes_sub_title": "Lebanon"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXABRAHAMSA-27",
+          "key": "KXABRAHAMSA-27-JAN01-MALD",
+          "no_sub_title": "Maldives",
+          "rules_primary": "If Israel and Maldives normalize diplomatic relations before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The agreement must be ratified before Jan 1, 2027 to be included within the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXABRAHAMSA",
+          "subtitle": null,
+          "title": "Will Israel and Maldives normalize relations before Jan 1, 2027?",
+          "yes_sub_title": "Maldives"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXABRAHAMSA-27",
+          "key": "KXABRAHAMSA-27-JAN01-MAUR",
+          "no_sub_title": "Mauritania",
+          "rules_primary": "If Israel and Mauritania normalize diplomatic relations before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The agreement must be ratified before Jan 1, 2027 to be included within the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXABRAHAMSA",
+          "subtitle": null,
+          "title": "Will Israel and Mauritania normalize relations before Jan 1, 2027?",
+          "yes_sub_title": "Mauritania"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXABRAHAMSA-27",
+          "key": "KXABRAHAMSA-27-JAN01-OMAN",
+          "no_sub_title": "Oman",
+          "rules_primary": "If Israel and Oman normalize diplomatic relations before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The agreement must be ratified before Jan 1, 2027 to be included within the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXABRAHAMSA",
+          "subtitle": null,
+          "title": "Will Israel and Oman normalize relations before Jan 1, 2027?",
+          "yes_sub_title": "Oman"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXABRAHAMSA-27",
+          "key": "KXABRAHAMSA-27-JAN01-SYR",
+          "no_sub_title": "Syria",
+          "rules_primary": "If Israel and Syria normalize diplomatic relations before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The agreement must be ratified before Jan 1, 2027 to be included within the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXABRAHAMSA",
+          "subtitle": null,
+          "title": "Will Israel and Syria normalize relations before Jan 1, 2027?",
+          "yes_sub_title": "Syria"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCANUSDEAL-26",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXCANUSDEAL-26",
+          "key": "KXCANUSDEAL-26-26DEC01",
+          "no_sub_title": "Before Dec 1, 2026",
+          "rules_primary": "If Canada and the United States have concluded a final trade agreement after Issuance and before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An agreement is concluded if either:\n\nit is signed or formally executed by authorized officials of both governments, or\nboth governments announce that negotiations have concluded and that the agreed tariff changes are being implemented, or those tariff changes take legal effect in both countries under the agreement.\n\nAn agreement can be concluded even if individual sectors remain subject to further negotiation, and regardless of when the agreed changes take effect.\n\nThe following do NOT count:\n\nAnything announced before Issuance, including the announcements of August 18 and 19, 2026 of a deal reached, agreed in principle, or pending final documentation, and any draft agreement reported before Issuance\nAn agreement announced as reached by only one of the two governments\nA framework, term sheet, memorandum of understanding or joint communique that both governments describe as still subject to negotiation of its core terms\nA temporary tariff pause, suspension or deadline extension not accompanied by a concluded agreement\nContinued or resumed negotiations, however described\nAction taken unilaterally by one government\n\nOnly reporting from a Source Agency qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+          "scheduled_close": "2026-12-01T04:59:00Z",
+          "series": "KXCANUSDEAL",
+          "subtitle": null,
+          "title": "Will it be reported by a Source Agency that Canada and the United States have concluded a final trade agreement before Dec 1, 2026?",
+          "yes_sub_title": "Before Dec 1, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXCANUSDEAL-26",
+          "key": "KXCANUSDEAL-26-26NOV01",
+          "no_sub_title": "Before Nov 1, 2026",
+          "rules_primary": "If Canada and the United States have concluded a final trade agreement after Issuance and before Nov 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An agreement is concluded if either:\n\nit is signed or formally executed by authorized officials of both governments, or\nboth governments announce that negotiations have concluded and that the agreed tariff changes are being implemented, or those tariff changes take legal effect in both countries under the agreement.\n\nAn agreement can be concluded even if individual sectors remain subject to further negotiation, and regardless of when the agreed changes take effect.\n\nThe following do NOT count:\n\nAnything announced before Issuance, including the announcements of August 18 and 19, 2026 of a deal reached, agreed in principle, or pending final documentation, and any draft agreement reported before Issuance\nAn agreement announced as reached by only one of the two governments\nA framework, term sheet, memorandum of understanding or joint communique that both governments describe as still subject to negotiation of its core terms\nA temporary tariff pause, suspension or deadline extension not accompanied by a concluded agreement\nContinued or resumed negotiations, however described\nAction taken unilaterally by one government\n\nOnly reporting from a Source Agency qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+          "scheduled_close": "2026-11-01T04:59:00Z",
+          "series": "KXCANUSDEAL",
+          "subtitle": null,
+          "title": "Will it be reported by a Source Agency that Canada and the United States have concluded a final trade agreement before Nov 1, 2026?",
+          "yes_sub_title": "Before Nov 1, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXCANUSDEAL-26",
+          "key": "KXCANUSDEAL-26-26OCT01",
+          "no_sub_title": "Before Oct 1, 2026",
+          "rules_primary": "If Canada and the United States have concluded a final trade agreement after Issuance and before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An agreement is concluded if either:\n\nit is signed or formally executed by authorized officials of both governments, or\nboth governments announce that negotiations have concluded and that the agreed tariff changes are being implemented, or those tariff changes take legal effect in both countries under the agreement.\n\nAn agreement can be concluded even if individual sectors remain subject to further negotiation, and regardless of when the agreed changes take effect.\n\nThe following do NOT count:\n\nAnything announced before Issuance, including the announcements of August 18 and 19, 2026 of a deal reached, agreed in principle, or pending final documentation, and any draft agreement reported before Issuance\nAn agreement announced as reached by only one of the two governments\nA framework, term sheet, memorandum of understanding or joint communique that both governments describe as still subject to negotiation of its core terms\nA temporary tariff pause, suspension or deadline extension not accompanied by a concluded agreement\nContinued or resumed negotiations, however described\nAction taken unilaterally by one government\n\nOnly reporting from a Source Agency qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXCANUSDEAL",
+          "subtitle": null,
+          "title": "Will it be reported by a Source Agency that Canada and the United States have concluded a final trade agreement before Oct 1, 2026?",
+          "yes_sub_title": "Before Oct 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXUSPSELECTION-26",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXUSPSELECTION-26",
+          "key": "KXUSPSELECTION-26",
+          "no_sub_title": "Yes",
+          "rules_primary": "If the U.S. Postal Service blocks at least 10,000 distinct mail-in or absentee ballots for the November 3, 2026 federal general election pursuant to Executive Order 14399 or a materially equivalent amendment, replacement, or successor measure  after Issuance and before Nov 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "\u201cBlocks\u201d means that USPS refuses to accept, returns, holds, or materially delays ballot mail because of voter-list, barcode, certification, portal-submission, or similar election-specific requirements imposed pursuant to the covered measure. The threshold may be aggregated across incidents, but each ballot counts only once; warnings, promptly corrected interruptions, and ordinary postal problems unrelated to the covered measure do not qualify.\n\nOnly reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+          "scheduled_close": "2026-11-11T04:59:00Z",
+          "series": "KXUSPSELECTION",
+          "subtitle": null,
+          "title": "Will it be reported by any of the Source Agencies that the U.S. Postal Service blocks at least 10,000 distinct mail-in or absentee ballots for the November 3, 2026 federal general election pursuant to Executive Order 14399 or a materially equivalent amendment, replacement, or successor measure before Nov 11, 2026?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXDUTERTEOUT-26MAY",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXDUTERTEOUT-26MAY",
+          "key": "KXDUTERTEOUT-26MAY-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Sara Duterte leaves as Vice President of the Philippines before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Sara Duterte must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXDUTERTEOUT",
+          "subtitle": "::",
+          "title": "Will Sara Duterte be out as Vice President of the Philippines before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXETHMINMON-ETH-26SEP30",
+      "markets": [
+        {
+          "category": "Crypto",
+          "event_key": "KXETHMINMON-ETH-26SEP30",
+          "key": "KXETHMINMON-ETH-26SEP30-175000",
+          "no_sub_title": "Below $1,750.00",
+          "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $1750.00, then the market resolves to Yes.",
+          "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+          "scheduled_close": "2026-10-01T03:59:59Z",
+          "series": "KXETHMINMON",
+          "subtitle": null,
+          "title": "Will ETH trimmed mean be below $1750.00 by 11:59 PM ET on Sep 30, 2026?",
+          "yes_sub_title": "Below $1,750.00"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXETHMINMON-ETH-26SEP30",
+          "key": "KXETHMINMON-ETH-26SEP30-200000",
+          "no_sub_title": "Below $2,000.00",
+          "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $2000.00, then the market resolves to Yes.",
+          "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+          "scheduled_close": "2026-10-01T03:59:59Z",
+          "series": "KXETHMINMON",
+          "subtitle": null,
+          "title": "Will ETH trimmed mean be below $2000.00 by 11:59 PM ET on Sep 30, 2026?",
+          "yes_sub_title": "Below $2,000.00"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCBDECISIONNZ-26OCT27",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXCBDECISIONNZ-26OCT27",
+          "key": "KXCBDECISIONNZ-26OCT27-H25",
+          "no_sub_title": "Hike 1-25bps",
+          "rules_primary": "If the Reserve Bank of New Zealand takes the action of Hike 1-25bps at October Monetary Policy Review meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-10-28T00:59:00Z",
+          "series": "KXCBDECISIONNZ",
+          "subtitle": null,
+          "title": "Will the Reserve Bank of New Zealand Hike 1-25bps at the October Monetary Policy Review meeting?",
+          "yes_sub_title": "Hike 1-25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCBDECISIONNZ-26OCT27",
+          "key": "KXCBDECISIONNZ-26OCT27-H25P",
+          "no_sub_title": "Hike more than 25bps",
+          "rules_primary": "If the Reserve Bank of New Zealand takes the action of Hike more than 25bps at October Monetary Policy Review meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-10-28T00:59:00Z",
+          "series": "KXCBDECISIONNZ",
+          "subtitle": null,
+          "title": "Will the Reserve Bank of New Zealand Hike more than 25bps at the October Monetary Policy Review meeting?",
+          "yes_sub_title": "Hike more than 25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCBDECISIONNZ-26OCT27",
+          "key": "KXCBDECISIONNZ-26OCT27-HOLD",
+          "no_sub_title": "Maintain current rate",
+          "rules_primary": "If the Reserve Bank of New Zealand takes the action of Maintain current rate at October Monetary Policy Review meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-10-28T00:59:00Z",
+          "series": "KXCBDECISIONNZ",
+          "subtitle": null,
+          "title": "Will the Reserve Bank of New Zealand Maintain current rate at the October Monetary Policy Review meeting?",
+          "yes_sub_title": "Maintain current rate"
+        }
+      ]
+    },
+    {
+      "event_key": "KXIAFARMLAND-26DEC31",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXIAFARMLAND-26DEC31",
+          "key": "KXIAFARMLAND-26DEC31-T11750",
+          "no_sub_title": "Above $11,750/acre",
+          "rules_primary": "If the the statewide average value of Iowa farmland for 2026, as reported in the 2026 Iowa State University Land Value Survey, is above $11,750/acre, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the statewide average value for land of all qualities reported in the 2026 Iowa State University Land Value Survey, expressed in dollars per acre. The survey\u2019s statewide value reflects farmland values as of approximately November 1.",
+          "scheduled_close": "2027-01-01T04:58:00Z",
+          "series": "KXIAFARMLAND",
+          "subtitle": null,
+          "title": "Will the statewide average value of Iowa farmland for 2026 be above $11,750/acre?",
+          "yes_sub_title": "Above $11,750/acre"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXIAFARMLAND-26DEC31",
+          "key": "KXIAFARMLAND-26DEC31-T12000",
+          "no_sub_title": "Above $12,000/acre",
+          "rules_primary": "If the the statewide average value of Iowa farmland for 2026, as reported in the 2026 Iowa State University Land Value Survey, is above $12,000/acre, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the statewide average value for land of all qualities reported in the 2026 Iowa State University Land Value Survey, expressed in dollars per acre. The survey\u2019s statewide value reflects farmland values as of approximately November 1.",
+          "scheduled_close": "2027-01-01T04:58:00Z",
+          "series": "KXIAFARMLAND",
+          "subtitle": null,
+          "title": "Will the statewide average value of Iowa farmland for 2026 be above $12,000/acre?",
+          "yes_sub_title": "Above $12,000/acre"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSPEECHAI-26SEP11",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXSPEECHAI-26SEP11",
+          "key": "KXSPEECHAI-26SEP11-ALIB",
+          "no_sub_title": "Alibaba",
+          "rules_primary": "If Alibaba is the #1 model on Artificial Analysis Speech Arena Leaderboard on Sep 11, 2026 at 10:00am ET, then the market resolves to Yes.",
+          "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-11T14:00:00Z",
+          "series": "KXSPEECHAI",
+          "subtitle": null,
+          "title": "Top Text to Speech AI this week?",
+          "yes_sub_title": "Alibaba"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXSPEECHAI-26SEP11",
+          "key": "KXSPEECHAI-26SEP11-CART",
+          "no_sub_title": "Cartesia",
+          "rules_primary": "If Cartesia is the #1 model on Artificial Analysis Speech Arena Leaderboard on Sep 11, 2026 at 10:00am ET, then the market resolves to Yes.",
+          "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-11T14:00:00Z",
+          "series": "KXSPEECHAI",
+          "subtitle": null,
+          "title": "Top Text to Speech AI this week?",
+          "yes_sub_title": "Cartesia"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXSPEECHAI-26SEP11",
+          "key": "KXSPEECHAI-26SEP11-ELEV",
+          "no_sub_title": "ElevenLabs",
+          "rules_primary": "If ElevenLabs is the #1 model on Artificial Analysis Speech Arena Leaderboard on Sep 11, 2026 at 10:00am ET, then the market resolves to Yes.",
+          "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-11T14:00:00Z",
+          "series": "KXSPEECHAI",
+          "subtitle": null,
+          "title": "Top Text to Speech AI this week?",
+          "yes_sub_title": "ElevenLabs"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXSPEECHAI-26SEP11",
+          "key": "KXSPEECHAI-26SEP11-SPAC",
+          "no_sub_title": "SpaceXAI",
+          "rules_primary": "If SpaceXAI is the #1 model on Artificial Analysis Speech Arena Leaderboard on Sep 11, 2026 at 10:00am ET, then the market resolves to Yes.",
+          "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-11T14:00:00Z",
+          "series": "KXSPEECHAI",
+          "subtitle": null,
+          "title": "Top Text to Speech AI this week?",
+          "yes_sub_title": "SpaceXAI"
+        }
+      ]
+    },
+    {
+      "event_key": "KXGTAONLINE-GTA6ONLINE",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXGTAONLINE-GTA6ONLINE",
+          "key": "KXGTAONLINE-GTA6ONLINE-27",
+          "no_sub_title": "GTA VI Online",
+          "rules_primary": "If Rockstar Games releases GTA VI Online to the public before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "For this market, \u201cGTA VI Online\u201d means an online multiplayer mode or service for Grand Theft Auto VI, whether bundled with the base game or separately distributed and regardless of the name Rockstar Games uses. It is released when the general U.S. public can access and play it on at least one supported platform. Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Rockstar Games. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXGTAONLINE",
+          "subtitle": null,
+          "title": "Will Rockstar Games release GTA VI Online to the public before 2027?",
+          "yes_sub_title": "GTA VI Online"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMLSGAME-26SEP05TORCHI",
+      "markets": [
+        {
+          "category": "Sports",
+          "event_key": "KXMLSGAME-26SEP05TORCHI",
+          "key": "KXMLSGAME-26SEP05TORCHI-CHI",
+          "no_sub_title": "Chicago Fire",
+          "rules_primary": "If Chicago Fire wins the Toronto vs Chicago Fire professional MLS soccer game originally scheduled for Sep 5, 2026 after 90 minutes plus stoppage time (does not include extra time or penalties), then the market resolves to Yes.",
+          "rules_secondary": "The following market refers to the Toronto vs Chicago Fire professional MLS soccer game originally scheduled for Sep 5, 2026 after 90 minutes plus stoppage time (does not include extra time or penalties). If the game ends in a tie, the market called \"Tie\" resolves to Yes. If the game is cancelled or rescheduled to over 48 hours away, the market will resolve to a fair price in accordance with the rules.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-08T05:30:00Z",
+          "series": "KXMLSGAME",
+          "subtitle": null,
+          "title": "Chicago Fire wins",
+          "yes_sub_title": "Chicago Fire"
+        }
+      ]
+    },
+    {
+      "event_key": "KXWHPRESSBRIEFING",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXWHPRESSBRIEFING",
+          "key": "KXWHPRESSBRIEFING-BJOH",
+          "no_sub_title": "Benny Johnson",
+          "rules_primary": "If Benny Johnson attends any White House press briefing which takes place in the James S. Brady Press Briefing Room after Issuance and before 2027, then the market resolves to Yes.",
+          "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXWHPRESSBRIEFING",
+          "subtitle": null,
+          "title": "Will Benny Johnson attend any White House press briefing which takes place in the James S. Brady Press Briefing Room?",
+          "yes_sub_title": "Benny Johnson"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHPRESSBRIEFING",
+          "key": "KXWHPRESSBRIEFING-BSHA",
+          "no_sub_title": "Ben Shapiro",
+          "rules_primary": "If Ben Shapiro attends any White House press briefing which takes place in the James S. Brady Press Briefing Room after Issuance and before 2027, then the market resolves to Yes.",
+          "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXWHPRESSBRIEFING",
+          "subtitle": null,
+          "title": "Will Ben Shapiro attend any White House press briefing which takes place in the James S. Brady Press Briefing Room?",
+          "yes_sub_title": "Ben Shapiro"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHPRESSBRIEFING",
+          "key": "KXWHPRESSBRIEFING-DBON",
+          "no_sub_title": "Dan Bongino",
+          "rules_primary": "If Dan Bongino attends any White House press briefing which takes place in the James S. Brady Press Briefing Room after Issuance and before 2027, then the market resolves to Yes.",
+          "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXWHPRESSBRIEFING",
+          "subtitle": null,
+          "title": "Will Dan Bongino attend any White House press briefing which takes place in the James S. Brady Press Briefing Room?",
+          "yes_sub_title": "Dan Bongino"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHPRESSBRIEFING",
+          "key": "KXWHPRESSBRIEFING-MWAL",
+          "no_sub_title": "Matt Walsh",
+          "rules_primary": "If Matt Walsh attends any White House press briefing which takes place in the James S. Brady Press Briefing Room after Issuance and before 2027, then the market resolves to Yes.",
+          "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXWHPRESSBRIEFING",
+          "subtitle": null,
+          "title": "Will Matt Walsh attend any White House press briefing which takes place in the James S. Brady Press Briefing Room?",
+          "yes_sub_title": "Matt Walsh"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHPRESSBRIEFING",
+          "key": "KXWHPRESSBRIEFING-RFK",
+          "no_sub_title": "Robert F. Kennedy Jr.",
+          "rules_primary": "If Robert F. Kennedy Jr. attends any White House press briefing which takes place in the James S. Brady Press Briefing Room after Issuance and before 2027, then the market resolves to Yes.",
+          "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXWHPRESSBRIEFING",
+          "subtitle": null,
+          "title": "Will Robert F. Kennedy Jr. attend any White House press briefing which takes place in the James S. Brady Press Briefing Room?",
+          "yes_sub_title": "Robert F. Kennedy Jr."
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHPRESSBRIEFING",
+          "key": "KXWHPRESSBRIEFING-TCAR",
+          "no_sub_title": "Tucker Carlson",
+          "rules_primary": "If Tucker Carlson attends any White House press briefing which takes place in the James S. Brady Press Briefing Room after Issuance and before 2027, then the market resolves to Yes.",
+          "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXWHPRESSBRIEFING",
+          "subtitle": null,
+          "title": "Will Tucker Carlson attend any White House press briefing which takes place in the James S. Brady Press Briefing Room?",
+          "yes_sub_title": "Tucker Carlson"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHPRESSBRIEFING",
+          "key": "KXWHPRESSBRIEFING-TGAB",
+          "no_sub_title": "Tulsi Gabbard",
+          "rules_primary": "If Tulsi Gabbard attends any White House press briefing which takes place in the James S. Brady Press Briefing Room after Issuance and before 2027, then the market resolves to Yes.",
+          "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXWHPRESSBRIEFING",
+          "subtitle": null,
+          "title": "Will Tulsi Gabbard attend any White House press briefing which takes place in the James S. Brady Press Briefing Room?",
+          "yes_sub_title": "Tulsi Gabbard"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXWHPRESSBRIEFING",
+          "key": "KXWHPRESSBRIEFING-TPOO",
+          "no_sub_title": "Tim Pool",
+          "rules_primary": "If Tim Pool attends any White House press briefing which takes place in the James S. Brady Press Briefing Room after Issuance and before 2027, then the market resolves to Yes.",
+          "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXWHPRESSBRIEFING",
+          "subtitle": null,
+          "title": "Will Tim Pool attend any White House press briefing which takes place in the James S. Brady Press Briefing Room?",
+          "yes_sub_title": "Tim Pool"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMILLEROUT-26JUL",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXMILLEROUT-26JUL",
+          "key": "KXMILLEROUT-26JUL-26NOV03",
+          "no_sub_title": "Before Nov 3, 2026",
+          "rules_primary": "If Max Miller leaves as U.S. representative before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Max Miller must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2026-11-03T04:59:00Z",
+          "series": "KXMILLEROUT",
+          "subtitle": null,
+          "title": "Will Max Miller be out as U.S. representative before Nov 3, 2026?",
+          "yes_sub_title": "Before Nov 3, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFDARETATRUTIDE-RET",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXFDARETATRUTIDE-RET",
+          "key": "KXFDARETATRUTIDE-RET-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If the FDA approves retatrutide (LY3437943) for marketing before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An approval is defined as:\n\nFor new drugs: FDA issuance of an approval letter for a New Drug Application (NDA) or Biologics License Application (BLA)\nFor already-marketed drugs seeking new indications: FDA approval of a supplemental NDA (sNDA) or supplemental BLA (sBLA) for the specific indication referenced\nFor generic drugs: FDA approval of an Abbreviated New Drug Application (ANDA)\nFor biosimilars: FDA approval of a 351(k) application\n\nThe following constitute approvals that trigger the Payout Criterion:\n\nStandard approval (traditional approval based on clinical benefit)\nAccelerated approval (based on surrogate endpoints)\nApproval with Risk Evaluation and Mitigation Strategy (REMS)\nApproval with restricted distribution or indication limitations, except compassionate use/expanded access programs\n\nThe following do NOT constitute approvals:\n\nComplete Response Letters (CRLs) indicating the application cannot be approved in its current form\nApprovable letters that require additional actions before approval\nTentative approvals pending patent or exclusivity expiration\nFDA requests for additional information or studies\nExtension of Prescription Drug User Fee Amendments dates\nApproval for compassionate use or expanded access programs only\nEmergency Use Authorization (EUA) without full approval\nApproval only for export or for use outside the United States\n\nIf the FDA issues a Complete Response Letter before Jan 1, 2027, the market will resolve to No unless the FDA subsequently approves retatrutide (LY3437943) after addressing the CRL concerns and before Jan 1, 2027.\n\nIf the FDA convenes an Advisory Committee that votes against approval but the FDA approves retatrutide (LY3437943) anyway before Jan 1, 2027, the market will resolve to Yes.\n\nIf retatrutide (LY3437943) receives accelerated approval that is later withdrawn before Jan 1, 2027, the market will resolve based on whether the initial accelerated approval occurred after Issuance (Yes), regardless of the subsequent withdrawal.\n\nIf the drug sponsor withdraws the application before FDA action and before Jan 1, 2027, the market will resolve to No immediately.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXFDARETATRUTIDE",
+          "subtitle": "Before Jan 1, 2027",
+          "title": "When will the FDA approve retatrutide (LY3437943)?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXFDARETATRUTIDE-RET",
+          "key": "KXFDARETATRUTIDE-RET-27JUL01",
+          "no_sub_title": "Before Jul 1, 2027",
+          "rules_primary": "If the FDA approves retatrutide (LY3437943) for marketing before Jul 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An approval is defined as:\n\nFor new drugs: FDA issuance of an approval letter for a New Drug Application (NDA) or Biologics License Application (BLA)\nFor already-marketed drugs seeking new indications: FDA approval of a supplemental NDA (sNDA) or supplemental BLA (sBLA) for the specific indication referenced\nFor generic drugs: FDA approval of an Abbreviated New Drug Application (ANDA)\nFor biosimilars: FDA approval of a 351(k) application\n\nThe following constitute approvals that trigger the Payout Criterion:\n\nStandard approval (traditional approval based on clinical benefit)\nAccelerated approval (based on surrogate endpoints)\nApproval with Risk Evaluation and Mitigation Strategy (REMS)\nApproval with restricted distribution or indication limitations, except compassionate use/expanded access programs\n\nThe following do NOT constitute approvals:\n\nComplete Response Letters (CRLs) indicating the application cannot be approved in its current form\nApprovable letters that require additional actions before approval\nTentative approvals pending patent or exclusivity expiration\nFDA requests for additional information or studies\nExtension of Prescription Drug User Fee Amendments dates\nApproval for compassionate use or expanded access programs only\nEmergency Use Authorization (EUA) without full approval\nApproval only for export or for use outside the United States\n\nIf the FDA issues a Complete Response Letter before Jul 1, 2027, the market will resolve to No unless the FDA subsequently approves retatrutide (LY3437943) after addressing the CRL concerns and before Jul 1, 2027.\n\nIf the FDA convenes an Advisory Committee that votes against approval but the FDA approves retatrutide (LY3437943) anyway before Jul 1, 2027, the market will resolve to Yes.\n\nIf retatrutide (LY3437943) receives accelerated approval that is later withdrawn before Jul 1, 2027, the market will resolve based on whether the initial accelerated approval occurred after Issuance (Yes), regardless of the subsequent withdrawal.\n\nIf the drug sponsor withdraws the application before FDA action and before Jul 1, 2027, the market will resolve to No immediately.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXFDARETATRUTIDE",
+          "subtitle": null,
+          "title": "When will the FDA approve retatrutide (LY3437943)?",
+          "yes_sub_title": "Before Jul 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCABLEAVE-26MAY22",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXCABLEAVE-26MAY22",
+          "key": "KXCABLEAVE-26MAY22-26DEC",
+          "no_sub_title": "Before Dec 2026",
+          "rules_primary": "If any member of Trump's Cabinet leaves their office, or announces they will leave their office, from before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Any action related to Tulsi Gabbard will not qualify.\n\nThe President announcing that a member of the Cabinet will leave the Cabinet also qualifies.\n\nFor purposes of this Contract, the Cabinet includes the heads of the 15 government agencies in the Cabinet as of Issuance, as well the Administrator of the EPA, the President\u2019s Chief of Staff, Director of National Intelligence, Director of OMB, Director of CIA, United States Trade Representative, Ambassador to the UN, Chair of the Council of Economic Advisers, Administrator of the SBA, and Director of OSTP. Acting roles are not included. Leaving office as a result of death is not encompassed by the Payout Criterion.",
+          "scheduled_close": "2026-12-02T04:59:00Z",
+          "series": "KXCABLEAVE",
+          "subtitle": "Before Dec 2026",
+          "title": "Will any member of Trump's Cabinet leave before Dec 2026?",
+          "yes_sub_title": "Before Dec 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXCABLEAVE-26MAY22",
+          "key": "KXCABLEAVE-26MAY22-26OCT",
+          "no_sub_title": "Before Oct 2026",
+          "rules_primary": "If any member of Trump's Cabinet leaves their office, or announces they will leave their office, from before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Any action related to Tulsi Gabbard will not qualify.\n\nThe President announcing that a member of the Cabinet will leave the Cabinet also qualifies.\n\nFor purposes of this Contract, the Cabinet includes the heads of the 15 government agencies in the Cabinet as of Issuance, as well the Administrator of the EPA, the President\u2019s Chief of Staff, Director of National Intelligence, Director of OMB, Director of CIA, United States Trade Representative, Ambassador to the UN, Chair of the Council of Economic Advisers, Administrator of the SBA, and Director of OSTP. Acting roles are not included. Leaving office as a result of death is not encompassed by the Payout Criterion.",
+          "scheduled_close": "2026-10-02T03:59:00Z",
+          "series": "KXCABLEAVE",
+          "subtitle": "Before Oct 2026",
+          "title": "Will any member of Trump's Cabinet leave before Oct 2026?",
+          "yes_sub_title": "Before Oct 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXCABLEAVE-26MAY22",
+          "key": "KXCABLEAVE-26MAY22-27JAN",
+          "no_sub_title": "Before Jan 2027",
+          "rules_primary": "If any member of Trump's Cabinet leaves their office, or announces they will leave their office, from before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Any action related to Tulsi Gabbard will not qualify.\n\nThe President announcing that a member of the Cabinet will leave the Cabinet also qualifies.\n\nFor purposes of this Contract, the Cabinet includes the heads of the 15 government agencies in the Cabinet as of Issuance, as well the Administrator of the EPA, the President\u2019s Chief of Staff, Director of National Intelligence, Director of OMB, Director of CIA, United States Trade Representative, Ambassador to the UN, Chair of the Council of Economic Advisers, Administrator of the SBA, and Director of OSTP. Acting roles are not included. Leaving office as a result of death is not encompassed by the Payout Criterion.",
+          "scheduled_close": "2027-01-02T04:59:00Z",
+          "series": "KXCABLEAVE",
+          "subtitle": "Before Jan 2027",
+          "title": "Will any member of Trump's Cabinet leave before Jan 2027?",
+          "yes_sub_title": "Before Jan 2027"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

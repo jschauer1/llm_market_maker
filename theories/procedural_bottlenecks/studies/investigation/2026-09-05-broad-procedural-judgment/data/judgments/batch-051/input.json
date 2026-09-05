@@ -1,0 +1,575 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXFREYOUT",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXFREYOUT",
+          "key": "KXFREYOUT-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Jacob Frey leaves as Mayor of Minneapolis before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Jacob Frey must have an actual departure date and vacate the role within the time period. \n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXFREYOUT",
+          "subtitle": null,
+          "title": "Will Jacob Frey leave as Mayor of Minneapolis before 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFTCAIBOOKS-26AUG",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXFTCAIBOOKS-26AUG",
+          "key": "KXFTCAIBOOKS-26AUG-27JAN01",
+          "no_sub_title": "Yes",
+          "rules_primary": "If the Federal Trade Commission announces opening an investigation into the acquisition, scanning and destruction of books by artificial intelligence companies for use in training AI models before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only a public act of the Federal Trade Commission counts: a press release, a docketed Section 6(b) study order, a filed administrative or federal complaint, or an on-the-record statement by the Chair or a Commissioner confirming an investigation.\n\nA statement by the Chair or a Commissioner in congressional testimony counts if it confirms an investigation into this practice\nA statement of general concern, a request for public comment, or an acknowledgement of receiving the letter without confirming an investigation does NOT count\nIf the Commission opens an investigation but does not disclose it publicly before expiration, this market resolves NO\nThe investigation must concern the acquisition, scanning or destruction of books for training AI models. An unrelated artificial intelligence inquiry does NOT count",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXFTCAIBOOKS",
+          "subtitle": null,
+          "title": "Will the Federal Trade Commission announce opening an investigation into the acquisition, scanning and destruction of books by artificial intelligence companies for use in training AI models before Jan 1, 2027?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXWAYMO-DATE",
+      "markets": [
+        {
+          "category": "Financials",
+          "event_key": "KXWAYMO-DATE",
+          "key": "KXWAYMO-DATE-27FEB01",
+          "no_sub_title": "Before Feb 1, 2027",
+          "rules_primary": "If Waymo confirms an IPO before Feb 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Feb 1, 2027.",
+          "scheduled_close": "2027-02-01T04:59:00Z",
+          "series": "KXWAYMO",
+          "subtitle": null,
+          "title": "When will Waymo officially announce an IPO?",
+          "yes_sub_title": "Before Feb 1, 2027"
+        },
+        {
+          "category": "Financials",
+          "event_key": "KXWAYMO-DATE",
+          "key": "KXWAYMO-DATE-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Waymo confirms an IPO before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Jan 1, 2027.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXWAYMO",
+          "subtitle": null,
+          "title": "When will Waymo officially announce an IPO?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Financials",
+          "event_key": "KXWAYMO-DATE",
+          "key": "KXWAYMO-DATE-27MAR01",
+          "no_sub_title": "Before Mar 1, 2027",
+          "rules_primary": "If Waymo confirms an IPO before Mar 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Mar 1, 2027.",
+          "scheduled_close": "2027-03-01T04:59:00Z",
+          "series": "KXWAYMO",
+          "subtitle": null,
+          "title": "When will Waymo officially announce an IPO?",
+          "yes_sub_title": "Before Mar 1, 2027"
+        },
+        {
+          "category": "Financials",
+          "event_key": "KXWAYMO-DATE",
+          "key": "KXWAYMO-DATE-27SEP01",
+          "no_sub_title": "Before Sep 1, 2027",
+          "rules_primary": "If Waymo confirms an IPO before Sep 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Sep 1, 2027.",
+          "scheduled_close": "2027-09-01T03:59:00Z",
+          "series": "KXWAYMO",
+          "subtitle": null,
+          "title": "When will Waymo officially announce an IPO?",
+          "yes_sub_title": "Before Sep 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFEDEND-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXFEDEND-27",
+          "key": "KXFEDEND-27-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If the Federal Reserve System has ended before January 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXFEDEND",
+          "subtitle": null,
+          "title": "Will Trump end the Federal Reserve before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXWAGESAT-26NOV16",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXWAGESAT-26NOV16",
+          "key": "KXWAGESAT-26NOV16-T52.3",
+          "no_sub_title": "Below 52.3%",
+          "rules_primary": "If any 2026 NY Fed Survey of Consumer Expectations Labor Market Survey reports that satisfaction with wage compensation at respondents\u2019 current jobs is below 52.3%, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this market, \u201cwage satisfaction\u201d means the NY Fed SCE Labor Market Survey measure for satisfaction with wage compensation at respondents\u2019 current jobs.\n\nThe March 2026 value of 52.3% will be treated as the existing series low. A value equal to 52.3% will not be sufficient for this market to resolve Yes; the reported value must be strictly below 52.3%.",
+          "scheduled_close": "2026-11-16T04:59:00Z",
+          "series": "KXWAGESAT",
+          "subtitle": null,
+          "title": "Will satisfaction with wage compensation fall below 52.3% in 2026?",
+          "yes_sub_title": "Below 52.3%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXVOTEPRIMARY-SENATEMAD26EMAR",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXVOTEPRIMARY-SENATEMAD26EMAR",
+          "key": "KXVOTEPRIMARY-SENATEMAD26EMAR-65",
+          "no_sub_title": "At least 65%",
+          "rules_primary": "If the certified percentage of the popular vote received by Ed Markey in the 2026 Massachusetts Democratic Senate primary is 65% to 100%, inclusive of both endpoints, then the market resolves to Yes.",
+          "rules_secondary": "The percentage is calculated as (total votes received by the specified person/party \u00f7 total valid votes cast) \u00d7 100, rounded to the specified decimal places. Resolution is based on certified/official results only, not preliminary results. Write-in votes are included if they appear in certified results. Invalid, spoiled, or rejected ballots are excluded from both numerator and denominator. If multiple rounds of voting occur (e.g., ranked choice voting), the percentage is based on the specified round or the first round if not specified. If the election is cancelled, postponed beyond the market expiration, or no certified results are available by expiration, the market resolves to No. If a recount changes the certified percentage before expiration, the most recent certified percentage is used.",
+          "scheduled_close": "2027-09-01T14:00:00Z",
+          "series": "KXVOTEPRIMARY",
+          "subtitle": null,
+          "title": "Will Ed Markey receive at least 65% of the popular vote in the 2026 Massachusetts Democratic Senate primary?",
+          "yes_sub_title": "At least 65%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFLIGHTSRUSSIA-25",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXFLIGHTSRUSSIA-25",
+          "key": "KXFLIGHTSRUSSIA-25-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If a U.S. airline begins offering a direct flight to Russia before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Announcements that it will begin offering direct flights within the year is also encompassed.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXFLIGHTSRUSSIA",
+          "subtitle": null,
+          "title": "Will U.S. direct flights to Russia resume before 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFEDDECISION-27MAR",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27MAR",
+          "key": "KXFEDDECISION-27MAR-C25",
+          "no_sub_title": "Cut 25bps",
+          "rules_primary": "If the Federal Reserve does a Cut of 25bps on March 17, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-03-17T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Cut 25bps",
+          "title": "Will the Federal Reserve Cut rates by 25bps at their March 2027 meeting?",
+          "yes_sub_title": "Cut 25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27MAR",
+          "key": "KXFEDDECISION-27MAR-C26",
+          "no_sub_title": "Cut >25bps",
+          "rules_primary": "If the Federal Reserve does a Cut of   25bps on March 17, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-03-17T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Cut >25bps",
+          "title": "Will the Federal Reserve Cut rates by >25bps at their March 2027 meeting?",
+          "yes_sub_title": "Cut >25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27MAR",
+          "key": "KXFEDDECISION-27MAR-H0",
+          "no_sub_title": "Fed maintains rate",
+          "rules_primary": "If the Federal Reserve does a Hike of 0bps on March 17, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-03-17T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Hike 0bps",
+          "title": "Will the Federal Reserve Hike rates by 0bps at their March 2027 meeting?",
+          "yes_sub_title": "Fed maintains rate"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27MAR",
+          "key": "KXFEDDECISION-27MAR-H25",
+          "no_sub_title": "Hike 25bps",
+          "rules_primary": "If the Federal Reserve does a Hike of 25bps on March 17, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-03-17T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Hike 25bps",
+          "title": "Will the Federal Reserve Hike rates by 25bps at their March 2027 meeting?",
+          "yes_sub_title": "Hike 25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27MAR",
+          "key": "KXFEDDECISION-27MAR-H26",
+          "no_sub_title": "Hike >25bps",
+          "rules_primary": "If the Federal Reserve does a Hike of >25bps on March 17, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-03-17T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Hike >25bps",
+          "title": "Will the Federal Reserve Hike rates by >25bps at their March 2027 meeting?",
+          "yes_sub_title": "Hike >25bps"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSNAPUK-27JAN01",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXSNAPUK-27JAN01",
+          "key": "KXSNAPUK-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If United Kingdom officially announces a snap election for its national legislature or head of government before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A \"snap election\" is a national election for the legislature or head of government called to occur at least 90 days earlier than either the previously scheduled election date or the latest constitutionally or legally required date. The announcement must be made by a person or body with the legal authority to call such elections, must specify an actual election date, and must occur after Issuance and before Jan 1, 2027 at 11:59 PM ET, regardless of when the election is scheduled to take place.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXSNAPUK",
+          "subtitle": "Yes",
+          "title": "Will the UK announce a snap election before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXHIVISITORS-27JAN31",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXHIVISITORS-27JAN31",
+          "key": "KXHIVISITORS-27JAN31-T10.0",
+          "no_sub_title": "Above 10.0 million",
+          "rules_primary": "If the Hawaii\u2019s total visitor arrivals for calendar year 2026 is above \n\n10.0 million, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is total statewide visitor arrivals for calendar year 2026, including visitors arriving by air and visitors arriving aboard out-of-state cruise ships, as reported by the State of Hawaii. It does not use visitor days, average daily census, airport passenger throughput, or arrivals to an individual island. Visitors who fly to Hawaii to board a cruise ship are already included in air arrivals and are not separately added again.\n\nResolution uses the first publication containing complete January\u2013December 2026 data; subsequent revisions do not affect resolution. DBEDT\u2019s 2025 total, for example, was 9,642,991 = 9,493,213 by air + 149,778 by cruise ship.",
+          "scheduled_close": "2027-01-31T14:59:00Z",
+          "series": "KXHIVISITORS",
+          "subtitle": null,
+          "title": "Will Hawaii\u2019s total visitor arrivals for 2026 be above 10.0 million?",
+          "yes_sub_title": "Above 10.0 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXHIVISITORS-27JAN31",
+          "key": "KXHIVISITORS-27JAN31-T9.6",
+          "no_sub_title": "Above 9.6 million",
+          "rules_primary": "If the Hawaii\u2019s total visitor arrivals for calendar year 2026 is above \n\n9.6 million, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is total statewide visitor arrivals for calendar year 2026, including visitors arriving by air and visitors arriving aboard out-of-state cruise ships, as reported by the State of Hawaii. It does not use visitor days, average daily census, airport passenger throughput, or arrivals to an individual island. Visitors who fly to Hawaii to board a cruise ship are already included in air arrivals and are not separately added again.\n\nResolution uses the first publication containing complete January\u2013December 2026 data; subsequent revisions do not affect resolution. DBEDT\u2019s 2025 total, for example, was 9,642,991 = 9,493,213 by air + 149,778 by cruise ship.",
+          "scheduled_close": "2027-01-31T14:59:00Z",
+          "series": "KXHIVISITORS",
+          "subtitle": null,
+          "title": "Will Hawaii\u2019s total visitor arrivals for 2026 be above 9.6 million?",
+          "yes_sub_title": "Above 9.6 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXHIVISITORS-27JAN31",
+          "key": "KXHIVISITORS-27JAN31-T9.8",
+          "no_sub_title": "Above 9.8 million",
+          "rules_primary": "If the Hawaii\u2019s total visitor arrivals for calendar year 2026 is above \n\n9.8 million, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is total statewide visitor arrivals for calendar year 2026, including visitors arriving by air and visitors arriving aboard out-of-state cruise ships, as reported by the State of Hawaii. It does not use visitor days, average daily census, airport passenger throughput, or arrivals to an individual island. Visitors who fly to Hawaii to board a cruise ship are already included in air arrivals and are not separately added again.\n\nResolution uses the first publication containing complete January\u2013December 2026 data; subsequent revisions do not affect resolution. DBEDT\u2019s 2025 total, for example, was 9,642,991 = 9,493,213 by air + 149,778 by cruise ship.",
+          "scheduled_close": "2027-01-31T14:59:00Z",
+          "series": "KXHIVISITORS",
+          "subtitle": null,
+          "title": "Will Hawaii\u2019s total visitor arrivals for 2026 be above 9.8 million?",
+          "yes_sub_title": "Above 9.8 million"
+        }
+      ]
+    },
+    {
+      "event_key": "KXKXMEDIAGUESTTINYDESK-27",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXKXMEDIAGUESTTINYDESK-27",
+          "key": "KXKXMEDIAGUESTTINYDESK-27-BRU",
+          "no_sub_title": "Bruce Springsteen",
+          "rules_primary": "If Bruce Springsteen is on Tiny Desk before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An artist resolves Yes if they participate in an NPR Music Tiny Desk Concert in any performing capacity, including as a lead artist, featured artist, or instrumental performer; for example, if Travis Scott performs a Tiny Desk Concert and John Mayer appears playing an instrument during the same performance, both Travis Scott and John Mayer resolve Yes.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXKXMEDIAGUESTTINYDESK",
+          "subtitle": null,
+          "title": "Will Bruce Springsteen be on NPR Music Tiny Desk Concert before 2027?",
+          "yes_sub_title": "Bruce Springsteen"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXKXMEDIAGUESTTINYDESK-27",
+          "key": "KXKXMEDIAGUESTTINYDESK-27-CHA",
+          "no_sub_title": "Chappell Roan",
+          "rules_primary": "If Chappell Roan is on Tiny Desk before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An artist resolves Yes if they participate in an NPR Music Tiny Desk Concert in any performing capacity, including as a lead artist, featured artist, or instrumental performer; for example, if Travis Scott performs a Tiny Desk Concert and John Mayer appears playing an instrument during the same performance, both Travis Scott and John Mayer resolve Yes.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXKXMEDIAGUESTTINYDESK",
+          "subtitle": null,
+          "title": "Will Chappell Roan be on NPR Music Tiny Desk Concert before 2027?",
+          "yes_sub_title": "Chappell Roan"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXKXMEDIAGUESTTINYDESK-27",
+          "key": "KXKXMEDIAGUESTTINYDESK-27-DRA",
+          "no_sub_title": "Drake",
+          "rules_primary": "If Drake is on Tiny Desk before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An artist resolves Yes if they participate in an NPR Music Tiny Desk Concert in any performing capacity, including as a lead artist, featured artist, or instrumental performer; for example, if Travis Scott performs a Tiny Desk Concert and John Mayer appears playing an instrument during the same performance, both Travis Scott and John Mayer resolve Yes.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXKXMEDIAGUESTTINYDESK",
+          "subtitle": null,
+          "title": "Will Drake be on NPR Music Tiny Desk Concert before 2027?",
+          "yes_sub_title": "Drake"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXKXMEDIAGUESTTINYDESK-27",
+          "key": "KXKXMEDIAGUESTTINYDESK-27-JCO",
+          "no_sub_title": "J. Cole",
+          "rules_primary": "If J. Cole is on Tiny Desk before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An artist resolves Yes if they participate in an NPR Music Tiny Desk Concert in any performing capacity, including as a lead artist, featured artist, or instrumental performer; for example, if Travis Scott performs a Tiny Desk Concert and John Mayer appears playing an instrument during the same performance, both Travis Scott and John Mayer resolve Yes.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXKXMEDIAGUESTTINYDESK",
+          "subtitle": null,
+          "title": "Will J. Cole be on NPR Music Tiny Desk Concert before 2027?",
+          "yes_sub_title": "J. Cole"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXKXMEDIAGUESTTINYDESK-27",
+          "key": "KXKXMEDIAGUESTTINYDESK-27-OLI",
+          "no_sub_title": "Olivia Rodrigo",
+          "rules_primary": "If Olivia Rodrigo is on Tiny Desk before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An artist resolves Yes if they participate in an NPR Music Tiny Desk Concert in any performing capacity, including as a lead artist, featured artist, or instrumental performer; for example, if Travis Scott performs a Tiny Desk Concert and John Mayer appears playing an instrument during the same performance, both Travis Scott and John Mayer resolve Yes.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXKXMEDIAGUESTTINYDESK",
+          "subtitle": null,
+          "title": "Will Olivia Rodrigo be on NPR Music Tiny Desk Concert before 2027?",
+          "yes_sub_title": "Olivia Rodrigo"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXKXMEDIAGUESTTINYDESK-27",
+          "key": "KXKXMEDIAGUESTTINYDESK-27-OLIV",
+          "no_sub_title": "Olivia Dean",
+          "rules_primary": "If Olivia Dean is on Tiny Desk before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An artist resolves Yes if they participate in an NPR Music Tiny Desk Concert in any performing capacity, including as a lead artist, featured artist, or instrumental performer; for example, if Travis Scott performs a Tiny Desk Concert and John Mayer appears playing an instrument during the same performance, both Travis Scott and John Mayer resolve Yes.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXKXMEDIAGUESTTINYDESK",
+          "subtitle": null,
+          "title": "Will Olivia Dean be on NPR Music Tiny Desk Concert before 2027?",
+          "yes_sub_title": "Olivia Dean"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXKXMEDIAGUESTTINYDESK-27",
+          "key": "KXKXMEDIAGUESTTINYDESK-27-PAT",
+          "no_sub_title": "Patti Smith",
+          "rules_primary": "If Patti Smith is on Tiny Desk before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An artist resolves Yes if they participate in an NPR Music Tiny Desk Concert in any performing capacity, including as a lead artist, featured artist, or instrumental performer; for example, if Travis Scott performs a Tiny Desk Concert and John Mayer appears playing an instrument during the same performance, both Travis Scott and John Mayer resolve Yes.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXKXMEDIAGUESTTINYDESK",
+          "subtitle": null,
+          "title": "Will Patti Smith be on NPR Music Tiny Desk Concert before 2027?",
+          "yes_sub_title": "Patti Smith"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXKXMEDIAGUESTTINYDESK-27",
+          "key": "KXKXMEDIAGUESTTINYDESK-27-PAU",
+          "no_sub_title": "Paul McCartney",
+          "rules_primary": "If Paul McCartney is on Tiny Desk before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An artist resolves Yes if they participate in an NPR Music Tiny Desk Concert in any performing capacity, including as a lead artist, featured artist, or instrumental performer; for example, if Travis Scott performs a Tiny Desk Concert and John Mayer appears playing an instrument during the same performance, both Travis Scott and John Mayer resolve Yes.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXKXMEDIAGUESTTINYDESK",
+          "subtitle": null,
+          "title": "Will Paul McCartney be on NPR Music Tiny Desk Concert before 2027?",
+          "yes_sub_title": "Paul McCartney"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXKXMEDIAGUESTTINYDESK-27",
+          "key": "KXKXMEDIAGUESTTINYDESK-27-SAB",
+          "no_sub_title": "Sabrina Carpenter",
+          "rules_primary": "If Sabrina Carpenter is on Tiny Desk before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An artist resolves Yes if they participate in an NPR Music Tiny Desk Concert in any performing capacity, including as a lead artist, featured artist, or instrumental performer; for example, if Travis Scott performs a Tiny Desk Concert and John Mayer appears playing an instrument during the same performance, both Travis Scott and John Mayer resolve Yes.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXKXMEDIAGUESTTINYDESK",
+          "subtitle": null,
+          "title": "Will Sabrina Carpenter be on NPR Music Tiny Desk Concert before 2027?",
+          "yes_sub_title": "Sabrina Carpenter"
+        }
+      ]
+    },
+    {
+      "event_key": "KXALBUMRELEASEDATE-NEWDRA",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXALBUMRELEASEDATE-NEWDRA",
+          "key": "KXALBUMRELEASEDATE-NEWDRA-26DEC01",
+          "no_sub_title": "Before Dec 1, 2026",
+          "rules_primary": "If Drake releases a new album after issuance and before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXALBUMRELEASEDATE",
+          "subtitle": null,
+          "title": "Will Drake release new album after issuance and before Dec 1, 2026",
+          "yes_sub_title": "Before Dec 1, 2026"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXALBUMRELEASEDATE-NEWDRA",
+          "key": "KXALBUMRELEASEDATE-NEWDRA-26NOV01",
+          "no_sub_title": "Before Nov 1, 2026",
+          "rules_primary": "If Drake releases a new album after issuance and before Nov 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-11-01T15:00:00Z",
+          "series": "KXALBUMRELEASEDATE",
+          "subtitle": null,
+          "title": "Will Drake release new album after issuance and before Nov 1, 2026",
+          "yes_sub_title": "Before Nov 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNYNJPORTTEU-27FEB28",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXNYNJPORTTEU-27FEB28",
+          "key": "KXNYNJPORTTEU-27FEB28-T8.6",
+          "no_sub_title": "Above 8.6 million TEUs",
+          "rules_primary": "If the Port Authority reports that the Port of New York and New Jersey total TEUs handled in calendar year 2026 is above \n\n8.6 million TEUs, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the Port Authority\u2019s Total TEUs figure, including both loaded and empty import and export containers. The market does not use loaded TEUs alone.\n\nUse Monthly Cargo Volumes \u2192 2026 \u2192 YTD December \u2192 Total TEUs.",
+          "scheduled_close": "2027-02-28T14:59:00Z",
+          "series": "KXNYNJPORTTEU",
+          "subtitle": null,
+          "title": "Will Port of New York and New Jersey total TEUs handled in 2026 be above 8.6 million TEUs?",
+          "yes_sub_title": "Above 8.6 million TEUs"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNYNJPORTTEU-27FEB28",
+          "key": "KXNYNJPORTTEU-27FEB28-T8.7",
+          "no_sub_title": "Above 8.7 million TEUs",
+          "rules_primary": "If the Port Authority reports that the Port of New York and New Jersey total TEUs handled in calendar year 2026 is above \n\n8.7 million TEUs, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the Port Authority\u2019s Total TEUs figure, including both loaded and empty import and export containers. The market does not use loaded TEUs alone.\n\nUse Monthly Cargo Volumes \u2192 2026 \u2192 YTD December \u2192 Total TEUs.",
+          "scheduled_close": "2027-02-28T14:59:00Z",
+          "series": "KXNYNJPORTTEU",
+          "subtitle": null,
+          "title": "Will Port of New York and New Jersey total TEUs handled in 2026 be above 8.7 million TEUs?",
+          "yes_sub_title": "Above 8.7 million TEUs"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNYNJPORTTEU-27FEB28",
+          "key": "KXNYNJPORTTEU-27FEB28-T8.8",
+          "no_sub_title": "Above 8.8 million TEUs",
+          "rules_primary": "If the Port Authority reports that the Port of New York and New Jersey total TEUs handled in calendar year 2026 is above \n\n8.8 million TEUs, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the Port Authority\u2019s Total TEUs figure, including both loaded and empty import and export containers. The market does not use loaded TEUs alone.\n\nUse Monthly Cargo Volumes \u2192 2026 \u2192 YTD December \u2192 Total TEUs.",
+          "scheduled_close": "2027-02-28T14:59:00Z",
+          "series": "KXNYNJPORTTEU",
+          "subtitle": null,
+          "title": "Will Port of New York and New Jersey total TEUs handled in 2026 be above 8.8 million TEUs?",
+          "yes_sub_title": "Above 8.8 million TEUs"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNYNJPORTTEU-27FEB28",
+          "key": "KXNYNJPORTTEU-27FEB28-T8.9",
+          "no_sub_title": "Above 8.9 million TEUs",
+          "rules_primary": "If the Port Authority reports that the Port of New York and New Jersey total TEUs handled in calendar year 2026 is above \n\n8.9 million TEUs, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the Port Authority\u2019s Total TEUs figure, including both loaded and empty import and export containers. The market does not use loaded TEUs alone.\n\nUse Monthly Cargo Volumes \u2192 2026 \u2192 YTD December \u2192 Total TEUs.",
+          "scheduled_close": "2027-02-28T14:59:00Z",
+          "series": "KXNYNJPORTTEU",
+          "subtitle": null,
+          "title": "Will Port of New York and New Jersey total TEUs handled in 2026 be above 8.9 million TEUs?",
+          "yes_sub_title": "Above 8.9 million TEUs"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNYNJPORTTEU-27FEB28",
+          "key": "KXNYNJPORTTEU-27FEB28-T9.0",
+          "no_sub_title": "Above 9.0 million TEUs",
+          "rules_primary": "If the Port Authority reports that the Port of New York and New Jersey total TEUs handled in calendar year 2026 is above \n\n9.0 million TEUs, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the Port Authority\u2019s Total TEUs figure, including both loaded and empty import and export containers. The market does not use loaded TEUs alone.\n\nUse Monthly Cargo Volumes \u2192 2026 \u2192 YTD December \u2192 Total TEUs.",
+          "scheduled_close": "2027-02-28T14:59:00Z",
+          "series": "KXNYNJPORTTEU",
+          "subtitle": null,
+          "title": "Will Port of New York and New Jersey total TEUs handled in 2026 be above 9.0 million TEUs?",
+          "yes_sub_title": "Above 9.0 million TEUs"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNYNJPORTTEU-27FEB28",
+          "key": "KXNYNJPORTTEU-27FEB28-T9.1",
+          "no_sub_title": "Above 9.1 million TEUs",
+          "rules_primary": "If the Port Authority reports that the Port of New York and New Jersey total TEUs handled in calendar year 2026 is above \n\n9.1 million TEUs, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the Port Authority\u2019s Total TEUs figure, including both loaded and empty import and export containers. The market does not use loaded TEUs alone.\n\nUse Monthly Cargo Volumes \u2192 2026 \u2192 YTD December \u2192 Total TEUs.",
+          "scheduled_close": "2027-02-28T14:59:00Z",
+          "series": "KXNYNJPORTTEU",
+          "subtitle": null,
+          "title": "Will Port of New York and New Jersey total TEUs handled in 2026 be above 9.1 million TEUs?",
+          "yes_sub_title": "Above 9.1 million TEUs"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTRUMPOSHEA-01",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXTRUMPOSHEA-01",
+          "key": "KXTRUMPOSHEA-01",
+          "no_sub_title": "Donald J. Trump",
+          "rules_primary": "If Donald J. Trump is on Sourcery with Molly O'Shea after Aug 28, 2025 at 4:30 PM and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXTRUMPOSHEA",
+          "subtitle": "Donald J. Trump",
+          "title": "Will Donald J. Trump be on Sourcery with Molly O'Shea before Jan 2027?",
+          "yes_sub_title": "Donald J. Trump"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNCPHARMAEMP-27MAR31",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXNCPHARMAEMP-27MAR31",
+          "key": "KXNCPHARMAEMP-27MAR31-T26500",
+          "no_sub_title": "Above 26,500 jobs",
+          "rules_primary": "If BLS reports that North Carolina\u2019s employment in Pharmaceutical and Medicine Manufacturing for December 2026 is above 26,500 jobs, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is BLS series SMU37000003232540001, All Employees in Pharmaceutical and Medicine Manufacturing in North Carolina, measured in thousands and not seasonally adjusted.\n\nThe 26.5 thousand threshold is fixed and will not change if BLS subsequently revises the December 2025 value. Use the first non-preliminary December 2026 value; subsequent revisions will not affect resolution.",
+          "scheduled_close": "2027-03-31T13:59:00Z",
+          "series": "KXNCPHARMAEMP",
+          "subtitle": null,
+          "title": "Will North Carolina\u2019s employment in Pharmaceutical and Medicine Manufacturing for December 2026 be above 26,500 jobs?",
+          "yes_sub_title": "Above 26,500 jobs"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

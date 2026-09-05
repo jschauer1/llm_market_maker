@@ -1,0 +1,926 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXHEGSETHOUT-26APR",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXHEGSETHOUT-26APR",
+          "key": "KXHEGSETHOUT-26AUG-26DEC01",
+          "no_sub_title": "Before Dec 1, 2026",
+          "rules_primary": "If Pete Hegseth leaves as Secretary of Defense before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Pete Hegseth must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2026-12-01T04:59:00Z",
+          "series": "KXHEGSETHOUT",
+          "subtitle": null,
+          "title": "Will Pete Hegseth be out as Secretary of Defense before Dec 1, 2026?",
+          "yes_sub_title": "Before Dec 1, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXHEGSETHOUT-26APR",
+          "key": "KXHEGSETHOUT-26AUG-26NOV01",
+          "no_sub_title": "Before Nov 1, 2026",
+          "rules_primary": "If Pete Hegseth leaves as Secretary of Defense before Nov 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Pete Hegseth must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2026-11-01T04:59:00Z",
+          "series": "KXHEGSETHOUT",
+          "subtitle": null,
+          "title": "Will Pete Hegseth be out as Secretary of Defense before Nov 1, 2026?",
+          "yes_sub_title": "Before Nov 1, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXHEGSETHOUT-26APR",
+          "key": "KXHEGSETHOUT-26AUG-26OCT01",
+          "no_sub_title": "Before Oct 1, 2026",
+          "rules_primary": "If Pete Hegseth leaves as Secretary of Defense before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Pete Hegseth must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXHEGSETHOUT",
+          "subtitle": null,
+          "title": "Will Pete Hegseth be out as Secretary of Defense before Oct 1, 2026?",
+          "yes_sub_title": "Before Oct 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCMSDEFERRAL-26JUL",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXCMSDEFERRAL-26JUL",
+          "key": "KXCMSDEFERRAL-26JUL-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If the Centers for Medicare & Medicaid Services (CMS) or the U.S. Department of Health and Human Services (HHS) announces a formal deferral of at least $50 million in federal Medicaid matching funds for claims submitted by a single U.S. state other than California or Minnesota, based on fraud, waste, abuse, or program-integrity concerns before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXCMSDEFERRAL",
+          "subtitle": null,
+          "title": "Will the Centers for Medicare & Medicaid Services (CMS) or the U.S. Department of Health and Human Services (HHS) announce a formal deferral of at least $50 million in federal Medicaid matching funds for claims submitted by a single U.S. state other than California or Minnesota, based on fraud, waste, abuse, or program-integrity concerns before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCROCKETTCAMPAIGN-26",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXCROCKETTCAMPAIGN-26",
+          "key": "KXCROCKETTCAMPAIGN-26-26NOV03",
+          "no_sub_title": "Before Nov 3, 2026",
+          "rules_primary": "If Jasmine Crockett personally participates in at least one campaign activity, such as a rally, fundraiser, campaign advertisement, canvassing event, or phone-banking effort, in which she specifically and expressly advocates for James Talarico\u2019s election in the November 2026 Texas U.S. Senate general election  after Issuance and before Nov 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+          "scheduled_close": "2026-11-03T04:59:00Z",
+          "series": "KXCROCKETTCAMPAIGN",
+          "subtitle": null,
+          "title": "Will it be reported by any of the Source Agencies that Jasmine Crockett personally participates in at least one campaign activity, such as a rally, fundraiser, campaign advertisement, canvassing event, or phone-banking effort, in which she specifically and expressly advocates for James Talarico\u2019s election in the November 2026 Texas U.S. Senate general election before Nov 3, 2026?",
+          "yes_sub_title": "Before Nov 3, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXWIMFGEMP-27APR30",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXWIMFGEMP-27APR30",
+          "key": "KXWIMFGEMP-27APR30-T447500",
+          "no_sub_title": "Above 447,500 jobs",
+          "rules_primary": "If the U.S. Bureau of Labor Statistics reports that Wisconsin's annual-average manufacturing employment for 2026 is above 447,500 jobs, then the market resolves to Yes.",
+          "rules_secondary": "The underlying is the Wisconsin Manufacturing figure in BLS's Annual Average Table 1: Employees on nonfarm payrolls in states and selected areas by major industry, measured in thousands of jobs.\n\nRelevant BLS monthly series: SMS55000003000000001 \u2014 Wisconsin Manufacturing, All Employees. The officially published annual-average figure will be used rather than independently averaging monthly estimates.",
+          "scheduled_close": "2027-04-30T15:29:00Z",
+          "series": "KXWIMFGEMP",
+          "subtitle": null,
+          "title": "Will Wisconsin's annual-average manufacturing employment for 2026 be above 447,500 jobs?",
+          "yes_sub_title": "Above 447,500 jobs"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXWIMFGEMP-27APR30",
+          "key": "KXWIMFGEMP-27APR30-T450000",
+          "no_sub_title": "Above 450,000 jobs",
+          "rules_primary": "If the U.S. Bureau of Labor Statistics reports that Wisconsin's annual-average manufacturing employment for 2026 is above 450,000 jobs, then the market resolves to Yes.",
+          "rules_secondary": "The underlying is the Wisconsin Manufacturing figure in BLS's Annual Average Table 1: Employees on nonfarm payrolls in states and selected areas by major industry, measured in thousands of jobs.\n\nRelevant BLS monthly series: SMS55000003000000001 \u2014 Wisconsin Manufacturing, All Employees. The officially published annual-average figure will be used rather than independently averaging monthly estimates.",
+          "scheduled_close": "2027-04-30T15:29:00Z",
+          "series": "KXWIMFGEMP",
+          "subtitle": null,
+          "title": "Will Wisconsin's annual-average manufacturing employment for 2026 be above 450,000 jobs?",
+          "yes_sub_title": "Above 450,000 jobs"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXWIMFGEMP-27APR30",
+          "key": "KXWIMFGEMP-27APR30-T452500",
+          "no_sub_title": "Above 452,500 jobs",
+          "rules_primary": "If the U.S. Bureau of Labor Statistics reports that Wisconsin's annual-average manufacturing employment for 2026 is above 452,500 jobs, then the market resolves to Yes.",
+          "rules_secondary": "The underlying is the Wisconsin Manufacturing figure in BLS's Annual Average Table 1: Employees on nonfarm payrolls in states and selected areas by major industry, measured in thousands of jobs.\n\nRelevant BLS monthly series: SMS55000003000000001 \u2014 Wisconsin Manufacturing, All Employees. The officially published annual-average figure will be used rather than independently averaging monthly estimates.",
+          "scheduled_close": "2027-04-30T15:29:00Z",
+          "series": "KXWIMFGEMP",
+          "subtitle": null,
+          "title": "Will Wisconsin's annual-average manufacturing employment for 2026 be above 452,500 jobs?",
+          "yes_sub_title": "Above 452,500 jobs"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXWIMFGEMP-27APR30",
+          "key": "KXWIMFGEMP-27APR30-T455000",
+          "no_sub_title": "Above 455,000 jobs",
+          "rules_primary": "If the U.S. Bureau of Labor Statistics reports that Wisconsin's annual-average manufacturing employment for 2026 is above 455,000 jobs, then the market resolves to Yes.",
+          "rules_secondary": "The underlying is the Wisconsin Manufacturing figure in BLS's Annual Average Table 1: Employees on nonfarm payrolls in states and selected areas by major industry, measured in thousands of jobs.\n\nRelevant BLS monthly series: SMS55000003000000001 \u2014 Wisconsin Manufacturing, All Employees. The officially published annual-average figure will be used rather than independently averaging monthly estimates.",
+          "scheduled_close": "2027-04-30T15:29:00Z",
+          "series": "KXWIMFGEMP",
+          "subtitle": null,
+          "title": "Will Wisconsin's annual-average manufacturing employment for 2026 be above 455,000 jobs?",
+          "yes_sub_title": "Above 455,000 jobs"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXWIMFGEMP-27APR30",
+          "key": "KXWIMFGEMP-27APR30-T457500",
+          "no_sub_title": "Above 457,500 jobs",
+          "rules_primary": "If the U.S. Bureau of Labor Statistics reports that Wisconsin's annual-average manufacturing employment for 2026 is above 457,500 jobs, then the market resolves to Yes.",
+          "rules_secondary": "The underlying is the Wisconsin Manufacturing figure in BLS's Annual Average Table 1: Employees on nonfarm payrolls in states and selected areas by major industry, measured in thousands of jobs.\n\nRelevant BLS monthly series: SMS55000003000000001 \u2014 Wisconsin Manufacturing, All Employees. The officially published annual-average figure will be used rather than independently averaging monthly estimates.",
+          "scheduled_close": "2027-04-30T15:29:00Z",
+          "series": "KXWIMFGEMP",
+          "subtitle": null,
+          "title": "Will Wisconsin's annual-average manufacturing employment for 2026 be above 457,500 jobs?",
+          "yes_sub_title": "Above 457,500 jobs"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXWIMFGEMP-27APR30",
+          "key": "KXWIMFGEMP-27APR30-T460000",
+          "no_sub_title": "Above 460,000 jobs",
+          "rules_primary": "If the U.S. Bureau of Labor Statistics reports that Wisconsin's annual-average manufacturing employment for 2026 is above 460,000 jobs, then the market resolves to Yes.",
+          "rules_secondary": "The underlying is the Wisconsin Manufacturing figure in BLS's Annual Average Table 1: Employees on nonfarm payrolls in states and selected areas by major industry, measured in thousands of jobs.\n\nRelevant BLS monthly series: SMS55000003000000001 \u2014 Wisconsin Manufacturing, All Employees. The officially published annual-average figure will be used rather than independently averaging monthly estimates.",
+          "scheduled_close": "2027-04-30T15:29:00Z",
+          "series": "KXWIMFGEMP",
+          "subtitle": null,
+          "title": "Will Wisconsin's annual-average manufacturing employment for 2026 be above 460,000 jobs?",
+          "yes_sub_title": "Above 460,000 jobs"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXWIMFGEMP-27APR30",
+          "key": "KXWIMFGEMP-27APR30-T462500",
+          "no_sub_title": "Above 462,500 jobs",
+          "rules_primary": "If the U.S. Bureau of Labor Statistics reports that Wisconsin's annual-average manufacturing employment for 2026 is above 462,500 jobs, then the market resolves to Yes.",
+          "rules_secondary": "The underlying is the Wisconsin Manufacturing figure in BLS's Annual Average Table 1: Employees on nonfarm payrolls in states and selected areas by major industry, measured in thousands of jobs.\n\nRelevant BLS monthly series: SMS55000003000000001 \u2014 Wisconsin Manufacturing, All Employees. The officially published annual-average figure will be used rather than independently averaging monthly estimates.",
+          "scheduled_close": "2027-04-30T15:29:00Z",
+          "series": "KXWIMFGEMP",
+          "subtitle": null,
+          "title": "Will Wisconsin's annual-average manufacturing employment for 2026 be above 462,500 jobs?",
+          "yes_sub_title": "Above 462,500 jobs"
+        }
+      ]
+    },
+    {
+      "event_key": "KXVSANGLES-26DEC31",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-ADR",
+          "no_sub_title": "Adriana Lima",
+          "rules_primary": "If Adriana Lima is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": "Adriana Lima",
+          "title": "Will Adriana Lima be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Adriana Lima"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-ALE",
+          "no_sub_title": "Alex Consani",
+          "rules_primary": "If Alex Consani is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Alex Consani be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Alex Consani"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-ALL",
+          "no_sub_title": "Alessandra Ambrosio",
+          "rules_primary": "If Alessandra Ambrosio is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Alessandra Ambrosio be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Alessandra Ambrosio"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-ANG",
+          "no_sub_title": "Angel Reese",
+          "rules_primary": "If Angel Reese is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Angel Reese be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Angel Reese"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-ASH",
+          "no_sub_title": "Ashley Graham",
+          "rules_primary": "If Ashley Graham is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": "Ashley Graham",
+          "title": "Will Ashley Graham be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Ashley Graham"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-BAR",
+          "no_sub_title": "Barbara Palvin",
+          "rules_primary": "If Barbara Palvin is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Barbara Palvin be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Barbara Palvin"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-BARB",
+          "no_sub_title": "Barbie Ferreira",
+          "rules_primary": "If Barbie Ferreira is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Barbie Ferreira be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Barbie Ferreira"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-BEH",
+          "no_sub_title": "Behati Prinsloo",
+          "rules_primary": "If Behati Prinsloo is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Behati Prinsloo be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Behati Prinsloo"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-BEL",
+          "no_sub_title": "Bella Hadid",
+          "rules_primary": "If Bella Hadid is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Bella Hadid be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Bella Hadid"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-CAN",
+          "no_sub_title": "Candice Swanepoel",
+          "rules_primary": "If Candice Swanepoel is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Candice Swanepoel be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Candice Swanepoel"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-DOU",
+          "no_sub_title": "Doutzen Kroes",
+          "rules_primary": "If Doutzen Kroes is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Doutzen Kroes be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Doutzen Kroes"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-EMI",
+          "no_sub_title": "Emily Ratajkowski",
+          "rules_primary": "If Emily Ratajkowski is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Emily Ratajkowski be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Emily Ratajkowski"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-GIS",
+          "no_sub_title": "Gisele Bundchen",
+          "rules_primary": "If Gisele Bundchen is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Gisele Bundchen be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Gisele Bundchen"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-IRIN",
+          "no_sub_title": "Irina Shayk",
+          "rules_primary": "If Irina Shayk is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Irina Shayk be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Irina Shayk"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-JOA",
+          "no_sub_title": "Joan Smalls",
+          "rules_primary": "If Joan Smalls is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Joan Smalls be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Joan Smalls"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-LAI",
+          "no_sub_title": "Lais Ribeiro",
+          "rules_primary": "If Lais Ribeiro is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Lais Ribeiro be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Lais Ribeiro"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-LIL",
+          "no_sub_title": "Lily Aldridge",
+          "rules_primary": "If Lily Aldridge is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Lily Aldridge be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Lily Aldridge"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-QUE",
+          "no_sub_title": "Quen Blackwell",
+          "rules_primary": "If Quen Blackwell is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Quen Blackwell be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Quen Blackwell"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-ROS",
+          "no_sub_title": "Rosie Huntington-Whiteley",
+          "rules_primary": "If Rosie Huntington-Whiteley is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Rosie Huntington-Whiteley be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Rosie Huntington-Whiteley"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVSANGLES-26DEC31",
+          "key": "KXVSANGLES-26DEC31-SUN",
+          "no_sub_title": "Suni Lee",
+          "rules_primary": "If Suni Lee is an official runway model at the Victoria's Secret Fashion Show 2026, then the market resolves to Yes.",
+          "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.\n\nThis market and these products have not been endorsed by Victoria\u2019s Secret. Any references to Victoria\u2019s Secret or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Victoria\u2019s Secret and Kalshi.",
+          "scheduled_close": "2026-12-31T04:59:00Z",
+          "series": "KXVSANGLES",
+          "subtitle": null,
+          "title": "Will Suni Lee be an official runway model at Victoria's Secret Fashion Show 2026?",
+          "yes_sub_title": "Suni Lee"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNEWOUTBREAK-P-26",
+      "markets": [
+        {
+          "category": "Health",
+          "event_key": "KXNEWOUTBREAK-P-26",
+          "key": "KXNEWOUTBREAK-P-26",
+          "no_sub_title": "In 2026",
+          "rules_primary": "If any disease becomes a pandemic in 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXNEWOUTBREAK",
+          "subtitle": "By Jan 1, 2027",
+          "title": "Pandemic in 2026?",
+          "yes_sub_title": "In 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMOMFGEMP-27APR30",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXMOMFGEMP-27APR30",
+          "key": "KXMOMFGEMP-27APR30-T280500",
+          "no_sub_title": "Above 280,500 jobs",
+          "rules_primary": "If BLS reports that Missouri\u2019s annual-average manufacturing employment for 2026 is above 280,500 jobs, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is BLS\u2019s officially published annual-average Manufacturing employment for Missouri, measured in thousands of jobs. The 280.5 thousand threshold is fixed and will not change if BLS later revises its 2025 value.\n\nBLS publishes Missouri statewide Manufacturing employment as series SMU29000003000000001.",
+          "scheduled_close": "2027-04-30T13:59:00Z",
+          "series": "KXMOMFGEMP",
+          "subtitle": null,
+          "title": "Will Missouri\u2019s annual-average manufacturing employment for 2026 be above 280,500 jobs?",
+          "yes_sub_title": "Above 280,500 jobs"
+        }
+      ]
+    },
+    {
+      "event_key": "KXEXPELL-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXEXPELL-27",
+          "key": "KXEXPELL-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If any member of Congress is expelled before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXEXPELL",
+          "subtitle": null,
+          "title": "Will any member of Congress be expelled before 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXDCEILEND-26",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXDCEILEND-26",
+          "key": "KXDCEILEND-26-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If a bill becomes law that abolishes the debt ceiling (rather than just temporarily suspending or increasing it) before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXDCEILEND",
+          "subtitle": null,
+          "title": "Will the debt ceiling be abolished?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMARRIAGEBELICHICKHUDSON-26",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXMARRIAGEBELICHICKHUDSON-26",
+          "key": "KXMARRIAGEBELICHICKHUDSON-26",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If Bill Belichick and Jordon Hudson are married before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXMARRIAGEBELICHICKHUDSON",
+          "subtitle": "Before 2027",
+          "title": "Will Bill Belichick and Jordon Hudson be married in 2026?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSARETAIL-26SEP16",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXSARETAIL-26SEP16",
+          "key": "KXSARETAIL-26SEP16-T-0.2",
+          "no_sub_title": "Above -0.2%",
+          "rules_primary": "If the South Africa retail sales MoM for July 2026 is above -0.2%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-16T10:59:00Z",
+          "series": "KXSARETAIL",
+          "subtitle": null,
+          "title": "Will South Africa retail sales MoM for July 2026 be above -0.2%?",
+          "yes_sub_title": "Above -0.2%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSARETAIL-26SEP16",
+          "key": "KXSARETAIL-26SEP16-T-0.4",
+          "no_sub_title": "Above -0.4%",
+          "rules_primary": "If the South Africa retail sales MoM for July 2026 is above -0.4%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-16T10:59:00Z",
+          "series": "KXSARETAIL",
+          "subtitle": null,
+          "title": "Will South Africa retail sales MoM for July 2026 be above -0.4%?",
+          "yes_sub_title": "Above -0.4%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSARETAIL-26SEP16",
+          "key": "KXSARETAIL-26SEP16-T-0.6",
+          "no_sub_title": "Above -0.6%",
+          "rules_primary": "If the South Africa retail sales MoM for July 2026 is above -0.6%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-16T10:59:00Z",
+          "series": "KXSARETAIL",
+          "subtitle": null,
+          "title": "Will South Africa retail sales MoM for July 2026 be above -0.6%?",
+          "yes_sub_title": "Above -0.6%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSARETAIL-26SEP16",
+          "key": "KXSARETAIL-26SEP16-T-0.8",
+          "no_sub_title": "Above -0.8%",
+          "rules_primary": "If the South Africa retail sales MoM for July 2026 is above -0.8%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-16T10:59:00Z",
+          "series": "KXSARETAIL",
+          "subtitle": null,
+          "title": "Will South Africa retail sales MoM for July 2026 be above -0.8%?",
+          "yes_sub_title": "Above -0.8%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXRIQUAHOG-27JUN30",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXRIQUAHOG-27JUN30",
+          "key": "KXRIQUAHOG-27JUN30-T220000",
+          "no_sub_title": "Above 220,000 meat pounds",
+          "rules_primary": "If RIDEM reports Rhode Island\u2019s commercial quahog landings for 2026 is above 220,000 meat pounds, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will use the QUAHOG landings figure in RIDEM\u2019s Annual Fisheries Report: 2026. \u201cQuahog\u201d refers to the bay/northern quahog (Mercenaria mercenaria), also called the hard clam, and does not include ocean quahogs.\n\nRIDEM reports quahog volume in meat pounds. Subsequent revisions will not affect resolution.",
+          "scheduled_close": "2027-06-30T13:59:00Z",
+          "series": "KXRIQUAHOG",
+          "subtitle": null,
+          "title": "Will Rhode Island\u2019s commercial quahog landings for 2026 be above 220,000 meat pounds?",
+          "yes_sub_title": "Above 220,000 meat pounds"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXRIQUAHOG-27JUN30",
+          "key": "KXRIQUAHOG-27JUN30-T250000",
+          "no_sub_title": "Above 250,000 meat pounds",
+          "rules_primary": "If RIDEM reports Rhode Island\u2019s commercial quahog landings for 2026 is above 250,000 meat pounds, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will use the QUAHOG landings figure in RIDEM\u2019s Annual Fisheries Report: 2026. \u201cQuahog\u201d refers to the bay/northern quahog (Mercenaria mercenaria), also called the hard clam, and does not include ocean quahogs.\n\nRIDEM reports quahog volume in meat pounds. Subsequent revisions will not affect resolution.",
+          "scheduled_close": "2027-06-30T13:59:00Z",
+          "series": "KXRIQUAHOG",
+          "subtitle": null,
+          "title": "Will Rhode Island\u2019s commercial quahog landings for 2026 be above 250,000 meat pounds?",
+          "yes_sub_title": "Above 250,000 meat pounds"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXRIQUAHOG-27JUN30",
+          "key": "KXRIQUAHOG-27JUN30-T280000",
+          "no_sub_title": "Above 280,000 meat pounds",
+          "rules_primary": "If RIDEM reports Rhode Island\u2019s commercial quahog landings for 2026 is above 280,000 meat pounds, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will use the QUAHOG landings figure in RIDEM\u2019s Annual Fisheries Report: 2026. \u201cQuahog\u201d refers to the bay/northern quahog (Mercenaria mercenaria), also called the hard clam, and does not include ocean quahogs.\n\nRIDEM reports quahog volume in meat pounds. Subsequent revisions will not affect resolution.",
+          "scheduled_close": "2027-06-30T13:59:00Z",
+          "series": "KXRIQUAHOG",
+          "subtitle": null,
+          "title": "Will Rhode Island\u2019s commercial quahog landings for 2026 be above 280,000 meat pounds?",
+          "yes_sub_title": "Above 280,000 meat pounds"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXRIQUAHOG-27JUN30",
+          "key": "KXRIQUAHOG-27JUN30-T310000",
+          "no_sub_title": "Above 310,000 meat pounds",
+          "rules_primary": "If RIDEM reports Rhode Island\u2019s commercial quahog landings for 2026 is above 310,000 meat pounds, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will use the QUAHOG landings figure in RIDEM\u2019s Annual Fisheries Report: 2026. \u201cQuahog\u201d refers to the bay/northern quahog (Mercenaria mercenaria), also called the hard clam, and does not include ocean quahogs.\n\nRIDEM reports quahog volume in meat pounds. Subsequent revisions will not affect resolution.",
+          "scheduled_close": "2027-06-30T13:59:00Z",
+          "series": "KXRIQUAHOG",
+          "subtitle": null,
+          "title": "Will Rhode Island\u2019s commercial quahog landings for 2026 be above 310,000 meat pounds?",
+          "yes_sub_title": "Above 310,000 meat pounds"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXRIQUAHOG-27JUN30",
+          "key": "KXRIQUAHOG-27JUN30-T340000",
+          "no_sub_title": "Above 340,000 meat pounds",
+          "rules_primary": "If RIDEM reports Rhode Island\u2019s commercial quahog landings for 2026 is above 340,000 meat pounds, then the market resolves to Yes.",
+          "rules_secondary": "Resolution will use the QUAHOG landings figure in RIDEM\u2019s Annual Fisheries Report: 2026. \u201cQuahog\u201d refers to the bay/northern quahog (Mercenaria mercenaria), also called the hard clam, and does not include ocean quahogs.\n\nRIDEM reports quahog volume in meat pounds. Subsequent revisions will not affect resolution.",
+          "scheduled_close": "2027-06-30T13:59:00Z",
+          "series": "KXRIQUAHOG",
+          "subtitle": null,
+          "title": "Will Rhode Island\u2019s commercial quahog landings for 2026 be above 340,000 meat pounds?",
+          "yes_sub_title": "Above 340,000 meat pounds"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNGUARDCITY-26",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXNGUARDCITY-26",
+          "key": "KXNGUARDCITY-26-CHI",
+          "no_sub_title": "Chicago",
+          "rules_primary": "If the National Guard is deployed to Chicago after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Deployment means National Guard members arrive in Chicago on official deployment orders, under State Active Duty (SAD), Title 32, or Title 10 activation, for operational missions (not routine training), with actual presence in Chicago, not merely assigned or in transit.\n\nThe following constitutes deployment and resolves **YES**:\n\n- Governor activates Guard with deployment to Chicago\n- Guard units arrive in Chicago on emergency orders\n- Federal activation placing Guard in Chicago\n- Inter-state Emergency Management Assistance Compact (EMAC) deployment to Chicago\n- Pre-positioned Guard units activated for operations in Chicago\n- Any number of Guard members (even one) officially deployed\n\nThe following does NOT constitute deployment and resolves **NO**:\n\n- Deployment announcements without actual arrival\n- Guard placed on standby/alert status only\n- Units staged outside Chicago without entering\n- Training exercises or routine drills\n- Guard members traveling through Chicago to another destination\n- Planning/assessment teams without follow-on deployment\n- Off-duty Guard members acting as civilians\n- Guard at permanent facilities (armories) not on deployment orders\n- Recruitment or community relations activities\n- Canceled deployments that never materialize\n\nSpecial provisions:\n\n- At least one Guard member must physically arrive in Chicago.\n- Deployment must be for operational purposes, not training.\n- If deployment is announced then canceled before arrival, resolves NO.\n- Presence for transit only doesn't count.\n- Re-deployment of already-present units to new locations within Chicago counts only if they were not previously on deployment orders.\n- Both Army National Guard and Air National Guard deployments count.\n- Federal military (non-Guard) deployments do not count.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXNGUARDCITY",
+          "subtitle": null,
+          "title": "What cities will Trump send the National Guard to in 2026?",
+          "yes_sub_title": "Chicago"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNGUARDCITY-26",
+          "key": "KXNGUARDCITY-26-DET",
+          "no_sub_title": "Detroit",
+          "rules_primary": "If the National Guard is deployed to Detroit after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Deployment means National Guard members arrive in Detroit on official deployment orders, under State Active Duty (SAD), Title 32, or Title 10 activation, for operational missions (not routine training), with actual presence in Detroit, not merely assigned or in transit.\n\nThe following constitutes deployment and resolves **YES**:\n\n- Governor activates Guard with deployment to Detroit\n- Guard units arrive in Detroit on emergency orders\n- Federal activation placing Guard in Detroit\n- Inter-state Emergency Management Assistance Compact (EMAC) deployment to Detroit\n- Pre-positioned Guard units activated for operations in Detroit\n- Any number of Guard members (even one) officially deployed\n\nThe following does NOT constitute deployment and resolves **NO**:\n\n- Deployment announcements without actual arrival\n- Guard placed on standby/alert status only\n- Units staged outside Detroit without entering\n- Training exercises or routine drills\n- Guard members traveling through Detroit to another destination\n- Planning/assessment teams without follow-on deployment\n- Off-duty Guard members acting as civilians\n- Guard at permanent facilities (armories) not on deployment orders\n- Recruitment or community relations activities\n- Canceled deployments that never materialize\n\nSpecial provisions:\n\n- At least one Guard member must physically arrive in Detroit.\n- Deployment must be for operational purposes, not training.\n- If deployment is announced then canceled before arrival, resolves NO.\n- Presence for transit only doesn't count.\n- Re-deployment of already-present units to new locations within Detroit counts only if they were not previously on deployment orders.\n- Both Army National Guard and Air National Guard deployments count.\n- Federal military (non-Guard) deployments do not count.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXNGUARDCITY",
+          "subtitle": null,
+          "title": "What cities will Trump send the National Guard to in 2026?",
+          "yes_sub_title": "Detroit"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNGUARDCITY-26",
+          "key": "KXNGUARDCITY-26-HOU",
+          "no_sub_title": "Houston",
+          "rules_primary": "If the National Guard is deployed to Houston after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Deployment means National Guard members arrive in Houston on official deployment orders, under State Active Duty (SAD), Title 32, or Title 10 activation, for operational missions (not routine training), with actual presence in Houston, not merely assigned or in transit.\n\nThe following constitutes deployment and resolves **YES**:\n\n- Governor activates Guard with deployment to Houston\n- Guard units arrive in Houston on emergency orders\n- Federal activation placing Guard in Houston\n- Inter-state Emergency Management Assistance Compact (EMAC) deployment to Houston\n- Pre-positioned Guard units activated for operations in Houston\n- Any number of Guard members (even one) officially deployed\n\nThe following does NOT constitute deployment and resolves **NO**:\n\n- Deployment announcements without actual arrival\n- Guard placed on standby/alert status only\n- Units staged outside Houston without entering\n- Training exercises or routine drills\n- Guard members traveling through Houston to another destination\n- Planning/assessment teams without follow-on deployment\n- Off-duty Guard members acting as civilians\n- Guard at permanent facilities (armories) not on deployment orders\n- Recruitment or community relations activities\n- Canceled deployments that never materialize\n\nSpecial provisions:\n\n- At least one Guard member must physically arrive in Houston.\n- Deployment must be for operational purposes, not training.\n- If deployment is announced then canceled before arrival, resolves NO.\n- Presence for transit only doesn't count.\n- Re-deployment of already-present units to new locations within Houston counts only if they were not previously on deployment orders.\n- Both Army National Guard and Air National Guard deployments count.\n- Federal military (non-Guard) deployments do not count.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXNGUARDCITY",
+          "subtitle": null,
+          "title": "What cities will Trump send the National Guard to in 2026?",
+          "yes_sub_title": "Houston"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNGUARDCITY-26",
+          "key": "KXNGUARDCITY-26-POR",
+          "no_sub_title": "Portland",
+          "rules_primary": "If the National Guard is deployed to Portland after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Deployment means National Guard members arrive in Portland on official deployment orders, under State Active Duty (SAD), Title 32, or Title 10 activation, for operational missions (not routine training), with actual presence in Portland, not merely assigned or in transit.\n\nThe following constitutes deployment and resolves **YES**:\n\n- Governor activates Guard with deployment to Portland\n- Guard units arrive in Portland on emergency orders\n- Federal activation placing Guard in Portland\n- Inter-state Emergency Management Assistance Compact (EMAC) deployment to Portland\n- Pre-positioned Guard units activated for operations in Portland\n- Any number of Guard members (even one) officially deployed\n\nThe following does NOT constitute deployment and resolves **NO**:\n\n- Deployment announcements without actual arrival\n- Guard placed on standby/alert status only\n- Units staged outside Portland without entering\n- Training exercises or routine drills\n- Guard members traveling through Portland to another destination\n- Planning/assessment teams without follow-on deployment\n- Off-duty Guard members acting as civilians\n- Guard at permanent facilities (armories) not on deployment orders\n- Recruitment or community relations activities\n- Canceled deployments that never materialize\n\nSpecial provisions:\n\n- At least one Guard member must physically arrive in Portland.\n- Deployment must be for operational purposes, not training.\n- If deployment is announced then canceled before arrival, resolves NO.\n- Presence for transit only doesn't count.\n- Re-deployment of already-present units to new locations within Portland counts only if they were not previously on deployment orders.\n- Both Army National Guard and Air National Guard deployments count.\n- Federal military (non-Guard) deployments do not count.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXNGUARDCITY",
+          "subtitle": null,
+          "title": "What cities will Trump send the National Guard to in 2026?",
+          "yes_sub_title": "Portland"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNGUARDCITY-26",
+          "key": "KXNGUARDCITY-26-SF",
+          "no_sub_title": "San Francisco",
+          "rules_primary": "If the National Guard is deployed to San Francisco after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Deployment means National Guard members arrive in San Francisco on official deployment orders, under State Active Duty (SAD), Title 32, or Title 10 activation, for operational missions (not routine training), with actual presence in San Francisco, not merely assigned or in transit.\n\nThe following constitutes deployment and resolves **YES**:\n\n- Governor activates Guard with deployment to San Francisco\n- Guard units arrive in San Francisco on emergency orders\n- Federal activation placing Guard in San Francisco\n- Inter-state Emergency Management Assistance Compact (EMAC) deployment to San Francisco\n- Pre-positioned Guard units activated for operations in San Francisco\n- Any number of Guard members (even one) officially deployed\n\nThe following does NOT constitute deployment and resolves **NO**:\n\n- Deployment announcements without actual arrival\n- Guard placed on standby/alert status only\n- Units staged outside San Francisco without entering\n- Training exercises or routine drills\n- Guard members traveling through San Francisco to another destination\n- Planning/assessment teams without follow-on deployment\n- Off-duty Guard members acting as civilians\n- Guard at permanent facilities (armories) not on deployment orders\n- Recruitment or community relations activities\n- Canceled deployments that never materialize\n\nSpecial provisions:\n\n- At least one Guard member must physically arrive in San Francisco.\n- Deployment must be for operational purposes, not training.\n- If deployment is announced then canceled before arrival, resolves NO.\n- Presence for transit only doesn't count.\n- Re-deployment of already-present units to new locations within San Francisco counts only if they were not previously on deployment orders.\n- Both Army National Guard and Air National Guard deployments count.\n- Federal military (non-Guard) deployments do not count.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXNGUARDCITY",
+          "subtitle": null,
+          "title": "What cities will Trump send the National Guard to in 2026?",
+          "yes_sub_title": "San Francisco"
+        }
+      ]
+    },
+    {
+      "event_key": "KXRECOGPALESTINE-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-AUS",
+          "no_sub_title": "Austria",
+          "rules_primary": "If Austria recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "Austria"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-DUT",
+          "no_sub_title": "The Netherlands",
+          "rules_primary": "If the Netherlands recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "The Netherlands"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-FIN",
+          "no_sub_title": "Finland",
+          "rules_primary": "If Finland recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "Finland"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-GER",
+          "no_sub_title": "Germany",
+          "rules_primary": "If Germany recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "Germany"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-GRE",
+          "no_sub_title": "Greece",
+          "rules_primary": "If Greece recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "Greece"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-ITA",
+          "no_sub_title": "Italy",
+          "rules_primary": "If Italy recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "Italy"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-JAP",
+          "no_sub_title": "Japan",
+          "rules_primary": "If Japan recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "Japan"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-NZ",
+          "no_sub_title": "New Zealand",
+          "rules_primary": "If New Zealand recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "New Zealand"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-PAN",
+          "no_sub_title": "Panama",
+          "rules_primary": "If Panama recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "Panama"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-SIN",
+          "no_sub_title": "Singapore",
+          "rules_primary": "If Singapore recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "Singapore"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-SK",
+          "no_sub_title": "South Korea",
+          "rules_primary": "If South Korea recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "South Korea"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-SWI",
+          "no_sub_title": "Switzerland",
+          "rules_primary": "If Switzerland recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "Switzerland"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXRECOGPALESTINE-27",
+          "key": "KXRECOGPALESTINE-27-USA",
+          "no_sub_title": "USA",
+          "rules_primary": "If the United States of America recognizes Palestine before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Official diplomatic recognition may include, but is not limited to:\n\n- A formal announcement by the recognizing country that it recognizes the recognized country as a sovereign state\n- Establishment of diplomatic relations at the ambassadorial level\n- Opening of an embassy or diplomatic mission (not just consulates)\n- Signing of a joint communiqu\u00e9 establishing diplomatic relations\n- An official state visit by the head of state/government acknowledging sovereignty\n- A formal letter of recognition from the head of state/government or foreign minister\n\nThe following do **NOT** constitute recognition:\n\n- Trade relations or commercial agreements alone\n- Consular relations without diplomatic relations\n- Participation in the same international conference\n- Humanitarian assistance or aid\n- Cultural or educational exchanges\n- Recognition by subnational entities (states, provinces, cities)\n- Statements of \"support\" without formal recognition\n- De facto cooperation without formal recognition\n- Recognition conditional on future events that have not occurred\n- Parliamentary resolutions without executive action\n\n**For clarity:** recognition must be of the recognized country as a sovereign state, not merely acknowledgment of a government in charge. Withdrawal of recognition from a competing entity is not required. Votes in UN bodies do not constitute recognition unless accompanied by bilateral recognition.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXRECOGPALESTINE",
+          "subtitle": null,
+          "title": "Who will recognize Palestine?",
+          "yes_sub_title": "USA"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTX23SPECIALDATE-26",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXTX23SPECIALDATE-26",
+          "key": "KXTX23SPECIALDATE-26",
+          "no_sub_title": "In 2026",
+          "rules_primary": "If Texas\u2019s 23rd Congressional District special election has been scheduled for a date before November 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Example: If on May 1, 2026 the special election is scheduled to take place on Nov 3, 2026, then the market will resolve to No.",
+          "scheduled_close": "2026-11-03T04:59:00Z",
+          "series": "KXTX23SPECIALDATE",
+          "subtitle": null,
+          "title": "Will the TX-23 special election be scheduled to a date before the midterms?",
+          "yes_sub_title": "In 2026"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

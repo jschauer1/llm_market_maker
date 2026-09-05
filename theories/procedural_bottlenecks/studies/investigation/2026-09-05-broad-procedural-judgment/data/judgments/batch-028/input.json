@@ -1,0 +1,549 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXCREDITC-27JAN05",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXCREDITC-27JAN05",
+          "key": "KXCREDITC-27JAN05-T3.00",
+          "no_sub_title": "Above 3.00%",
+          "rules_primary": "If the first published SOFR value corresponding to the final U.S. business-day SOFR reference date for Q4 2026 is above 3.00%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-04T12:55:00Z",
+          "series": "KXCREDITC",
+          "subtitle": ">3.00%",
+          "title": "Will SOFR be above 3.00 by end of Q4 2026?",
+          "yes_sub_title": "Above 3.00%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCREDITC-27JAN05",
+          "key": "KXCREDITC-27JAN05-T3.50",
+          "no_sub_title": "Above 3.50%",
+          "rules_primary": "If the first published SOFR value corresponding to the final U.S. business-day SOFR reference date for Q4 2026 is above 3.50%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-04T12:55:00Z",
+          "series": "KXCREDITC",
+          "subtitle": ">3.50%",
+          "title": "Will SOFR be above 3.50 by end of Q4 2026?",
+          "yes_sub_title": "Above 3.50%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCREDITC-27JAN05",
+          "key": "KXCREDITC-27JAN05-T4.50",
+          "no_sub_title": "Above 4.50%",
+          "rules_primary": "If the first published SOFR value corresponding to the final U.S. business-day SOFR reference date for Q4 2026 is above 4.50%, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-04T12:55:00Z",
+          "series": "KXCREDITC",
+          "subtitle": ">4.50%",
+          "title": "Will SOFR be above 4.50 by end of Q4 2026?",
+          "yes_sub_title": "Above 4.50%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTVSEASONANNOUNCEEUP-JAN",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXTVSEASONANNOUNCEEUP-JAN",
+          "key": "KXTVSEASONANNOUNCEEUP-JAN-27",
+          "no_sub_title": "Before Jan 2027",
+          "rules_primary": "If a new season of Euphoria is announced before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "For the purposes of this market, Euphoria refers specifically to the HBO original television series Euphoria.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXTVSEASONANNOUNCEEUP",
+          "subtitle": "Before Jan 2027",
+          "title": "Will a new season of Euphoria be announced before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSUMMERHOUSECAST-27",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXSUMMERHOUSECAST-27",
+          "key": "KXSUMMERHOUSECAST-27-AMA",
+          "no_sub_title": "Amanda Batula",
+          "rules_primary": "If Amanda Batula is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSUMMERHOUSECAST",
+          "subtitle": "Amanda Batula",
+          "title": "Will Amanda Batula be cast in Summer House: Season 11?",
+          "yes_sub_title": "Amanda Batula"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXSUMMERHOUSECAST-27",
+          "key": "KXSUMMERHOUSECAST-27-BEN",
+          "no_sub_title": "Ben Waddell",
+          "rules_primary": "If Ben Waddell is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSUMMERHOUSECAST",
+          "subtitle": null,
+          "title": "Will Ben Waddell be cast in Summer House: Season 11?",
+          "yes_sub_title": "Ben Waddell"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXSUMMERHOUSECAST-27",
+          "key": "KXSUMMERHOUSECAST-27-DAR",
+          "no_sub_title": "Dara Levitan",
+          "rules_primary": "If Dara Levitan is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSUMMERHOUSECAST",
+          "subtitle": null,
+          "title": "Will Dara Levitan be cast in Summer House: Season 11?",
+          "yes_sub_title": "Dara Levitan"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXSUMMERHOUSECAST-27",
+          "key": "KXSUMMERHOUSECAST-27-LEV",
+          "no_sub_title": "Levi Sebree",
+          "rules_primary": "If Levi Sebree is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSUMMERHOUSECAST",
+          "subtitle": null,
+          "title": "Will Levi Sebree be cast in Summer House: Season 11?",
+          "yes_sub_title": "Levi Sebree"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXSUMMERHOUSECAST-27",
+          "key": "KXSUMMERHOUSECAST-27-MEI",
+          "no_sub_title": "Meija Moreno",
+          "rules_primary": "If Meija Moreno is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSUMMERHOUSECAST",
+          "subtitle": null,
+          "title": "Will Meija Moreno be cast in Summer House: Season 11?",
+          "yes_sub_title": "Meija Moreno"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSANCTIONRUSSIA-26JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXSANCTIONRUSSIA-26JAN01",
+          "key": "KXSANCTIONRUSSIA-26JAN01-27",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If a bill sanctioning Russia has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The legislation must establish new material restrictive measures explicitly targeting the Russian Federation by mandating or authorizing: \n(i) new primary sanctions against Russia or key economic sectors\n(ii) new secondary sanctions on foreign third parties facilitating Russian trade or evasion\n(iii) the seizure and transfer of blocked or immobilized Russian sovereign assets to support Ukraine; and/or\n(iv) the designation of Russia as a state sponsor of terrorism that triggers automatic sanctions. \n\nRoutine re-authorizations or technical modifications of existing programs\u2014such as those sometimes included in the National Defense Authorization Act (NDAA) or appropriations bills\u2014are excluded.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSANCTIONRUSSIA",
+          "subtitle": "Yes",
+          "title": "Will a Russian sanctions bill become law before 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXSANCTIONRUSSIA-26JAN01",
+          "key": "KXSANCTIONRUSSIA-26JUL-NOV",
+          "no_sub_title": "Before Nov 1, 2026",
+          "rules_primary": "If a bill sanctioning Russia has become law after Issuance and before Nov 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The legislation must establish new material restrictive measures explicitly targeting the Russian Federation by mandating or authorizing: \n(i) new primary sanctions against Russia or key economic sectors\n(ii) new secondary sanctions on foreign third parties facilitating Russian trade or evasion\n(iii) the seizure and transfer of blocked or immobilized Russian sovereign assets to support Ukraine; and/or\n(iv) the designation of Russia as a state sponsor of terrorism that triggers automatic sanctions. \n\nRoutine re-authorizations or technical modifications of existing programs\u2014such as those sometimes included in the National Defense Authorization Act (NDAA) or appropriations bills\u2014are excluded.",
+          "scheduled_close": "2026-11-01T15:00:00Z",
+          "series": "KXSANCTIONRUSSIA",
+          "subtitle": "Before Nov 1, 2026",
+          "title": "Will legislation that specifically targets Russia by (i) mandating or authorizing primary sanctions on Russia or key Russian sectors, (ii) imposing secondary penalties on foreign enablers or purchasers of Russian exports, and/or (iii) enabling the seizure and transfer of frozen Russian sovereign assets to support Ukraine become law before Nov 1, 2026?",
+          "yes_sub_title": "Before Nov 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXLAKEAMERICA-26AUGUNDO",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXLAKEAMERICA-26AUGUNDO",
+          "key": "KXLAKEAMERICA-26AUGUNDO-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Donald Trump has taken any signed executive action reversing the renaming of Lake Ontario to Lake America before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The qualifying action must be of the specific type designated (executive order, presidential memorandum, proclamation, directive, determination, or finding), be signed by the President personally during the specified time period, and explicitly address the topic in the document's operative provisions, title, or official White House summary. Actions must have legal or policy effect - ceremonial proclamations without policy impact do not qualify unless specifically included. Actions that only incidentally mention the topic, statements without formal action, actions by cabinet members, legislative proposals without executive action, and signing statements do not qualify. The action must be publicly announced or documented by a Source Agency before expiration.\n\nReversal means revoking the direction to rename Lake Ontario as Lake America or restoring the name Lake Ontario for United States official use. Merely delaying implementation or changing unrelated provisions does not qualify. An action covering only the portion of the lake within United States jurisdiction qualifies; adoption by Canada or an international body is not required.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXLAKEAMERICA",
+          "subtitle": null,
+          "title": "Will Trump reverse the Lake America renaming before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXLAKEAMERICA-26AUGUNDO",
+          "key": "KXLAKEAMERICA-26AUGUNDO-NOV01",
+          "no_sub_title": "Before Nov 1, 2026",
+          "rules_primary": "If Donald Trump has taken any signed executive action reversing the renaming of Lake Ontario to Lake America before Nov 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The qualifying action must be of the specific type designated (executive order, presidential memorandum, proclamation, directive, determination, or finding), be signed by the President personally during the specified time period, and explicitly address the topic in the document's operative provisions, title, or official White House summary. Actions must have legal or policy effect - ceremonial proclamations without policy impact do not qualify unless specifically included. Actions that only incidentally mention the topic, statements without formal action, actions by cabinet members, legislative proposals without executive action, and signing statements do not qualify. The action must be publicly announced or documented by a Source Agency before expiration.\n\nReversal means revoking the direction to rename Lake Ontario as Lake America or restoring the name Lake Ontario for United States official use. Merely delaying implementation or changing unrelated provisions does not qualify. An action covering only the portion of the lake within United States jurisdiction qualifies; adoption by Canada or an international body is not required.",
+          "scheduled_close": "2026-11-01T03:59:00Z",
+          "series": "KXLAKEAMERICA",
+          "subtitle": null,
+          "title": "Will Trump reverse the Lake America renaming before Nov 1, 2026?",
+          "yes_sub_title": "Before Nov 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXLEAVEDUNN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXLEAVEDUNN",
+          "key": "KXLEAVEDUNN",
+          "no_sub_title": "Yes",
+          "rules_primary": "If Neal Dunn leaves the House before November 3, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Neal Dunn must have an actual departure date and vacate the role within the time period. \n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role. \n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2026-11-03T04:59:00Z",
+          "series": "KXLEAVEDUNN",
+          "subtitle": "Yes",
+          "title": "Will Neal Dunn leave Congress before the midterms?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXLEAVESOCOMCOMMANDER-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXLEAVESOCOMCOMMANDER-27JAN01",
+          "key": "KXLEAVESOCOMCOMMANDER-27JAN01-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Frank Bradley has either officially announced their intention to leave their position as USSOCOM Commander or has actually left their position as USSOCOM Commander before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXLEAVESOCOMCOMMANDER",
+          "subtitle": null,
+          "title": "When will Frank Bradley leave his position as USSOCOM Commander?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXENGAGEMENTTATEJACKHUGHES-26",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXENGAGEMENTTATEJACKHUGHES-26",
+          "key": "KXENGAGEMENTTATEJACKHUGHES-26",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If Tate McRae and Jack Hughes are reported to be engaged to be married before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXENGAGEMENTTATEJACKHUGHES",
+          "subtitle": "Before 2027",
+          "title": "Will Tate McRae and Jack Hughes be engaged before 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCBDECISIONMEXICO-26NOV05",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXCBDECISIONMEXICO-26NOV05",
+          "key": "KXCBDECISIONMEXICO-26NOV05-C25",
+          "no_sub_title": "Cut 25bps",
+          "rules_primary": "If the Bank of Mexico takes the action of Cut 25bps at November Bank of Mexico Governing Board meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-11-05T18:59:00Z",
+          "series": "KXCBDECISIONMEXICO",
+          "subtitle": null,
+          "title": "Will the Bank of Mexico Cut 25bps at the November Bank of Mexico Governing Board meeting?",
+          "yes_sub_title": "Cut 25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXCBDECISIONMEXICO-26NOV05",
+          "key": "KXCBDECISIONMEXICO-26NOV05-HOLD",
+          "no_sub_title": "Maintain current rate",
+          "rules_primary": "If the Bank of Mexico takes the action of Maintain current rate at November Bank of Mexico Governing Board meeting, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+          "scheduled_close": "2026-11-05T18:59:00Z",
+          "series": "KXCBDECISIONMEXICO",
+          "subtitle": null,
+          "title": "Will the Bank of Mexico Maintain current rate at the November Bank of Mexico Governing Board meeting?",
+          "yes_sub_title": "Maintain current rate"
+        }
+      ]
+    },
+    {
+      "event_key": "KXLEAVEGROUP-27",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXLEAVEGROUP-27",
+          "key": "KXLEAVEGROUP-27-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Minji, Hanni, Haerin, or Hyein leaves NewJeans before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXLEAVEGROUP",
+          "subtitle": null,
+          "title": "Will Minji, Hanni, Haerin, or Hyein leave NewJeans before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXWORDOFTHEYEAR-26DEC",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXWORDOFTHEYEAR-26DEC",
+          "key": "KXWORDOFTHEYEAR-26DEC-AGE",
+          "no_sub_title": "Agentic",
+          "rules_primary": "If Agentic is the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWORDOFTHEYEAR",
+          "subtitle": null,
+          "title": "Will Agentic be in the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026?",
+          "yes_sub_title": "Agentic"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXWORDOFTHEYEAR-26DEC",
+          "key": "KXWORDOFTHEYEAR-26DEC-BRA",
+          "no_sub_title": "Brainrot",
+          "rules_primary": "If Brainrot is the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWORDOFTHEYEAR",
+          "subtitle": null,
+          "title": "Will Brainrot be in the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026?",
+          "yes_sub_title": "Brainrot"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXWORDOFTHEYEAR-26DEC",
+          "key": "KXWORDOFTHEYEAR-26DEC-LAR",
+          "no_sub_title": "larping",
+          "rules_primary": "If larping is the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWORDOFTHEYEAR",
+          "subtitle": null,
+          "title": "Will larping be in the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026?",
+          "yes_sub_title": "larping"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXWORDOFTHEYEAR-26DEC",
+          "key": "KXWORDOFTHEYEAR-26DEC-LOR",
+          "no_sub_title": "Lore",
+          "rules_primary": "If Lore is the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWORDOFTHEYEAR",
+          "subtitle": null,
+          "title": "Will Lore be in the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026?",
+          "yes_sub_title": "Lore"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXWORDOFTHEYEAR-26DEC",
+          "key": "KXWORDOFTHEYEAR-26DEC-PER",
+          "no_sub_title": "Performative",
+          "rules_primary": "If Performative is the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWORDOFTHEYEAR",
+          "subtitle": null,
+          "title": "Will Performative be in the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026?",
+          "yes_sub_title": "Performative"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXWORDOFTHEYEAR-26DEC",
+          "key": "KXWORDOFTHEYEAR-26DEC-SEM",
+          "no_sub_title": "Semiquincentennial",
+          "rules_primary": "If Semiquincentennial is the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWORDOFTHEYEAR",
+          "subtitle": null,
+          "title": "Will Semiquincentennial be in the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026?",
+          "yes_sub_title": "Semiquincentennial"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXWORDOFTHEYEAR-26DEC",
+          "key": "KXWORDOFTHEYEAR-26DEC-VIB",
+          "no_sub_title": "Vibe",
+          "rules_primary": "If Vibe is the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWORDOFTHEYEAR",
+          "subtitle": null,
+          "title": "Will Vibe be in the \u201cWord of the Year\u201d as designated by Merriam-Webster in 2026?",
+          "yes_sub_title": "Vibe"
+        }
+      ]
+    },
+    {
+      "event_key": "CONTROLH-2026",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "CONTROLH-2026",
+          "key": "CONTROLH-2026-D",
+          "no_sub_title": "Democratic Party",
+          "rules_primary": "If the Democratic Party has won control of the House in 2026, then the market resolves to Yes.",
+          "rules_secondary": "This market may be determined early based on a consensus of media calls projecting control of the U.S. House. See full rules for details. Otherwise, victory will be determined by the party identification of the Speaker of the House on February 1, 2027.",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "CONTROLH",
+          "subtitle": null,
+          "title": "Will Democrats win the House in 2026?",
+          "yes_sub_title": "Democratic Party"
+        },
+        {
+          "category": "Elections",
+          "event_key": "CONTROLH-2026",
+          "key": "CONTROLH-2026-R",
+          "no_sub_title": "Republican Party",
+          "rules_primary": "If the Republican Party has won control of the House in 2026, then the market resolves to Yes.",
+          "rules_secondary": "This market may be determined early based on a consensus of media calls projecting control of the U.S. House. See full rules for details. Otherwise, victory will be determined by the party identification of the Speaker of the House on February 1, 2027.",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "CONTROLH",
+          "subtitle": null,
+          "title": "Will Republicans win the House in 2026?",
+          "yes_sub_title": "Republican Party"
+        }
+      ]
+    },
+    {
+      "event_key": "KXGAMBLINGREPEAL-26JAN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXGAMBLINGREPEAL-26JAN",
+          "key": "KXGAMBLINGREPEAL-26JAN-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If a bill that removes/changes the gambling tax provision in the One Big Beautiful Bill Act (\"OBBB\") has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXGAMBLINGREPEAL",
+          "subtitle": null,
+          "title": "Will bill that removes/changes the gambling tax provision in the One Big Beautiful Bill Act (\"OBBB\") becomes law before Jan 1, 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNATLEMERGENCY-26AUG",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXNATLEMERGENCY-26AUG",
+          "key": "KXNATLEMERGENCY-26AUG-DEC01",
+          "no_sub_title": "Before Dec 1, 2026",
+          "rules_primary": "If Donald Trump has taken any executive action declaring a national emergency after Issuance and before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The qualifying action must be of the specific type designated (executive order, presidential memorandum, proclamation, directive, determination, or finding), be signed by the President personally during the specified time period, and explicitly address the topic in the document's operative provisions, title, or official White House summary. Actions must have legal or policy effect - ceremonial proclamations without policy impact do not qualify unless specifically included. Actions that only incidentally mention the topic, statements without formal action, actions by cabinet members, legislative proposals without executive action, and signing statements do not qualify. The action must be publicly announced or documented by a Source Agency before expiration.",
+          "scheduled_close": "2026-12-01T04:59:00Z",
+          "series": "KXNATLEMERGENCY",
+          "subtitle": null,
+          "title": "Will Donald Trump issue any executive action on declaring a national emergency before Dec 1, 2026?",
+          "yes_sub_title": "Before Dec 1, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNATLEMERGENCY-26AUG",
+          "key": "KXNATLEMERGENCY-26AUG-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Donald Trump has taken any executive action declaring a national emergency after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The qualifying action must be of the specific type designated (executive order, presidential memorandum, proclamation, directive, determination, or finding), be signed by the President personally during the specified time period, and explicitly address the topic in the document's operative provisions, title, or official White House summary. Actions must have legal or policy effect - ceremonial proclamations without policy impact do not qualify unless specifically included. Actions that only incidentally mention the topic, statements without formal action, actions by cabinet members, legislative proposals without executive action, and signing statements do not qualify. The action must be publicly announced or documented by a Source Agency before expiration.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXNATLEMERGENCY",
+          "subtitle": null,
+          "title": "Will Donald Trump issue any executive action on declaring a national emergency before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTVSHOWSCANCELLED-27",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXTVSHOWSCANCELLED-27",
+          "key": "KXTVSHOWSCANCELLED-27-DAI",
+          "no_sub_title": "The Daily Show",
+          "rules_primary": "If The Daily Show is cancelled before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXTVSHOWSCANCELLED",
+          "subtitle": null,
+          "title": "Which shows will be cancelled this year?",
+          "yes_sub_title": "The Daily Show"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXTVSHOWSCANCELLED-27",
+          "key": "KXTVSHOWSCANCELLED-27-JIM",
+          "no_sub_title": "Jimmy Kimmel Live!",
+          "rules_primary": "If Jimmy Kimmel Live! is cancelled before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": " ",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXTVSHOWSCANCELLED",
+          "subtitle": null,
+          "title": "Will Jimmy Kimmel Live! be canceled?",
+          "yes_sub_title": "Jimmy Kimmel Live!"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXTVSHOWSCANCELLED-27",
+          "key": "KXTVSHOWSCANCELLED-27-LAT",
+          "no_sub_title": "Late Night With Seth Meyers",
+          "rules_primary": "If Late Night With Seth Meyers is cancelled before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXTVSHOWSCANCELLED",
+          "subtitle": null,
+          "title": "Which shows will be cancelled this year?",
+          "yes_sub_title": "Late Night With Seth Meyers"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXTVSHOWSCANCELLED-27",
+          "key": "KXTVSHOWSCANCELLED-27-SOU",
+          "no_sub_title": "South Park",
+          "rules_primary": "If South Park is cancelled before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXTVSHOWSCANCELLED",
+          "subtitle": "South Park",
+          "title": "Which shows will be cancelled this year?",
+          "yes_sub_title": "South Park"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXTVSHOWSCANCELLED-27",
+          "key": "KXTVSHOWSCANCELLED-27-TON",
+          "no_sub_title": "The Tonight Show Starring Jimmy Fallon",
+          "rules_primary": "If The Tonight Show Starring Jimmy Fallon is cancelled before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXTVSHOWSCANCELLED",
+          "subtitle": null,
+          "title": "Which shows will be cancelled this year?",
+          "yes_sub_title": "The Tonight Show Starring Jimmy Fallon"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

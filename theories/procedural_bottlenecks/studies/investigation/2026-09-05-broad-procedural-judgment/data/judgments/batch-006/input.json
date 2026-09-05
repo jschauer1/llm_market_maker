@@ -1,0 +1,848 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXWAYMOCITY-26DEC",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXWAYMOCITY-26DEC",
+          "key": "KXWAYMOCITY-26DEC-BOST",
+          "no_sub_title": "Boston, MA",
+          "rules_primary": "If Waymo is operating commercial autonomous vehicle ride-hailing services available to the general public within Boston, MA before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "\"Operating commercial services\" means that members of the general public can download the Waymo app (or access Waymo through a partner app), request a ride with pickup and dropoff locations within Boston, MA, and receive autonomous vehicle service for a fee.\n\nThe service must be available to the general public without requiring special invitation codes, waitlist approval, or participation in testing programs, though geographic coverage within Boston, MA may be limited to certain areas. Services operating exclusively with safety drivers present do not satisfy the Payout Criterion; the service must offer fully autonomous rides (without a human safety driver) at least some of the time.\n\nExamples that WOULD resolve to Yes:\n\nWaymo launches public commercial service in any part of Boston, MA\nWaymo expands from adjacent areas into Boston, MA limits\nWaymo operates 24/7 service or limited hours service within Boston, MA\nWaymo offers service through the Uber app to all users in Boston, MA\nService is geofenced to only certain neighborhoods but is public\n\nExamples that would resolve to No:\n\nWaymo only operates employee shuttles or closed testing in Boston, MA\nWaymo only has an office or maintenance facility in Boston, MA\nAll Waymo vehicles in Boston, MA have safety drivers\nWaymo is testing but not offering paid public rides\nService requires being on a waitlist or having a special code\nWaymo announces plans to launch but hasn't started service by Jan 1, 2027",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWAYMOCITY",
+          "subtitle": null,
+          "title": "Will Waymo operate ride-hailing in Boston, MA before Jan 1, 2027?",
+          "yes_sub_title": "Boston, MA"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXWAYMOCITY-26DEC",
+          "key": "KXWAYMOCITY-26DEC-DC",
+          "no_sub_title": "Washington, DC",
+          "rules_primary": "If Waymo is operating commercial autonomous vehicle ride-hailing services available to the general public within Washington, DC before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "\"Operating commercial services\" means that members of the general public can download the Waymo app (or access Waymo through a partner app), request a ride with pickup and dropoff locations within Washington, DC, and receive autonomous vehicle service for a fee.\n\nThe service must be available to the general public without requiring special invitation codes, waitlist approval, or participation in testing programs, though geographic coverage within Washington, DC may be limited to certain areas. Services operating exclusively with safety drivers present do not satisfy the Payout Criterion; the service must offer fully autonomous rides (without a human safety driver) at least some of the time.\n\nExamples that WOULD resolve to Yes:\n\nWaymo launches public commercial service in any part of Washington, DC\nWaymo expands from adjacent areas into Washington, DC limits\nWaymo operates 24/7 service or limited hours service within Washington, DC\nWaymo offers service through the Uber app to all users in Washington, DC\nService is geofenced to only certain neighborhoods but is public\n\nExamples that would resolve to No:\n\nWaymo only operates employee shuttles or closed testing in Washington, DC\nWaymo only has an office or maintenance facility in Washington, DC\nAll Waymo vehicles in Washington, DC have safety drivers\nWaymo is testing but not offering paid public rides\nService requires being on a waitlist or having a special code\nWaymo announces plans to launch but hasn't started service by Jan 1, 2027",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWAYMOCITY",
+          "subtitle": null,
+          "title": "Will Waymo operate ride-hailing in Washington, DC before Jan 1, 2027?",
+          "yes_sub_title": "Washington, DC"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXWAYMOCITY-26DEC",
+          "key": "KXWAYMOCITY-26DEC-DEN",
+          "no_sub_title": "Denver, CO",
+          "rules_primary": "If Waymo is operating commercial autonomous vehicle ride-hailing services available to the general public within Denver, CO before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "\"Operating commercial services\" means that members of the general public can download the Waymo app (or access Waymo through a partner app), request a ride with pickup and dropoff locations within Denver, CO, and receive autonomous vehicle service for a fee.\n\nThe service must be available to the general public without requiring special invitation codes, waitlist approval, or participation in testing programs, though geographic coverage within Denver, CO may be limited to certain areas. Services operating exclusively with safety drivers present do not satisfy the Payout Criterion; the service must offer fully autonomous rides (without a human safety driver) at least some of the time.\n\nExamples that WOULD resolve to Yes:\n\nWaymo launches public commercial service in any part of Denver, CO\nWaymo expands from adjacent areas into Denver, CO limits\nWaymo operates 24/7 service or limited hours service within Denver, CO\nWaymo offers service through the Uber app to all users in Denver, CO\nService is geofenced to only certain neighborhoods but is public\n\nExamples that would resolve to No:\n\nWaymo only operates employee shuttles or closed testing in Denver, CO\nWaymo only has an office or maintenance facility in Denver, CO\nAll Waymo vehicles in Denver, CO have safety drivers\nWaymo is testing but not offering paid public rides\nService requires being on a waitlist or having a special code\nWaymo announces plans to launch but hasn't started service by Jan 1, 2027",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWAYMOCITY",
+          "subtitle": null,
+          "title": "Will Waymo operate ride-hailing in Denver, CO before Jan 1, 2027?",
+          "yes_sub_title": "Denver, CO"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXWAYMOCITY-26DEC",
+          "key": "KXWAYMOCITY-26DEC-DET",
+          "no_sub_title": "Detroit, MI",
+          "rules_primary": "If Waymo is operating commercial autonomous vehicle ride-hailing services available to the general public within Detroit, MI before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "\"Operating commercial services\" means that members of the general public can download the Waymo app (or access Waymo through a partner app), request a ride with pickup and dropoff locations within Detroit, MI, and receive autonomous vehicle service for a fee.\n\nThe service must be available to the general public without requiring special invitation codes, waitlist approval, or participation in testing programs, though geographic coverage within Detroit, MI may be limited to certain areas. Services operating exclusively with safety drivers present do not satisfy the Payout Criterion; the service must offer fully autonomous rides (without a human safety driver) at least some of the time.\n\nExamples that WOULD resolve to Yes:\n\nWaymo launches public commercial service in any part of Detroit, MI\nWaymo expands from adjacent areas into Detroit, MI limits\nWaymo operates 24/7 service or limited hours service within Detroit, MI\nWaymo offers service through the Uber app to all users in Detroit, MI\nService is geofenced to only certain neighborhoods but is public\n\nExamples that would resolve to No:\n\nWaymo only operates employee shuttles or closed testing in Detroit, MI\nWaymo only has an office or maintenance facility in Detroit, MI\nAll Waymo vehicles in Detroit, MI have safety drivers\nWaymo is testing but not offering paid public rides\nService requires being on a waitlist or having a special code\nWaymo announces plans to launch but hasn't started service by Jan 1, 2027",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWAYMOCITY",
+          "subtitle": null,
+          "title": "Will Waymo operate ride-hailing in Detroit, MI before Jan 1, 2027?",
+          "yes_sub_title": "Detroit, MI"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXWAYMOCITY-26DEC",
+          "key": "KXWAYMOCITY-26DEC-LAS",
+          "no_sub_title": "Las Vegas, NV",
+          "rules_primary": "If Waymo is operating commercial autonomous vehicle ride-hailing services available to the general public within Las Vegas, NV before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "\"Operating commercial services\" means that members of the general public can download the Waymo app (or access Waymo through a partner app), request a ride with pickup and dropoff locations within Las Vegas, NV, and receive autonomous vehicle service for a fee.\n\nThe service must be available to the general public without requiring special invitation codes, waitlist approval, or participation in testing programs, though geographic coverage within Las Vegas, NV may be limited to certain areas. Services operating exclusively with safety drivers present do not satisfy the Payout Criterion; the service must offer fully autonomous rides (without a human safety driver) at least some of the time.\n\nExamples that WOULD resolve to Yes:\n\nWaymo launches public commercial service in any part of Las Vegas, NV\nWaymo expands from adjacent areas into Las Vegas, NV limits\nWaymo operates 24/7 service or limited hours service within Las Vegas, NV\nWaymo offers service through the Uber app to all users in Las Vegas, NV\nService is geofenced to only certain neighborhoods but is public\n\nExamples that would resolve to No:\n\nWaymo only operates employee shuttles or closed testing in Las Vegas, NV\nWaymo only has an office or maintenance facility in Las Vegas, NV\nAll Waymo vehicles in Las Vegas, NV have safety drivers\nWaymo is testing but not offering paid public rides\nService requires being on a waitlist or having a special code\nWaymo announces plans to launch but hasn't started service by Jan 1, 2027",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWAYMOCITY",
+          "subtitle": null,
+          "title": "Will Waymo operate ride-hailing in Las Vegas, NV before Jan 1, 2027?",
+          "yes_sub_title": "Las Vegas, NV"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXWAYMOCITY-26DEC",
+          "key": "KXWAYMOCITY-26DEC-LON",
+          "no_sub_title": "London, UK",
+          "rules_primary": "If Waymo is operating commercial autonomous vehicle ride-hailing services available to the general public within London, UK before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "\"Operating commercial services\" means that members of the general public can download the Waymo app (or access Waymo through a partner app), request a ride with pickup and dropoff locations within London, UK, and receive autonomous vehicle service for a fee.\n\nThe service must be available to the general public without requiring special invitation codes, waitlist approval, or participation in testing programs, though geographic coverage within London, UK may be limited to certain areas. Services operating exclusively with safety drivers present do not satisfy the Payout Criterion; the service must offer fully autonomous rides (without a human safety driver) at least some of the time.\n\nExamples that WOULD resolve to Yes:\n\nWaymo launches public commercial service in any part of London, UK\nWaymo expands from adjacent areas into London, UK limits\nWaymo operates 24/7 service or limited hours service within London, UK\nWaymo offers service through the Uber app to all users in London, UK\nService is geofenced to only certain neighborhoods but is public\n\nExamples that would resolve to No:\n\nWaymo only operates employee shuttles or closed testing in London, UK\nWaymo only has an office or maintenance facility in London, UK\nAll Waymo vehicles in London, UK have safety drivers\nWaymo is testing but not offering paid public rides\nService requires being on a waitlist or having a special code\nWaymo announces plans to launch but hasn't started service by Jan 1, 2027",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWAYMOCITY",
+          "subtitle": null,
+          "title": "Will Waymo operate ride-hailing in London, UK before Jan 1, 2027?",
+          "yes_sub_title": "London, UK"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXWAYMOCITY-26DEC",
+          "key": "KXWAYMOCITY-26DEC-POR",
+          "no_sub_title": "Portland, OR",
+          "rules_primary": "If Waymo is operating commercial autonomous vehicle ride-hailing services available to the general public within Portland, OR before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "\"Operating commercial services\" means that members of the general public can download the Waymo app (or access Waymo through a partner app), request a ride with pickup and dropoff locations within Portland, OR, and receive autonomous vehicle service for a fee.\n\nThe service must be available to the general public without requiring special invitation codes, waitlist approval, or participation in testing programs, though geographic coverage within Portland, OR may be limited to certain areas. Services operating exclusively with safety drivers present do not satisfy the Payout Criterion; the service must offer fully autonomous rides (without a human safety driver) at least some of the time.\n\nExamples that WOULD resolve to Yes:\n\nWaymo launches public commercial service in any part of Portland, OR\nWaymo expands from adjacent areas into Portland, OR limits\nWaymo operates 24/7 service or limited hours service within Portland, OR\nWaymo offers service through the Uber app to all users in Portland, OR\nService is geofenced to only certain neighborhoods but is public\n\nExamples that would resolve to No:\n\nWaymo only operates employee shuttles or closed testing in Portland, OR\nWaymo only has an office or maintenance facility in Portland, OR\nAll Waymo vehicles in Portland, OR have safety drivers\nWaymo is testing but not offering paid public rides\nService requires being on a waitlist or having a special code\nWaymo announces plans to launch but hasn't started service by Jan 1, 2027",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWAYMOCITY",
+          "subtitle": null,
+          "title": "Will Waymo operate ride-hailing in Portland, OR before Jan 1, 2027?",
+          "yes_sub_title": "Portland, OR"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXWAYMOCITY-26DEC",
+          "key": "KXWAYMOCITY-26DEC-SAC",
+          "no_sub_title": "Sacramento, CA",
+          "rules_primary": "If Waymo is operating commercial autonomous vehicle ride-hailing services available to the general public within Sacramento, CA before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "\"Operating commercial services\" means that members of the general public can download the Waymo app (or access Waymo through a partner app), request a ride with pickup and dropoff locations within Sacramento, CA, and receive autonomous vehicle service for a fee.\n\nThe service must be available to the general public without requiring special invitation codes, waitlist approval, or participation in testing programs, though geographic coverage within Sacramento, CA may be limited to certain areas. Services operating exclusively with safety drivers present do not satisfy the Payout Criterion; the service must offer fully autonomous rides (without a human safety driver) at least some of the time.\n\nExamples that WOULD resolve to Yes:\n\nWaymo launches public commercial service in any part of Sacramento, CA\nWaymo expands from adjacent areas into Sacramento, CA limits\nWaymo operates 24/7 service or limited hours service within Sacramento, CA\nWaymo offers service through the Uber app to all users in Sacramento, CA\nService is geofenced to only certain neighborhoods but is public\n\nExamples that would resolve to No:\n\nWaymo only operates employee shuttles or closed testing in Sacramento, CA\nWaymo only has an office or maintenance facility in Sacramento, CA\nAll Waymo vehicles in Sacramento, CA have safety drivers\nWaymo is testing but not offering paid public rides\nService requires being on a waitlist or having a special code\nWaymo announces plans to launch but hasn't started service by Jan 1, 2027",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWAYMOCITY",
+          "subtitle": null,
+          "title": "Will Waymo operate ride-hailing in Sacramento, CA before Jan 1, 2027?",
+          "yes_sub_title": "Sacramento, CA"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXWAYMOCITY-26DEC",
+          "key": "KXWAYMOCITY-26DEC-SAN",
+          "no_sub_title": "San Diego, CA",
+          "rules_primary": "If Waymo is operating commercial autonomous vehicle ride-hailing services available to the general public within San Diego, CA before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "\"Operating commercial services\" means that members of the general public can download the Waymo app (or access Waymo through a partner app), request a ride with pickup and dropoff locations within San Diego, CA, and receive autonomous vehicle service for a fee.\n\nThe service must be available to the general public without requiring special invitation codes, waitlist approval, or participation in testing programs, though geographic coverage within San Diego, CA may be limited to certain areas. Services operating exclusively with safety drivers present do not satisfy the Payout Criterion; the service must offer fully autonomous rides (without a human safety driver) at least some of the time.\n\nExamples that WOULD resolve to Yes:\n\nWaymo launches public commercial service in any part of San Diego, CA\nWaymo expands from adjacent areas into San Diego, CA limits\nWaymo operates 24/7 service or limited hours service within San Diego, CA\nWaymo offers service through the Uber app to all users in San Diego, CA\nService is geofenced to only certain neighborhoods but is public\n\nExamples that would resolve to No:\n\nWaymo only operates employee shuttles or closed testing in San Diego, CA\nWaymo only has an office or maintenance facility in San Diego, CA\nAll Waymo vehicles in San Diego, CA have safety drivers\nWaymo is testing but not offering paid public rides\nService requires being on a waitlist or having a special code\nWaymo announces plans to launch but hasn't started service by Jan 1, 2027",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWAYMOCITY",
+          "subtitle": null,
+          "title": "Will Waymo operate ride-hailing in San Diego, CA before Jan 1, 2027?",
+          "yes_sub_title": "San Diego, CA"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXWAYMOCITY-26DEC",
+          "key": "KXWAYMOCITY-26DEC-SEA",
+          "no_sub_title": "Seattle, WA",
+          "rules_primary": "If Waymo is operating commercial autonomous vehicle ride-hailing services available to the general public within Seattle, WA before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "\"Operating commercial services\" means that members of the general public can download the Waymo app (or access Waymo through a partner app), request a ride with pickup and dropoff locations within Seattle, WA, and receive autonomous vehicle service for a fee.\n\nThe service must be available to the general public without requiring special invitation codes, waitlist approval, or participation in testing programs, though geographic coverage within Seattle, WA may be limited to certain areas. Services operating exclusively with safety drivers present do not satisfy the Payout Criterion; the service must offer fully autonomous rides (without a human safety driver) at least some of the time.\n\nExamples that WOULD resolve to Yes:\n\nWaymo launches public commercial service in any part of Seattle, WA\nWaymo expands from adjacent areas into Seattle, WA limits\nWaymo operates 24/7 service or limited hours service within Seattle, WA\nWaymo offers service through the Uber app to all users in Seattle, WA\nService is geofenced to only certain neighborhoods but is public\n\nExamples that would resolve to No:\n\nWaymo only operates employee shuttles or closed testing in Seattle, WA\nWaymo only has an office or maintenance facility in Seattle, WA\nAll Waymo vehicles in Seattle, WA have safety drivers\nWaymo is testing but not offering paid public rides\nService requires being on a waitlist or having a special code\nWaymo announces plans to launch but hasn't started service by Jan 1, 2027",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWAYMOCITY",
+          "subtitle": null,
+          "title": "Will Waymo operate ride-hailing in Seattle, WA before Jan 1, 2027?",
+          "yes_sub_title": "Seattle, WA"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXWAYMOCITY-26DEC",
+          "key": "KXWAYMOCITY-26DEC-TAM",
+          "no_sub_title": "Tampa, FL",
+          "rules_primary": "If Waymo is operating commercial autonomous vehicle ride-hailing services available to the general public within Tampa, FL before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "\"Operating commercial services\" means that members of the general public can download the Waymo app (or access Waymo through a partner app), request a ride with pickup and dropoff locations within Tampa, FL, and receive autonomous vehicle service for a fee.\n\nThe service must be available to the general public without requiring special invitation codes, waitlist approval, or participation in testing programs, though geographic coverage within Tampa, FL may be limited to certain areas. Services operating exclusively with safety drivers present do not satisfy the Payout Criterion; the service must offer fully autonomous rides (without a human safety driver) at least some of the time.\n\nExamples that WOULD resolve to Yes:\n\nWaymo launches public commercial service in any part of Tampa, FL\nWaymo expands from adjacent areas into Tampa, FL limits\nWaymo operates 24/7 service or limited hours service within Tampa, FL\nWaymo offers service through the Uber app to all users in Tampa, FL\nService is geofenced to only certain neighborhoods but is public\n\nExamples that would resolve to No:\n\nWaymo only operates employee shuttles or closed testing in Tampa, FL\nWaymo only has an office or maintenance facility in Tampa, FL\nAll Waymo vehicles in Tampa, FL have safety drivers\nWaymo is testing but not offering paid public rides\nService requires being on a waitlist or having a special code\nWaymo announces plans to launch but hasn't started service by Jan 1, 2027",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXWAYMOCITY",
+          "subtitle": null,
+          "title": "Will Waymo operate ride-hailing in Tampa, FL before Jan 1, 2027?",
+          "yes_sub_title": "Tampa, FL"
+        }
+      ]
+    },
+    {
+      "event_key": "KXAKCRUDEOIL-27MAR01",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXAKCRUDEOIL-27MAR01",
+          "key": "KXAKCRUDEOIL-27MAR01-T153.607",
+          "no_sub_title": "Above 153.607 million barrels",
+          "rules_primary": "If Alaska\u2019s total crude oil field production in calendar year 2026 is above \n\n153.607 million barrels, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is Alaska\u2019s calendar-year total field production of crude oil, measured in barrels. The 153.607 million-barrel baseline is fixed to the 2025 annual total at market launch; later revisions do not change the strike.",
+          "scheduled_close": "2027-03-01T21:59:00Z",
+          "series": "KXAKCRUDEOIL",
+          "subtitle": null,
+          "title": "Will Alaska\u2019s total crude oil field production in 2026 be above 153.607 million barrels?",
+          "yes_sub_title": "Above 153.607 million barrels"
+        }
+      ]
+    },
+    {
+      "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+      "markets": [
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYANTH",
+          "no_sub_title": "Anthropic",
+          "rules_primary": "If any company announces an agreement to acquire Anthropic before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Anthropic before Jan 1, 2027?",
+          "yes_sub_title": "Anthropic"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYBFB",
+          "no_sub_title": "Brown-Forman",
+          "rules_primary": "If any company announces an agreement to acquire Brown-Forman before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Brown-Forman before Jan 1, 2027?",
+          "yes_sub_title": "Brown-Forman"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYBP",
+          "no_sub_title": "BP",
+          "rules_primary": "If any company announces an agreement to acquire BP before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of BP before Jan 1, 2027?",
+          "yes_sub_title": "BP"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYEBAY",
+          "no_sub_title": "eBay",
+          "rules_primary": "If any company announces an agreement to acquire eBay before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of eBay before Jan 1, 2027?",
+          "yes_sub_title": "eBay"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYFIGM",
+          "no_sub_title": "Figma",
+          "rules_primary": "If any company announces an agreement to acquire Figma before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Figma before Jan 1, 2027?",
+          "yes_sub_title": "Figma"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYGITL",
+          "no_sub_title": "GitLab",
+          "rules_primary": "If any company announces an agreement to acquire GitLab before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of GitLab before Jan 1, 2027?",
+          "yes_sub_title": "GitLab"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYMAGN",
+          "no_sub_title": "Magnum Ice Cream Company",
+          "rules_primary": "If any company announces an agreement to acquire Magnum Ice Cream Company before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Magnum Ice Cream Company before Jan 1, 2027?",
+          "yes_sub_title": "Magnum Ice Cream Company"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYMGM",
+          "no_sub_title": "MGM Resorts",
+          "rules_primary": "If any company announces an agreement to acquire MGM Resorts before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of MGM Resorts before Jan 1, 2027?",
+          "yes_sub_title": "MGM Resorts"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYNEBI",
+          "no_sub_title": "Nebius",
+          "rules_primary": "If any company announces an agreement to acquire Nebius before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Nebius  before Jan 1, 2027?",
+          "yes_sub_title": "Nebius"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYPAYP",
+          "no_sub_title": "PayPal",
+          "rules_primary": "If any company announces an agreement to acquire PayPal before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of PayPal before Jan 1, 2027?",
+          "yes_sub_title": "PayPal"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYPERP",
+          "no_sub_title": "Perplexity AI",
+          "rules_primary": "If any company announces an agreement to acquire Perplexity AI before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Perplexity AI before Jan 1, 2027?",
+          "yes_sub_title": "Perplexity AI"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYPINT",
+          "no_sub_title": "Pinterest",
+          "rules_primary": "If any company announces an agreement to acquire Pinterest before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Pinterest before Jan 1, 2027?",
+          "yes_sub_title": "Pinterest"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYSENT",
+          "no_sub_title": "SentinelOne",
+          "rules_primary": "If any company announces an agreement to acquire SentinelOne before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of SentinelOne before Jan 1, 2027?",
+          "yes_sub_title": "SentinelOne"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYSIX",
+          "no_sub_title": "Six Flags Entertainment",
+          "rules_primary": "If any company announces an agreement to acquire Six Flags Entertainment before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Six Flags Entertainment before Jan 1, 2027?",
+          "yes_sub_title": "Six Flags Entertainment"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYSNAP",
+          "no_sub_title": "Snap",
+          "rules_primary": "If any company announces an agreement to acquire Snap before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Snap before Jan 1, 2027?",
+          "yes_sub_title": "Snap"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYSPIR",
+          "no_sub_title": "Spire Healthcare",
+          "rules_primary": "If any company announces an agreement to acquire Spire Healthcare before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Spire Healthcare before Jan 1, 2027?",
+          "yes_sub_title": "Spire Healthcare"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYUBER",
+          "no_sub_title": "Uber",
+          "rules_primary": "If any company announces an agreement to acquire Uber before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Uber before Jan 1, 2027?",
+          "yes_sub_title": "Uber"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYUNIV",
+          "no_sub_title": "Universal Music Group",
+          "rules_primary": "If any company announces an agreement to acquire Universal Music Group before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Universal Music Group before Jan 1, 2027?",
+          "yes_sub_title": "Universal Music Group"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYVIKI",
+          "no_sub_title": "Viking Therapeutics",
+          "rules_primary": "If any company announces an agreement to acquire Viking Therapeutics before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Viking Therapeutics before Jan 1, 2027?",
+          "yes_sub_title": "Viking Therapeutics"
+        },
+        {
+          "category": "Companies",
+          "event_key": "KXACQANNOUNCEANNUAL-27JAN01",
+          "key": "KXACQANNOUNCEANNUAL-27JAN01-ANYZOOM",
+          "no_sub_title": "Zoom",
+          "rules_primary": "If any company announces an agreement to acquire Zoom before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXACQANNOUNCEANNUAL",
+          "subtitle": null,
+          "title": "Will any company announce acquisition of Zoom before Jan 1, 2027?",
+          "yes_sub_title": "Zoom"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTSAW-26SEP06",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXTSAW-26SEP06",
+          "key": "KXTSAW-26SEP06-A2.25",
+          "no_sub_title": "Above 2.25 million",
+          "rules_primary": "If weekly average TSA airport screenings are above 2.25 million for the week ending September 06, 2026, according to the TSA, then the market resolves to Yes.",
+          "rules_secondary": "The Contract will expire at the sooner of the first 9:00 AM following the release of the data for September 06, 2026, or one week after September 06, 2026. The Last Trading Date and Time will always be 11:59 PM on September 06, 2026.",
+          "scheduled_close": "2026-09-07T03:59:00Z",
+          "series": "KXTSAW",
+          "subtitle": "2.25 million",
+          "title": "Will more than 2250000 people be **screened by the TSA** on average this week?",
+          "yes_sub_title": "Above 2.25 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXTSAW-26SEP06",
+          "key": "KXTSAW-26SEP06-A2.30",
+          "no_sub_title": "Above 2.3 million",
+          "rules_primary": "If weekly average TSA airport screenings are above 2.3 million for the week ending September 06, 2026, according to the TSA, then the market resolves to Yes.",
+          "rules_secondary": "The Contract will expire at the sooner of the first 9:00 AM following the release of the data for September 06, 2026, or one week after September 06, 2026. The Last Trading Date and Time will always be 11:59 PM on September 06, 2026.",
+          "scheduled_close": "2026-09-07T03:59:00Z",
+          "series": "KXTSAW",
+          "subtitle": "2.3 million",
+          "title": "Will more than 2300000 people be **screened by the TSA** on average this week?",
+          "yes_sub_title": "Above 2.3 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXTSAW-26SEP06",
+          "key": "KXTSAW-26SEP06-A2.35",
+          "no_sub_title": "Above 2.35 million",
+          "rules_primary": "If weekly average TSA airport screenings are above 2.35 million for the week ending September 06, 2026, according to the TSA, then the market resolves to Yes.",
+          "rules_secondary": "The Contract will expire at the sooner of the first 9:00 AM following the release of the data for September 06, 2026, or one week after September 06, 2026. The Last Trading Date and Time will always be 11:59 PM on September 06, 2026.",
+          "scheduled_close": "2026-09-07T03:59:00Z",
+          "series": "KXTSAW",
+          "subtitle": "2.35 million",
+          "title": "Will more than 2350000 people be **screened by the TSA** on average this week?",
+          "yes_sub_title": "Above 2.35 million"
+        }
+      ]
+    },
+    {
+      "event_key": "KXBIGBROTHER-26DEC31",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHER-26DEC31",
+          "key": "KXBIGBROTHER-26DEC31-ANG",
+          "no_sub_title": "Angela Murray",
+          "rules_primary": "If Angela Murray are officially declared the winner of Big Brother Season 28, then the market resolves to Yes.",
+          "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2027-01-07T15:00:00Z",
+          "series": "KXBIGBROTHER",
+          "subtitle": null,
+          "title": "Will Angela Murray win Big Brother Season 28?",
+          "yes_sub_title": "Angela Murray"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHER-26DEC31",
+          "key": "KXBIGBROTHER-26DEC31-BAR",
+          "no_sub_title": "Barrett Pfeiffer",
+          "rules_primary": "If Barrett Pfeiffer are officially declared the winner of Big Brother Season 28, then the market resolves to Yes.",
+          "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2027-01-07T15:00:00Z",
+          "series": "KXBIGBROTHER",
+          "subtitle": null,
+          "title": "Will Barrett Pfeiffer win Big Brother Season 28?",
+          "yes_sub_title": "Barrett Pfeiffer"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHER-26DEC31",
+          "key": "KXBIGBROTHER-26DEC31-DEE",
+          "no_sub_title": "Dee Valladares",
+          "rules_primary": "If Dee Valladares are officially declared the winner of Big Brother Season 28, then the market resolves to Yes.",
+          "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2027-01-07T15:00:00Z",
+          "series": "KXBIGBROTHER",
+          "subtitle": null,
+          "title": "Will Dee Valladares win Big Brother Season 28?",
+          "yes_sub_title": "Dee Valladares"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHER-26DEC31",
+          "key": "KXBIGBROTHER-26DEC31-DRE",
+          "no_sub_title": "Drew Campbell",
+          "rules_primary": "If Drew Campbell are officially declared the winner of Big Brother Season 28, then the market resolves to Yes.",
+          "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2027-01-07T15:00:00Z",
+          "series": "KXBIGBROTHER",
+          "subtitle": null,
+          "title": "Will Drew Campbell win Big Brother Season 28?",
+          "yes_sub_title": "Drew Campbell"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHER-26DEC31",
+          "key": "KXBIGBROTHER-26DEC31-MEL",
+          "no_sub_title": "Melody Morris",
+          "rules_primary": "If Melody Morris are officially declared the winner of Big Brother Season 28, then the market resolves to Yes.",
+          "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2027-01-07T15:00:00Z",
+          "series": "KXBIGBROTHER",
+          "subtitle": null,
+          "title": "Will Melody Morris win Big Brother Season 28?",
+          "yes_sub_title": "Melody Morris"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHER-26DEC31",
+          "key": "KXBIGBROTHER-26DEC31-RIC",
+          "no_sub_title": "Rick Devens",
+          "rules_primary": "If Rick Devens are officially declared the winner of Big Brother Season 28, then the market resolves to Yes.",
+          "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2027-01-07T15:00:00Z",
+          "series": "KXBIGBROTHER",
+          "subtitle": null,
+          "title": "Will Rick Devens win Big Brother Season 28?",
+          "yes_sub_title": "Rick Devens"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHER-26DEC31",
+          "key": "KXBIGBROTHER-26DEC31-TAY",
+          "no_sub_title": "Taylor Brown",
+          "rules_primary": "If Taylor Brown are officially declared the winner of Big Brother Season 28, then the market resolves to Yes.",
+          "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2027-01-07T15:00:00Z",
+          "series": "KXBIGBROTHER",
+          "subtitle": null,
+          "title": "Will Taylor Brown win Big Brother Season 28?",
+          "yes_sub_title": "Taylor Brown"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHER-26DEC31",
+          "key": "KXBIGBROTHER-26DEC31-YAS",
+          "no_sub_title": "Yash Patel",
+          "rules_primary": "If Yash Patel are officially declared the winner of Big Brother Season 28, then the market resolves to Yes.",
+          "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2027-01-07T15:00:00Z",
+          "series": "KXBIGBROTHER",
+          "subtitle": null,
+          "title": "Will Yash Patel win Big Brother Season 28?",
+          "yes_sub_title": "Yash Patel"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNDAA-26JUL",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXNDAA-26JUL",
+          "key": "KXNDAA-26JUL-26DEC01",
+          "no_sub_title": "Before Dec 1, 2026",
+          "rules_primary": "If legislation designated as, or substantively serving as, the National Defense Authorization Act for Fiscal Year 2027 by authorizing national defense programs or defense policy for that fiscal year has become law after Issuance and before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXNDAA",
+          "subtitle": null,
+          "title": "Will legislation designated as, or substantively serving as, the National Defense Authorization Act for Fiscal Year 2027 by authorizing national defense programs or defense policy for that fiscal year become law before Dec 1, 2026?",
+          "yes_sub_title": "Before Dec 1, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNDAA-26JUL",
+          "key": "KXNDAA-26JUL-26DEC15",
+          "no_sub_title": "Before Dec 15, 2026",
+          "rules_primary": "If legislation designated as, or substantively serving as, the National Defense Authorization Act for Fiscal Year 2027 by authorizing national defense programs or defense policy for that fiscal year has become law after Issuance and before Dec 15, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-12-15T15:00:00Z",
+          "series": "KXNDAA",
+          "subtitle": null,
+          "title": "Will legislation designated as, or substantively serving as, the National Defense Authorization Act for Fiscal Year 2027 by authorizing national defense programs or defense policy for that fiscal year become law before Dec 15, 2026?",
+          "yes_sub_title": "Before Dec 15, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNDAA-26JUL",
+          "key": "KXNDAA-26JUL-26NOV01",
+          "no_sub_title": "Before Nov 1, 2026",
+          "rules_primary": "If legislation designated as, or substantively serving as, the National Defense Authorization Act for Fiscal Year 2027 by authorizing national defense programs or defense policy for that fiscal year has become law after Issuance and before Nov 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-11-01T15:00:00Z",
+          "series": "KXNDAA",
+          "subtitle": null,
+          "title": "Will legislation designated as, or substantively serving as, the National Defense Authorization Act for Fiscal Year 2027 by authorizing national defense programs or defense policy for that fiscal year become law before Nov 1, 2026?",
+          "yes_sub_title": "Before Nov 1, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNDAA-26JUL",
+          "key": "KXNDAA-26JUL-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If legislation designated as, or substantively serving as, the National Defense Authorization Act for Fiscal Year 2027 by authorizing national defense programs or defense policy for that fiscal year has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXNDAA",
+          "subtitle": null,
+          "title": "Will legislation designated as, or substantively serving as, the National Defense Authorization Act for Fiscal Year 2027 by authorizing national defense programs or defense policy for that fiscal year become law before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXAIREVIEW-26JUN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXAIREVIEW-26JUN",
+          "key": "KXAIREVIEW-26JUN-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Donald Trump has taken any executive action establishing or directing a mandatory federal review, evaluation, or approval process that at least one class of AI models must complete before public release before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The qualifying action must be of the specific type designated (executive order, presidential memorandum, proclamation, directive, determination, or finding), be signed by the President personally during the specified time period, and explicitly address the topic in the document's operative provisions, title, or official White House summary. Actions must have legal or policy effect - ceremonial proclamations without policy impact do not qualify unless specifically included. Actions that only incidentally mention the topic, statements without formal action, actions by cabinet members, legislative proposals without executive action, and signing statements do not qualify. The action must be publicly announced or documented by a Source Agency before expiration.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXAIREVIEW",
+          "subtitle": null,
+          "title": "Will Donald Trump issue any executive action on establishing or directing a mandatory federal review, evaluation, or approval process that at least one class of AI models must complete before public release before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXIMAGEAI-26SEP11",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXIMAGEAI-26SEP11",
+          "key": "KXIMAGEAI-26SEP11-OPEN",
+          "no_sub_title": "OpenAI",
+          "rules_primary": "If OpenAI is the #1 model on Artificial Analysis Text to Image Leaderboard on Sep 11, 2026 at 10:00am ET, then the market resolves to Yes.",
+          "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-11T14:00:00Z",
+          "series": "KXIMAGEAI",
+          "subtitle": null,
+          "title": "Top Text to Image AI this week?",
+          "yes_sub_title": "OpenAI"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFDVOPENSEA-27JAN01",
+      "markets": [
+        {
+          "category": "Crypto",
+          "event_key": "KXFDVOPENSEA-27JAN01",
+          "key": "KXFDVOPENSEA-27JAN01-1999999999",
+          "no_sub_title": "$2,000,000,000+",
+          "rules_primary": "If Opensea's fully diluted valuation (FDV) as displayed on CoinGecko is above 1999999999.99 at exactly 10:00 AM on 1 day after launch, then the market resolves to Yes.",
+          "rules_secondary": "The FDV must be the value shown in the \"FDV\" field on the coin's main CoinGecko page, not calculated from other metrics. If no data is available at the specified time, the last FDV value shown before that time on the date will be used. If the coin is delisted from CoinGecko before the measurement date, the last recorded FDV will be used and the market will resolve immediately. Token migrations to new smart contract addresses are tracked continuously. If CoinGecko changes its FDV calculation methodology, the value displayed at the measurement time under the FDV label will be used regardless. Post-redenomination FDV values (after splits/reverse splits) will be used. All values are in USD as shown on CoinGecko. Values can be expressed in millions (M), billions (B), or trillions (T) format.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXFDVOPENSEA",
+          "subtitle": null,
+          "title": "Will Opensea FDV be above $1999999999.99 at 10:00 AM on Jan 1, 2027?",
+          "yes_sub_title": "$2,000,000,000+"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXFDVOPENSEA-27JAN01",
+          "key": "KXFDVOPENSEA-27JAN01-4999999999",
+          "no_sub_title": "$5,000,000,000+",
+          "rules_primary": "If Opensea's fully diluted valuation (FDV) as displayed on CoinGecko is above 4999999999.99 at exactly 10:00 AM on 1 day after launch, then the market resolves to Yes.",
+          "rules_secondary": "The FDV must be the value shown in the \"FDV\" field on the coin's main CoinGecko page, not calculated from other metrics. If no data is available at the specified time, the last FDV value shown before that time on the date will be used. If the coin is delisted from CoinGecko before the measurement date, the last recorded FDV will be used and the market will resolve immediately. Token migrations to new smart contract addresses are tracked continuously. If CoinGecko changes its FDV calculation methodology, the value displayed at the measurement time under the FDV label will be used regardless. Post-redenomination FDV values (after splits/reverse splits) will be used. All values are in USD as shown on CoinGecko. Values can be expressed in millions (M), billions (B), or trillions (T) format.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXFDVOPENSEA",
+          "subtitle": null,
+          "title": "Will Opensea FDV be above $4999999999.99 at 10:00 AM on Jan 1, 2027?",
+          "yes_sub_title": "$5,000,000,000+"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXFDVOPENSEA-27JAN01",
+          "key": "KXFDVOPENSEA-27JAN01-7999999999",
+          "no_sub_title": "$8,000,000,000+",
+          "rules_primary": "If Opensea's fully diluted valuation (FDV) as displayed on CoinGecko is above 7999999999.99 at exactly 10:00 AM on 1 day after launch, then the market resolves to Yes.",
+          "rules_secondary": "The FDV must be the value shown in the \"FDV\" field on the coin's main CoinGecko page, not calculated from other metrics. If no data is available at the specified time, the last FDV value shown before that time on the date will be used. If the coin is delisted from CoinGecko before the measurement date, the last recorded FDV will be used and the market will resolve immediately. Token migrations to new smart contract addresses are tracked continuously. If CoinGecko changes its FDV calculation methodology, the value displayed at the measurement time under the FDV label will be used regardless. Post-redenomination FDV values (after splits/reverse splits) will be used. All values are in USD as shown on CoinGecko. Values can be expressed in millions (M), billions (B), or trillions (T) format.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXFDVOPENSEA",
+          "subtitle": null,
+          "title": "Will Opensea FDV be above $7999999999.99 at 10:00 AM on Jan 1, 2027?",
+          "yes_sub_title": "$8,000,000,000+"
+        }
+      ]
+    },
+    {
+      "event_key": "KXPATIENTSMONOPOLIES-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXPATIENTSMONOPOLIES-27",
+          "key": "KXPATIENTSMONOPOLIES-27-JAN04",
+          "no_sub_title": "Before Jan 4, 2027",
+          "rules_primary": "If a bill titled \"Patients Before Monopolies Act,\" or an equivalent bill aimed at curbing monopolistic practices (specifically joint ownership of PBM and Pharmacy businesses) in the healthcare or pharmaceutical industry, becomes law after Issuance and before Jan 4, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market will resolve to\u00a0Yes\u00a0if a bill titled\u00a0\"Patients Before Monopolies Act\"\u00a0or an equivalent bill aimed at\u00a0curbing monopolistic practices, specifically joint ownership of PBM and Pharmacy businesses, in the healthcare or pharmaceutical industry\u00a0is\u00a0signed into law\u00a0by the President\u00a0on or before January 3, 2027.",
+          "scheduled_close": "2027-01-04T15:00:00Z",
+          "series": "KXPATIENTSMONOPOLIES",
+          "subtitle": "Before Jan 4, 2027",
+          "title": "Will a bill titled \"Patients Before Monopolies Act\" or an equivalent bill aimed at curbing monopolistic practices, specifically joint ownership of PBM and Pharmacy businesses, in the healthcare or pharmaceutical industry becomes law before Jan 4, 2027?",
+          "yes_sub_title": "Before Jan 4, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSPINOFF-27",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXSPINOFF-27",
+          "key": "KXSPINOFF-27-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Entourage has a spin-off television show announced before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXSPINOFF",
+          "subtitle": "Before Jan 1, 2027",
+          "title": "Will Entourage have a spin-off announced this year?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXVETOOVERRIDE-29JAN20",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXVETOOVERRIDE-29JAN20",
+          "key": "KXVETOOVERRIDE-29JAN20-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If Congress successfully overrides a presidential veto before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXVETOOVERRIDE",
+          "subtitle": null,
+          "title": "Will Congress override Trump's veto before 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXBTCPRICE-85000",
+      "markets": [
+        {
+          "category": "Crypto",
+          "event_key": "KXBTCPRICE-85000",
+          "key": "KXBTCPRICE-85000-26OCT02",
+          "no_sub_title": "By Oct 2, 2026",
+          "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $85000 starting Aug 24, 2026 and before Oct 2, 2026 at 11:59 PM ET, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.",
+          "scheduled_close": "2026-10-03T03:59:00Z",
+          "series": "KXBTCPRICE",
+          "subtitle": "By Oct 2, 2026",
+          "title": "Will Bitcoin be above $85,000 by Oct 2, 2026 at 11:59 PM ET?",
+          "yes_sub_title": "By Oct 2, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXHOUSEADJOURN-26",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXHOUSEADJOURN-26",
+          "key": "KXHOUSEADJOURN-26-26SEP18",
+          "no_sub_title": "Before Sep 18, 2026",
+          "rules_primary": "If the U.S. House of Representatives adjourns from substantive floor business for its pre-election 2026 recess after Issuance and before Sep 18, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Only reporting from the U.S. House of Representatives qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.\n\nThe qualifying report must identify that the House has left substantive floor business for its pre-election recess. A daily adjournment, district work period, or pro forma session is insufficient unless the House reports that the pre-election recess has begun.",
+          "scheduled_close": "2026-09-18T03:59:00Z",
+          "series": "KXHOUSEADJOURN",
+          "subtitle": null,
+          "title": "Will it be reported by the U.S. House of Representatives that the U.S. House of Representatives adjourns from substantive floor business for its pre-election 2026 recess before Sep 18, 2026?",
+          "yes_sub_title": "Before Sep 18, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXHOUSEADJOURN-26",
+          "key": "KXHOUSEADJOURN-26-26SEP26",
+          "no_sub_title": "Before Sep 26, 2026",
+          "rules_primary": "If the U.S. House of Representatives adjourns from substantive floor business for its pre-election 2026 recess after Issuance and before Sep 26, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Only reporting from the U.S. House of Representatives qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.\n\nThe qualifying report must identify that the House has left substantive floor business for its pre-election recess. A daily adjournment, district work period, or pro forma session is insufficient unless the House reports that the pre-election recess has begun.",
+          "scheduled_close": "2026-09-26T03:59:00Z",
+          "series": "KXHOUSEADJOURN",
+          "subtitle": null,
+          "title": "Will it be reported by the U.S. House of Representatives that the U.S. House of Representatives adjourns from substantive floor business for its pre-election 2026 recess before Sep 26, 2026?",
+          "yes_sub_title": "Before Sep 26, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCARROUT-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXCARROUT-27JAN01",
+          "key": "KXCARROUT-27JAN01",
+          "no_sub_title": "Yes",
+          "rules_primary": "If Brendan Carr has either officially announced their intention to leave as chair of the Federal Communications Commission or has actually left as chair of the Federal Communications Commission before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves to Yes upon either an official announcement of departure or actual departure from office. An announcement must be made by the person themselves, their authorized representative, or the governing body of the office and reported by at least one Source Agency. Announcements of leaving more than one year from the statement do not resolve the market to Yes. Leaving office includes resignation, termination, removal, impeachment and removal, recall, or term expiration without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining office do NOT qualify. Death does NOT satisfy the Payout Criterion. Forced departures satisfy the criterion even without prior announcement.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXCARROUT",
+          "subtitle": "Yes",
+          "title": "Will Brendan Carr leave chair of the Federal Communications Commission before Jan 1, 2027?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

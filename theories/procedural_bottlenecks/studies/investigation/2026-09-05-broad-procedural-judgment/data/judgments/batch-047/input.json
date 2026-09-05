@@ -1,0 +1,692 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXSATRADEBAL-26SEP30",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXSATRADEBAL-26SEP30",
+          "key": "KXSATRADEBAL-26SEP30-T0.00",
+          "no_sub_title": "Above ZAR0.00B",
+          "rules_primary": "If the South Africa balance of trade for August 2026 is above ZAR0.00B, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-30T11:59:00Z",
+          "series": "KXSATRADEBAL",
+          "subtitle": null,
+          "title": "Will South Africa balance of trade for August 2026 be above ZAR0.00B?",
+          "yes_sub_title": "Above ZAR0.00B"
+        }
+      ]
+    },
+    {
+      "event_key": "KXPARDONSYEAR-26DEC",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXPARDONSYEAR-26DEC",
+          "key": "KXPARDONSYEAR-26DEC-299",
+          "no_sub_title": "100 to 499",
+          "rules_primary": "If the President pardons, commutes the sentence of, or gives reprieve to between 100 and 499 persons after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPARDONSYEAR",
+          "subtitle": null,
+          "title": "Will Trump pardon between 100 and 499 people before Jan 1, 2027?",
+          "yes_sub_title": "100 to 499"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPARDONSYEAR-26DEC",
+          "key": "KXPARDONSYEAR-26DEC-37",
+          "no_sub_title": "25 to 49",
+          "rules_primary": "If the President pardons, commutes the sentence of, or gives reprieve to between 25 and 49 persons after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPARDONSYEAR",
+          "subtitle": null,
+          "title": "Will Trump pardon between 25 and 49 people before Jan 1, 2027?",
+          "yes_sub_title": "25 to 49"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPARDONSYEAR-26DEC",
+          "key": "KXPARDONSYEAR-26DEC-74",
+          "no_sub_title": "50 to 99",
+          "rules_primary": "If the President pardons, commutes the sentence of, or gives reprieve to between 50 and 99 persons after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPARDONSYEAR",
+          "subtitle": null,
+          "title": "Will Trump pardon between 50 and 99 people before Jan 1, 2027?",
+          "yes_sub_title": "50 to 99"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPARDONSYEAR-26DEC",
+          "key": "KXPARDONSYEAR-26DEC-749",
+          "no_sub_title": "500 to 999",
+          "rules_primary": "If the President pardons, commutes the sentence of, or gives reprieve to between 500 and 999 persons after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPARDONSYEAR",
+          "subtitle": null,
+          "title": "Will Trump pardon between 500 and 999 people before Jan 1, 2027?",
+          "yes_sub_title": "500 to 999"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPARDONSYEAR-26DEC",
+          "key": "KXPARDONSYEAR-26DEC-999",
+          "no_sub_title": "1000 or more",
+          "rules_primary": "If the President pardons, commutes the sentence of, or gives reprieve to above 999 persons after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPARDONSYEAR",
+          "subtitle": null,
+          "title": "Will Trump pardon above 999 people before Jan 1, 2027?",
+          "yes_sub_title": "1000 or more"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMOVIEDELAYDUNEPT3-26DEC18",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOVIEDELAYDUNEPT3-26DEC18",
+          "key": "KXMOVIEDELAYDUNEPT3-26DEC18",
+          "no_sub_title": "Before Dec 18, 2026",
+          "rules_primary": "If Dune: Part Three's release is delayed past December 18, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-12-18T04:59:00Z",
+          "series": "KXMOVIEDELAYDUNEPT3",
+          "subtitle": "Before Dec 18, 2026",
+          "title": "Will Dune: Part Three be delayed?",
+          "yes_sub_title": "Before Dec 18, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXAUCTIONRECORD-27-CLA",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXAUCTIONRECORD-27-CLA",
+          "key": "KXAUCTIONRECORD-27-CLA-110747000",
+          "no_sub_title": "Above $110,747,000",
+          "rules_primary": "If the highest auction sale price of any Claude Monet artwork sold at auction on any public auction house reporting final sale prices is above $110747000 in 2026, then the market resolves to Yes.",
+          "rules_secondary": "\u201cSale Price\u201d refers to the final publicly reported realized price of the artwork, including buyer\u2019s premium and auction fees, as reported by the relevant Source Agency.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXAUCTIONRECORD",
+          "subtitle": "Above $110,747,000",
+          "title": "Will Claude Monet break their auction record this season?",
+          "yes_sub_title": "Above $110,747,000"
+        }
+      ]
+    },
+    {
+      "event_key": "KXUNSEC-27JAN",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXUNSEC-27JAN",
+          "key": "KXUNSEC-27JAN-CBIR",
+          "no_sub_title": "Carolyn Rodrigues-Birkett",
+          "rules_primary": "If Carolyn Rodrigues-Birkett is confirmed as Secretary-General for UN before Jan 5, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An announcement alone is sufficient to resolve the market.",
+          "scheduled_close": "2027-01-05T15:00:00Z",
+          "series": "KXUNSEC",
+          "subtitle": null,
+          "title": "Who will be the next Secretary-General of UN?",
+          "yes_sub_title": "Carolyn Rodrigues-Birkett"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXUNSEC-27JAN",
+          "key": "KXUNSEC-27JAN-MFER",
+          "no_sub_title": "Maria Fernanda Espinosa Garc\u00e9s",
+          "rules_primary": "If Maria Fernanda Espinosa Garc\u00e9s is confirmed as Secretary-General for UN before Jan 5, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An announcement alone is sufficient to resolve the market.",
+          "scheduled_close": "2027-01-05T15:00:00Z",
+          "series": "KXUNSEC",
+          "subtitle": null,
+          "title": "Who will be the next Secretary-General of UN?",
+          "yes_sub_title": "Maria Fernanda Espinosa Garc\u00e9s"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXUNSEC-27JAN",
+          "key": "KXUNSEC-27JAN-RGRO",
+          "no_sub_title": "Rafael Grossi",
+          "rules_primary": "If Rafael Grossi is confirmed as Secretary-General for UN before Jan 5, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An announcement alone is sufficient to resolve the market.",
+          "scheduled_close": "2027-01-05T15:00:00Z",
+          "series": "KXUNSEC",
+          "subtitle": null,
+          "title": "Who will be the next Secretary-General of UN?",
+          "yes_sub_title": "Rafael Grossi"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXUNSEC-27JAN",
+          "key": "KXUNSEC-27JAN-RGRYN",
+          "no_sub_title": "Rebeca Grynspan",
+          "rules_primary": "If Rebeca Grynspan is confirmed as Secretary-General for UN before Jan 5, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An announcement alone is sufficient to resolve the market.",
+          "scheduled_close": "2027-01-05T15:00:00Z",
+          "series": "KXUNSEC",
+          "subtitle": null,
+          "title": "Who will be the next Secretary-General of UN?",
+          "yes_sub_title": "Rebeca Grynspan"
+        }
+      ]
+    },
+    {
+      "event_key": "KXAUCTIONRECORD-27-VIN",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXAUCTIONRECORD-27-VIN",
+          "key": "KXAUCTIONRECORD-27-VIN-117180000",
+          "no_sub_title": "Above $117,180,000",
+          "rules_primary": "If the highest auction sale price of any Vincent van Gogh artwork sold at auction on any public auction house reporting final sale prices is above $117180000 in 2026, then the market resolves to Yes.",
+          "rules_secondary": "\u201cSale Price\u201d refers to the final publicly reported realized price of the artwork, including buyer\u2019s premium and auction fees, as reported by the relevant Source Agency.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXAUCTIONRECORD",
+          "subtitle": "Above $117,180,000",
+          "title": "Will Vincent van Gogh break their auction record this season?",
+          "yes_sub_title": "Above $117,180,000"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFEATURE-26DAY",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXFEATURE-26DAY",
+          "key": "KXFEATURE-26DAY-AGC",
+          "no_sub_title": "A. G. Cook",
+          "rules_primary": "If A. G. Cook is featured on the album 'Day and Night' by Carly Rae Jepsen, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-18T03:59:00Z",
+          "series": "KXFEATURE",
+          "subtitle": null,
+          "title": "Will A. G. Cook be featured on 'Day and Night' by Carly Rae Jepsen?",
+          "yes_sub_title": "A. G. Cook"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXFEATURE-26DAY",
+          "key": "KXFEATURE-26DAY-RUF",
+          "no_sub_title": "Rufus Wainwright",
+          "rules_primary": "If Rufus Wainwright is featured on the album 'Day and Night' by Carly Rae Jepsen, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-18T03:59:00Z",
+          "series": "KXFEATURE",
+          "subtitle": null,
+          "title": "Will Rufus Wainwright be featured on 'Day and Night' by Carly Rae Jepsen?",
+          "yes_sub_title": "Rufus Wainwright"
+        }
+      ]
+    },
+    {
+      "event_key": "KXEMERCUTS-26",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXEMERCUTS-26",
+          "key": "KXEMERCUTS-26-T0",
+          "no_sub_title": "0 cuts",
+          "rules_primary": "If the Fed cuts the target federal funds rate exactly 0 times at emergency meetings in 2026, the market resolves to Yes.",
+          "rules_secondary": "To be clear, 25bp of cuts is equal to one cut (so 25bp cut is 1, 50bp cut is 2, 75bp cut is 3, and so on).",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEMERCUTS",
+          "subtitle": null,
+          "title": "Will the Fed cut rates 0 times at emergency meetings?",
+          "yes_sub_title": "0 cuts"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXEMERCUTS-26",
+          "key": "KXEMERCUTS-26-T1",
+          "no_sub_title": "1 cuts",
+          "rules_primary": "If the Fed cuts the target federal funds rate exactly 1 times at emergency meetings in 2026, the market resolves to Yes.",
+          "rules_secondary": "To be clear, 25bp of cuts is equal to one cut (so 25bp cut is 1, 50bp cut is 2, 75bp cut is 3, and so on).",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEMERCUTS",
+          "subtitle": null,
+          "title": "Will the Fed cut rates 1 times at emergency meetings?",
+          "yes_sub_title": "1 cuts"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXEMERCUTS-26",
+          "key": "KXEMERCUTS-26-T2",
+          "no_sub_title": "2 cuts",
+          "rules_primary": "If the Fed cuts the target federal funds rate exactly 2 times at emergency meetings in 2026, the market resolves to Yes.",
+          "rules_secondary": "To be clear, 25bp of cuts is equal to one cut (so 25bp cut is 1, 50bp cut is 2, 75bp cut is 3, and so on).",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEMERCUTS",
+          "subtitle": null,
+          "title": "Will the Fed cut rates 2 times at emergency meetings?",
+          "yes_sub_title": "2 cuts"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXEMERCUTS-26",
+          "key": "KXEMERCUTS-26-T3",
+          "no_sub_title": "3 cuts",
+          "rules_primary": "If the Fed cuts the target federal funds rate exactly 3 times at emergency meetings in 2026, the market resolves to Yes.",
+          "rules_secondary": "To be clear, 25bp of cuts is equal to one cut (so 25bp cut is 1, 50bp cut is 2, 75bp cut is 3, and so on).",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEMERCUTS",
+          "subtitle": null,
+          "title": "Will the Fed cut rates 3 times at emergency meetings?",
+          "yes_sub_title": "3 cuts"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXEMERCUTS-26",
+          "key": "KXEMERCUTS-26-T4",
+          "no_sub_title": "4 cuts",
+          "rules_primary": "If the Fed cuts the target federal funds rate exactly 4 times at emergency meetings in 2026, the market resolves to Yes.",
+          "rules_secondary": "To be clear, 25bp of cuts is equal to one cut (so 25bp cut is 1, 50bp cut is 2, 75bp cut is 3, and so on).",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXEMERCUTS",
+          "subtitle": null,
+          "title": "Will the Fed cut rates 4 times at emergency meetings?",
+          "yes_sub_title": "4 cuts"
+        }
+      ]
+    },
+    {
+      "event_key": "KXVAPORTTEU-27JAN31",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXVAPORTTEU-27JAN31",
+          "key": "KXVAPORTTEU-27JAN31-T3.45",
+          "no_sub_title": "Above 3.45 million TEUs",
+          "rules_primary": "If the Port of Virginia total container volume for calendar year 2026 is above \n\n3.45 million TEUs, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the Port of Virginia\u2019s total twenty-foot equivalent units (TEUs) for January through December 2026. Loaded and empty import and export TEUs are all included in the published total. The Port publishes these figures through its official Monthly Statistics workbook.",
+          "scheduled_close": "2027-01-31T16:29:00Z",
+          "series": "KXVAPORTTEU",
+          "subtitle": null,
+          "title": "Will Port of Virginia total container volume for 2026 be above 3.45 million TEUs?",
+          "yes_sub_title": "Above 3.45 million TEUs"
+        }
+      ]
+    },
+    {
+      "event_key": "KXXITAIWAN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXXITAIWAN",
+          "key": "KXXITAIWAN-27JAN01",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If Xi Jinping has physically travelled to and been present within the geographic boundaries of Taiwan before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Physical presence within the geographic boundaries of the area is required. Flying over without landing, layovers during which the person remains in the airplane or airport, virtual or remote appearances, future visit plans, or (unless explicitly specified) presence in adjacent international waters or solely within embassy or consulate grounds do NOT constitute a visit. International airports are considered within the boundaries of their host jurisdiction. A visit that began before the specified time period and is ongoing as of its start does not count; however, if the person departs and re-enters the area during the time period, the re-entry constitutes a new visit and does count.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXXITAIWAN",
+          "subtitle": "Before 2027",
+          "title": "Will Xi Jinping visit Taiwan before Jan 1, 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXIPORIPPLING",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXIPORIPPLING",
+          "key": "KXIPORIPPLING-27FEB01",
+          "no_sub_title": "Before Feb 1, 2027",
+          "rules_primary": "If Rippling confirms an IPO before Feb 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Feb 1, 2027.",
+          "scheduled_close": "2027-02-01T04:59:00Z",
+          "series": "KXIPORIPPLING",
+          "subtitle": null,
+          "title": "When will Rippling IPO?",
+          "yes_sub_title": "Before Feb 1, 2027"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXIPORIPPLING",
+          "key": "KXIPORIPPLING-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Rippling confirms an IPO before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Jan 1, 2027.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXIPORIPPLING",
+          "subtitle": null,
+          "title": "When will Rippling IPO?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXIPORIPPLING",
+          "key": "KXIPORIPPLING-27JUN01",
+          "no_sub_title": "Before Jun 1, 2027",
+          "rules_primary": "If Rippling confirms an IPO before Jun 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An IPO is confirmed if 1) the SEC declares the company's Form S-1 effective OR 2) the IPO is priced OR 3) a securities exchange has assigned a ticker to it. As long as any of those events occur, the market will immediately resolve to Yes, even if the company does not start trading until after Jun 1, 2027.",
+          "scheduled_close": "2027-06-01T03:59:00Z",
+          "series": "KXIPORIPPLING",
+          "subtitle": null,
+          "title": "When will Rippling IPO?",
+          "yes_sub_title": "Before Jun 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSUSPENDGASTAX-26MAY",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXSUSPENDGASTAX-26MAY",
+          "key": "KXSUSPENDGASTAX-26MAY-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If legislation that would temporarily suspend or reduce the federal excise tax on gasoline has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSUSPENDGASTAX",
+          "subtitle": null,
+          "title": "Will legislation that would temporarily suspend or reduce the federal excise tax on gasoline become law before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCLAUDE-OPUS6",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXCLAUDE-OPUS6",
+          "key": "KXCLAUDE-OPUS6-26NOV01",
+          "no_sub_title": "Before Nov 1, 2026",
+          "rules_primary": "If Anthropic releases Opus 6 before Nov 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+          "scheduled_close": "2026-11-01T04:59:00Z",
+          "series": "KXCLAUDE",
+          "subtitle": null,
+          "title": "Will Anthropic release Opus 6 before Nov 1, 2026?",
+          "yes_sub_title": "Before Nov 1, 2026"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXCLAUDE-OPUS6",
+          "key": "KXCLAUDE-OPUS6-26OCT01",
+          "no_sub_title": "Before Oct 1, 2026",
+          "rules_primary": "If Anthropic releases Opus 6 before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXCLAUDE",
+          "subtitle": null,
+          "title": "Will Anthropic release Opus 6 before Oct 1, 2026?",
+          "yes_sub_title": "Before Oct 1, 2026"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXCLAUDE-OPUS6",
+          "key": "KXCLAUDE-OPUS6-26OCT16",
+          "no_sub_title": "Before Oct 16, 2026",
+          "rules_primary": "If Anthropic releases Opus 6 before Oct 16, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+          "scheduled_close": "2026-10-16T03:59:00Z",
+          "series": "KXCLAUDE",
+          "subtitle": null,
+          "title": "Will Anthropic release Opus 6 before Oct 16, 2026?",
+          "yes_sub_title": "Before Oct 16, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMEDIAGUESTKIMMEL-27",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-ARI",
+          "no_sub_title": "Ariana Grande",
+          "rules_primary": "If Ariana Grande is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Ariana Grande appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Ariana Grande), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Ariana Grande be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Ariana Grande"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-BAD",
+          "no_sub_title": "Bad Bunny",
+          "rules_primary": "If Bad Bunny is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Bad Bunny appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Bad Bunny), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Bad Bunny be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Bad Bunny"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-CHR",
+          "no_sub_title": "Christopher Nolan",
+          "rules_primary": "If Christopher Nolan is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Christopher Nolan appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Christopher Nolan), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Christopher Nolan be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Christopher Nolan"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-DRA",
+          "no_sub_title": "Drake",
+          "rules_primary": "If Drake is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Drake appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Drake), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Drake be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Drake"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-DWA",
+          "no_sub_title": "Dwayne \u201cThe Rock\u201d Johnson",
+          "rules_primary": "If Dwayne \u201cThe Rock\u201d Johnson is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Dwayne \u201cThe Rock\u201d Johnson appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Dwayne \u201cThe Rock\u201d Johnson), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Dwayne \u201cThe Rock\u201d Johnson be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Dwayne \u201cThe Rock\u201d Johnson"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-HAR",
+          "no_sub_title": "Harry Styles",
+          "rules_primary": "If Harry Styles is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Harry Styles appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Harry Styles), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Harry Styles be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Harry Styles"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-JEN",
+          "no_sub_title": "Jennifer Lawrence",
+          "rules_primary": "If Jennifer Lawrence is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Jennifer Lawrence appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Jennifer Lawrence), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Jennifer Lawrence be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Jennifer Lawrence"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-LEB",
+          "no_sub_title": "LeBron James",
+          "rules_primary": "If LeBron James is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If LeBron James appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by LeBron James), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will LeBron James be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "LeBron James"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-LIO",
+          "no_sub_title": "Lionel Messi",
+          "rules_primary": "If Lionel Messi is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Lionel Messi appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Lionel Messi), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Lionel Messi be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Lionel Messi"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-LOG",
+          "no_sub_title": "Logan Paul",
+          "rules_primary": "If Logan Paul is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Logan Paul appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Logan Paul), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Logan Paul be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Logan Paul"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-MRB",
+          "no_sub_title": "MrBeast",
+          "rules_primary": "If MrBeast is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If MrBeast appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by MrBeast), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will MrBeast be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "MrBeast"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-RYA",
+          "no_sub_title": "Ryan Gosling",
+          "rules_primary": "If Ryan Gosling is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Ryan Gosling appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Ryan Gosling), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Ryan Gosling be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Ryan Gosling"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-STE",
+          "no_sub_title": "Stephen Curry",
+          "rules_primary": "If Stephen Curry is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Stephen Curry appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Stephen Curry), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Stephen Curry be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Stephen Curry"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-TAY",
+          "no_sub_title": "Taylor Swift",
+          "rules_primary": "If Taylor Swift is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Taylor Swift appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Taylor Swift), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": "Taylor Swift",
+          "title": "Will Taylor Swift be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Taylor Swift"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-TIM",
+          "no_sub_title": "Timoth\u00e9e Chalamet",
+          "rules_primary": "If Timoth\u00e9e Chalamet is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Timoth\u00e9e Chalamet appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Timoth\u00e9e Chalamet), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Timoth\u00e9e Chalamet be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Timoth\u00e9e Chalamet"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-TOM",
+          "no_sub_title": "Tom Holland",
+          "rules_primary": "If Tom Holland is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Tom Holland appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Tom Holland), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Tom Holland be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Tom Holland"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIAGUESTKIMMEL-27",
+          "key": "KXMEDIAGUESTKIMMEL-27-TRAV",
+          "no_sub_title": "Travis Scott",
+          "rules_primary": "If Travis Scott is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "If Travis Scott appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of Jimmy Kimmel Live! (e.g., the host playing a portion of a speech or song excerpt by Travis Scott), the Payout Criterion is not satisfied.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMEDIAGUESTKIMMEL",
+          "subtitle": null,
+          "title": "Will Travis Scott be on Jimmy Kimmel Live! before 2027?",
+          "yes_sub_title": "Travis Scott"
+        }
+      ]
+    },
+    {
+      "event_key": "KXGREENTERRITORY-29",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXGREENTERRITORY-29",
+          "key": "KXGREENTERRITORY-29-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If the United States acquires any part of Greenland before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "An announcement by the United States and the entity that controls any part of Greenland that it will happen is also encompassed by the Payout Criterion. any part of Greenland  must come under formal governance or jurisdiction of the United States, either as a state, territory, or other classification within the US system, where it was not previously. Merely leasing a given part in territory \u2013 for example, setting up a military base on leased territory \u2013 is not encompassed by the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXGREENTERRITORY",
+          "subtitle": null,
+          "title": "Will the United States acquire any part of Greenland before Jan 1, 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

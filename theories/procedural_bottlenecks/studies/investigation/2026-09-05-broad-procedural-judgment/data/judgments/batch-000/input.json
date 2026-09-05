@@ -1,0 +1,614 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXNIKKEI-26DEC31",
+      "markets": [
+        {
+          "category": "Financials",
+          "event_key": "KXNIKKEI-26DEC31",
+          "key": "KXNIKKEI-26DEC31-76000",
+          "no_sub_title": "At least \u00a576,000",
+          "rules_primary": "If the value of Nikkei 225 (NKY) is at least \u00a576,000 from Jun 16, 2026 to Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the value of the Nikkei 225 as reported by the Trading View, using the index's natively published level in its own currency and units; no currency conversion is applied. It is sufficient for the index to reach or exceed \u00a576,000 at any single point during from Jun 16, 2026 to Dec 31, 2026 for the market to resolve to Yes \u2014 the level does not need to be sustained. If the index does not reach \u00a576,000 at any point during from Jun 16, 2026 to Dec 31, 2026, the market resolves to No. Revisions to the underlying made after expiration will not be accounted for in determining the Expiration Value. \n\nIf no data is available for from Jun 16, 2026 to Dec 31, 2026 by the Expiration Date, all strikes other than \"No data\" or \"None\" resolve to No. The index level is evaluated to two decimal places unless otherwise specified.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXNIKKEI",
+          "subtitle": null,
+          "title": "Will the Nikkei 225 be at least \u00a576,000 in 2026?",
+          "yes_sub_title": "At least \u00a576,000"
+        },
+        {
+          "category": "Financials",
+          "event_key": "KXNIKKEI-26DEC31",
+          "key": "KXNIKKEI-26DEC31-77000",
+          "no_sub_title": "At least \u00a577,000",
+          "rules_primary": "If the value of Nikkei 225 (NKY) is at least \u00a577,000 from Jun 16, 2026 to Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the value of the Nikkei 225 as reported by the Trading View, using the index's natively published level in its own currency and units; no currency conversion is applied. It is sufficient for the index to reach or exceed \u00a577,000 at any single point during from Jun 16, 2026 to Dec 31, 2026 for the market to resolve to Yes \u2014 the level does not need to be sustained. If the index does not reach \u00a577,000 at any point during from Jun 16, 2026 to Dec 31, 2026, the market resolves to No. Revisions to the underlying made after expiration will not be accounted for in determining the Expiration Value. \n\nIf no data is available for from Jun 16, 2026 to Dec 31, 2026 by the Expiration Date, all strikes other than \"No data\" or \"None\" resolve to No. The index level is evaluated to two decimal places unless otherwise specified.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXNIKKEI",
+          "subtitle": null,
+          "title": "Will the Nikkei 225 be at least \u00a577,000 in 2026?",
+          "yes_sub_title": "At least \u00a577,000"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFEDDECISION-27APR",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27APR",
+          "key": "KXFEDDECISION-27APR-C25",
+          "no_sub_title": "Cut 25bps",
+          "rules_primary": "If the Federal Reserve does a Cut of 25bps on April 28, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-04-28T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Cut 25bps",
+          "title": "Will the Federal Reserve Cut rates by 25bps at their April 2027 meeting?",
+          "yes_sub_title": "Cut 25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27APR",
+          "key": "KXFEDDECISION-27APR-C26",
+          "no_sub_title": "Cut >25bps",
+          "rules_primary": "If the Federal Reserve does a Cut of   25bps on April 28, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-04-28T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Cut >25bps",
+          "title": "Will the Federal Reserve Cut rates by >25bps at their April 2027 meeting?",
+          "yes_sub_title": "Cut >25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27APR",
+          "key": "KXFEDDECISION-27APR-H0",
+          "no_sub_title": "Fed maintains rate",
+          "rules_primary": "If the Federal Reserve does a Hike of 0bps on April 28, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-04-28T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Hike 0bps",
+          "title": "Will the Federal Reserve Hike rates by 0bps at their April 2027 meeting?",
+          "yes_sub_title": "Fed maintains rate"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27APR",
+          "key": "KXFEDDECISION-27APR-H25",
+          "no_sub_title": "Hike 25bps",
+          "rules_primary": "If the Federal Reserve does a Hike of 25bps on April 28, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-04-28T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Hike 25bps",
+          "title": "Will the Federal Reserve Hike rates by 25bps at their April 2027 meeting?",
+          "yes_sub_title": "Hike 25bps"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXFEDDECISION-27APR",
+          "key": "KXFEDDECISION-27APR-H26",
+          "no_sub_title": "Hike >25bps",
+          "rules_primary": "If the Federal Reserve does a Hike of >25bps on April 28, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market is mutually exclusive. Therefore, if the Federal Reserve hikes by 50bps, the 50bps market will resolve to Yes and the 25bps market will resolve to No. Only one bucket, at maximum, can resolve to Yes. Note 4/28/25: For the markets beginning after the May meeting, if a scheduled FOMC meeting is canceled and does not occur on its scheduled date, then the strike for \"Fed maintains rate\" will resolve to Yes and all others will resolve to No.",
+          "scheduled_close": "2027-04-28T17:59:00Z",
+          "series": "KXFEDDECISION",
+          "subtitle": "Hike >25bps",
+          "title": "Will the Federal Reserve Hike rates by >25bps at their April 2027 meeting?",
+          "yes_sub_title": "Hike >25bps"
+        }
+      ]
+    },
+    {
+      "event_key": "KXENGAGEMENTTOMBRADYEARLE-26",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXENGAGEMENTTOMBRADYEARLE-26",
+          "key": "KXENGAGEMENTTOMBRADYEARLE-26",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If Tom Brady and Alix Earle are reported to be engaged to be married before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXENGAGEMENTTOMBRADYEARLE",
+          "subtitle": "Before 2027",
+          "title": "Will Tom Brady and Alix Earle be engaged in 2026?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTARIFFRATEPRC-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXTARIFFRATEPRC-27JAN01",
+          "key": "KXTARIFFRATEPRC-27JAN01-10",
+          "no_sub_title": "20% or above",
+          "rules_primary": "If the general import tariff rate on imports from People's Republic of China into the United States on Jan 1, 2027 is at least 20%, then the market resolves to Yes.",
+          "rules_secondary": "The market resolves based on the general import tariff rate that is actually in effect (i.e., being collected) on the specified date. This includes both universal tariffs on all U.S. imports and country-specific tariffs on the specified country. Only tariffs that are currently active and being collected count - announced but not implemented tariffs, paused tariffs, or suspended tariffs do not qualify. The tariff rate refers to the general baseline rate, not including product-specific duties or exemptions. If multiple general rates apply, the general import tariff rate is the sum of all applicable general rates in effect.\n\nExamples (for date = Jan 1, 2026):\n\nIndia: 25% Reciprocal Tariff (EO 14326) + 25% Russian Oil Penalty (EO 14329) = 50%\nChina: 10% Reciprocal Tariff (EO 14358) + 10% Fentanyl Duty (EO 14357) = 20%\nEuropean Union: 15% Reciprocal Tariff \"Floor\" (EO 14326)\nFalkland Islands: 10% Reciprocal Tariff (EO 14326)",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTARIFFRATEPRC",
+          "subtitle": null,
+          "title": "Will the tariff rate on People's Republic of China imports be at least 20% on Jan 1, 2027?",
+          "yes_sub_title": "20% or above"
+        }
+      ]
+    },
+    {
+      "event_key": "KXAAAGASDNY-26SEP06",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXAAAGASDNY-26SEP06",
+          "key": "KXAAAGASDNY-26SEP06-4.2700",
+          "no_sub_title": "Above 4.2700",
+          "rules_primary": "If average regular gas prices for New York are strictly greater than $4.2700 on Sep 6, 2026 according to AAA, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-06T03:59:00Z",
+          "series": "KXAAAGASDNY",
+          "subtitle": null,
+          "title": "Will average **gas prices** be above $4.2700?",
+          "yes_sub_title": "Above 4.2700"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXAAAGASDNY-26SEP06",
+          "key": "KXAAAGASDNY-26SEP06-4.2750",
+          "no_sub_title": "Above 4.2750",
+          "rules_primary": "If average regular gas prices for New York are strictly greater than $4.2750 on Sep 6, 2026 according to AAA, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-06T03:59:00Z",
+          "series": "KXAAAGASDNY",
+          "subtitle": null,
+          "title": "Will average **gas prices** be above $4.2750?",
+          "yes_sub_title": "Above 4.2750"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXAAAGASDNY-26SEP06",
+          "key": "KXAAAGASDNY-26SEP06-4.2800",
+          "no_sub_title": "Above 4.2800",
+          "rules_primary": "If average regular gas prices for New York are strictly greater than $4.2800 on Sep 6, 2026 according to AAA, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-06T03:59:00Z",
+          "series": "KXAAAGASDNY",
+          "subtitle": null,
+          "title": "Will average **gas prices** be above $4.2800?",
+          "yes_sub_title": "Above 4.2800"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXAAAGASDNY-26SEP06",
+          "key": "KXAAAGASDNY-26SEP06-4.2850",
+          "no_sub_title": "Above 4.2850",
+          "rules_primary": "If average regular gas prices for New York are strictly greater than $4.2850 on Sep 6, 2026 according to AAA, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-06T03:59:00Z",
+          "series": "KXAAAGASDNY",
+          "subtitle": null,
+          "title": "Will average **gas prices** be above $4.2850?",
+          "yes_sub_title": "Above 4.2850"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXAAAGASDNY-26SEP06",
+          "key": "KXAAAGASDNY-26SEP06-4.3450",
+          "no_sub_title": "Above 4.3450",
+          "rules_primary": "If average regular gas prices for New York are strictly greater than $4.3450 on Sep 6, 2026 according to AAA, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-06T03:59:00Z",
+          "series": "KXAAAGASDNY",
+          "subtitle": null,
+          "title": "Will average **gas prices** be above $4.3450?",
+          "yes_sub_title": "Above 4.3450"
+        }
+      ]
+    },
+    {
+      "event_key": "KXENGAGEMENTDUNSKE-26",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXENGAGEMENTDUNSKE-26",
+          "key": "KXENGAGEMENTDUNSKE-26",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If Olivia Dunne and Paul Skenes are reported to be engaged to be married before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXENGAGEMENTDUNSKE",
+          "subtitle": "Before 2027",
+          "title": "Will Olivia Dunne and Paul Skenes be engaged in 2026?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXACAEXT-26JAN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXACAEXT-26JAN",
+          "key": "KXACAEXT-26JAN-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If legislation extending or reinstating (if expired) enhanced ACA premium tax credits becomes law before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Clarification (11/14/25): Any extension that continues the enhanced premium tax credits past this year qualifies for a Yes resolution, regardless of modifications to the extension's structure. This would include extensions that reduce the subsidy amounts or modify eligibility criteria. An extension of the credits for any length of time beyond the current expiration date is encompassed within the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXACAEXT",
+          "subtitle": null,
+          "title": "Will legislation extending or reinstating (if expired) enhanced ACA premium tax credits becomes law before Jan 1, 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXAAAGASDTX-26SEP06",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXAAAGASDTX-26SEP06",
+          "key": "KXAAAGASDTX-26SEP06-3.6500",
+          "no_sub_title": "Above 3.6500",
+          "rules_primary": "If average regular gas prices for Texas are strictly greater than $3.6500 on Sep 6, 2026 according to AAA, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-06T03:59:00Z",
+          "series": "KXAAAGASDTX",
+          "subtitle": null,
+          "title": "Will average **gas prices** be above $3.6500?",
+          "yes_sub_title": "Above 3.6500"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXAAAGASDTX-26SEP06",
+          "key": "KXAAAGASDTX-26SEP06-3.6700",
+          "no_sub_title": "Above 3.6700",
+          "rules_primary": "If average regular gas prices for Texas are strictly greater than $3.6700 on Sep 6, 2026 according to AAA, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-06T03:59:00Z",
+          "series": "KXAAAGASDTX",
+          "subtitle": null,
+          "title": "Will average **gas prices** be above $3.6700?",
+          "yes_sub_title": "Above 3.6700"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXAAAGASDTX-26SEP06",
+          "key": "KXAAAGASDTX-26SEP06-3.6750",
+          "no_sub_title": "Above 3.6750",
+          "rules_primary": "If average regular gas prices for Texas are strictly greater than $3.6750 on Sep 6, 2026 according to AAA, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-06T03:59:00Z",
+          "series": "KXAAAGASDTX",
+          "subtitle": null,
+          "title": "Will average **gas prices** be above $3.6750?",
+          "yes_sub_title": "Above 3.6750"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXAAAGASDTX-26SEP06",
+          "key": "KXAAAGASDTX-26SEP06-3.6950",
+          "no_sub_title": "Above 3.6950",
+          "rules_primary": "If average regular gas prices for Texas are strictly greater than $3.6950 on Sep 6, 2026 according to AAA, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-06T03:59:00Z",
+          "series": "KXAAAGASDTX",
+          "subtitle": null,
+          "title": "Will average **gas prices** be above $3.6950?",
+          "yes_sub_title": "Above 3.6950"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNEWOUTBREAKEBOLA-26",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXNEWOUTBREAKEBOLA-26",
+          "key": "KXNEWOUTBREAKEBOLA-26",
+          "no_sub_title": "In Dec 31, 2026",
+          "rules_primary": "If Ebola becomes a pandemic in 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXNEWOUTBREAKEBOLA",
+          "subtitle": "By Dec 31, 2026",
+          "title": "New pandemic by 2026?",
+          "yes_sub_title": "In Dec 31, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSNAPELECTIONRS-27",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXSNAPELECTIONRS-27",
+          "key": "KXSNAPELECTIONRS-27-26OCT01",
+          "no_sub_title": "Before Oct 1, 2026",
+          "rules_primary": "If Serbia officially announces a snap election for its national legislature or head of government before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "A \"snap election\" is a national election for the legislature or head of government called to occur at least 90 days earlier than either the previously scheduled election date or the latest constitutionally or legally required date. The announcement must be made by a person or body with the legal authority to call such elections, must specify an actual election date, and must occur after Issuance and before Oct 1, 2026 at 11:59 PM ET, regardless of when the election is scheduled to take place.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXSNAPELECTIONRS",
+          "subtitle": null,
+          "title": "Will Serbia announce a snap election before Oct 1, 2026?",
+          "yes_sub_title": "Before Oct 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXKASHOUT-26APR",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXKASHOUT-26APR",
+          "key": "KXKASHOUT-26JUL-26DEC01",
+          "no_sub_title": "Before Dec 1, 2026",
+          "rules_primary": "If Kash Patel leaves as FBI Director before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Kash Patel must have an actual departure date and vacate the role within the time period. \n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2026-12-01T04:59:00Z",
+          "series": "KXKASHOUT",
+          "subtitle": "Before Dec 1, 2026",
+          "title": "Will Kash Patel be out as FBI Director before Dec 1, 2026?",
+          "yes_sub_title": "Before Dec 1, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXKASHOUT-26APR",
+          "key": "KXKASHOUT-26JUL-26NOV01",
+          "no_sub_title": "Before Nov 1, 2026",
+          "rules_primary": "If Kash Patel leaves as FBI Director before Nov 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Kash Patel must have an actual departure date and vacate the role within the time period. \n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2026-11-01T04:59:00Z",
+          "series": "KXKASHOUT",
+          "subtitle": "Before Nov 1, 2026",
+          "title": "Will Kash Patel be out as FBI Director before Nov 1, 2026?",
+          "yes_sub_title": "Before Nov 1, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXKASHOUT-26APR",
+          "key": "KXKASHOUT-26JUL-26OCT01",
+          "no_sub_title": "Before Oct 1, 2026",
+          "rules_primary": "If Kash Patel leaves as FBI Director before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Kash Patel must have an actual departure date and vacate the role within the time period. \n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXKASHOUT",
+          "subtitle": "Before Oct 1, 2026",
+          "title": "Will Kash Patel be out as FBI Director before Oct 1, 2026?",
+          "yes_sub_title": "Before Oct 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFLYCANCJFK-JFK-ALL-26OCT21",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXFLYCANCJFK-JFK-ALL-26OCT21",
+          "key": "KXFLYCANCJFK-JFK-ALL-26OCT21-T50",
+          "no_sub_title": "At least 50%",
+          "rules_primary": "If the percentage of scheduled passenger and cargo flights at John F. Kennedy International Airport (JFK/KJFK) that are cancelled during October 21, 2026 is at least 50%, then the market resolves to Yes.",
+          "rules_secondary": "This market and these products have not been endorsed by the Primary Source Agency or its affiliates. Any references to the Primary Source Agency\u2019s delay and cancellation page, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Primary Source Agency or its affiliates and Kalshi.\n\nEXCLUDED EVENTS\n\n\u201cExcluded Event\u201d means any event or circumstance arising from, or directly resulting from:\n\n(i) Any act of unlawful interference with civil aviation, including sabotage, unlawful seizure of aircraft, or interference with air navigation facilities or services;\n\n(ii) Any deliberate act or omission by any person, whether or not identified, undertaken with the purpose or reasonably foreseeable effect of disrupting operations at John F. Kennedy International Airport (JFK/KJFK), including without limitation unauthorized unmanned aircraft operations, laser illumination, trespass upon or unauthorized presence within the air operations area, tampering with or destruction of airport, air carrier, air traffic control, or utility infrastructure serving John F. Kennedy International Airport (JFK/KJFK), and false reports or threats resulting in evacuation, ground stop, or suspension of operations;\n\n(iii) Any malicious cyber incident affecting systems of John F. Kennedy International Airport (JFK/KJFK), any air carrier, or any air navigation service provider, as characterized by the affected entity or a governmental authority; or\n\n(iv) Any security-related closure, ground stop, or operational suspension ordered by a governmental authority in response to an actual or suspected act described in clauses (i)\u2013(iii) or to any actual or suspected act of unlawful violence, wherever occurring.\n\nHOW THE CANCELLATION PERCENTAGE IS CALCULATED\n\nThe cancellation percentage is calculated by dividing the number of cancelled flights within the fixed schedule by the total number of scheduled flights and multiplying the result by 100. The result is carried to two decimal places without rounding; any digits beyond the second decimal place are truncated.\n\nSchedule baseline: The schedule baseline for this market is October 19, 2026 at 11:59:59 PM ET.\n\nFixed scheduled-flight total: The binding total number of scheduled flights will be determined as of October 19, 2026 at 11:59:59 PM ET. This total consists of commercial passenger and cargo flights, including arrivals and departures combined, scheduled to operate at John F. Kennedy International Airport (JFK/KJFK) during October 21, 2026.\n\nThe fixed total includes any flight subsequently cancelled and is not reduced by cancellations, schedule changes, or removals occurring after the schedule baseline. Flights added after the schedule baseline are excluded from both the scheduled-flight total and the cancellation count.\n\nCancelled flights: A flight counts as cancelled only if it is included in the fixed scheduled-flight total and is classified as cancelled by the Primary Source Agency as of the Expiration time. Cancellations made after the schedule baseline but before the beginning of October 21, 2026, including pre-emptive cancellations, are counted.\n\nReinstated flights: A flight initially classified as cancelled that is subsequently reinstated and operates during October 21, 2026 is not counted as cancelled.\n\nExcluded flight outcomes: Delayed flights, diverted flights, and gate returns that ultimately depart are not counted as cancelled, regardless of the length of the delay.\n\nCorrections and revisions: Corrections, retractions, or restatements made by the Primary Source Agency before Expiration will be considered. Revisions made after Expiration will not be considered.\n\nLocal time and flight attribution: All dates and times relating to the scheduling and operation of flights are interpreted in the local time of John F. Kennedy International Airport (JFK/KJFK) unless otherwise specified. Each flight is attributed to October 21, 2026 according to its originally scheduled date of operation at the airport.\n\nAIRPORT CLOSURE\n\nIf John F. Kennedy International Airport (JFK/KJFK) is fully closed and no scheduled flight operates for the entirety of October 21, 2026, the cancellation percentage will be deemed 100.00%.\n\nIf the scheduled-flight total is zero because the airport is closed, or has been ordered or announced to be closed, for the entirety of October 21, 2026, the cancellation percentage will be deemed 100.00%. If the scheduled-flight total is zero for any other reason, the outcome will be determined pursuant to Rule 7.1 of the Rulebook.",
+          "scheduled_close": "2026-10-22T14:00:00Z",
+          "series": "KXFLYCANCJFK",
+          "subtitle": "At least 50%",
+          "title": "Will at least 50% of scheduled passenger and cargo flights at JFK be cancelled October 21, 2026?",
+          "yes_sub_title": "At least 50%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXXRPY-27JAN0100",
+      "markets": [
+        {
+          "category": "Crypto",
+          "event_key": "KXXRPY-27JAN0100",
+          "key": "KXXRPY-27JAN0100-B10000",
+          "no_sub_title": "$1.0000 - $1.2499",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' XRPUSD_RTI before 12 AM EST is between $1.0000-1.2499 at 12 AM EST on Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2027-01-01T05:00:00Z",
+          "series": "KXXRPY",
+          "subtitle": null,
+          "title": "XRP price on Jan 1, 2027?",
+          "yes_sub_title": "$1.0000 - $1.2499"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXXRPY-27JAN0100",
+          "key": "KXXRPY-27JAN0100-B15000",
+          "no_sub_title": "$1.5000 - $1.7499",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' XRPUSD_RTI before 12 AM EST is between $1.5000-1.7499 at 12 AM EST on Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2027-01-01T05:00:00Z",
+          "series": "KXXRPY",
+          "subtitle": null,
+          "title": "XRP price on Jan 1, 2027?",
+          "yes_sub_title": "$1.5000 - $1.7499"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXXRPY-27JAN0100",
+          "key": "KXXRPY-27JAN0100-B17500",
+          "no_sub_title": "$1.7500 - $1.9999",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' XRPUSD_RTI before 12 AM EST is between $1.7500-1.9999 at 12 AM EST on Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2027-01-01T05:00:00Z",
+          "series": "KXXRPY",
+          "subtitle": null,
+          "title": "XRP price on Jan 1, 2027?",
+          "yes_sub_title": "$1.7500 - $1.9999"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXXRPY-27JAN0100",
+          "key": "KXXRPY-27JAN0100-B22500",
+          "no_sub_title": "$2.2500 - $2.4999",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' XRPUSD_RTI before 12 AM EST is between $2.2500-2.4999 at 12 AM EST on Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2027-01-01T05:00:00Z",
+          "series": "KXXRPY",
+          "subtitle": null,
+          "title": "XRP price on Jan 1, 2027?",
+          "yes_sub_title": "$2.2500 - $2.4999"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXXRPY-27JAN0100",
+          "key": "KXXRPY-27JAN0100-T59999",
+          "no_sub_title": "$6 or above",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' XRPUSD_RTI before 12 AM EST is above $5.9999 at 12 AM EST on Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2027-01-01T05:00:00Z",
+          "series": "KXXRPY",
+          "subtitle": null,
+          "title": "XRP price on Jan 1, 2027?",
+          "yes_sub_title": "$6 or above"
+        }
+      ]
+    },
+    {
+      "event_key": "KXPARTDGLP1-26AUG",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXPARTDGLP1-26AUG",
+          "key": "KXPARTDGLP1-26AUG-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If CMS announces the addition of GLP-1 drugs for obesity to Part D before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "GLP-1 drugs are already covered under Part D for type 2 diabetes, cardiovascular risk reduction and obstructive sleep apnea. Those indications are outside this market, which turns on coverage for obesity or chronic weight management.\n\nOnly a completed CMS action that provides the coverage counts, such as a final rule, a finalized model design, or guidance to Part D sponsors through the Health Plan Management System. Where the White House or HHS makes the determination, the CMS document adopting it resolves this market, on the date of that document.\n\nThe following do NOT resolve this market to YES:\nA CMS communication that discusses, studies or reports on such coverage.\nA proposed rule or a request for applications, which propose coverage rather than provide it.\nAn action that considers the change and declines to make it.\nThe Medicare GLP-1 Bridge, or extending or replacing it, because it sits outside the Part D benefit.\nAn announcement covering only the Medicaid portion of the BALANCE Model.\n\nCoverage of a single drug, or of a subset of Part D enrollees, is sufficient. The announcement date governs, not the date coverage takes effect.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXPARTDGLP1",
+          "subtitle": null,
+          "title": "Will CMS announce the addition of GLP-1 drugs for obesity to Part D before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXGONORRHEACOUNT-27JAN01",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXGONORRHEACOUNT-27JAN01",
+          "key": "KXGONORRHEACOUNT-27JAN01-A285000",
+          "no_sub_title": "Above 285k",
+          "rules_primary": "If the total number of gonorrhea cases reported in the United States during 2026 is above 285000, then the market resolves to Yes.",
+          "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized. This market refers exclusively to human cases.",
+          "scheduled_close": "2027-01-01T14:59:00Z",
+          "series": "KXGONORRHEACOUNT",
+          "subtitle": "Above 285k",
+          "title": "Above 285000 gonorrhea cases in the United States during 2026",
+          "yes_sub_title": "Above 285k"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXGONORRHEACOUNT-27JAN01",
+          "key": "KXGONORRHEACOUNT-27JAN01-A300000",
+          "no_sub_title": "Above 300k",
+          "rules_primary": "If the total number of gonorrhea cases reported in the United States during 2026 is above 300000, then the market resolves to Yes.",
+          "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized. This market refers exclusively to human cases.",
+          "scheduled_close": "2027-01-01T14:59:00Z",
+          "series": "KXGONORRHEACOUNT",
+          "subtitle": null,
+          "title": "Above 300000 gonorrhea cases in the United States during 2026",
+          "yes_sub_title": "Above 300k"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXGONORRHEACOUNT-27JAN01",
+          "key": "KXGONORRHEACOUNT-27JAN01-A325000",
+          "no_sub_title": "Above 325k",
+          "rules_primary": "If the total number of gonorrhea cases reported in the United States during 2026 is above 325000, then the market resolves to Yes.",
+          "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized. This market refers exclusively to human cases.",
+          "scheduled_close": "2027-01-01T14:59:00Z",
+          "series": "KXGONORRHEACOUNT",
+          "subtitle": null,
+          "title": "Above 325000 gonorrhea cases in the United States during 2026",
+          "yes_sub_title": "Above 325k"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXGONORRHEACOUNT-27JAN01",
+          "key": "KXGONORRHEACOUNT-27JAN01-A350000",
+          "no_sub_title": "Above 350k",
+          "rules_primary": "If the total number of gonorrhea cases reported in the United States during 2026 is above 350000, then the market resolves to Yes.",
+          "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized. This market refers exclusively to human cases.",
+          "scheduled_close": "2027-01-01T14:59:00Z",
+          "series": "KXGONORRHEACOUNT",
+          "subtitle": null,
+          "title": "Above 350000 gonorrhea cases in the United States during 2026",
+          "yes_sub_title": "Above 350k"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXGONORRHEACOUNT-27JAN01",
+          "key": "KXGONORRHEACOUNT-27JAN01-A375000",
+          "no_sub_title": "Above 375k",
+          "rules_primary": "If the total number of gonorrhea cases reported in the United States during 2026 is above 375000, then the market resolves to Yes.",
+          "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized. This market refers exclusively to human cases.",
+          "scheduled_close": "2027-01-01T14:59:00Z",
+          "series": "KXGONORRHEACOUNT",
+          "subtitle": null,
+          "title": "Above 375000 gonorrhea cases in the United States during 2026",
+          "yes_sub_title": "Above 375k"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXGONORRHEACOUNT-27JAN01",
+          "key": "KXGONORRHEACOUNT-27JAN01-A400000",
+          "no_sub_title": "Above 400k",
+          "rules_primary": "If the total number of gonorrhea cases reported in the United States during 2026 is above 400000, then the market resolves to Yes.",
+          "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized. This market refers exclusively to human cases.",
+          "scheduled_close": "2027-01-01T14:59:00Z",
+          "series": "KXGONORRHEACOUNT",
+          "subtitle": null,
+          "title": "Above 400000 gonorrhea cases in the United States during 2026",
+          "yes_sub_title": "Above 400k"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXGONORRHEACOUNT-27JAN01",
+          "key": "KXGONORRHEACOUNT-27JAN01-A425000",
+          "no_sub_title": "Above 425k",
+          "rules_primary": "If the total number of gonorrhea cases reported in the United States during 2026 is above 425000, then the market resolves to Yes.",
+          "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized. This market refers exclusively to human cases.",
+          "scheduled_close": "2027-01-01T14:59:00Z",
+          "series": "KXGONORRHEACOUNT",
+          "subtitle": null,
+          "title": "Above 425000 gonorrhea cases in the United States during 2026",
+          "yes_sub_title": "Above 425k"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXGONORRHEACOUNT-27JAN01",
+          "key": "KXGONORRHEACOUNT-27JAN01-A450000",
+          "no_sub_title": "Above 450k",
+          "rules_primary": "If the total number of gonorrhea cases reported in the United States during 2026 is above 450000, then the market resolves to Yes.",
+          "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized. This market refers exclusively to human cases.",
+          "scheduled_close": "2027-01-01T14:59:00Z",
+          "series": "KXGONORRHEACOUNT",
+          "subtitle": null,
+          "title": "Above 450000 gonorrhea cases in the United States during 2026",
+          "yes_sub_title": "Above 450k"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXGONORRHEACOUNT-27JAN01",
+          "key": "KXGONORRHEACOUNT-27JAN01-A500000",
+          "no_sub_title": "Above 500k",
+          "rules_primary": "If the total number of gonorrhea cases reported in the United States during 2026 is above 500000, then the market resolves to Yes.",
+          "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized. This market refers exclusively to human cases.",
+          "scheduled_close": "2027-01-01T14:59:00Z",
+          "series": "KXGONORRHEACOUNT",
+          "subtitle": null,
+          "title": "Above 500000 gonorrhea cases in the United States during 2026",
+          "yes_sub_title": "Above 500k"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

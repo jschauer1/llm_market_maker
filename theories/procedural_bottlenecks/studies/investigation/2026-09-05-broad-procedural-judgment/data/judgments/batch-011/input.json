@@ -1,0 +1,822 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXTRUMPTALKSCOTUS-26DEC31",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXTRUMPTALKSCOTUS-26DEC31",
+          "key": "KXTRUMPTALKSCOTUS-26DEC31-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Donald Trump and any sitting Supreme Court justice meet (including phone calls) during after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A qualifying meeting must satisfy the following: both persons must be present (physically or virtually, as specified) and engage in communication or interaction\u2014mere presence in the same location without interaction does not constitute a meeting unless otherwise specified. The meeting must be confirmed by at least one Source Agency through official statement, press release, credible media report, or other documented evidence. The meeting must occur at any point during the time period; for meetings that span across the boundary of the time period, any portion of the meeting occurring within the time period is sufficient. Coincidental encounters without purposeful engagement (e.g., passing in a hallway without acknowledgment) do not count. Communication via intermediaries, written letters, or social media do not count unless specified.",
+          "scheduled_close": "2027-01-01T14:59:00Z",
+          "series": "KXTRUMPTALKSCOTUS",
+          "subtitle": null,
+          "title": "Will Donald Trump meet (including phone calls) any sitting Supreme Court justice before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXIMPEACH",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXIMPEACH",
+          "key": "KXIMPEACH-27-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If the President of the United States has been impeached before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The President must hold the office when an impeachment resolution passes against him or her .",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXIMPEACH",
+          "subtitle": null,
+          "title": "Will the President be impeached before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXIMPEACH",
+          "key": "KXIMPEACH-27-MAR01",
+          "no_sub_title": "Before Mar 1, 2027",
+          "rules_primary": "If the President of the United States has been impeached before Mar 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-03-01T15:00:00Z",
+          "series": "KXIMPEACH",
+          "subtitle": null,
+          "title": "Will the President be impeached before Mar 1, 2027?",
+          "yes_sub_title": "Before Mar 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTRUMPAVENUE-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXTRUMPAVENUE-27",
+          "key": "KXTRUMPAVENUE-27-27JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If it is reported after Issuance and before Jan 1, 2027 by CBC, CTV, Global News, The Globe and Mail, Ottawa Citizen, or Ottawa Sun that Trump Avenue in Ottawa, Canada has been officially renamed, then the market resolves to Yes.",
+          "rules_secondary": "Only reporting from CBC, CTV, Global News, The Globe and Mail, Ottawa Citizen, or Ottawa Sun qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify, unless the new article itself explicitly reaffirms the truth of the topic as of the publication date. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.\n\nThe replacement street name must be in effect for the entire avenue. Proposals, honorary co-naming, and approvals with a future effective date do NOT count.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRUMPAVENUE",
+          "subtitle": null,
+          "title": "Will it be reported by CBC, CTV, Global News, The Globe and Mail, Ottawa Citizen, or Ottawa Sun that Trump Avenue in Ottawa, Canada has been officially renamed before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRUMPAVENUE-27",
+          "key": "KXTRUMPAVENUE-27-27JUL01",
+          "no_sub_title": "Before Jul 1, 2027",
+          "rules_primary": "If it is reported after Issuance and before Jul 1, 2027 by CBC, CTV, Global News, The Globe and Mail, Ottawa Citizen, or Ottawa Sun that Trump Avenue in Ottawa, Canada has been officially renamed, then the market resolves to Yes.",
+          "rules_secondary": "Only reporting from CBC, CTV, Global News, The Globe and Mail, Ottawa Citizen, or Ottawa Sun qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify, unless the new article itself explicitly reaffirms the truth of the topic as of the publication date. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.\n\nThe replacement street name must be in effect for the entire avenue. Proposals, honorary co-naming, and approvals with a future effective date do NOT count.",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXTRUMPAVENUE",
+          "subtitle": null,
+          "title": "Will it be reported by CBC, CTV, Global News, The Globe and Mail, Ottawa Citizen, or Ottawa Sun that Trump Avenue in Ottawa, Canada has been officially renamed before Jul 1, 2027?",
+          "yes_sub_title": "Before Jul 1, 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSCOTUSCERTFLAG-27JAN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXSCOTUSCERTFLAG-27JAN",
+          "key": "KXSCOTUSCERTFLAG-27JAN-FBB",
+          "no_sub_title": "a case about flag burning",
+          "rules_primary": "If the Supreme Court grants a writ of certiorari to a case about flag burning before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSCOTUSCERTFLAG",
+          "subtitle": null,
+          "title": "What cases will the Supreme Court agree to hear before Jan 2027?",
+          "yes_sub_title": "a case about flag burning"
+        }
+      ]
+    },
+    {
+      "event_key": "KXRUNBYMIDTERM-26NOV03",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXRUNBYMIDTERM-26NOV03",
+          "key": "KXRUNBYMIDTERM-26NOV03-CDES",
+          "no_sub_title": "Casey DeSantis",
+          "rules_primary": "If Casey DeSantis has announced they will run for an elected public office in the 2026 election after Issuance and before Nov 3, 2026, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXRUNBYMIDTERM",
+          "subtitle": "Casey DeSantis",
+          "title": "Will Casey DeSantis announce a run for an elected public office in 2026?",
+          "yes_sub_title": "Casey DeSantis"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXRUNBYMIDTERM-26NOV03",
+          "key": "KXRUNBYMIDTERM-26NOV03-DPAT",
+          "no_sub_title": "Danica Patrick",
+          "rules_primary": "If Danica Patrick has announced they will run for an elected public office in the 2026 election after Issuance and before Nov 3, 2026, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXRUNBYMIDTERM",
+          "subtitle": null,
+          "title": "Will Danica Patrick announce a run for an elected public office in 2026?",
+          "yes_sub_title": "Danica Patrick"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXRUNBYMIDTERM-26NOV03",
+          "key": "KXRUNBYMIDTERM-26NOV03-GYOU",
+          "no_sub_title": "Glenn Youngkin",
+          "rules_primary": "If Glenn Youngkin has announced they will run for an elected public office in the 2026 election after Issuance and before Nov 3, 2026, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXRUNBYMIDTERM",
+          "subtitle": null,
+          "title": "Will Glenn Youngkin announce a run for an elected public office in 2026?",
+          "yes_sub_title": "Glenn Youngkin"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXRUNBYMIDTERM-26NOV03",
+          "key": "KXRUNBYMIDTERM-26NOV03-JKEN",
+          "no_sub_title": "Joe Kent",
+          "rules_primary": "If Joe Kent has announced they will run for an elected public office in the 2026 election after Issuance and before Nov 3, 2026, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXRUNBYMIDTERM",
+          "subtitle": null,
+          "title": "Will Joe Kent announce a run for an elected public office in 2026?",
+          "yes_sub_title": "Joe Kent"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXRUNBYMIDTERM-26NOV03",
+          "key": "KXRUNBYMIDTERM-26NOV03-JPAU",
+          "no_sub_title": "Jake Paul",
+          "rules_primary": "If Jake Paul has announced they will run for an elected public office in the 2026 election after Issuance and before Nov 3, 2026, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXRUNBYMIDTERM",
+          "subtitle": null,
+          "title": "Will Jake Paul announce a run for an elected public office in 2026?",
+          "yes_sub_title": "Jake Paul"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXRUNBYMIDTERM-26NOV03",
+          "key": "KXRUNBYMIDTERM-26NOV03-MCUB",
+          "no_sub_title": "Mark Cuban",
+          "rules_primary": "If Mark Cuban has announced they will run for an elected public office in the 2026 election after Issuance and before Nov 3, 2026, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXRUNBYMIDTERM",
+          "subtitle": null,
+          "title": "Will Mark Cuban announce a run for an elected public office in 2026?",
+          "yes_sub_title": "Mark Cuban"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXRUNBYMIDTERM-26NOV03",
+          "key": "KXRUNBYMIDTERM-26NOV03-MGAE",
+          "no_sub_title": "Matt Gaetz",
+          "rules_primary": "If Matt Gaetz has announced they will run for an elected public office in the 2026 election after Issuance and before Nov 3, 2026, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXRUNBYMIDTERM",
+          "subtitle": null,
+          "title": "Will Matt Gaetz announce a run for an elected public office in 2026?",
+          "yes_sub_title": "Matt Gaetz"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXRUNBYMIDTERM-26NOV03",
+          "key": "KXRUNBYMIDTERM-26NOV03-MMCC",
+          "no_sub_title": "Matthew McConaughey",
+          "rules_primary": "If Matthew McConaughey has announced they will run for an elected public office in the 2026 election after Issuance and before Nov 3, 2026, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXRUNBYMIDTERM",
+          "subtitle": null,
+          "title": "Will Matthew McConaughey announce a run for an elected public office in 2026?",
+          "yes_sub_title": "Matthew McConaughey"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXRUNBYMIDTERM-26NOV03",
+          "key": "KXRUNBYMIDTERM-26NOV03-NMIN",
+          "no_sub_title": "Nicki Minaj",
+          "rules_primary": "If Nicki Minaj has announced they will run for an elected public office in the 2026 election after Issuance and before Nov 3, 2026, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXRUNBYMIDTERM",
+          "subtitle": null,
+          "title": "Will Nicki Minaj announce a run for an elected public office in 2026?",
+          "yes_sub_title": "Nicki Minaj"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXRUNBYMIDTERM-26NOV03",
+          "key": "KXRUNBYMIDTERM-26NOV03-PFIN",
+          "no_sub_title": "Paul Finebaum",
+          "rules_primary": "If Paul Finebaum has announced they will run for an elected public office in the 2026 election after Issuance and before Nov 3, 2026, including running for the nomination of any political party to contest that office, then the market resolves to Yes.",
+          "rules_secondary": "The person must publicly announce their campaign for it to be reported by a Source Agency. Merely filing campaign paperwork with the Federal Election Commission or similar entity is insufficient without a public announcement. The announcement must be for the specific office and election year listed. Exploratory committees or statements of interest without formal campaign announcements do not qualify. Running for a party's nomination to contest the office counts as running for that office. The announcement must come from the person themselves or their official campaign, not from speculation or third-party sources.",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXRUNBYMIDTERM",
+          "subtitle": null,
+          "title": "Will Paul Finebaum announce a run for an elected public office in 2026?",
+          "yes_sub_title": "Paul Finebaum"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCALIFORNIALEAVE-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXCALIFORNIALEAVE-27",
+          "key": "KXCALIFORNIALEAVE-27-CPAL",
+          "no_sub_title": "Chamath Palihapitiya",
+          "rules_primary": "If Chamath Palihapitiya announces they're moving away from California before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must indicate an intent to change primary residence, not temporary travel or maintaining multiple residences.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXCALIFORNIALEAVE",
+          "subtitle": null,
+          "title": "Will Chamath Palihapitiya announce they're leaving California?",
+          "yes_sub_title": "Chamath Palihapitiya"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXCALIFORNIALEAVE-27",
+          "key": "KXCALIFORNIALEAVE-27-JHUA",
+          "no_sub_title": "Jensen Huang",
+          "rules_primary": "If Jensen Huang announces they're moving away from California before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must indicate an intent to change primary residence, not temporary travel or maintaining multiple residences.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXCALIFORNIALEAVE",
+          "subtitle": null,
+          "title": "Will Jensen Huang announce they're leaving California?",
+          "yes_sub_title": "Jensen Huang"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXCALIFORNIALEAVE-27",
+          "key": "KXCALIFORNIALEAVE-27-LPAG",
+          "no_sub_title": "Larry Page",
+          "rules_primary": "If Larry Page announces they're moving away from California before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must indicate an intent to change primary residence, not temporary travel or maintaining multiple residences.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXCALIFORNIALEAVE",
+          "subtitle": "Larry Page",
+          "title": "Will Larry Page announce they're leaving California?",
+          "yes_sub_title": "Larry Page"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXCALIFORNIALEAVE-27",
+          "key": "KXCALIFORNIALEAVE-27-MAND",
+          "no_sub_title": "Marc Andreessen",
+          "rules_primary": "If Marc Andreessen announces they're moving away from California before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must indicate an intent to change primary residence, not temporary travel or maintaining multiple residences.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXCALIFORNIALEAVE",
+          "subtitle": null,
+          "title": "Will Marc Andreessen announce they're leaving California?",
+          "yes_sub_title": "Marc Andreessen"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXCALIFORNIALEAVE-27",
+          "key": "KXCALIFORNIALEAVE-27-MZUC",
+          "no_sub_title": "Mark Zuckerberg",
+          "rules_primary": "If Mark Zuckerberg announces they're moving away from California before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must indicate an intent to change primary residence, not temporary travel or maintaining multiple residences.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXCALIFORNIALEAVE",
+          "subtitle": null,
+          "title": "Will Mark Zuckerberg announce they're leaving California?",
+          "yes_sub_title": "Mark Zuckerberg"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXCALIFORNIALEAVE-27",
+          "key": "KXCALIFORNIALEAVE-27-PTHI",
+          "no_sub_title": "Peter Thiel",
+          "rules_primary": "If Peter Thiel announces they're moving away from California before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The announcement must indicate an intent to change primary residence, not temporary travel or maintaining multiple residences.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXCALIFORNIALEAVE",
+          "subtitle": null,
+          "title": "Will Peter Thiel announce they're leaving California?",
+          "yes_sub_title": "Peter Thiel"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNERIVISITS-27MAR31",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXNERIVISITS-27MAR31",
+          "key": "KXNERIVISITS-27MAR31-T1.7",
+          "no_sub_title": "Above 1.7 million",
+          "rules_primary": "If NPS reports that New River Gorge National Park recreation visits in 2026 is above \n\n1.7 million, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the finalized 2026 Recreation Visits total for New River Gorge NP & PRES (park code NERI) published by the National Park Service Visitor Use Statistics program. Preliminary current-year figures will not be used for final resolution.",
+          "scheduled_close": "2027-03-31T15:29:00Z",
+          "series": "KXNERIVISITS",
+          "subtitle": null,
+          "title": "Will New River Gorge National Park recreation visits in 2026 be above 1.7 million?",
+          "yes_sub_title": "Above 1.7 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNERIVISITS-27MAR31",
+          "key": "KXNERIVISITS-27MAR31-T1.9",
+          "no_sub_title": "Above 1.9 million",
+          "rules_primary": "If NPS reports that New River Gorge National Park recreation visits in 2026 is above \n\n1.9 million, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the finalized 2026 Recreation Visits total for New River Gorge NP & PRES (park code NERI) published by the National Park Service Visitor Use Statistics program. Preliminary current-year figures will not be used for final resolution.",
+          "scheduled_close": "2027-03-31T15:29:00Z",
+          "series": "KXNERIVISITS",
+          "subtitle": null,
+          "title": "Will New River Gorge National Park recreation visits in 2026 be above 1.9 million?",
+          "yes_sub_title": "Above 1.9 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXNERIVISITS-27MAR31",
+          "key": "KXNERIVISITS-27MAR31-T2.3",
+          "no_sub_title": "Above 2.3 million",
+          "rules_primary": "If NPS reports that New River Gorge National Park recreation visits in 2026 is above \n\n2.3 million, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the finalized 2026 Recreation Visits total for New River Gorge NP & PRES (park code NERI) published by the National Park Service Visitor Use Statistics program. Preliminary current-year figures will not be used for final resolution.",
+          "scheduled_close": "2027-03-31T15:29:00Z",
+          "series": "KXNERIVISITS",
+          "subtitle": null,
+          "title": "Will New River Gorge National Park recreation visits in 2026 be above 2.3 million?",
+          "yes_sub_title": "Above 2.3 million"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSENATEREC-26JUN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXSENATEREC-26JUN",
+          "key": "KXSENATEREC-26JUN-26DEC01",
+          "no_sub_title": "Before Dec 1, 2026",
+          "rules_primary": "If a reconciliation bill has passed the Senate after Issuance and before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXSENATEREC",
+          "subtitle": null,
+          "title": "Will a reconciliation bill passed the Senate before Dec 1, 2026?",
+          "yes_sub_title": "Before Dec 1, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXSENATEREC-26JUN",
+          "key": "KXSENATEREC-26JUN-26NOV01",
+          "no_sub_title": "Before Nov 1, 2026",
+          "rules_primary": "If a reconciliation bill has passed the Senate after Issuance and before Nov 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+          "scheduled_close": "2026-11-01T15:00:00Z",
+          "series": "KXSENATEREC",
+          "subtitle": null,
+          "title": "Will a reconciliation bill passed the Senate before Nov 1, 2026?",
+          "yes_sub_title": "Before Nov 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTOP3WEALTH-26DEC31",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXTOP3WEALTH-26DEC31",
+          "key": "KXTOP3WEALTH-26DEC31-ELON",
+          "no_sub_title": "Elon Musk",
+          "rules_primary": "If Elon Musk is one of the three wealthiest people in the world on Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTOP3WEALTH",
+          "subtitle": null,
+          "title": "Will Elon Musk be one of the three wealthiest people in the world?",
+          "yes_sub_title": "Elon Musk"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXTOP3WEALTH-26DEC31",
+          "key": "KXTOP3WEALTH-26DEC31-JEFF",
+          "no_sub_title": "Jeff Bezos",
+          "rules_primary": "If Jeff Bezos is one of the three wealthiest people in the world on Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTOP3WEALTH",
+          "subtitle": null,
+          "title": "Will Jeff Bezos be one of the three wealthiest people in the world?",
+          "yes_sub_title": "Jeff Bezos"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXTOP3WEALTH-26DEC31",
+          "key": "KXTOP3WEALTH-26DEC31-JENS",
+          "no_sub_title": "Jensen Huang",
+          "rules_primary": "If Jensen Huang is one of the three wealthiest people in the world on Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTOP3WEALTH",
+          "subtitle": null,
+          "title": "Will Jensen Huang be one of the three wealthiest people in the world?",
+          "yes_sub_title": "Jensen Huang"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXTOP3WEALTH-26DEC31",
+          "key": "KXTOP3WEALTH-26DEC31-MARK",
+          "no_sub_title": "Mark Zuckerberg",
+          "rules_primary": "If Mark Zuckerberg is one of the three wealthiest people in the world on Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTOP3WEALTH",
+          "subtitle": null,
+          "title": "Will Mark Zuckerberg be one of the three wealthiest people in the world?",
+          "yes_sub_title": "Mark Zuckerberg"
+        }
+      ]
+    },
+    {
+      "event_key": "KXBALANCEPOWERCOMBO-27FEB",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXBALANCEPOWERCOMBO-27FEB",
+          "key": "KXBALANCEPOWERCOMBO-27FEB-DD",
+          "no_sub_title": "D-House, D-Senate",
+          "rules_primary": "If ALL of the following occur: House Control: Democratic, Senate Control: Democratic, then the market resolves to Yes.",
+          "rules_secondary": "This is a combination market requiring ALL specified outcomes to occur for the contract to pay out. If ANY single component resolves to No or becomes impossible, the entire contract immediately resolves to No. Each component is resolved according to its corresponding Kalshi ruleset: House Control uses CONTROL, Senate Control uses CONTROL. Each CONTROL component may resolve on an accelerated basis as outlined in the full rules.",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "KXBALANCEPOWERCOMBO",
+          "subtitle": "D-House, D-Senate",
+          "title": "Will House Control be Democratic AND Senate Control be Democratic for Feb 2027?",
+          "yes_sub_title": "D-House, D-Senate"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBALANCEPOWERCOMBO-27FEB",
+          "key": "KXBALANCEPOWERCOMBO-27FEB-DR",
+          "no_sub_title": "D-House, R-Senate",
+          "rules_primary": "If ALL of the following occur: House Control: Democratic, Senate Control: Republican, then the market resolves to Yes.",
+          "rules_secondary": "This is a combination market requiring ALL specified outcomes to occur for the contract to pay out. If ANY single component resolves to No or becomes impossible, the entire contract immediately resolves to No. Each component is resolved according to its corresponding Kalshi ruleset: House Control uses CONTROL, Senate Control uses CONTROL. Each CONTROL component may resolve on an accelerated basis as outlined in the full rules.",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "KXBALANCEPOWERCOMBO",
+          "subtitle": "D-House, R-Senate",
+          "title": "Will House Control be Democratic AND Senate Control be Republican for Feb 2027?",
+          "yes_sub_title": "D-House, R-Senate"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBALANCEPOWERCOMBO-27FEB",
+          "key": "KXBALANCEPOWERCOMBO-27FEB-RD",
+          "no_sub_title": "R-House, D-Senate",
+          "rules_primary": "If ALL of the following occur: House Control: Republican, Senate Control: Democratic, then the market resolves to Yes.",
+          "rules_secondary": "This is a combination market requiring ALL specified outcomes to occur for the contract to pay out. If ANY single component resolves to No or becomes impossible, the entire contract immediately resolves to No. Each component is resolved according to its corresponding Kalshi ruleset: House Control uses CONTROL, Senate Control uses CONTROL. Each CONTROL component may resolve on an accelerated basis as outlined in the full rules.",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "KXBALANCEPOWERCOMBO",
+          "subtitle": null,
+          "title": "Will House Control be Republican AND Senate Control be Democratic for Feb 2027?",
+          "yes_sub_title": "R-House, D-Senate"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBALANCEPOWERCOMBO-27FEB",
+          "key": "KXBALANCEPOWERCOMBO-27FEB-RR",
+          "no_sub_title": "R-House, R-Senate",
+          "rules_primary": "If ALL of the following occur: House Control: Republican, Senate Control: Republican, then the market resolves to Yes.",
+          "rules_secondary": "This is a combination market requiring ALL specified outcomes to occur for the contract to pay out. If ANY single component resolves to No or becomes impossible, the entire contract immediately resolves to No. Each component is resolved according to its corresponding Kalshi ruleset: House Control uses CONTROL, Senate Control uses CONTROL. Each CONTROL component may resolve on an accelerated basis as outlined in the full rules.",
+          "scheduled_close": "2027-02-01T15:00:00Z",
+          "series": "KXBALANCEPOWERCOMBO",
+          "subtitle": null,
+          "title": "Will House Control be Republican AND Senate Control be Republican for Feb 2027?",
+          "yes_sub_title": "R-House, R-Senate"
+        }
+      ]
+    },
+    {
+      "event_key": "KXPARLIAMENTARIAN-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXPARLIAMENTARIAN-27",
+          "key": "KXPARLIAMENTARIAN-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If the Senate has overruled the parliamentarian\u2019s ruling on whether a given line-item can be included within budget reconciliation before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXPARLIAMENTARIAN",
+          "subtitle": null,
+          "title": "Will the Senate overrule the parliamentarian on budget reconciliation before Jan 1, 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTOKENLAUNCH-27JAN01",
+      "markets": [
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-ABST",
+          "no_sub_title": "Abstract",
+          "rules_primary": "If Abstract launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will Abstract launch a token before Jan 1, 2027?",
+          "yes_sub_title": "Abstract"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-ARC",
+          "no_sub_title": "Arc",
+          "rules_primary": "If Arc launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will Arc launch a token before Jan 1, 2027?",
+          "yes_sub_title": "Arc"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-BASE",
+          "no_sub_title": "Base",
+          "rules_primary": "If Base launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will Base launch a token before Jan 1, 2027?",
+          "yes_sub_title": "Base"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-CME",
+          "no_sub_title": "CME Group",
+          "rules_primary": "If CME Group launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will CME Group launch a token before Jan 1, 2027?",
+          "yes_sub_title": "CME Group"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-EXPO",
+          "no_sub_title": "Exponent",
+          "rules_primary": "If Exponent launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will Exponent launch a token before Jan 1, 2027?",
+          "yes_sub_title": "Exponent"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-FELI",
+          "no_sub_title": "Felix",
+          "rules_primary": "If Felix launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will Felix launch a token before Jan 1, 2027?",
+          "yes_sub_title": "Felix"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-FOMO",
+          "no_sub_title": "Fomo",
+          "rules_primary": "If Fomo launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will Fomo launch a token before Jan 1, 2027?",
+          "yes_sub_title": "Fomo"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-META",
+          "no_sub_title": "MetaMask",
+          "rules_primary": "If MetaMask launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will MetaMask launch a token before Jan 1, 2027?",
+          "yes_sub_title": "MetaMask"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-OPEN",
+          "no_sub_title": "OpenSea",
+          "rules_primary": "If OpenSea launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will OpenSea launch a token before Jan 1, 2027?",
+          "yes_sub_title": "OpenSea"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-OSTI",
+          "no_sub_title": "Ostium",
+          "rules_primary": "If Ostium launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will Ostium launch a token before Jan 1, 2027?",
+          "yes_sub_title": "Ostium"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-PHAN",
+          "no_sub_title": "Phantom",
+          "rules_primary": "If Phantom launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will Phantom launch a token before Jan 1, 2027?",
+          "yes_sub_title": "Phantom"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-RABB",
+          "no_sub_title": "Rabby",
+          "rules_primary": "If Rabby launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will Rabby launch a token before Jan 1, 2027?",
+          "yes_sub_title": "Rabby"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-TEMPO",
+          "no_sub_title": "Tempo",
+          "rules_primary": "If Tempo launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will Tempo launch a token before Jan 1, 2027?",
+          "yes_sub_title": "Tempo"
+        },
+        {
+          "category": "Crypto",
+          "event_key": "KXTOKENLAUNCH-27JAN01",
+          "key": "KXTOKENLAUNCH-27JAN01-UNIT",
+          "no_sub_title": "Unit",
+          "rules_primary": "If Unit launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A token launch requires ALL of the following: a fungible token deployed on a blockchain network, officially announced by the project as their token, transferability between wallet addresses, real economic value (not testnet), a liquidity pool with real value, and distribution through public sale, private sale, airdrop, liquidity provision, or exchange listing. This includes ICOs, TGEs, airdrops, fair launches, migrations from testnet to mainnet, token swaps, and governance/utility tokens that become transferable with market value. NOT included: future launch announcements without deployment, non-transferable tokens or points, testnet tokens, fully locked tokens, NFTs, soulbound tokens, internal ecosystem tokens, wrapped tokens of existing assets, unactivated contracts, or points that will convert after the deadline.",
+          "scheduled_close": "2026-12-31T18:59:00Z",
+          "series": "KXTOKENLAUNCH",
+          "subtitle": null,
+          "title": "Will Unit launch a token before Jan 1, 2027?",
+          "yes_sub_title": "Unit"
+        }
+      ]
+    },
+    {
+      "event_key": "GTA6",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "GTA6",
+          "key": "GTA6-26DEC31",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If GTA 6 (Grand Theft Auto VI) has been released on a major platform (PS5, Xbox Series X/S, Windows) by Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "This market and these products have not been endorsed by Rockstar Games. Any references to Rockstar Games, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Rockstar Games and Kalshi.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "GTA6",
+          "subtitle": "By Dec 31, 2026",
+          "title": "WIll GTA6 be released by Dec 31, 2026?",
+          "yes_sub_title": "Before 2027"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "GTA6",
+          "key": "KXGTA6-26NOV30",
+          "no_sub_title": "Before December 2026",
+          "rules_primary": "If GTA 6 (Grand Theft Auto VI) has been released on a major platform (PS5, Xbox Series X/S, Windows) by Nov 30, 2026, then the market resolves to Yes.",
+          "rules_secondary": "This market and these products have not been endorsed by Rockstar Games. Any references to Rockstar Games, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Rockstar Games and Kalshi.",
+          "scheduled_close": "2026-12-01T04:59:00Z",
+          "series": "KXGTA6",
+          "subtitle": "By Nov 30, 2026",
+          "title": "WIll GTA6 be released by Nov 30, 2026?",
+          "yes_sub_title": "Before December 2026"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "GTA6",
+          "key": "KXGTA6-26OCT31",
+          "no_sub_title": "Before November 2026",
+          "rules_primary": "If GTA 6 (Grand Theft Auto VI) has been released on a major platform (PS5, Xbox Series X/S, Windows) by Oct 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "This market and these products have not been endorsed by Rockstar Games. Any references to Rockstar Games, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Rockstar Games and Kalshi.",
+          "scheduled_close": "2026-11-01T03:59:00Z",
+          "series": "KXGTA6",
+          "subtitle": "By Oct 31, 2026",
+          "title": "WIll GTA6 be released by Oct 31, 2026?",
+          "yes_sub_title": "Before November 2026"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "GTA6",
+          "key": "KXGTA6-27JUL01",
+          "no_sub_title": "Before July 2027",
+          "rules_primary": "If GTA 6 (Grand Theft Auto VI) has been released on a major platform (PS5, Xbox Series X/S, Windows) by Jul 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "This market and these products have not been endorsed by Rockstar Games. Any references to Rockstar Games, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Rockstar Games and Kalshi.",
+          "scheduled_close": "2027-07-02T03:59:00Z",
+          "series": "KXGTA6",
+          "subtitle": "By Jul 1, 2027",
+          "title": "WIll GTA6 be released by Jul 1, 2027?",
+          "yes_sub_title": "Before July 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMAYORLA-26",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXMAYORLA-26",
+          "key": "KXMAYORLA-26-KBAS",
+          "no_sub_title": "Karen Bass",
+          "rules_primary": "If Karen Bass wins the 2026 Los Angeles Mayoral Election, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-06-02T14:00:00Z",
+          "series": "KXMAYORLA",
+          "subtitle": "Karen Bass",
+          "title": "Who will win Los Angeles Mayoral Election?",
+          "yes_sub_title": "Karen Bass"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXMAYORLA-26",
+          "key": "KXMAYORLA-26-NRAM",
+          "no_sub_title": "Nithya Raman",
+          "rules_primary": "If Nithya Raman wins the 2026 Los Angeles Mayoral Election, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-06-02T14:00:00Z",
+          "series": "KXMAYORLA",
+          "subtitle": null,
+          "title": "Who will win Los Angeles Mayoral Election?",
+          "yes_sub_title": "Nithya Raman"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMEDIARELEASEDUNE3-DU",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXMEDIARELEASEDUNE3-DU",
+          "key": "KXMEDIARELEASEDUNE3-DU-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Dune: Part Three has been publicly released Worldwide through official channels before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXMEDIARELEASEDUNE3",
+          "subtitle": null,
+          "title": "Will Dune: Part Three be released Worldwide before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

@@ -1,0 +1,783 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXSEMIPRODH-26",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXSEMIPRODH-26",
+          "key": "KXSEMIPRODH-26-14",
+          "no_sub_title": "Above 14%",
+          "rules_primary": "If the percent change in U.S. industrial production for \u201cSemiconductors and related electronic components\u201d in 2026 is above 14, as reported by the Board of Governors of the Federal Reserve System in the G.17 Industrial Production and Capacity Utilization release, then the market resolves to Yes.",
+          "rules_secondary": "The value used will be the annual percent change for 2026 shown in Table 2, \u201cIndustrial Production: Market and Industry Groups,\u201d for the industry group \u201cSemiconductors and related electronic components\u201d / NAICS 3344, measured on a fourth-quarter-to-fourth-quarter basis.",
+          "scheduled_close": "2027-01-17T14:10:00Z",
+          "series": "KXSEMIPRODH",
+          "subtitle": "Above 14%",
+          "title": "How much will semiconductor production grow in the US this year?",
+          "yes_sub_title": "Above 14%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSEMIPRODH-26",
+          "key": "KXSEMIPRODH-26-18",
+          "no_sub_title": "Above 18%",
+          "rules_primary": "If the percent change in U.S. industrial production for \u201cSemiconductors and related electronic components\u201d in 2026 is above 18, as reported by the Board of Governors of the Federal Reserve System in the G.17 Industrial Production and Capacity Utilization release, then the market resolves to Yes.",
+          "rules_secondary": "The value used will be the annual percent change for 2026 shown in Table 2, \u201cIndustrial Production: Market and Industry Groups,\u201d for the industry group \u201cSemiconductors and related electronic components\u201d / NAICS 3344, measured on a fourth-quarter-to-fourth-quarter basis.",
+          "scheduled_close": "2027-01-17T14:10:00Z",
+          "series": "KXSEMIPRODH",
+          "subtitle": "Above 18%",
+          "title": "How much will semiconductor production grow in the US this year?",
+          "yes_sub_title": "Above 18%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSEMIPRODH-26",
+          "key": "KXSEMIPRODH-26-20",
+          "no_sub_title": "Above 20%",
+          "rules_primary": "If the percent change in U.S. industrial production for \u201cSemiconductors and related electronic components\u201d in 2026 is above 20, as reported by the Board of Governors of the Federal Reserve System in the G.17 Industrial Production and Capacity Utilization release, then the market resolves to Yes.",
+          "rules_secondary": "The value used will be the annual percent change for 2026 shown in Table 2, \u201cIndustrial Production: Market and Industry Groups,\u201d for the industry group \u201cSemiconductors and related electronic components\u201d / NAICS 3344, measured on a fourth-quarter-to-fourth-quarter basis.",
+          "scheduled_close": "2027-01-17T14:10:00Z",
+          "series": "KXSEMIPRODH",
+          "subtitle": "Above 20%",
+          "title": "How much will semiconductor production grow in the US this year?",
+          "yes_sub_title": "Above 20%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSEMIPRODH-26",
+          "key": "KXSEMIPRODH-26-22",
+          "no_sub_title": "Above 22%",
+          "rules_primary": "If the percent change in U.S. industrial production for \u201cSemiconductors and related electronic components\u201d in 2026 is above 22, as reported by the Board of Governors of the Federal Reserve System in the G.17 Industrial Production and Capacity Utilization release, then the market resolves to Yes.",
+          "rules_secondary": "The value used will be the annual percent change for 2026 shown in Table 2, \u201cIndustrial Production: Market and Industry Groups,\u201d for the industry group \u201cSemiconductors and related electronic components\u201d / NAICS 3344, measured on a fourth-quarter-to-fourth-quarter basis.",
+          "scheduled_close": "2027-01-17T14:10:00Z",
+          "series": "KXSEMIPRODH",
+          "subtitle": "Above 22%",
+          "title": "How much will semiconductor production grow in the US this year?",
+          "yes_sub_title": "Above 22%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXSEMIPRODH-26",
+          "key": "KXSEMIPRODH-26-8",
+          "no_sub_title": "Above 8%",
+          "rules_primary": "If the percent change in U.S. industrial production for \u201cSemiconductors and related electronic components\u201d in 2026 is above 8, as reported by the Board of Governors of the Federal Reserve System in the G.17 Industrial Production and Capacity Utilization release, then the market resolves to Yes.",
+          "rules_secondary": "The value used will be the annual percent change for 2026 shown in Table 2, \u201cIndustrial Production: Market and Industry Groups,\u201d for the industry group \u201cSemiconductors and related electronic components\u201d / NAICS 3344, measured on a fourth-quarter-to-fourth-quarter basis.",
+          "scheduled_close": "2027-01-17T14:10:00Z",
+          "series": "KXSEMIPRODH",
+          "subtitle": "Above 8%",
+          "title": "How much will semiconductor production grow in the US this year?",
+          "yes_sub_title": "Above 8%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNYCPROPERTYTAX-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXNYCPROPERTYTAX-27JAN01",
+          "key": "KXNYCPROPERTYTAX-27JAN01",
+          "no_sub_title": "Yes",
+          "rules_primary": "If legislation increasing New York City's property tax rate has become law in New York City before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law. For standard legislation requiring executive approval, this includes final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods. For legislation not requiring executive approval, this includes final passage and completion of required waiting periods. For constitutional amendments, this includes passage with required supermajorities and completion of ratification processes. For executive orders, this includes official signature, publication in official government records, and legal effectiveness. Legislative passage without completed executive action, passage by only some required bodies, provisional passage, non-binding resolutions, and draft orders do not constitute enactment. Enactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXNYCPROPERTYTAX",
+          "subtitle": null,
+          "title": "Will legislation increasing New York City's property tax rate become law in New York City before Jan 1, 2027?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXVENUEPERFORMANCEDRAKE-27JAN01",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXVENUEPERFORMANCEDRAKE-27JAN01",
+          "key": "KXVENUEPERFORMANCEDRAKE-27JAN01-MER",
+          "no_sub_title": "Mercedes-Benz Stadium",
+          "rules_primary": "If Drake performs at Mercedes-Benz Stadium in 2026, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this contract, \"performed\" means the person appears live on stage or in the official broadcast/stream and performs (including singing, dancing, DJ-ing, or playing an instrument), either as a scheduled performer or as a guest appearance during another artist's performance. Guest appearances where the person performs live music qualify. Festival appearances that include a live set qualify. The following do not qualify: appearing only as an award presenter or host, being in the audience without performing, having music played without participation, appearing in video montages or tribute segments without performing, pre-show or post-show performances outside the official event timeframe, appearances without performing (speeches, award acceptances, interviews, promotional events), canceled or postponed shows where no performance occurs in the time period, rehearsals and sound checks, or virtual participation via livestream into the venue.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXVENUEPERFORMANCEDRAKE",
+          "subtitle": null,
+          "title": "Will Drake perform at Mercedes-Benz Stadium 2026?",
+          "yes_sub_title": "Mercedes-Benz Stadium"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVENUEPERFORMANCEDRAKE-27JAN01",
+          "key": "KXVENUEPERFORMANCEDRAKE-27JAN01-MET",
+          "no_sub_title": "MetLife Stadium",
+          "rules_primary": "If Drake performs at MetLife Stadium in 2026, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this contract, \"performed\" means the person appears live on stage or in the official broadcast/stream and performs (including singing, dancing, DJ-ing, or playing an instrument), either as a scheduled performer or as a guest appearance during another artist's performance. Guest appearances where the person performs live music qualify. Festival appearances that include a live set qualify. The following do not qualify: appearing only as an award presenter or host, being in the audience without performing, having music played without participation, appearing in video montages or tribute segments without performing, pre-show or post-show performances outside the official event timeframe, appearances without performing (speeches, award acceptances, interviews, promotional events), canceled or postponed shows where no performance occurs in the time period, rehearsals and sound checks, or virtual participation via livestream into the venue.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXVENUEPERFORMANCEDRAKE",
+          "subtitle": null,
+          "title": "Will Drake perform at MetLife Stadium 2026?",
+          "yes_sub_title": "MetLife Stadium"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVENUEPERFORMANCEDRAKE-27JAN01",
+          "key": "KXVENUEPERFORMANCEDRAKE-27JAN01-MSG",
+          "no_sub_title": "Madison Square Garden",
+          "rules_primary": "If Drake performs at Madison Square Garden in 2026, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this contract, \"performed\" means the person appears live on stage or in the official broadcast/stream and performs (including singing, dancing, DJ-ing, or playing an instrument), either as a scheduled performer or as a guest appearance during another artist's performance. Guest appearances where the person performs live music qualify. Festival appearances that include a live set qualify. The following do not qualify: appearing only as an award presenter or host, being in the audience without performing, having music played without participation, appearing in video montages or tribute segments without performing, pre-show or post-show performances outside the official event timeframe, appearances without performing (speeches, award acceptances, interviews, promotional events), canceled or postponed shows where no performance occurs in the time period, rehearsals and sound checks, or virtual participation via livestream into the venue.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXVENUEPERFORMANCEDRAKE",
+          "subtitle": null,
+          "title": "Will Drake perform at Madison Square Garden 2026?",
+          "yes_sub_title": "Madison Square Garden"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVENUEPERFORMANCEDRAKE-27JAN01",
+          "key": "KXVENUEPERFORMANCEDRAKE-27JAN01-SOF",
+          "no_sub_title": "SoFi Stadium",
+          "rules_primary": "If Drake performs at SoFi Stadium in 2026, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this contract, \"performed\" means the person appears live on stage or in the official broadcast/stream and performs (including singing, dancing, DJ-ing, or playing an instrument), either as a scheduled performer or as a guest appearance during another artist's performance. Guest appearances where the person performs live music qualify. Festival appearances that include a live set qualify. The following do not qualify: appearing only as an award presenter or host, being in the audience without performing, having music played without participation, appearing in video montages or tribute segments without performing, pre-show or post-show performances outside the official event timeframe, appearances without performing (speeches, award acceptances, interviews, promotional events), canceled or postponed shows where no performance occurs in the time period, rehearsals and sound checks, or virtual participation via livestream into the venue.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXVENUEPERFORMANCEDRAKE",
+          "subtitle": null,
+          "title": "Will Drake perform at SoFi Stadium 2026?",
+          "yes_sub_title": "SoFi Stadium"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXVENUEPERFORMANCEDRAKE-27JAN01",
+          "key": "KXVENUEPERFORMANCEDRAKE-27JAN01-SOL",
+          "no_sub_title": "Soldier Field",
+          "rules_primary": "If Drake performs at Soldier Field in 2026, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this contract, \"performed\" means the person appears live on stage or in the official broadcast/stream and performs (including singing, dancing, DJ-ing, or playing an instrument), either as a scheduled performer or as a guest appearance during another artist's performance. Guest appearances where the person performs live music qualify. Festival appearances that include a live set qualify. The following do not qualify: appearing only as an award presenter or host, being in the audience without performing, having music played without participation, appearing in video montages or tribute segments without performing, pre-show or post-show performances outside the official event timeframe, appearances without performing (speeches, award acceptances, interviews, promotional events), canceled or postponed shows where no performance occurs in the time period, rehearsals and sound checks, or virtual participation via livestream into the venue.",
+          "scheduled_close": "2027-01-08T15:00:00Z",
+          "series": "KXVENUEPERFORMANCEDRAKE",
+          "subtitle": null,
+          "title": "Will Drake perform at Soldier Field 2026?",
+          "yes_sub_title": "Soldier Field"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTREASBLOCKCHAIN-26",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXTREASBLOCKCHAIN-26",
+          "key": "KXTREASBLOCKCHAIN-26-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If the U.S. Department of the Treasury sends any funds or assets via a blockchain after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this Contract, \"Treasury\" includes sub-bodies of the Treasury including the Bureau of the Fiscal Service, the Office of Financial Research, or a Treasury-authorized entity conducting a public transaction.\n\nThe Payout Criterion includes central bank digital currencies (CBDCs), stablecoins, tokenized U.S. government securities, and other assets the Treasury formally recognizes as blockchain-based. The transaction must occur on a blockchain network that allows for public verification or is explicitly referred to by Treasury as blockchain-based.\n\nThe following will trigger the Payout Criterion:\n\nIf Treasury orders a blockchain-based disbursement, but the Federal Reserve executes it as its fiscal agent, then the market resolves to Yes.\nSmart contract executions will trigger the Payout Criterion only if Treasury initiated them.\nIf a Treasury-affiliated entity (e.g., the Federal Reserve) sends funds on Treasury's behalf, the Treasury must explicitly confirm its role for the transaction to trigger the Payout Criterion.\n\nThe following will NOT trigger the Payout Criterion:\n\nTest transactions, simulated value, and transactions on test networks will NOT trigger the Payout Criterion.\nIf Treasury explicitly labels a transaction as a \"test,\" \"experiment,\" or \"pilot,\" it will NOT trigger the Payout Criterion.\nTransactions settled via third-party custodians do NOT trigger the Payout Criterion unless explicitly acknowledged as a Treasury transaction.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXTREASBLOCKCHAIN",
+          "subtitle": null,
+          "title": "Will Treasury have any transactions on the blockchain before 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXEXPUNGEIMPEACH-26JUN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXEXPUNGEIMPEACH-26JUN",
+          "key": "KXEXPUNGEIMPEACH-26JUN-26OCT01",
+          "no_sub_title": "Before Oct 1, 2026",
+          "rules_primary": "If legislation that purports to expunge the December 18, 2019, and January 13, 2021, impeachments of President Donald Trump has passed the House after Issuance and before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXEXPUNGEIMPEACH",
+          "subtitle": "Before Oct 1, 2026",
+          "title": "Will legislation that expunges the December 18, 2019, and January 13, 2021, impeachments of President Donald Trump passed the House before Oct 1, 2026?",
+          "yes_sub_title": "Before Oct 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTVSEASONRELEASETHELASTOFUS",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXTVSEASONRELEASETHELASTOFUS",
+          "key": "KXTVSEASONRELEASETHELASTOFUS-26-OCT",
+          "no_sub_title": "Before Oct 2026",
+          "rules_primary": "If it has been announced that \"The Last of Us\" Season 3 will release before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXTVSEASONRELEASETHELASTOFUS",
+          "subtitle": null,
+          "title": "When will \"The Last of Us\" Season 3 be released?",
+          "yes_sub_title": "Before Oct 2026"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXTVSEASONRELEASETHELASTOFUS",
+          "key": "KXTVSEASONRELEASETHELASTOFUS-27-APR",
+          "no_sub_title": "Before Apr 2027",
+          "rules_primary": "If it has been announced that \"The Last of Us\" Season 3 will release before Apr 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-04-01T14:00:00Z",
+          "series": "KXTVSEASONRELEASETHELASTOFUS",
+          "subtitle": null,
+          "title": "When will \"The Last of Us\" Season 3 be released?",
+          "yes_sub_title": "Before Apr 2027"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXTVSEASONRELEASETHELASTOFUS",
+          "key": "KXTVSEASONRELEASETHELASTOFUS-27-JAN",
+          "no_sub_title": "Before Jan 2027",
+          "rules_primary": "If it has been announced that \"The Last of Us\" Season 3 will release before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXTVSEASONRELEASETHELASTOFUS",
+          "subtitle": null,
+          "title": "When will \"The Last of Us\" Season 3 be released?",
+          "yes_sub_title": "Before Jan 2027"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXTVSEASONRELEASETHELASTOFUS",
+          "key": "KXTVSEASONRELEASETHELASTOFUS-27-JUL",
+          "no_sub_title": "Before Jul 2027",
+          "rules_primary": "If it has been announced that \"The Last of Us\" Season 3 will release before Jul 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-07-01T14:00:00Z",
+          "series": "KXTVSEASONRELEASETHELASTOFUS",
+          "subtitle": null,
+          "title": "When will \"The Last of Us\" Season 3 be released?",
+          "yes_sub_title": "Before Jul 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTRUMPUFC-26OCT",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXTRUMPUFC-26OCT",
+          "key": "KXTRUMPUFC-26OCT-DJT",
+          "no_sub_title": "Yes",
+          "rules_primary": "If Donald Trump attends UFC 332, then the market resolves to Yes.",
+          "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance. Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Ultimate Fighting Championship (UFC) or TKO Group Holdings. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-10-04T14:00:00Z",
+          "series": "KXTRUMPUFC",
+          "subtitle": "Yes",
+          "title": "Will Donald Trump attend UFC 332?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMOSTEXPENSIVEART-26",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOSTEXPENSIVEART-26",
+          "key": "KXMOSTEXPENSIVEART-26-200000000",
+          "no_sub_title": "Above $200M",
+          "rules_primary": "If the highest auction work sale price of the any artwork on Artsy is above $200M in 2026, then the market resolves to Yes.",
+          "rules_secondary": "For resolution purposes, \u201chighest auction artwork sale price\u201d refers to the single highest auction artwork sale price explicitly reported by the Source Agency in its publication \u201cMost Expensive Auction Works in 2026.\u201d Only artworks publicly sold at auction and explicitly reported by the Source Agency shall be considered.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXMOSTEXPENSIVEART",
+          "subtitle": null,
+          "title": "Most expensive auction work sold in 2026?",
+          "yes_sub_title": "Above $200M"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOSTEXPENSIVEART-26",
+          "key": "KXMOSTEXPENSIVEART-26-250000000",
+          "no_sub_title": "Above $250M",
+          "rules_primary": "If the highest auction work sale price of the any artwork on Artsy is above $250M in 2026, then the market resolves to Yes.",
+          "rules_secondary": "For resolution purposes, \u201chighest auction artwork sale price\u201d refers to the single highest auction artwork sale price explicitly reported by the Source Agency in its publication \u201cMost Expensive Auction Works in 2026.\u201d Only artworks publicly sold at auction and explicitly reported by the Source Agency shall be considered.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXMOSTEXPENSIVEART",
+          "subtitle": null,
+          "title": "Most expensive auction work sold in 2026?",
+          "yes_sub_title": "Above $250M"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOSTEXPENSIVEART-26",
+          "key": "KXMOSTEXPENSIVEART-26-300000000",
+          "no_sub_title": "Above $300M",
+          "rules_primary": "If the highest auction work sale price of the any artwork on Artsy is above $300M in 2026, then the market resolves to Yes.",
+          "rules_secondary": "For resolution purposes, \u201chighest auction artwork sale price\u201d refers to the single highest auction artwork sale price explicitly reported by the Source Agency in its publication \u201cMost Expensive Auction Works in 2026.\u201d Only artworks publicly sold at auction and explicitly reported by the Source Agency shall be considered.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXMOSTEXPENSIVEART",
+          "subtitle": null,
+          "title": "Most expensive auction work sold in 2026?",
+          "yes_sub_title": "Above $300M"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOSTEXPENSIVEART-26",
+          "key": "KXMOSTEXPENSIVEART-26-350000000",
+          "no_sub_title": "Above $350M",
+          "rules_primary": "If the highest auction work sale price of the any artwork on Artsy is above $350M in 2026, then the market resolves to Yes.",
+          "rules_secondary": "For resolution purposes, \u201chighest auction artwork sale price\u201d refers to the single highest auction artwork sale price explicitly reported by the Source Agency in its publication \u201cMost Expensive Auction Works in 2026.\u201d Only artworks publicly sold at auction and explicitly reported by the Source Agency shall be considered.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXMOSTEXPENSIVEART",
+          "subtitle": null,
+          "title": "Most expensive auction work sold in 2026?",
+          "yes_sub_title": "Above $350M"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOSTEXPENSIVEART-26",
+          "key": "KXMOSTEXPENSIVEART-26-400000000",
+          "no_sub_title": "Above $400M",
+          "rules_primary": "If the highest auction work sale price of the any artwork on Artsy is above $400M in 2026, then the market resolves to Yes.",
+          "rules_secondary": "For resolution purposes, \u201chighest auction artwork sale price\u201d refers to the single highest auction artwork sale price explicitly reported by the Source Agency in its publication \u201cMost Expensive Auction Works in 2026.\u201d Only artworks publicly sold at auction and explicitly reported by the Source Agency shall be considered.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXMOSTEXPENSIVEART",
+          "subtitle": null,
+          "title": "Most expensive auction work sold in 2026?",
+          "yes_sub_title": "Above $400M"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOSTEXPENSIVEART-26",
+          "key": "KXMOSTEXPENSIVEART-26-450000000",
+          "no_sub_title": "Above $450M",
+          "rules_primary": "If the highest auction work sale price of the any artwork on Artsy is above $450M in 2026, then the market resolves to Yes.",
+          "rules_secondary": "For resolution purposes, \u201chighest auction artwork sale price\u201d refers to the single highest auction artwork sale price explicitly reported by the Source Agency in its publication \u201cMost Expensive Auction Works in 2026.\u201d Only artworks publicly sold at auction and explicitly reported by the Source Agency shall be considered.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXMOSTEXPENSIVEART",
+          "subtitle": null,
+          "title": "Most expensive auction work sold in 2026?",
+          "yes_sub_title": "Above $450M"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXMOSTEXPENSIVEART-26",
+          "key": "KXMOSTEXPENSIVEART-26-500000000",
+          "no_sub_title": "Above $500M",
+          "rules_primary": "If the highest auction work sale price of the any artwork on Artsy is above $500M in 2026, then the market resolves to Yes.",
+          "rules_secondary": "For resolution purposes, \u201chighest auction artwork sale price\u201d refers to the single highest auction artwork sale price explicitly reported by the Source Agency in its publication \u201cMost Expensive Auction Works in 2026.\u201d Only artworks publicly sold at auction and explicitly reported by the Source Agency shall be considered.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXMOSTEXPENSIVEART",
+          "subtitle": null,
+          "title": "Most expensive auction work sold in 2026?",
+          "yes_sub_title": "Above $500M"
+        }
+      ]
+    },
+    {
+      "event_key": "KXKSWHEAT-26SEP30",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXKSWHEAT-26SEP30",
+          "key": "KXKSWHEAT-26SEP30-T185",
+          "no_sub_title": "Above 185 million bushels",
+          "rules_primary": "If USDA NASS reports that Kansas\u2019s winter wheat production for 2026 is above \n\n185 million bushels, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the USDA NASS\u2019s Kansas Winter Wheat - Production estimate for the 2026 crop, measured in bushels.",
+          "scheduled_close": "2026-09-30T15:59:00Z",
+          "series": "KXKSWHEAT",
+          "subtitle": null,
+          "title": "Will Kansas\u2019s winter wheat production for 2026 be above 185 million bushels?",
+          "yes_sub_title": "Above 185 million bushels"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXKSWHEAT-26SEP30",
+          "key": "KXKSWHEAT-26SEP30-T190",
+          "no_sub_title": "Above 190 million bushels",
+          "rules_primary": "If USDA NASS reports that Kansas\u2019s winter wheat production for 2026 is above \n\n190 million bushels, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the USDA NASS\u2019s Kansas Winter Wheat - Production estimate for the 2026 crop, measured in bushels.",
+          "scheduled_close": "2026-09-30T15:59:00Z",
+          "series": "KXKSWHEAT",
+          "subtitle": null,
+          "title": "Will Kansas\u2019s winter wheat production for 2026 be above 190 million bushels?",
+          "yes_sub_title": "Above 190 million bushels"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXKSWHEAT-26SEP30",
+          "key": "KXKSWHEAT-26SEP30-T195",
+          "no_sub_title": "Above 195 million bushels",
+          "rules_primary": "If USDA NASS reports that Kansas\u2019s winter wheat production for 2026 is above \n\n195 million bushels, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the USDA NASS\u2019s Kansas Winter Wheat - Production estimate for the 2026 crop, measured in bushels.",
+          "scheduled_close": "2026-09-30T15:59:00Z",
+          "series": "KXKSWHEAT",
+          "subtitle": null,
+          "title": "Will Kansas\u2019s winter wheat production for 2026 be above 195 million bushels?",
+          "yes_sub_title": "Above 195 million bushels"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXKSWHEAT-26SEP30",
+          "key": "KXKSWHEAT-26SEP30-T200",
+          "no_sub_title": "Above 200 million bushels",
+          "rules_primary": "If USDA NASS reports that Kansas\u2019s winter wheat production for 2026 is above \n\n200 million bushels, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the USDA NASS\u2019s Kansas Winter Wheat - Production estimate for the 2026 crop, measured in bushels.",
+          "scheduled_close": "2026-09-30T15:59:00Z",
+          "series": "KXKSWHEAT",
+          "subtitle": null,
+          "title": "Will Kansas\u2019s winter wheat production for 2026 be above 200 million bushels?",
+          "yes_sub_title": "Above 200 million bushels"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSOCIALMEDIABAN-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXSOCIALMEDIABAN-27JAN01",
+          "key": "KXSOCIALMEDIABAN-27JAN01",
+          "no_sub_title": "Yes",
+          "rules_primary": "If legislation banning social media use for children under 18 or any lower age threshold has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A bill that allows parental consent to bypass the ban does not qualify. The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSOCIALMEDIABAN",
+          "subtitle": "Yes",
+          "title": "US bans social media for children before 2027?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSCOTUSCERT-27JAN",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXSCOTUSCERT-27JAN",
+          "key": "KXSCOTUSCERT-27JAN-BIR",
+          "no_sub_title": "Bird v. Iowa Migrant Movement for Justice",
+          "rules_primary": "If the Supreme Court grants a writ of certiorari to Bird v. Iowa Migrant Movement for Justice before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSCOTUSCERT",
+          "subtitle": ":: State illegal-reentry laws versus federal authority",
+          "title": "What cases will the Supreme Court agree to hear before Jan 2027?",
+          "yes_sub_title": "Bird v. Iowa Migrant Movement for Justice"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXSCOTUSCERT-27JAN",
+          "key": "KXSCOTUSCERT-27JAN-BUE",
+          "no_sub_title": "Buenrostro-Mendez v. Blanche",
+          "rules_primary": "If the Supreme Court grants a writ of certiorari to Buenrostro-Mendez v. Blanche before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSCOTUSCERT",
+          "subtitle": ":: Mandatory detention of long-settled migrants",
+          "title": "What cases will the Supreme Court agree to hear before Jan 2027?",
+          "yes_sub_title": "Buenrostro-Mendez v. Blanche"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXSCOTUSCERT-27JAN",
+          "key": "KXSCOTUSCERT-27JAN-KSM",
+          "no_sub_title": "Khalid Shaikh Mohammad v. United States",
+          "rules_primary": "If the Supreme Court grants a writ of certiorari to Khalid Shaikh Mohammad v. United States before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSCOTUSCERT",
+          "subtitle": ":: Validity of 9/11 defendants\u2019 plea agreements",
+          "title": "What cases will the Supreme Court agree to hear before Jan 2027?",
+          "yes_sub_title": "Khalid Shaikh Mohammad v. United States"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXSCOTUSCERT-27JAN",
+          "key": "KXSCOTUSCERT-27JAN-PHA",
+          "no_sub_title": "Pharmaceutical Research and Manufacturers of America v. O\u2019Day",
+          "rules_primary": "If the Supreme Court grants a writ of certiorari to Pharmaceutical Research and Manufacturers of America v. O\u2019Day before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSCOTUSCERT",
+          "subtitle": ":: Drug-price disclosures and trade-secret protections",
+          "title": "What cases will the Supreme Court agree to hear before Jan 2027?",
+          "yes_sub_title": "Pharmaceutical Research and Manufacturers of America v. O\u2019Day"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXSCOTUSCERT-27JAN",
+          "key": "KXSCOTUSCERT-27JAN-RNC",
+          "no_sub_title": "Republican National Committee v. Eakin",
+          "rules_primary": "If the Supreme Court grants a writ of certiorari to Republican National Committee v. Eakin before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSCOTUSCERT",
+          "subtitle": ":: Pennsylvania mail-ballot dating requirement",
+          "title": "What cases will the Supreme Court agree to hear before Jan 2027?",
+          "yes_sub_title": "Republican National Committee v. Eakin"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXSCOTUSCERT-27JAN",
+          "key": "KXSCOTUSCERT-27JAN-ROY",
+          "no_sub_title": "Roybal v. Griffith",
+          "rules_primary": "If the Supreme Court grants a writ of certiorari to Roybal v. Griffith before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSCOTUSCERT",
+          "subtitle": ":: Transgender detainee housing and search policies",
+          "title": "What cases will the Supreme Court agree to hear before Jan 2027?",
+          "yes_sub_title": "Roybal v. Griffith"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXSCOTUSCERT-27JAN",
+          "key": "KXSCOTUSCERT-27JAN-USD",
+          "no_sub_title": "U.S. DOGE Service v. U.S. District Court",
+          "rules_primary": "If the Supreme Court grants a writ of certiorari to U.S. DOGE Service v. U.S. District Court before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXSCOTUSCERT",
+          "subtitle": ":: FOIA discovery into DOGE\u2019s operations",
+          "title": "What cases will the Supreme Court agree to hear before Jan 2027?",
+          "yes_sub_title": "U.S. DOGE Service v. U.S. District Court"
+        }
+      ]
+    },
+    {
+      "event_key": "KXINXVSBTC-26DEC31",
+      "markets": [
+        {
+          "category": "Financials",
+          "event_key": "KXINXVSBTC-26DEC31",
+          "key": "KXINXVSBTC-26DEC31-BTC",
+          "no_sub_title": "BTC",
+          "rules_primary": "If BTC performs above S&P 500 Total Return Index for the week of 2026 by 0.001% rounded to the nearest 3rd  then the market resolves to Yes.",
+          "rules_secondary": "Percent return is calculated from the official open price of each asset on January 2, 2026 (the first published trading day of the calendar year) and the official closing price on December 31, 2026. For example, if the S&P 500 Total Return Index opens at $5,800 on January 2, 2026 and at $6,380 on December 31, 2026, it will be concluded that the annual percentage return of the S&P 500 TR is +10.000%.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXINXVSBTC",
+          "subtitle": null,
+          "title": "Will BTC outperform S&P 500 Total Return Index?",
+          "yes_sub_title": "BTC"
+        },
+        {
+          "category": "Financials",
+          "event_key": "KXINXVSBTC-26DEC31",
+          "key": "KXINXVSBTC-26DEC31-INXTR",
+          "no_sub_title": "S&P 500 Total Return Index",
+          "rules_primary": "If  S&P 500 Total Return Index performs above BTC for the week of 2026 by 0.001% rounded to the nearest 3rd  then the market resolves to Yes.",
+          "rules_secondary": "Percent return is calculated from the official open price of each asset on January 2, 2026 (the first published trading day of the calendar year) and the official closing price on December 31, 2026. For example, if the S&P 500 Total Return Index opens at $5,800 on January 2, 2026 and at $6,380 on December 31, 2026, it will be concluded that the annual percentage return of the S&P 500 TR is +10.000%.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXINXVSBTC",
+          "subtitle": null,
+          "title": "Will S&P 500 Total Return Index outperform BTC?",
+          "yes_sub_title": "S&P 500 Total Return Index"
+        }
+      ]
+    },
+    {
+      "event_key": "KXBIGBROTHERELIMINATION-26SEP10",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHERELIMINATION-26SEP10",
+          "key": "KXBIGBROTHERELIMINATION-26SEP10-ANG",
+          "no_sub_title": "Angela Murray",
+          "rules_primary": "If Angela Murray is officially eliminated from Big Brother Season 28 Before Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2026-09-11T03:59:00Z",
+          "series": "KXBIGBROTHERELIMINATION",
+          "subtitle": null,
+          "title": "Will Angela Murray be eliminated from Big Brother Season 28 before Sep 11, 2026?",
+          "yes_sub_title": "Angela Murray"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHERELIMINATION-26SEP10",
+          "key": "KXBIGBROTHERELIMINATION-26SEP10-DEE",
+          "no_sub_title": "Dee Valladares",
+          "rules_primary": "If Dee Valladares is officially eliminated from Big Brother Season 28 Before Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2026-09-11T03:59:00Z",
+          "series": "KXBIGBROTHERELIMINATION",
+          "subtitle": null,
+          "title": "Will Dee Valladares be eliminated from Big Brother Season 28 before Sep 11, 2026?",
+          "yes_sub_title": "Dee Valladares"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHERELIMINATION-26SEP10",
+          "key": "KXBIGBROTHERELIMINATION-26SEP10-DRE",
+          "no_sub_title": "Drew Campbell",
+          "rules_primary": "If Drew Campbell is officially eliminated from Big Brother Season 28 Before Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2026-09-11T03:59:00Z",
+          "series": "KXBIGBROTHERELIMINATION",
+          "subtitle": null,
+          "title": "Will Drew Campbell be eliminated from Big Brother Season 28 before Sep 11, 2026?",
+          "yes_sub_title": "Drew Campbell"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHERELIMINATION-26SEP10",
+          "key": "KXBIGBROTHERELIMINATION-26SEP10-RIC",
+          "no_sub_title": "Rick Devens",
+          "rules_primary": "If Rick Devens is officially eliminated from Big Brother Season 28 Before Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2026-09-11T03:59:00Z",
+          "series": "KXBIGBROTHERELIMINATION",
+          "subtitle": null,
+          "title": "Will Rick Devens be eliminated from Big Brother Season 28 before Sep 11, 2026?",
+          "yes_sub_title": "Rick Devens"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHERELIMINATION-26SEP10",
+          "key": "KXBIGBROTHERELIMINATION-26SEP10-TAY",
+          "no_sub_title": "Taylor Brown",
+          "rules_primary": "If Taylor Brown is officially eliminated from Big Brother Season 28 Before Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2026-09-11T03:59:00Z",
+          "series": "KXBIGBROTHERELIMINATION",
+          "subtitle": null,
+          "title": "Will Taylor Brown be eliminated from Big Brother Season 28 before Sep 11, 2026?",
+          "yes_sub_title": "Taylor Brown"
+        },
+        {
+          "category": "Entertainment",
+          "event_key": "KXBIGBROTHERELIMINATION-26SEP10",
+          "key": "KXBIGBROTHERELIMINATION-26SEP10-YAS",
+          "no_sub_title": "Yash Patel",
+          "rules_primary": "If Yash Patel is officially eliminated from Big Brother Season 28 Before Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+          "scheduled_close": "2026-09-11T03:59:00Z",
+          "series": "KXBIGBROTHERELIMINATION",
+          "subtitle": null,
+          "title": "Will Yash Patel be eliminated from Big Brother Season 28 before Sep 11, 2026?",
+          "yes_sub_title": "Yash Patel"
+        }
+      ]
+    },
+    {
+      "event_key": "KXROBOTAXIAREA-26DEC",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXROBOTAXIAREA-26DEC",
+          "key": "KXROBOTAXIAREA-26DEC-AZ",
+          "no_sub_title": "Arizona",
+          "rules_primary": "If Tesla robotaxi service is offered to the general public in Arizona before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "For \"offered to\": Tesla has launched a robotaxi service in Arizona that satisfies ALL of the following criteria:\n\nThe service allows members of the general public to request rides through a publicly accessible application or platform (not limited to Tesla employees, beta testers, or invite-only participants)\nThe vehicles operate without any human driver or safety monitor physically present in the driver's seat who is actively controlling the vehicle during normal operation\nThe service charges fares or fees for rides (free promotional rides alone do not qualify)\n\nFor \"removed from\": Tesla has discontinued, suspended, or withdrawn a previously operational robotaxi service in Arizona that met all the \"offered to\" criteria above, where:\n\nThe service is no longer accepting new ride requests from the general public for any period of time as a result of a decision by Tesla to suspend operations in the area, and such suspension is not explicitly characterized as temporary (e.g., due to weather, maintenance, or system upgrades). The Payout Criterion is not satisfied by short-term service interruptions that are clearly communicated as temporary or expected to resume.\n\nThe following do NOT satisfy the Payout Criterion:\n\nIf a government orders Tesla to cease ongoing services but they do not comply, then the market does not resolve to Yes\nServices limited to Tesla employees, contractors, or their guests\nBeta tests, pilot programs, or demonstrations\nServices requiring special invitations, access codes, or pre-approval to use\nVehicles with human safety drivers, monitors, or operators in any seat of the vehicle who can take control\nTemporary suspensions due to weather or technical issues\nServices operating only with remote human teleoperators controlling each vehicle continuously\nTest fleets that are not charging fares to the general public\nAnnouncements of future launches without actual operational service",
+          "scheduled_close": "2027-01-31T15:00:00Z",
+          "series": "KXROBOTAXIAREA",
+          "subtitle": null,
+          "title": "Will Tesla robotaxi be offered to the general public in Arizona before Jan 1, 2027?",
+          "yes_sub_title": "Arizona"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXROBOTAXIAREA-26DEC",
+          "key": "KXROBOTAXIAREA-26DEC-CA",
+          "no_sub_title": "California",
+          "rules_primary": "If Tesla robotaxi service is offered to the general public in California before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "For \"offered to\": Tesla has launched a robotaxi service in California that satisfies ALL of the following criteria:\n\nThe service allows members of the general public to request rides through a publicly accessible application or platform (not limited to Tesla employees, beta testers, or invite-only participants)\nThe vehicles operate without any human driver or safety monitor physically present in the driver's seat who is actively controlling the vehicle during normal operation\nThe service charges fares or fees for rides (free promotional rides alone do not qualify)\n\nFor \"removed from\": Tesla has discontinued, suspended, or withdrawn a previously operational robotaxi service in California that met all the \"offered to\" criteria above, where:\n\nThe service is no longer accepting new ride requests from the general public for any period of time as a result of a decision by Tesla to suspend operations in the area, and such suspension is not explicitly characterized as temporary (e.g., due to weather, maintenance, or system upgrades). The Payout Criterion is not satisfied by short-term service interruptions that are clearly communicated as temporary or expected to resume.\n\nThe following do NOT satisfy the Payout Criterion:\n\nIf a government orders Tesla to cease ongoing services but they do not comply, then the market does not resolve to Yes\nServices limited to Tesla employees, contractors, or their guests\nBeta tests, pilot programs, or demonstrations\nServices requiring special invitations, access codes, or pre-approval to use\nVehicles with human safety drivers, monitors, or operators in any seat of the vehicle who can take control\nTemporary suspensions due to weather or technical issues\nServices operating only with remote human teleoperators controlling each vehicle continuously\nTest fleets that are not charging fares to the general public\nAnnouncements of future launches without actual operational service",
+          "scheduled_close": "2027-01-31T15:00:00Z",
+          "series": "KXROBOTAXIAREA",
+          "subtitle": null,
+          "title": "Will Tesla robotaxi be offered to the general public in California before Jan 1, 2027?",
+          "yes_sub_title": "California"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXROBOTAXIAREA-26DEC",
+          "key": "KXROBOTAXIAREA-26DEC-GA",
+          "no_sub_title": "Georgia",
+          "rules_primary": "If Tesla robotaxi service is offered to the general public in Georgia before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "For \"offered to\": Tesla has launched a robotaxi service in Georgia that satisfies ALL of the following criteria:\n\nThe service allows members of the general public to request rides through a publicly accessible application or platform (not limited to Tesla employees, beta testers, or invite-only participants)\nThe vehicles operate without any human driver or safety monitor physically present in the driver's seat who is actively controlling the vehicle during normal operation\nThe service charges fares or fees for rides (free promotional rides alone do not qualify)\n\nFor \"removed from\": Tesla has discontinued, suspended, or withdrawn a previously operational robotaxi service in Georgia that met all the \"offered to\" criteria above, where:\n\nThe service is no longer accepting new ride requests from the general public for any period of time as a result of a decision by Tesla to suspend operations in the area, and such suspension is not explicitly characterized as temporary (e.g., due to weather, maintenance, or system upgrades). The Payout Criterion is not satisfied by short-term service interruptions that are clearly communicated as temporary or expected to resume.\n\nThe following do NOT satisfy the Payout Criterion:\n\nIf a government orders Tesla to cease ongoing services but they do not comply, then the market does not resolve to Yes\nServices limited to Tesla employees, contractors, or their guests\nBeta tests, pilot programs, or demonstrations\nServices requiring special invitations, access codes, or pre-approval to use\nVehicles with human safety drivers, monitors, or operators in any seat of the vehicle who can take control\nTemporary suspensions due to weather or technical issues\nServices operating only with remote human teleoperators controlling each vehicle continuously\nTest fleets that are not charging fares to the general public\nAnnouncements of future launches without actual operational service",
+          "scheduled_close": "2027-01-31T15:00:00Z",
+          "series": "KXROBOTAXIAREA",
+          "subtitle": null,
+          "title": "Will Tesla robotaxi be offered to the general public in Georgia before Jan 1, 2027?",
+          "yes_sub_title": "Georgia"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXROBOTAXIAREA-26DEC",
+          "key": "KXROBOTAXIAREA-26DEC-NV",
+          "no_sub_title": "Nevada",
+          "rules_primary": "If Tesla robotaxi service is offered to the general public in Nevada before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "For \"offered to\": Tesla has launched a robotaxi service in Nevada that satisfies ALL of the following criteria:\n\nThe service allows members of the general public to request rides through a publicly accessible application or platform (not limited to Tesla employees, beta testers, or invite-only participants)\nThe vehicles operate without any human driver or safety monitor physically present in the driver's seat who is actively controlling the vehicle during normal operation\nThe service charges fares or fees for rides (free promotional rides alone do not qualify)\n\nFor \"removed from\": Tesla has discontinued, suspended, or withdrawn a previously operational robotaxi service in Nevada that met all the \"offered to\" criteria above, where:\n\nThe service is no longer accepting new ride requests from the general public for any period of time as a result of a decision by Tesla to suspend operations in the area, and such suspension is not explicitly characterized as temporary (e.g., due to weather, maintenance, or system upgrades). The Payout Criterion is not satisfied by short-term service interruptions that are clearly communicated as temporary or expected to resume.\n\nThe following do NOT satisfy the Payout Criterion:\n\nIf a government orders Tesla to cease ongoing services but they do not comply, then the market does not resolve to Yes\nServices limited to Tesla employees, contractors, or their guests\nBeta tests, pilot programs, or demonstrations\nServices requiring special invitations, access codes, or pre-approval to use\nVehicles with human safety drivers, monitors, or operators in any seat of the vehicle who can take control\nTemporary suspensions due to weather or technical issues\nServices operating only with remote human teleoperators controlling each vehicle continuously\nTest fleets that are not charging fares to the general public\nAnnouncements of future launches without actual operational service",
+          "scheduled_close": "2027-01-31T15:00:00Z",
+          "series": "KXROBOTAXIAREA",
+          "subtitle": null,
+          "title": "Will Tesla robotaxi be offered to the general public in Nevada before Jan 1, 2027?",
+          "yes_sub_title": "Nevada"
+        }
+      ]
+    },
+    {
+      "event_key": "KXPSAVERT-27JAN",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXPSAVERT-27JAN",
+          "key": "KXPSAVERT-27JAN-B2.7",
+          "no_sub_title": "2.5% to 2.9%",
+          "rules_primary": "If the US personal saving rate for 2026 is between 2.5% and 2.9%, as represented by the one-decimal place value reported by Federal Reserve Economic Data, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this market, \u201cpersonal saving rate\u201d refers to FRED series PSAVERT, Personal Saving Rate, for December 2026. This value is reported as a percent, seasonally adjusted annual rate, and is sourced by FRED from the U.S. Bureau of Economic Analysis.\n\nThis market will use the first value published by Federal Reserve Economic Data for December 2026. Revisions released after the first publication of the December 2026 value will not be considered.",
+          "scheduled_close": "2027-01-29T13:29:00Z",
+          "series": "KXPSAVERT",
+          "subtitle": null,
+          "title": "Will US personal saving rate for 2026 be between 2.5% and 2.9%?",
+          "yes_sub_title": "2.5% to 2.9%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXPSAVERT-27JAN",
+          "key": "KXPSAVERT-27JAN-B3.2",
+          "no_sub_title": "3.0% to 3.4%",
+          "rules_primary": "If the US personal saving rate for 2026 is between 3.0% and 3.4%, as represented by the one-decimal place value reported by Federal Reserve Economic Data, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this market, \u201cpersonal saving rate\u201d refers to FRED series PSAVERT, Personal Saving Rate, for December 2026. This value is reported as a percent, seasonally adjusted annual rate, and is sourced by FRED from the U.S. Bureau of Economic Analysis.\n\nThis market will use the first value published by Federal Reserve Economic Data for December 2026. Revisions released after the first publication of the December 2026 value will not be considered.",
+          "scheduled_close": "2027-01-29T13:29:00Z",
+          "series": "KXPSAVERT",
+          "subtitle": null,
+          "title": "Will US personal saving rate for 2026 be between 3.0% and 3.4%?",
+          "yes_sub_title": "3.0% to 3.4%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXPSAVERT-27JAN",
+          "key": "KXPSAVERT-27JAN-B3.7",
+          "no_sub_title": "3.5% to 3.9%",
+          "rules_primary": "If the US personal saving rate for 2026 is between 3.5% and 3.9%, as represented by the one-decimal place value reported by Federal Reserve Economic Data, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this market, \u201cpersonal saving rate\u201d refers to FRED series PSAVERT, Personal Saving Rate, for December 2026. This value is reported as a percent, seasonally adjusted annual rate, and is sourced by FRED from the U.S. Bureau of Economic Analysis.\n\nThis market will use the first value published by Federal Reserve Economic Data for December 2026. Revisions released after the first publication of the December 2026 value will not be considered.",
+          "scheduled_close": "2027-01-29T13:29:00Z",
+          "series": "KXPSAVERT",
+          "subtitle": null,
+          "title": "Will US personal saving rate for 2026 be between 3.5% and 3.9%?",
+          "yes_sub_title": "3.5% to 3.9%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXPSAVERT-27JAN",
+          "key": "KXPSAVERT-27JAN-T2.5",
+          "no_sub_title": "Below 2.5%",
+          "rules_primary": "If the US personal saving rate for 2026 is below 2.5%, as represented by the one-decimal place value reported by Federal Reserve Economic Data, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this market, \u201cpersonal saving rate\u201d refers to FRED series PSAVERT, Personal Saving Rate, for December 2026. This value is reported as a percent, seasonally adjusted annual rate, and is sourced by FRED from the U.S. Bureau of Economic Analysis.\n\nThis market will use the first value published by Federal Reserve Economic Data for December 2026. Revisions released after the first publication of the December 2026 value will not be considered.",
+          "scheduled_close": "2027-01-29T13:29:00Z",
+          "series": "KXPSAVERT",
+          "subtitle": null,
+          "title": "Will US personal saving rate for 2026 be below 2.5%?",
+          "yes_sub_title": "Below 2.5%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXPSAVERT-27JAN",
+          "key": "KXPSAVERT-27JAN-T4.0",
+          "no_sub_title": "4.0% or Above",
+          "rules_primary": "If the US personal saving rate for 2026 is at least 4.0%, as represented by the one-decimal place value reported by Federal Reserve Economic Data, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this market, \u201cpersonal saving rate\u201d refers to FRED series PSAVERT, Personal Saving Rate, for December 2026. This value is reported as a percent, seasonally adjusted annual rate, and is sourced by FRED from the U.S. Bureau of Economic Analysis.\n\nThis market will use the first value published by Federal Reserve Economic Data for December 2026. Revisions released after the first publication of the December 2026 value will not be considered.",
+          "scheduled_close": "2027-01-29T13:29:00Z",
+          "series": "KXPSAVERT",
+          "subtitle": null,
+          "title": "Will US personal saving rate for 2026 be at least 4.0%?",
+          "yes_sub_title": "4.0% or Above"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

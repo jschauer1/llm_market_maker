@@ -1,0 +1,770 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXLLM1-26DEC31",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXLLM1-26DEC31",
+          "key": "KXLLM1-26DEC31-A",
+          "no_sub_title": "Claude",
+          "rules_primary": "If Anthropic has the top-ranked LLM on Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win.  Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLLM1",
+          "subtitle": "Claude:: Anthropic",
+          "title": "Best AI on Dec 31, 2026?",
+          "yes_sub_title": "Claude"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXLLM1-26DEC31",
+          "key": "KXLLM1-26DEC31-ALI",
+          "no_sub_title": "Qwen",
+          "rules_primary": "If Alibaba has the top-ranked LLM on Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win.  Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLLM1",
+          "subtitle": "Qwen:: Alibaba",
+          "title": "Best AI on Dec 31, 2026?",
+          "yes_sub_title": "Qwen"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXLLM1-26DEC31",
+          "key": "KXLLM1-26DEC31-BAID",
+          "no_sub_title": "Ernie",
+          "rules_primary": "If Baidu has the top-ranked LLM on Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win.  Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLLM1",
+          "subtitle": "Ernie:: Baidu",
+          "title": "Best AI on Dec 31, 2026?",
+          "yes_sub_title": "Ernie"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXLLM1-26DEC31",
+          "key": "KXLLM1-26DEC31-GOOG",
+          "no_sub_title": "Gemini",
+          "rules_primary": "If Google has the top-ranked LLM on Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win.  Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLLM1",
+          "subtitle": "Gemini:: Google",
+          "title": "Best AI on Dec 31, 2026?",
+          "yes_sub_title": "Gemini"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXLLM1-26DEC31",
+          "key": "KXLLM1-26DEC31-META",
+          "no_sub_title": "Muse Spark",
+          "rules_primary": "If Meta has the top-ranked LLM on Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win.  Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLLM1",
+          "subtitle": "LLaMA:: Meta",
+          "title": "Best AI on Dec 31, 2026?",
+          "yes_sub_title": "Muse Spark"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXLLM1-26DEC31",
+          "key": "KXLLM1-26DEC31-OAI",
+          "no_sub_title": "ChatGPT",
+          "rules_primary": "If OpenAI has the top-ranked LLM on Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win.  Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLLM1",
+          "subtitle": "ChatGPT:: OpenAI",
+          "title": "Best AI on Dec 31, 2026?",
+          "yes_sub_title": "ChatGPT"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXLLM1-26DEC31",
+          "key": "KXLLM1-26DEC31-XAI",
+          "no_sub_title": "Grok",
+          "rules_primary": "If xAI has the top-ranked LLM on Dec 31, 2026, then the market resolves to Yes.",
+          "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win.  Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+          "scheduled_close": "2026-12-31T15:00:00Z",
+          "series": "KXLLM1",
+          "subtitle": "Grok:: xAI",
+          "title": "Best AI on Dec 31, 2026?",
+          "yes_sub_title": "Grok"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSOLD-26SEP1117",
+      "markets": [
+        {
+          "category": "Crypto",
+          "event_key": "KXSOLD-26SEP1117",
+          "key": "KXSOLD-26SEP1117-T117.9999",
+          "no_sub_title": "$118 or above",
+          "rules_primary": "If the simple average of the sixty seconds of CF Benchmarks' SOLUSD_RTI before 5 PM EDT is above $117.9999 at 5 PM EDT on Sep 11, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Not all cryptocurrency price data is the same. While checking a source like Google or Coinbase may help guide your decision, the price used to determine this market is based on CF Benchmarks' corresponding Real Time Index (RTI). At the last minute before expiration, 60 RTI prices are collected. The official and final value is the average of these prices.",
+          "scheduled_close": "2026-09-11T21:00:00Z",
+          "series": "KXSOLD",
+          "subtitle": null,
+          "title": "SOL price on Sep 11, 2026?",
+          "yes_sub_title": "$118 or above"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-AFG",
+          "no_sub_title": "Afghanistan",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Afghanistan after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Afghanistan?",
+          "yes_sub_title": "Afghanistan"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-DRC",
+          "no_sub_title": "Democratic Republic of the Congo",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Democratic Republic of the Congo after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Democratic Republic of the Congo?",
+          "yes_sub_title": "Democratic Republic of the Congo"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-GAZ",
+          "no_sub_title": "Gaza",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Gaza after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Gaza?",
+          "yes_sub_title": "Gaza"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-HAI",
+          "no_sub_title": "Haiti",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Haiti after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Haiti?",
+          "yes_sub_title": "Haiti"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-IRA",
+          "no_sub_title": "Iran",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Iran after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Iran?",
+          "yes_sub_title": "Iran"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-IRQ",
+          "no_sub_title": "Iraq",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Iraq after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Iraq?",
+          "yes_sub_title": "Iraq"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-LEB",
+          "no_sub_title": "Lebanon",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Lebanon after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Lebanon?",
+          "yes_sub_title": "Lebanon"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-LIB",
+          "no_sub_title": "Libya",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Libya after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Libya?",
+          "yes_sub_title": "Libya"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-MYA",
+          "no_sub_title": "Burma (Myanmar)",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Burma (Myanmar) after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Burma (Myanmar)?",
+          "yes_sub_title": "Burma (Myanmar)"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-NKOR",
+          "no_sub_title": "North Korea",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for North Korea after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for North Korea?",
+          "yes_sub_title": "North Korea"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-RUS",
+          "no_sub_title": "Russia",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Russia after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Russia?",
+          "yes_sub_title": "Russia"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-SOM",
+          "no_sub_title": "Somalia",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Somalia after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Somalia?",
+          "yes_sub_title": "Somalia"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-SSUD",
+          "no_sub_title": "South Sudan",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for South Sudan after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for South Sudan?",
+          "yes_sub_title": "South Sudan"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-SUD",
+          "no_sub_title": "Sudan",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Sudan after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Sudan?",
+          "yes_sub_title": "Sudan"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-SYR",
+          "no_sub_title": "Syria",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Syria after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Syria?",
+          "yes_sub_title": "Syria"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-UGA",
+          "no_sub_title": "Uganda",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Uganda after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Uganda?",
+          "yes_sub_title": "Uganda"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-UKR",
+          "no_sub_title": "Ukraine",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Ukraine after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Ukraine?",
+          "yes_sub_title": "Ukraine"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXTRAVELDOWNGRADE-27JAN01",
+          "key": "KXTRAVELDOWNGRADE-27JAN01-YEM",
+          "no_sub_title": "Yemen",
+          "rules_primary": "If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Yemen after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Advisories dated for future events must be effective before Jan 1, 2027 to qualify. The category level must be the one that applies to the whole country, rather than a particular region, unless the country rulebook variable in this case refers to a region. A Travel Advisory is considered \"issued\" when it appears on the official State Department travel advisories website with an official publication date.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXTRAVELDOWNGRADE",
+          "subtitle": null,
+          "title": "Will the U.S. State Department issue a level 3 or lower warning for Yemen?",
+          "yes_sub_title": "Yemen"
+        }
+      ]
+    },
+    {
+      "event_key": "KXIRANIMPORTS-27FEB01",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXIRANIMPORTS-27FEB01",
+          "key": "KXIRANIMPORTS-27FEB01-T5000000",
+          "no_sub_title": "in 2026",
+          "rules_primary": "If the \"TOTAL 2026\" value for Imports on the U.S. Census Bureau \"Trade in goods with Iran\" table (values in millions of U.S. dollars) for 2026 is greater than 5.0, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-02-01T13:29:00Z",
+          "series": "KXIRANIMPORTS",
+          "subtitle": null,
+          "title": "Will U.S. imports from Iran for 2026 be greater than $5M?",
+          "yes_sub_title": "in 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXKPOPDH2-26",
+      "markets": [
+        {
+          "category": "Financials",
+          "event_key": "KXKPOPDH2-26",
+          "key": "KXKPOPDH2-26-KPO",
+          "no_sub_title": "KPop Demon Hunters 2",
+          "rules_primary": "If Sony Pictures Animation releases KPop Demon Hunters 2 to the public before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "For the purposes of this market, Sony Pictures Animation is considered the rights holder and producer of KPop Demon Hunters, regardless of distribution arrangements (e.g., as a Netflix Original). A \u201ccommercial release\u201d shall mean the first public availability of a movie sequel to KPop Demon Hunters (e.g., KPop Demon Hunters 2 or another direct continuation in the same film franchise) to the general public, whether through streaming (including a Netflix-exclusive) or direct-to-digital/home media release. Other films with unrelated titles or concepts, even if involving K-pop themes, are excluded. Limited festival screenings, private previews, or promotional showings do not qualify unless they coincide with or constitute the official wide release to the general public.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXKPOPDH2",
+          "subtitle": "KPop Demon Hunters 2",
+          "title": "Will Sony Pictures Animation release KPop Demon Hunters 2 to the public before 2027?",
+          "yes_sub_title": "KPop Demon Hunters 2"
+        }
+      ]
+    },
+    {
+      "event_key": "KXDEEPADOPT-26OCT01",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXDEEPADOPT-26OCT01",
+          "key": "KXDEEPADOPT-26OCT01-T0.25",
+          "no_sub_title": "Above 0.25%",
+          "rules_primary": "If the Ramp AI Index DeepSeek model adoption rate for August 2026 is above 0.25%, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index DeepSeek model adoption rate for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXDEEPADOPT",
+          "subtitle": null,
+          "title": "Will Ramp AI Index DeepSeek model adoption rate for August 2026 be above 0.25%?",
+          "yes_sub_title": "Above 0.25%"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXDEEPADOPT-26OCT01",
+          "key": "KXDEEPADOPT-26OCT01-T0.3",
+          "no_sub_title": "Above 0.3%",
+          "rules_primary": "If the Ramp AI Index DeepSeek model adoption rate for August 2026 is above 0.3%, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index DeepSeek model adoption rate for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXDEEPADOPT",
+          "subtitle": null,
+          "title": "Will Ramp AI Index DeepSeek model adoption rate for August 2026 be above 0.3%?",
+          "yes_sub_title": "Above 0.3%"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXDEEPADOPT-26OCT01",
+          "key": "KXDEEPADOPT-26OCT01-T0.35",
+          "no_sub_title": "Above 0.35%",
+          "rules_primary": "If the Ramp AI Index DeepSeek model adoption rate for August 2026 is above 0.35%, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index DeepSeek model adoption rate for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXDEEPADOPT",
+          "subtitle": null,
+          "title": "Will Ramp AI Index DeepSeek model adoption rate for August 2026 be above 0.35%?",
+          "yes_sub_title": "Above 0.35%"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXDEEPADOPT-26OCT01",
+          "key": "KXDEEPADOPT-26OCT01-T0.4",
+          "no_sub_title": "Above 0.4%",
+          "rules_primary": "If the Ramp AI Index DeepSeek model adoption rate for August 2026 is above 0.4%, then the market resolves to Yes.",
+          "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index DeepSeek model adoption rate for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXDEEPADOPT",
+          "subtitle": null,
+          "title": "Will Ramp AI Index DeepSeek model adoption rate for August 2026 be above 0.4%?",
+          "yes_sub_title": "Above 0.4%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSAHM-27JAN08",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXSAHM-27JAN08",
+          "key": "KXSAHM-27JAN08-T0.50",
+          "no_sub_title": "Yes",
+          "rules_primary": "If the real-time Sahm Rule Recession Indicator for any monthly observation from Issuance through December 2026 is At least 0.50\u3164, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the first published value for the applicable monthly observation in FRED series SAHMREALTIME. Revisions to previously published values will not be considered. The market does not depend on whether the National Bureau of Economic Research declares a recession. A value exactly equal to 0.50 qualifies.",
+          "scheduled_close": "2027-01-08T13:29:00Z",
+          "series": "KXSAHM",
+          "subtitle": null,
+          "title": "Will the Real-time Sahm Rule Recession Indicator trigger in 2026?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCCLIMIT-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXCCLIMIT-27",
+          "key": "KXCCLIMIT-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If the federal government has taken action to cap the annual interest rate that credit cards can charge after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The action does not need to be effective in the market's time frame. For example, the passing of a bill between Issuance and before Jan 1, 2027 that imposes a cap, even if the cap is not effective until after Jan 1, 2027, is encompassed by the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXCCLIMIT",
+          "subtitle": null,
+          "title": "Will credit card rates be capped before 2027?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXCRYPTOPAY-27",
+      "markets": [
+        {
+          "category": "Companies",
+          "event_key": "KXCRYPTOPAY-27",
+          "key": "KXCRYPTOPAY-27",
+          "no_sub_title": "In 2026",
+          "rules_primary": "If, before Jan 1, 2027, any of Google, Meta, Amazon, Tesla, or X newly accept cryptocurrency or crypto tokens (including stablecoins) as payment for any core service or product, then the market resolves to Yes.",
+          "rules_secondary": "Please see full rules for the list of services/products that can count towards the Payout Criterion.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXCRYPTOPAY",
+          "subtitle": null,
+          "title": "Will any of Google, Meta, Amazon, Tesla, or X accept crypto for any of their core services in 2026?",
+          "yes_sub_title": "In 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXPFCANCEL-26",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXPFCANCEL-26",
+          "key": "KXPFCANCEL-26",
+          "no_sub_title": "Yes",
+          "rules_primary": "If the 2026 United Left primary organized by Front Populaire 2027 is canceled or otherwise not held  after Issuance and before Oct 13, 2026, then the market resolves to Yes.",
+          "rules_secondary": "Only reporting from Front Populaire 2027 qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+          "scheduled_close": "2026-10-13T03:59:00Z",
+          "series": "KXPFCANCEL",
+          "subtitle": null,
+          "title": "Will it be reported by Front Populaire 2027 that the 2026 United Left primary organized by Front Populaire 2027 is canceled or otherwise not held before Oct 13, 2026?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXTNTRANSEMP-27APR30",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXTNTRANSEMP-27APR30",
+          "key": "KXTNTRANSEMP-27APR30-T69700",
+          "no_sub_title": "Above 69,700 jobs",
+          "rules_primary": "If BLS reports Tennessee\u2019s annual-average employment in Transportation Equipment Manufacturing for 2026 is above 69,700 jobs, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is BLS series SMU47000003133600001, All Employees in Transportation Equipment Manufacturing in Tennessee, measured in thousands and not seasonally adjusted. The first officially published 2026 annual-average value will be used. Subsequent revisions will not affect resolution.",
+          "scheduled_close": "2027-05-01T03:58:00Z",
+          "series": "KXTNTRANSEMP",
+          "subtitle": null,
+          "title": "Will Tennessee\u2019s annual-average employment in Transportation Equipment Manufacturing for 2026 be above 69,700 jobs?",
+          "yes_sub_title": "Above 69,700 jobs"
+        }
+      ]
+    },
+    {
+      "event_key": "KXELECTFRAUD-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXELECTFRAUD-27",
+          "key": "KXELECTFRAUD-27",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If any court rules that the 2024 US federal election was fraudulent before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXELECTFRAUD",
+          "subtitle": null,
+          "title": "Will Any Court rule that the 2024 USA Federal Election was Fraudulent?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXDJTENDORSENETANYAHU-26JUN30",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXDJTENDORSENETANYAHU-26JUN30",
+          "key": "KXDJTENDORSENETANYAHU-26JUN30-OCT28",
+          "no_sub_title": "Before Oct 28, 2026",
+          "rules_primary": "If Donald Trump publicly endorses Benjamin Netanyahu in the 2026 Israeli legislative election before Oct 28, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An endorsement requires a clear, affirmative statement of support for the nominee's election. The statement must be public (not private communications) and specifically reference the race or be clearly in context of the race. The endorsement must come directly from the person or through their official channels. Positive comments without explicit support, policy endorsements without nominee endorsement, or conditional endorsements do not qualify. Social media endorsements count only from verified accounts, and likes or retweets alone do not constitute endorsement. Quote tweets with additional supportive commentary do count. Sarcastic statements or those immediately clarified as jokes do not qualify.",
+          "scheduled_close": "2026-10-28T14:00:00Z",
+          "series": "KXDJTENDORSENETANYAHU",
+          "subtitle": "::",
+          "title": "Will Donald Trump endorse Benjamin Netanyahu in the 2026 Israeli legislative election before Oct 28, 2026?",
+          "yes_sub_title": "Before Oct 28, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXBRBALLOT-26",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXBRBALLOT-26",
+          "key": "KXBRBALLOT-26-EBOL",
+          "no_sub_title": "Eduardo Bolsonaro",
+          "rules_primary": "If Eduardo Bolsonaro is on the official ballot for the next Brazilian Presidential election first round, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-10-04T14:00:00Z",
+          "series": "KXBRBALLOT",
+          "subtitle": null,
+          "title": "Will Eduardo Bolsonaro be on the ballot in the next Brazilian presidential election?",
+          "yes_sub_title": "Eduardo Bolsonaro"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBRBALLOT-26",
+          "key": "KXBRBALLOT-26-FBOL",
+          "no_sub_title": "Fl\u00e1vio Bolsonaro",
+          "rules_primary": "If Fl\u00e1vio Bolsonaro is on the official ballot for the next Brazilian Presidential election first round, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-10-04T14:00:00Z",
+          "series": "KXBRBALLOT",
+          "subtitle": null,
+          "title": "Will Fl\u00e1vio Bolsonaro be on the ballot in the next Brazilian presidential election?",
+          "yes_sub_title": "Fl\u00e1vio Bolsonaro"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBRBALLOT-26",
+          "key": "KXBRBALLOT-26-JB",
+          "no_sub_title": "Jair Bolsonaro",
+          "rules_primary": "If Jair Bolsonaro is on the official ballot for the next Brazilian Presidential election first round, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-10-04T14:00:00Z",
+          "series": "KXBRBALLOT",
+          "subtitle": null,
+          "title": "Will Jair Bolsonaro be on the ballot in the next Brazilian presidential election?",
+          "yes_sub_title": "Jair Bolsonaro"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBRBALLOT-26",
+          "key": "KXBRBALLOT-26-LULA",
+          "no_sub_title": "Luiz In\u00e1cio Lula da Silva",
+          "rules_primary": "If Luiz In\u00e1cio Lula da Silva is on the official ballot for the next Brazilian Presidential election first round, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-10-04T14:00:00Z",
+          "series": "KXBRBALLOT",
+          "subtitle": null,
+          "title": "Will Luiz In\u00e1cio Lula da Silva be on the ballot in the next Brazilian presidential election?",
+          "yes_sub_title": "Luiz In\u00e1cio Lula da Silva"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBRBALLOT-26",
+          "key": "KXBRBALLOT-26-RJUN",
+          "no_sub_title": "Ratinho J\u00fanior",
+          "rules_primary": "If Ratinho J\u00fanior is on the official ballot for the next Brazilian Presidential election first round, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-10-04T14:00:00Z",
+          "series": "KXBRBALLOT",
+          "subtitle": null,
+          "title": "Will Ratinho J\u00fanior be on the ballot in the next Brazilian presidential election?",
+          "yes_sub_title": "Ratinho J\u00fanior"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBRBALLOT-26",
+          "key": "KXBRBALLOT-26-RSAN",
+          "no_sub_title": "Renan Santos",
+          "rules_primary": "If Renan Santos is on the official ballot for the next Brazilian Presidential election first round, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-10-04T14:00:00Z",
+          "series": "KXBRBALLOT",
+          "subtitle": null,
+          "title": "Will Renan Santos be on the ballot in the next Brazilian presidential election?",
+          "yes_sub_title": "Renan Santos"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXBRBALLOT-26",
+          "key": "KXBRBALLOT-26-TFRI",
+          "no_sub_title": "Tarc\u00edsio de Freitas",
+          "rules_primary": "If Tarc\u00edsio de Freitas is on the official ballot for the next Brazilian Presidential election first round, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-10-04T14:00:00Z",
+          "series": "KXBRBALLOT",
+          "subtitle": "Tarcisio de Frietas",
+          "title": "Will Tarcisio de Frietas be on the ballot in the next Brazilian presidential election?",
+          "yes_sub_title": "Tarc\u00edsio de Freitas"
+        }
+      ]
+    },
+    {
+      "event_key": "KXACTBLUETOP-26SEP11",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXACTBLUETOP-26SEP11",
+          "key": "KXACTBLUETOP-26SEP11-AELS",
+          "no_sub_title": "Abdul El-Sayed",
+          "rules_primary": "If Abdul El-Sayed is the top ActBlue fundraiser on Sep 11 at 10:00 AM ET, then the market resolves to Yes.",
+          "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-11T13:59:00Z",
+          "series": "KXACTBLUETOP",
+          "subtitle": null,
+          "title": "Will Abdul El-Sayed be the top ActBlue fundraiser on Sep 11 at 10:00 AM ET?",
+          "yes_sub_title": "Abdul El-Sayed"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXACTBLUETOP-26SEP11",
+          "key": "KXACTBLUETOP-26SEP11-ANIX",
+          "no_sub_title": "Angie Nixon",
+          "rules_primary": "If Angie Nixon is the top ActBlue fundraiser on Sep 11 at 10:00 AM ET, then the market resolves to Yes.",
+          "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-11T13:59:00Z",
+          "series": "KXACTBLUETOP",
+          "subtitle": null,
+          "title": "Will Angie Nixon be the top ActBlue fundraiser on Sep 11 at 10:00 AM ET?",
+          "yes_sub_title": "Angie Nixon"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXACTBLUETOP-26SEP11",
+          "key": "KXACTBLUETOP-26SEP11-JOSS",
+          "no_sub_title": "Jon Ossoff",
+          "rules_primary": "If Jon Ossoff is the top ActBlue fundraiser on Sep 11 at 10:00 AM ET, then the market resolves to Yes.",
+          "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-11T13:59:00Z",
+          "series": "KXACTBLUETOP",
+          "subtitle": null,
+          "title": "Will Jon Ossoff be the top ActBlue fundraiser on Sep 11 at 10:00 AM ET?",
+          "yes_sub_title": "Jon Ossoff"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXACTBLUETOP-26SEP11",
+          "key": "KXACTBLUETOP-26SEP11-JTAL",
+          "no_sub_title": "James Talarico",
+          "rules_primary": "If James Talarico is the top ActBlue fundraiser on Sep 11 at 10:00 AM ET, then the market resolves to Yes.",
+          "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-11T13:59:00Z",
+          "series": "KXACTBLUETOP",
+          "subtitle": null,
+          "title": "Will James Talarico be the top ActBlue fundraiser on Sep 11 at 10:00 AM ET?",
+          "yes_sub_title": "James Talarico"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXACTBLUETOP-26SEP11",
+          "key": "KXACTBLUETOP-26SEP11-MPEL",
+          "no_sub_title": "Mary Peltola",
+          "rules_primary": "If Mary Peltola is the top ActBlue fundraiser on Sep 11 at 10:00 AM ET, then the market resolves to Yes.",
+          "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-11T13:59:00Z",
+          "series": "KXACTBLUETOP",
+          "subtitle": null,
+          "title": "Will Mary Peltola be the top ActBlue fundraiser on Sep 11 at 10:00 AM ET?",
+          "yes_sub_title": "Mary Peltola"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXACTBLUETOP-26SEP11",
+          "key": "KXACTBLUETOP-26SEP11-SBRO",
+          "no_sub_title": "Sherrod Brown",
+          "rules_primary": "If Sherrod Brown is the top ActBlue fundraiser on Sep 11 at 10:00 AM ET, then the market resolves to Yes.",
+          "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-11T13:59:00Z",
+          "series": "KXACTBLUETOP",
+          "subtitle": null,
+          "title": "Will Sherrod Brown be the top ActBlue fundraiser on Sep 11 at 10:00 AM ET?",
+          "yes_sub_title": "Sherrod Brown"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXACTBLUETOP-26SEP11",
+          "key": "KXACTBLUETOP-26SEP11-TJAC",
+          "no_sub_title": "Troy Jackson",
+          "rules_primary": "If Troy Jackson is the top ActBlue fundraiser on Sep 11 at 10:00 AM ET, then the market resolves to Yes.",
+          "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+          "scheduled_close": "2026-09-11T13:59:00Z",
+          "series": "KXACTBLUETOP",
+          "subtitle": null,
+          "title": "Will Troy Jackson be the top ActBlue fundraiser on Sep 11 at 10:00 AM ET?",
+          "yes_sub_title": "Troy Jackson"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}
