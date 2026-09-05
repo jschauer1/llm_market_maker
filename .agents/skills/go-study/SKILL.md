@@ -1,0 +1,216 @@
+---
+name: go-study
+description: Run or extend one study — a measurement that answers a question and never bets. Use when a claim needs settling before anyone builds on it, or a study is in flight and needs finishing. Invoked by go when the study lane is claimed.
+---
+
+# go-study — settle a question with a measurement
+
+Invoked by `go` once you hold the study lane. **One study, this whole
+session.**
+
+A bounded request to record an already completed answer uses the recording
+section and memory policy. Load the study definition and execution sections
+before designing or running research, or changing a study's lifecycle state.
+
+**A study is a measurement that answers a question. It never bets.** No
+`record_opportunity`, no ticker, no ledger row, no score — if what you
+are building produces a bet, you are in the wrong lane and it needs a
+spec (`go-new-theory`). `tickets/study/README.md` has the full
+definition and the rules; read it before starting or moving a study.
+
+## Why this lane exists
+
+The answer is almost always cheaper than the thing it decides. A study
+that finds nothing has still stopped somebody building the wrong theory,
+at a day's cost instead of a month's — `calendar-arb` and
+`smile-smoothing` were both killed this way before a line of theory code
+was written, and `settlement-day-clustering` caught two theories whose
+strong opening numbers were a single settlement day.
+
+So this lane is at its most valuable **before** work, not after it.
+
+## 1. Orient
+
+```bash
+python -m tools.cli studies                        # what exists, and its verdict
+python -m tools.cli tickets list --lane study      # queued study work
+```
+
+`*` marks a study that is **not complete**. Those are the first thing to
+look at: an in-flight study is a question somebody thought was worth
+answering and then stopped answering, and it is usually cheaper to
+finish than a fresh one is to start.
+
+## 2. Choose — in this order
+
+1. **A study in flight**, especially one whose data perishes. Kalshi
+   ages settled markets out of its public API after ~60 days, so an
+   unfinished collection is not merely delayed, it is *losing rows
+   upstream*. This outranks a new question.
+2. **A ticket in the study lane.**
+3. **A cheap check that would decide an open `new-theory` spec.**
+   Nothing requires one — a theory proves itself when it is implemented,
+   and the lane runs `open → build` with no measurement stage — but a
+   thesis that is cheap to check and expensive to build is exactly where
+   an afternoon buys the most: `calendar-arb` and `smile-smoothing` both
+   died that way. Say whose decision the answer would change.
+4. **A claim a running theory rests on that nobody has checked.**
+5. **A new question of your own** — last, not first.
+
+State which you picked and what you compared it against.
+
+## 3. If you are starting a new one: file the question, then claim it
+
+**A study in `question/` is a request, not a design** — one `STUDY.md`
+saying what should be investigated and why it is worth a session, and
+nothing else. File it, or pick up one somebody already filed:
+
+```bash
+python -m tools.cli tickets new --lane study --slug <YYYY-MM-DD>-<slug> --title "<the question>" [--theory <slug>] --session <you>
+```
+
+It lands in `question/` — inside the theory that owns it when you name
+one, and in `tickets/study/question/` when no single theory does.
+
+**Then advance it before you write anything else.** Designing the
+measurement is work, and every part of the work — the bar, the code, the
+data — lives in `investigation/`:
+
+```bash
+python -m tools.cli tickets advance <path> --to investigation --note "<what the measurement is about to do>"
+```
+
+Skipping that leaves a half-run study filed as an unclaimed question:
+the backlog cannot tell it from something nobody has touched, and the
+floor's in-flight report reads `investigation/`, so a collector stalling
+in `question/` is invisible. `2026-09-03-maker-mode-fill-simulation`
+grew a pre-registration, a simulator, fixtures and a collected corpus in
+`question/` before this was ruled, and
+`tests/test_conventions.py::test_a_study_in_question_holds_only_the_question`
+now fails the moment it happens again.
+
+## 4. Write the bar — first thing in `investigation/`, before looking
+
+**Before computing any result**, commit the `STUDY.md` bar, stating:
+
+- **The question**, in one sentence.
+- **The population** — inclusion rules, concretely. *The rules that
+  decide who is in the sample routinely span the entire conclusion*; a
+  pre-registration naming only the contrast is not one.
+- **The contrast**, and its predicted direction.
+- **The power floor** — the smallest effect this design can detect. If
+  the MDE is larger than a theory-grade edge, the run cannot inform the
+  question: resize it *before* running, never reinterpret after.
+- **What result would kill the idea.**
+- **The tier** — A if no outcome judgment is anywhere in the path.
+
+Read `tickets/new-theory/README.md` rules 0–0f first. Two of them kill
+studies before they are run, for free: **rule 0** (an edge between
+siblings of one Kalshi event finds nothing) and **rule 0f** (measure at
+*executable* prices, never the mid, never gross of fees).
+
+Keep the script that proves you had looked at nothing —
+`2026-08-30-entry-timing` wrote a `counts.py` for exactly that reason,
+and its answer document names the rev it can still be read at.
+
+**Carry a negative control** if the study scans many candidates: a slice
+whose answer is already known. Measure it, and keep it out of the
+multiple-comparisons family.
+
+## 5. Run it once
+
+One run, against the bar as written.
+
+- **Report a failed prediction as failed.** A better-looking cut found
+  afterwards is a hypothesis for the next population, never the
+  headline. Both of the repo's pre-registration failures were this shape.
+- **Score gross; report net beside it.** Fees are a near-constant −1 to
+  −3pt offset, so a fee-net statistic makes a perfectly calibrated
+  series look biased — and sails through a split-sample guard.
+- **"Not measured" is a legitimate result** and is different from
+  "calibrated". `series-bias-mining` pass 3 declared itself not measured
+  by its own bar rather than reporting nine flags, and that was correct.
+- **Write incrementally.** Anything running over a minute writes per
+  series or per page to a resumable checkpoint, never memory-only with
+  one write at the end. The data perishes; an interrupted run must
+  resume rather than restart.
+
+## 6. Record the verdict where it can be seen
+
+The header line is the interface — `cli studies` reads it live, so this
+is how a supervisor learns what you found without opening the file:
+
+```markdown
+**Date:** YYYY-MM-DD · **Tier:** A · **Verdict:** <one line>
+```
+
+Keep the *directory* honest — that is where a study's state lives now,
+and there is no `Status` field. `question` -> `investigation` happened
+back at step 3, the moment you picked the question up; `python -m
+tools.cli tickets advance <path> --to answer` moves it on only when the
+question is answered.
+
+**Reaching `answer/` means deleting the investigation.** The answer is
+the document; the scripts, the intermediates and the working data were
+how you got there, and they go. Before deleting, make the document able
+to stand without them — the question, the population and its inclusion
+rules, the contrast, the bar as pre-registered, the numbers (including
+the ones that did not support the verdict), and the limits — then record
+the rev they lived at:
+
+```markdown
+**Code:** deleted at `<rev>` — `git show <rev>:<path>` returns any file.
+```
+
+The rev is what makes this recoverable rather than merely irreversible,
+and it is the same line a retired theory's `RETIRED.md` carries. What
+stays is source data no `git show` can return: a gitignored corpus of
+raw payloads is unbuyable once Kalshi ages the window out, so name it in
+the document under `**Retained:**` with why. `tickets/study/README.md`
+has the full list of what the answer document must carry.
+
+Then close the loop wherever the question came from — the study is not
+finished while its answer sits only in the study's own folder:
+
+- Killed or confirmed a `new-theory` spec → close that ticket with the
+  resolution, or append the finding to it.
+- Answered something about a theory → link the answer from its learning map;
+  distill a lesson card when needed, and update `THEORY.md` if its claim or
+  procedure changes. The study remains the original evidence.
+- Found something cross-cutting → update the relevant `knowledge/` topic map
+  and, if useful, one scoped card. A consequential change earns an 80-word
+  `RESEARCH_LOG.md` entry and pointer. Follow `docs/agents/research-memory.md`.
+- Moved a study → update incoming map and lesson links in the same change.
+
+**A pattern found post-hoc is a hypothesis, not an edge.** If it is
+expressible over recorded fields, pre-register it as a registered slice
+(`cli slices register`) so the out-of-sample bookkeeping is automatic.
+Never bet the data that suggested it.
+
+## 7. Before you close the claim
+
+- Is the study in the state directory its work is actually in?
+- Does `cli studies` show what you want a supervisor to see?
+- Did the answer reach whoever asked the question?
+- Is anything you could not finish written down in the study's own
+  folder rather than in your head? A study is itself a ticket now, so
+  `--lane study` would open a second study rather than annotate this
+  one: put unfinished work in this study's `STUDY.md`, or file it in
+  the lane that will do it, naming the study.
+
+```bash
+python -m tools.cli lane release <id> --summary "<what was measured, and what it decided>"
+```
+
+## Two things this lane must not do
+
+**Do not let a study become a theory by accident.** The moment it wants
+to record a bet it needs a spec and the new-theory lane. File the ticket
+and stop.
+
+**Do not re-run a finished study to see if the answer changed.** That is
+multiple comparisons by calendar. Extending one is deliberate work with
+its own statement of what changed — and a larger family is a harsher
+Holm divisor, so two runs over two collection states are two different
+tests. Say which collection state produced the number, and never present
+whichever of the two looks better.

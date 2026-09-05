@@ -1,0 +1,262 @@
+---
+name: backtest-theory
+description: Replay a theory against historical markets without lookahead bias, assigning a contamination tier. Use when a theory needs evidence, or the user asks how a strategy would have performed.
+---
+
+# Backtest a Theory
+
+## 0. Why this is usually the highest-value work available
+
+A replay is not a weaker substitute for real settlements. Under the
+2026-08-31 ruling, **settled outcomes and tier A/B replays are the same
+kind of evidence and they pool** — a backtested edge feeds a theory's
+gates, its ranking, and its sub-theories' gates exactly as forward
+settlements do, and is never described as weaker for being backtested.
+
+Backtesting and settlement data are the two ways a theory earns
+evidence, and what separates them is **time**. Settlements arrive at the
+speed of the calendar and the gates want five settlement days —
+`no_side_premium` has spent a week reaching four. A replay buys the same
+evidence in an afternoon and re-runs for free. So a theory sitting at
+n=0 with fetchable history is not short of evidence — **it is short of
+somebody running the replay**, and running it is often worth more than
+another live scan that adds unproven suggestions.
+
+This cuts both ways, which is the point: a replay can also show an edge
+is not there, cheaply, before the theory spends months proving it slowly.
+
+Two things this does not license. **Tier C never counts**, and a replay
+whose tier was never recorded counts for nothing — so record the run
+(`score.record_backtest_run`) with its tier, or the evidence you just
+bought is invisible. And for a **sub-theory**, the runs it was *mined
+from* never vouch for it (`mined_from_run_ids` at registration): a
+pattern found by slicing a replay's own rows is a hypothesis to test on
+other rows, not a result.
+
+## 1. Determine the tier — derived, never self-reported
+
+Three facts decide it:
+
+1. Does the theory's decision path invoke LLM judgment? Check
+   `theory.uses_llm_judgment` — a `ClassVar`, drift-checked against the DB
+   by `registry.check_drift`, so it cannot silently disagree with the
+   registry row. `THEORY.md` explains *why*; the class is the fact.
+2. If it does, is **every** judging stage a *structural gate* — a stage
+   whose answer cannot be influenced by the outcome? Test it against the
+   structural-gate conditions (the five conditions below), not against
+   the prompt's self-description. The decisive one is the contamination
+   probe: given only what the prompt shows, can the model state the
+   outcome? If it can, the stage is outcome judgment.
+3. Did the markets resolve before or after the judging model's knowledge
+   cutoff?
+
+<!-- rule: structural-gate-conditions (moved from AGENTS.md § Backtest tiers, 2026-08-29) -->
+A judging stage is **structural** — and does not cost tier A — only when all
+of the following hold. This list is the whole point; a stage that misses any
+line is outcome judgment.
+
+- **Answerable from the market's own text as written at open.** The
+  classification would have been identical on day one and on settlement day.
+- **The payload carries no outcome-bearing data.** Rules and title only —
+  no price, result, settlement, volume, close date, or anything downstream
+  of what happened. This is a property of the prompt file, which is already
+  on disk and reviewable in `git diff`.
+- **It decides eligibility, never direction.** A structural gate answers
+  "is this market in the population?" It never assigns a probability, a
+  side, or a confidence bucket. Buckets still come only from a deep stage,
+  and any theory with a deep stage is tier B or C as before.
+- **It passes the contamination probe.** Run the probe against the gate's
+  own sample: given only what the prompt shows, can the model state the
+  outcome? If it can, the stage is not structural, whatever the prompt says.
+- **The payload is point-in-time where a capture exists.** Market text is
+  edited under live markets, and a compliant prompt shows which *fields*
+  it sends, never which *version* — so where a snapshot at or before the
+  decision point exists, rules and title come from it, never from a
+  current fetch. Where none exists (all history before 2026-08-24),
+  today's text may be used and the tier is kept, but the `backtest_runs`
+  notes must say so and cite the measured drift bound for the population
+  (currently one genuine resolution-criteria change across 156k
+  multi-capture markets in 5 days —
+  `docs/2026-08-29-structural-gate-payload-version/`; refresh the
+  bound as snapshot history grows).
+<!-- /rule -->
+
+| Tier | Condition | Trust |
+|---|---|---|
+| **A** | No LLM, **or** every model stage is a structural gate | Full evidence, all history |
+| **B** | Outcome judgment, markets resolved *after* the cutoff, web search off | Valid, small sample |
+| **C** | Outcome judgment, markets resolved *before* the cutoff | Contaminated — indicative only |
+
+**Structural is a finding, not a claim.** "Derived, never self-reported"
+binds hardest here, because it is now the one label a theory could award
+itself. Run the probe, record its result in the `judgment_runs` row's
+`notes`, and treat an unrun probe as outcome judgment. A stage that
+assigns any bucket, side, or probability is outcome judgment whatever its
+prompt is titled — buckets come only from a deep stage.
+
+<!-- rule: record-the-tier-claim (moved from AGENTS.md § Backtest tiers, 2026-08-29) -->
+Record the claim where it can be checked: the `judgment_runs` row for a
+structural stage says so in its `notes`, alongside the probe result that
+supports it. **Everything else about LLM record-keeping is unchanged** —
+the theory still declares `uses_llm_judgment`, still records provenance for
+every judging stage, still keeps its prompts on disk, and still bumps its
+version when a prompt changes. This amendment moves the tier, not the
+paper trail.
+<!-- /rule -->
+
+A tier A backtest of a judgment theory's *screen alone* is often the best
+available evidence: uncontaminated, and it measures whether the filter selects
+markets that beat their price.
+
+**Only outcome stages contribute a cutoff.** A structural gate cannot
+leak the future, so it does not drag a cascade's cutoff earlier — a theory
+whose gate is structural and whose deep stage judges outcomes takes the
+deep stage's cutoff alone. A theory with *no* outcome stage has no cutoff
+to honour at all, which is what tier A means.
+
+**A cascade with two outcome stages has two cutoffs, not one.** If the theory runs a cheap gate ahead
+of deep analysis, those are two different models with two different knowledge
+cutoffs. Tier B validity requires the markets to resolve after the **later**
+of the two — a cheap gate with an earlier cutoff still contaminates the run
+even when the deep model's cutoff is clean, because the gate's judgment was
+also part of the decision path. Record the later of the two cutoffs as
+`model_cutoff` and derive the tier from that single, later date.
+
+## 2. Enforce the rules
+
+- **The replay code lives with the theory**, as `backtest.py` in its
+  folder by convention — `theories/insider_bias/insider_judgment/
+  backtest.py` is the worked example. (It was `mention_family`'s until
+  that theory was retired and its code deleted on 2026-09-02; that
+  replay is still readable at `git show 450db428ec0e7542852fae6484ab8370aaeddfad:theories/insider_bias/
+  mention_family/backtest.py`, and it is where Kalshi's ~60-day
+  archival floor was established.) When sibling theories replay the
+  *same* screen,
+  the shared half moves up to their shared parent, never to `tools/`:
+  `theories/insider_bias/replay.py` is that case. The harness gives you
+  point-in-time data, run identity, tiers and scoring; reconstructing a
+  theory's decision at a past moment is thesis-specific and stays on the
+  theory side. **Never write or extend a shared replay engine**
+  (`tools/backtest.py`), and never add a `backtest()` method to the
+  `Theory` contract. A backtest is a driver script that builds a
+  backtest-mode context and calls the same `screen()` and `price()` the
+  live path calls — replaying a reimplementation of the screen is a
+  backtest of nothing.
+- **`TheoryContext(run_mode="backtest")` is what a replay keys on.** Build
+  the context with `run_mode="backtest"` and a real `run_id` (not `"live"`)
+  — `TheoryContext.build(..., run_mode="backtest", run_id=...)` — and it
+  propagates everywhere that matters: `finish()` stamps every row it writes
+  with `ctx.run_mode` and `ctx.run_id` automatically, so replayed rows stay
+  separable from live ones with no per-candidate bookkeeping.
+- **`ctx.now` must be the day being replayed, not the day you are running
+  on** — so a walk over sixty days builds a context per replayed day (or
+  rebuilds one with a new `now`), never one context for the whole walk.
+  `ctx.now` is the harness's as-of time and it is what dates the attempt:
+  `OpportunityRecord.from_scored` passes `decision_date=ctx.now.date()`,
+  and an attempt is keyed `(opportunity_id, decision_date, run_id)`. One
+  context for the whole walk stamps all sixty decisions with today's date
+  under one `run_id`, the key collapses them, and **fifty-nine attempts are
+  overwritten in silence** — the position ends up looking like a single
+  proposal at whichever price was written last. Nothing catches this:
+  `record_opportunity` refuses a backtest with a *missing* `decision_date`,
+  and cannot know a present one is wrong. Setting `ctx.now` correctly also
+  keeps `point_in_time` and the attempt agreeing on which moment is being
+  replayed, which is what makes a per-day price series reconstructable
+  afterwards.
+- Use `tools/kalshi/history.py` `point_in_time` for market state. It never
+  returns a candle after your `as_of_ts` — that property is the basis of a
+  lookahead-free replay.
+- Price entries at the **historical ask** (`yes_ask_close`), not the mid.
+
+<!-- rule: backtest-web-search-off (moved from AGENTS.md § Backtest tiers, 2026-08-29) -->
+Web search stays off in every backtest judgment subagent.
+<!-- /rule -->
+
+This holds at every tier and for every batch within a stage. Each backtest
+`JudgmentExecution` must explicitly set `web_search=False`; `finish()` rejects
+both `True` and `None`. It must also record the actual requested model identifier
+or unresolved alias, actual effort when supplied or exposed, and the exact
+rendered prompt for that dispatch. Use multiple executions when a stage is
+batched. Live executions instead record their actual `True`, `False`, or `None`
+search state. The legacy single-stage `judge_model` fallback supplies backtest
+search state only for compatibility; do not use it for new judged runs. Do not
+bypass the contract with ad hoc manual provenance recording.
+
+## 3. Contamination probe (tier C only)
+
+Before trusting any tier C result, per market: ask a subagent to state the
+outcome given only the market question, with no price data. If it knows,
+discard that market. This turns an unfalsifiable worry into a measurement and
+can rescue genuinely obscure markets.
+
+## 4. Run it
+
+Record every replayed decision with `run_mode="backtest"` and a real `run_id`
+(a uuid, not `"live"`), so dedup is per-run and results stay separable from
+live. Record rejections as well as endorsements.
+
+**Record while you collect — never batch an entire walk into one write at
+the end.** A replay that fetches for more than a minute writes each finished
+unit (a series, a page, a batch of markets) to the ledger or a resumable
+checkpoint file before starting the next, and on restart skips what is
+already recorded. An interruption then costs seconds, not the run — and
+with Kalshi archiving settled markets out of its public API ~60 days after
+close, rows lost to a crash may not exist upstream anymore when you re-run.
+See the convention in `tools/README.md`; `theories/insider_bias/
+mention_family/backtest.py` is the worked example (per-series recording
+plus a `--checkpoint` file).
+
+The same rule governs **judgment stages, because usage can cut out at
+any moment**: write every batch's input payload to disk before any model
+runs, have each judgment subagent write its verdicts to a file itself,
+and ingest + record each batch before dispatching the next — never hold
+verdicts only in conversation context. However far the run got must be
+scoreable by a future session that never saw this one.
+`theories/insider_bias/insider_judgment/backtest_judged.py` is the
+worked example.
+
+**Backtests are the highest-volume judgment in this system** — a replay can
+span hundreds of historical markets, far more than a single live scan. Use the
+same cascade the theory uses live (cheap gate, then deep analysis on
+survivors), batched tens per call, and apply the theory's own tiering if its
+`THEORY.md` names one. Replaying a year of markets through a strong model
+one-at-a-time is the most expensive possible way to get this number. Using a
+cheap tier at the gate stage is assumed to cost little in fidelity, but that
+is an assumption, not a measurement, in a system whose whole thesis is that
+such claims get measured — gate/deep agreement is itself checkable (run both
+on an overlapping sample and compare verdicts), so do that before leaning on
+the assumption for a result that matters.
+
+Record a `backtest_runs` row with the tier, `uses_llm_judgment`, and the
+`model_cutoff` you used:
+
+```bash
+python -m tools.cli backtest record <run_id> <theory_id> <theory_version> --tier A --model-cutoff <date> [--uses-llm-judgment] --notes "<notes>"
+```
+
+## 5. Score and caveat
+
+```bash
+python -m tools.cli score report <theory_id> --run-mode backtest --run-id <run_id>
+```
+
+**Always pass `--run-id`.** Without it, re-running the same backtest over the
+same markets pools into every prior run of this theory version and multiplies
+`n` without adding a single real bet — and `n` feeds credibility directly.
+
+Report the tier alongside every number. Tier C results are **excluded from
+credibility** — never present them as evidence of edge, only as a sanity check
+on the screening stage.
+
+Backtest **results** live in the database: rows tagged
+`run_mode="backtest"` plus the `backtest_runs` row. Backtest **narrative**
+— what you tried, what broke, why the window is the window, which
+approximations the reconstruction accepts and in which direction they bias
+— stays in the campaign's `RESULTS.md`, or one dated `notes/` file when no
+campaign record holds it, and reaches `THEORY.md` only if the
+result changes what the theory claims. The biases belong in `THEORY.md`'s
+"How to backtest" section too, since they are part of the procedure.
+
+Before an expensive repeat, consult the theory's learning map and matching
+source entries. Distill reusable findings under `docs/agents/research-memory.md`
+with their population, tier, discovery/confirmation status, and run IDs intact.

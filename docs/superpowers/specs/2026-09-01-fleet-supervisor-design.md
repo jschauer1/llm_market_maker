@@ -3,6 +3,16 @@
 **Status:** accepted 2026-09-01 (user). Built the same day.
 **Skill:** `.claude/skills/supervise/`
 
+> **Capacity amendment (2026-09-04):** The original design below assumed three
+> research workers could run independently of their nested judges. That fixed
+> target and its peer/subagent accounting are superseded. The canonical
+> `supervise` skill and current runtime adapter now reserve one advertised
+> global slot for required worker-created judgment and use the remaining
+> capacity for up to three research workers. On a four-slot host with no other
+> active consumers, the roster is one supervisor, two research workers, and
+> one free or occupied judge slot. Tool names and lifecycle claims below are
+> also historical; the current adapter and native inventory are authoritative.
+
 ## The problem
 
 `go` produces one focused session at a time. Capacity is the binding
@@ -26,8 +36,8 @@ doing it for a week — and it already hurts in two specific places:
    session running a bare `git commit` would have swept up two other
    sessions' half-finished work into a commit describing its own.
 
-The supervisor exists for exactly these two jobs: keep three workers
-alive, and be the only thing that writes to git.
+The supervisor exists for exactly these two jobs: keep its research-worker
+target full, and be the only thing that writes to git.
 
 ## What it is not
 
@@ -42,7 +52,7 @@ form an opinion about the theory, it has left its job.
 
 | Question | Ruling |
 |---|---|
-| Fleet size | **Exactly three** — a hard cap, not a target |
+| Fleet size | **Originally exactly three**; superseded by the 2026-09-04 capacity amendment above |
 | Supervisor's own scope | Pure supervisor — no lane, no research, no agents of its own |
 | Who picks each worker's lane | The worker, via `go` unmodified |
 | Heartbeat | `CronCreate` armed by the skill itself |
@@ -64,12 +74,14 @@ Three fixed slots — `w1`, `w2`, `w3` — each holding at most one live
 worker, each with a generation counter. A worker's repo session name is
 `fleet-w2-g3`: slot two, third occupant.
 
-Three is a **cap**, not a target: the supervisor spawns only into a slot
+In the original design, three was a **cap**, not a target: the supervisor spawns only into a slot
 `ListAgents` proves is empty, and three occupied slots means it spawns
 nothing. The cap covers the supervisor's own helpers too — it gets none,
 and runs its own commands instead. It does *not* cover subagents a worker
 spawns inside its own session for cheap gates and deep analysis, which is
-how CLAUDE.md intends a `go` session to work.
+how CLAUDE.md intended a `go` session to work. The amendment above supersedes
+this capacity accounting; nested agents consume capacity when the active host
+says they do.
 
 Slots rather than a list of agent ids, for three reasons. The supervisor's
 context will be summarized during a long run, and "three slots, one of
@@ -92,7 +104,7 @@ guidance that everyone who asks for "every 20 minutes" lands on `:00`.
 
 The distinction matters because it sets what a heartbeat is *for*. A
 heartbeat is not "collect results" — results arrive on their own. It is
-"is the fleet still three, and is anything stuck."
+"is the fleet still at its target, and is anything stuck."
 
 ### State lives in ListAgents and FLEET_LOG.md
 
@@ -306,7 +318,8 @@ segment that earned it, and the `mark-taken` reminder CLAUDE.md requires.
   subagents die when the supervisor's session exits, and recurring crons
   auto-expire after 7 days. There is no durable persistence available for
   either; the skill discloses this at startup rather than pretending.
-- **Peers are not counted toward the three.** The supervisor targets
+- **Original peer accounting (superseded by the capacity amendment):** Peers
+  were not counted toward the three. The supervisor targets
   three workers *it owns*, and reports other live sessions separately as
   context. With peers active this can mean five or more concurrent
   sessions on one tree and one database.

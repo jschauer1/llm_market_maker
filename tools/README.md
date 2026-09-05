@@ -17,7 +17,7 @@ without the contract.
   sentence, it is two tools.
 - **JSON or SQLite in, JSON or SQLite out.** Nothing prints prose for a human
   to parse; `tools/cli.py` emits JSON, nothing more. Human-facing narration
-  happens in the skills under `.claude/skills/`, which call the CLI and turn
+  happens in the shared skills under `.agents/skills/`, which call the CLI and turn
   its output into prose. Do not build a pretty-printer into a tool — emit
   structured data and let the skill narrate it.
 - **A module docstring that says what it does and why.** The "why" matters
@@ -56,6 +56,10 @@ without the contract.
   worth keeping go through `tools/kalshi/cache.py`
   (`db/history_cache.db`) so a variant re-test never re-walks the
   network.
+  New judged `TheoryRun` workflows use `tools/judgments.py`; the concrete
+  prepare/complete/resume procedure is in `docs/agents/judgment-batches.md`.
+  Persist the operator's original run state separately from the judge's
+  blind input. Existing theory-local replay manifests remain supported.
 - **Write whole files through `tools/atomic_write.py`, never
   `Path.write_text`.** The load-mutate-save shape the rule above produces
   has a failure mode the rule does not: `write_text` opens mode `"w"`,
@@ -63,8 +67,9 @@ without the contract.
   losses on 2026-09-01 — a `deadline_drift` walk killed at 874/960 series
   by OneDrive holding a handle (`OSError: [Errno 22]`), and a reader
   catching a half-written file (`JSONDecodeError: line 1 column 1`).
-  `atomic_write.write_json` / `write_text` write a sibling `.tmp` and
-  `os.replace` onto the destination, retrying a transient `OSError`, so a
+  `atomic_write.write_json` / `write_text` write a unique sibling temporary file,
+  flush and sync its bytes, then use
+  `os.replace` on the destination, retrying a transient `OSError`, so a
   reader always sees the whole old file or the whole new one and a sync
   lock costs a retry instead of a run. It does **not** make concurrent
   collection safe — see the next bullet.
@@ -74,13 +79,17 @@ without the contract.
   file. Measured here: `anchors.json` went 332 → 294 markets *while the
   walk was still adding*, and markets cannot un-settle. This is not bad
   luck but the documented procedure colliding with itself: several
-  sessions run at once and CLAUDE.md tells each to top up a stale
-  capture. Until a lock ships (the collector-write-lock ticket in
-  `tickets/maintenance/`), **check for a live collector before starting
-  one** — and note that the obvious check
-  lies. Git Bash `ps -ef` shows only the interpreter path, never the
-  arguments, so `ps -ef | grep collect_settled` returns nothing while the
-  process is running. The check that works:
+  sessions run at once and the research policy tells each to top up a stale
+  capture. `exclusive_lock` in `tools/filelock.py` now protects the full
+  load/mutate/save cycle in deadline collection and population saves, and
+  insider-history checkpoint walks. It uses an OS lock that releases on
+  process exit. The persistent sibling lock file is an identity, not proof
+  that a writer is alive; never delete it to take ownership. New collectors
+  with shared mutable files must adopt the same pattern. A timeout reports
+  contention without evicting the owner.
+
+  For diagnosing a running collector, Git Bash `ps -ef` shows only the
+  interpreter path, never the arguments. On Windows use:
 
   ```powershell
   Get-CimInstance Win32_Process -Filter "Name='python.exe'" |
@@ -90,6 +99,19 @@ without the contract.
   Stopping the harness task is also not enough: killing a background task
   stops the *shell*, not the detached child. A stopped task's python.exe
   was still fetching and writing nine minutes later.
+- **Production evidence has one eligibility rule.** `tools/evidence.py`
+  admits live outcomes and properly registered tier A/B replays. Valid
+  backtests count fully in scores, bucket probabilities, slice gates, and
+  settlement-day reports; they can establish a record without live bets.
+  Tier C, missing tiers, absent run registrations, and registrations for a
+  different theory/version are excluded with counts by reason. Raw
+  `score.observations` remains available for explicit diagnostics. This
+  selector does not rewrite historical metadata or cached score rows;
+  normal score saving refreshes those rows using the shared rule.
+- **Position status has one definition.** `tools/positions.py` supplies
+  settlement and current-version supersession facts to the ledger,
+  promotion, and orientation queue. Consumers keep their own display
+  filters; a basket is settled only when all its recorded legs settle.
 - **A long collection registers in `tools/collectors.py`, so a stall is
   visible.** A collector outlives the session that starts it, which makes
   "it stopped and nobody knew" structural rather than careless: the
@@ -177,6 +199,14 @@ without the contract.
   `decision_date`), or a replay covering many days stamps every attempt
   with the same wall-clock date and the primary key silently collapses
   many decisions into one row.
+- **Keep each price, edge and classification on one attempt.** Live
+  single-contract promotion selects the latest decision; pooled scoring
+  selects the earliest confidence-bearing attempt for judgment theories,
+  otherwise the earliest attempt. This preserves one position per all-pool
+  observation without relabeling its earlier price from a later rollup.
+  Named disposition pools retain genuine changes of decision and, when a
+  run is requested, only decisions from that run. Explicit edge revisions
+  are saved on their interpreted attempt. [Rationale and tests](../knowledge/lessons/keep-estimates-on-one-attempt.md).
 - **Scoring keys on the ATTEMPT, never on the position's disposition**
   (ruling 2026-08-29; `tools/score.py::_DECISION_ATTEMPTS`,
   `tests/test_attempt_scoring.py`). An attempt joins the pool of *its
@@ -292,10 +322,10 @@ without the contract.
   promotion rule below moves a helper into `tools/` when a second theory
   really calls it. A research note moves instead into whatever the *repo
   level* reads: `THEORY.md` if it changes the theory's claims, the database
-  if it is a fact or a result, `RESEARCH_LOG.md` if it is session
-  narrative. Raw notes (a theory's `NOTES.md`) never move at all — they get
-  summarized, and the raw entry stays as the audit trail. See CLAUDE.md,
-  "What lives in a theory, and what gets elevated".
+  if it is a fact or a result, a scoped lesson when it saves future work,
+  `RESEARCH_LOG.md` only for a consequential cross-session change. Raw evidence
+  stays as the audit trail. Browse [knowledge](../knowledge/README.md) and use
+  [the memory policy](../docs/agents/research-memory.md) before saving context.
 
 ### Backup cadence (ruled at spec 5.2 phase 4, 2026-08-30)
 

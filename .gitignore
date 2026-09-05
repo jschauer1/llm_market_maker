@@ -7,6 +7,11 @@ db/*.db-shm
 .venv/
 .superpowers/
 
+# Persistent OS-lock identities; never delete a lock file to unlock a writer.
+theories/deadline_drift/data/.collector.lock
+*.json.lock
+**/.ticket-locks/
+
 # SDD isolated worktrees
 .worktrees/
 
@@ -56,3 +61,20 @@ tickets/study/*/2026-08-30-parlay-markup/data/
 # DERIVED decisions it produces are tracked beside it as decisions.json,
 # which is what every analysis actually reads.
 theories/taker_flow/backtests/settled_trades.jsonl
+
+# News Drift source captures stay on disk; summaries/manifests remain searchable.
+# These raw archives are local evidence, not a backup: API retention can expire.
+theories/news_drift/backtests/*/raw/
+theories/news_drift/backtests/*/history.db*
+
+# Original weather captures are retained locally; compact manifests drive retrieval.
+theories/weather_model_gap/backtests/*/raw/
+
+# TSA source captures are retained locally; manifests identify their exact bytes.
+theories/tsa_remainder_gap/backtests/*/raw/
+
+# insider_judgment refresh runs: run-state.json is the price-bearing
+# operator state (the whole board at run time, ~537MB on 2026-09-05) and
+# must never reach git or a judge. The blind inputs, prompts, verdicts and
+# receipts beside it are paid judgment source data and stay tracked.
+theories/insider_bias/insider_judgment/runs/*/run-state.json
