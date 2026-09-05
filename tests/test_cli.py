@@ -141,12 +141,58 @@ def test_theories_status_retired_defaults_to_refusing(dbpath, capsys):
         _run(capsys, "--db", dbpath, "theories", "status", "t1", "retired")
 
 
+@pytest.mark.parametrize("actor", ["claude", "codex"])
+def test_theories_status_retired_refuses_agent_providers(dbpath, capsys, actor):
+    _run(capsys, "--db", dbpath, "theories", "propose-retirement", "t1",
+         "--rationale", "no slice profitable")
+    with pytest.raises(PermissionError):
+        _run(capsys, "--db", dbpath, "theories", "status", "t1", "retired",
+             "--authorized-by", actor)
+
+
+def test_theories_status_accepts_codex_attribution(dbpath, capsys):
+    _, payload = _run(capsys, "--db", dbpath, "theories", "status", "t1",
+                      "under_review", "--authorized-by", "codex")
+    assert payload["status"] == "under_review"
+
+
 def test_theories_status_retired_needs_user_authorization(dbpath, capsys):
     _run(capsys, "--db", dbpath, "theories", "propose-retirement", "t1",
          "--rationale", "no slice profitable")
     code, payload = _run(capsys, "--db", dbpath, "theories", "status", "t1",
                          "retired", "--authorized-by", "user")
     assert payload["status"] == "retired"
+
+
+def test_ideas_record_defaults_to_neutral_agent_source(dbpath, capsys):
+    _, payload = _run(capsys, "--db", dbpath, "ideas", "record", "i1",
+                      "Idea one")
+    assert payload["source"] == "agent"
+
+
+@pytest.mark.parametrize("source", ["claude", "codex"])
+def test_ideas_record_accepts_provider_source(dbpath, capsys, source):
+    _, payload = _run(capsys, "--db", dbpath, "ideas", "record", "i1",
+                      "Idea one", "--source", source)
+    assert payload["source"] == source
+
+
+def test_ideas_record_omitted_source_preserves_existing_attribution(
+        dbpath, capsys):
+    _run(capsys, "--db", dbpath, "ideas", "record", "i1", "Idea one",
+         "--source", "claude")
+    _, payload = _run(capsys, "--db", dbpath, "ideas", "record", "i1",
+                      "Updated idea")
+    assert payload["source"] == "claude"
+
+
+def test_ideas_record_explicit_source_updates_existing_attribution(
+        dbpath, capsys):
+    _run(capsys, "--db", dbpath, "ideas", "record", "i1", "Idea one",
+         "--source", "claude")
+    _, payload = _run(capsys, "--db", dbpath, "ideas", "record", "i1",
+                      "Idea one", "--source", "codex")
+    assert payload["source"] == "codex"
 
 
 def test_theories_propose_retirement_records_without_retiring(dbpath, capsys):
@@ -156,6 +202,24 @@ def test_theories_propose_retirement_records_without_retiring(dbpath, capsys):
     )
     assert payload["status"] == "proposed"
     assert payload["retirement_rationale"].startswith("gross and net")
+
+
+def test_provenance_record_accepts_an_exact_rendered_prompt_file(
+        dbpath, capsys, tmp_path):
+    template = tmp_path / "analysis.md"
+    template.write_text("Judge {n} events.\n", encoding="utf-8")
+    rendered = tmp_path / "rendered.txt"
+    rendered.write_text("Judge 3 events.\n", encoding="utf-8")
+
+    _, payload = _run(
+        capsys, "--db", dbpath, "provenance", "record",
+        "--theory", "t1", "--version", "1", "--run", "r1",
+        "--stage", "analysis", "--model", "gpt-6-astra",
+        "--prompt-path", str(template),
+        "--rendered-prompt-file", str(rendered),
+    )
+    assert payload[0]["prompt_path"] == str(template)
+    assert payload[0]["prompt_text"] == "Judge 3 events.\n"
 
 
 def test_theories_pending_retirement_lists_unruled_proposals(dbpath, capsys):
@@ -256,6 +320,7 @@ def test_score_report_run_id_scopes_the_sample(dbpath, capsys):
     # (position-identity dedup), so the unscoped report still reads n=1 --
     # a duplicate recording must not move it.
     for run in ("run-a", "run-b"):
+        score.record_backtest_run(conn, run, "t1", 1, tier="A")
         ledger.record_opportunity(
             conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
             outcome="yes", entry_price=0.50, edge_pts_net=6.0,
@@ -718,6 +783,36 @@ def test_score_report_shows_all_the_evidence_a_theory_has(dbpath, capsys):
         "six replayed settlements at v1 plus one live at v2 -- a bump does "
         "not discard evidence, and a backtest is evidence"
     )
+    assert payload["settlement_days"]["all"]["n"] == 7
+    assert payload["settlement_days"]["all"]["n_days"] == 7
+
+
+@pytest.mark.parametrize("run_filter", [(), ("--run-id", "bt-one")])
+def test_score_report_segments_use_the_same_requested_sample(dbpath, capsys, run_filter):
+    conn = db.connect(dbpath)
+    slices.register_slice(
+        conn, "t1", "no-side", predicate={"outcome": ["no"]},
+        hypothesis="fixture NO subset", origin="independent fixture",
+        registered_at="2026-01-01T00:00:00Z",
+    )
+    for run_id, mode in (("bt-one", "backtest"), ("bt-two", "backtest"), ("live", "live")):
+        if mode == "backtest":
+            score.record_backtest_run(conn, run_id, "t1", 1, tier="A")
+        ledger.record_opportunity(
+            conn, theory_id="t1", theory_version=1, kalshi_ticker=run_id.upper(),
+            outcome="no", entry_price=0.8, edge_pts_net=3.0, edge_basis="model",
+            run_mode=mode, run_id=run_id, decision_date="2026-06-01",
+        )
+        score.record_settlement(conn, run_id.upper(), "no", resolved_at="2026-06-02T00:00:00Z")
+    conn.close()
+
+    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1",
+                         "--run-mode", "backtest", *run_filter)
+    assert code == 0
+    expected = 1 if run_filter else 2
+    assert payload["all"]["n"] == expected
+    assert payload["segments"]["slice:no-side"]["n"] == expected
+    assert payload["settlement_days"]["all"]["n"] == expected
 
 
 def test_score_report_can_still_be_narrowed_explicitly(dbpath, capsys):

@@ -1,6 +1,6 @@
 # The promotion key
 
-Key version: 4
+Key version: 5
 (Spec: `docs/superpowers/specs/2026-08-30-go-session-structure-design.md` §5.
 Evaluator: `tools/promotion.py`; `python -m tools.cli promote --help`.)
 
@@ -82,6 +82,15 @@ then takes R6, with a reason naming the superseding row.
 
 ## Preconditions shared by R1 and R3
 
+- **One coherent decision.** For a single contract, use the latest attempt's
+  price, edge, probability and slice features together (decision date, then
+  recording time, with insertion order breaking ties). The position's first
+  entry remains the accounting cost; combining it with a later edge invents
+  a price gain or loss. Explicit position dispositions still apply.
+- **A possible binary claim.** A recorded probability outside `[0, 1]`, or a
+  net claim exceeding the remaining payout after fees, takes R4 and requires
+  a new bounded decision. Historical rows are retained, not silently clipped
+  into recommendations.
 - **Today's ask, not the recorded entry.** The claimed edge is adjusted to
   the current ask (price delta plus fee delta). Edge ≤ 0 at today's ask →
   R4, "edge gone at today's ask". An unquoted evaluation is flagged
@@ -125,6 +134,13 @@ proposed amendment; it never overrides the rung in the report.
 
 ## Changelog
 
+- v5 (2026-09-05) — Single-contract promotion reads a coherent latest
+  attempt and blocks impossible binary claims. Opportunity 110002 retained
+  its first 86-cent entry while its latest 81-cent attempt supplied the edge;
+  re-quoting at 81 cents incorrectly added five more points. The same run
+  exposed measured bucket probabilities above one. These are arithmetic
+  corrections and validity gates; segment evidence and judgment buckets are
+  unchanged. Original entries and attempts remain auditable.
 - v4 (2026-09-01) — a position superseded by a re-decision at the
   theory's current version takes R6 (§Supersession). Prompted by an
   incident the same day: `insider_judgment` opportunity 13663

@@ -40,6 +40,30 @@ def _lines(path: Path) -> tuple[str, ...]:
 
 
 @lru_cache(maxsize=None)
+def _evidence_text(path: Path) -> str:
+    """Follow explicit archival redirects when checking historical citations.
+
+    Active context stays short; the cited original must still exist within
+    this repository. A directory-wide search would hide a broken redirect.
+    """
+    pending, seen, parts = [path.resolve()], set(), []
+    while pending:
+        current = pending.pop()
+        if current in seen:
+            continue
+        seen.add(current)
+        text = _text(current)
+        parts.append(text)
+        for rel in re.findall(r"<!-- research-memory-archive: ([^\n]+?) -->", text):
+            archive = (current.parent / rel).resolve()
+            assert archive.is_relative_to(ROOT.resolve()) and archive.is_file(), (
+                f"{current}: historical source does not resolve: {rel}"
+            )
+            pending.append(archive)
+    return "\n".join(parts)
+
+
+@lru_cache(maxsize=None)
 def _files_named(name: str) -> tuple[Path, ...]:
     """Every file in the repo with this basename -- the `**/<span>` glob
     the citation test runs once per otherwise-unresolved citation."""
@@ -277,15 +301,15 @@ def test_every_ruling_log_entry_resolves():
         ))
     finally:
         conn.close()
-    log_text = (ROOT / "RESEARCH_LOG.md").read_text(encoding="utf-8")
+    log_text = _evidence_text(ROOT / "RESEARCH_LOG.md")
     missing = [
         f"ruling {r['id']} -> {r['log_entry']!r}"
         for r in rows if r["log_entry"] not in log_text
     ]
     assert missing == [], (
-        "a ruling's log_entry no longer appears in RESEARCH_LOG.md -- the "
+        "a ruling's log_entry no longer appears in the log or its explicit archive -- the "
         "reasoning behind a binding ruling is no longer traceable from the "
-        "ledger alone. Repoint the row to the heading's new text:\n"
+        "ledger alone. Restore the source or its archival redirect:\n"
         + "\n".join(missing)
     )
 
@@ -359,7 +383,10 @@ def test_every_record_opportunity_param_has_an_attempt_column():
 #: own directory instead of ROOT; that is deferred, so nested THEORY.md
 #: files stay out of scope here rather than fail on their own correct
 #: paths.
-_DOC_FILES = ("README.md", "CLAUDE.md", "tools/README.md")
+_DOC_FILES = ("README.md", "AGENTS.md", "CLAUDE.md", "tools/README.md",
+              "docs/RESEARCH_GUIDE.md", "docs/agents/codex.md",
+              "docs/agents/claude.md", "docs/agents/policy-map.md",
+              "docs/agents/judgment-batches.md")
 
 #: Paths that legitimately exist only at runtime (gitignored artifacts).
 #: `STATE\.md` is deliberately NOT listed here: `_PATH_LIKE` below requires
@@ -514,11 +541,11 @@ def test_every_moved_rule_lives_in_its_owning_skill():
     not just a mention of the skill's name anywhere in the file. A rule
     dropped in a move, or a skill dropped from the map itself, fails at
     the dropping commit."""
-    claude_md = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
-    map_paragraph = _skill_map_paragraph(claude_md)
+    guide = (ROOT / "docs/RESEARCH_GUIDE.md").read_text(encoding="utf-8")
+    map_paragraph = _skill_map_paragraph(guide)
     problems = []
     for slug, skill in sorted(_MOVED_RULES.items()):
-        skill_file = ROOT / ".claude" / "skills" / skill / "SKILL.md"
+        skill_file = ROOT / ".agents" / "skills" / skill / "SKILL.md"
         if f"<!-- rule: {slug} " not in skill_file.read_text(encoding="utf-8"):
             problems.append(f"{slug}: no marked block in {skill}/SKILL.md")
         if not re.search(r"→\s*`" + re.escape(skill) + "`", map_paragraph):
@@ -601,7 +628,7 @@ def _file_contains_date_heading(path, date):
     those two entries apart would mean matching entry *content*, which
     this test was never designed to do and the controller ruling (2026-
     08-29) explicitly declined to add."""
-    for line in _lines(path):
+    for line in _evidence_text(path).splitlines():
         stripped = line.lstrip()
         if stripped.startswith("#") or stripped.startswith("**"):
             if date in line:
@@ -831,8 +858,8 @@ def test_theory_versions_ledger_is_complete_and_proven():
     )
 
 
-def test_claude_md_points_at_the_generated_toolkit_listing():
-    """CLAUDE.md must tell a session how to find out what tools exist.
+def test_shared_guide_points_at_the_generated_toolkit_listing():
+    """The shared guide must tell either runtime how to find the tools.
 
     It deliberately does NOT enumerate them any more: it carried the list
     by hand and named ten modules out of twenty-five, so everything added
@@ -842,19 +869,19 @@ def test_claude_md_points_at_the_generated_toolkit_listing():
     with `tools/toolkit.py` generating it off disk. Losing this pointer
     would leave a session with no route to the toolkit at all.
     """
-    claude = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
-    assert "tools.cli tools" in claude, (
-        "CLAUDE.md must name `python -m tools.cli tools` -- it is the only "
+    guide = (ROOT / "docs/RESEARCH_GUIDE.md").read_text(encoding="utf-8")
+    assert "tools.cli tools" in guide, (
+        "The shared guide must name `python -m tools.cli tools` -- it is the only "
         "route a session has to what tools exist"
     )
 
 
-def test_claude_md_does_not_name_a_tool_that_is_gone():
+def test_shared_guide_does_not_name_a_tool_that_is_gone():
     """The mirror failure: a session told to use a module that no longer
     exists wastes a turn discovering the file is missing, and a rule
     written around it is unenforceable."""
-    claude = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
-    named = set(re.findall(r"`(tools/[\w/]+\.py)`", claude))
+    guide = (ROOT / "docs/RESEARCH_GUIDE.md").read_text(encoding="utf-8")
+    named = set(re.findall(r"`(tools/[\w/]+\.py)`", guide))
     # Named to forbid it, not to offer it -- see "there is no
     # tools/backtest.py replay engine ... and neither gets built".
     named.discard("tools/backtest.py")
@@ -872,7 +899,9 @@ _SKILL_PATH_LIKE = re.compile(
 
 
 def _skill_paths():
-    for skill_md in sorted(ROOT.glob(".claude/skills/*/*.md")):
+    paths = set(ROOT.glob(".agents/skills/**/*.md"))
+    paths.update(ROOT.glob(".claude/skills/**/*.md"))
+    for skill_md in sorted(paths):
         text = skill_md.read_text(encoding="utf-8")
         for span in re.findall(r"`([^`\n]+)`", text):
             # Same filter as `_doc_paths`: bare repo paths only, no
@@ -1039,8 +1068,8 @@ def test_the_exact_stamp_marker_is_not_a_blanket_opt_out():
 
 
 _TOP_LEVEL = {
-    ".claude", "attic", "db", "docs", "tests", "theories", "tickets",
-    "tools", "user_reports",
+    ".agents", ".claude", "attic", "db", "docs", "tests", "theories", "tickets",
+    "tools", "user_reports", "knowledge",
 }
 
 
@@ -1060,7 +1089,7 @@ def test_no_new_top_level_directory():
     for p in ROOT.iterdir():
         if not p.is_dir():
             continue
-        if p.name.startswith(".") and p.name != ".claude":
+        if p.name.startswith(".") and p.name not in {".agents", ".claude"}:
             continue
         if p.name in skip:
             continue
@@ -1077,7 +1106,8 @@ def test_no_new_top_level_directory():
 #: backtest performance -- the user's ruling of 2026-09-01 was "theory +
 #: notes + backtest performance with details, not the entire backtest".
 #: A `studies/` subtree is allowed because a retired theory's studies
-#: retire with it.
+#: retire with it. Markdown-only learnings/ and notes/ preserve compact
+#: research memory and source narrative (2026-09-04 context refactor).
 _RETIRED_ALLOWED = {"RETIRED.md", "THEORY.md", "NOTES.md", "RESULTS.md"}
 
 
@@ -1101,6 +1131,9 @@ def test_a_retired_theory_holds_only_its_record():
             problems.append(f"{folder.name}: no RETIRED.md marker")
         for path in folder.rglob("*"):
             if path.is_dir() or "studies" in path.relative_to(folder).parts:
+                continue
+            if (path.relative_to(folder).parts[0] in {"learnings", "notes"}
+                    and path.suffix == ".md"):
                 continue
             if path.name not in _RETIRED_ALLOWED:
                 rel = path.relative_to(retired_root)
@@ -1331,7 +1364,8 @@ def test_ticket_states_match_their_lane():
     """
     from tools import tickets
 
-    allowed_extra = {"README.md", "reference"}
+    # Persistent operation-lock identities are infrastructure, not lane states.
+    allowed_extra = {"README.md", "reference", ".ticket-locks"}
     problems = []
     for lane, dirname in tickets.ROOT_LANES.items():
         base = ROOT / "tickets" / dirname
@@ -1342,7 +1376,8 @@ def test_ticket_states_match_their_lane():
             if child.name not in legal:
                 problems.append(f"tickets/{dirname}/{child.name}")
     for base in sorted((ROOT / "tickets" / "study").glob("*")):
-        if base.is_dir() and base.name not in tickets.states_for("study"):
+        if (base.is_dir() and base.name not in tickets.states_for("study")
+                and base.name != ".ticket-locks"):
             problems.append(f"tickets/study/{base.name}")
 
     theories_dir = ROOT / "theories"

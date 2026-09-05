@@ -30,7 +30,8 @@ agreement:
   `win_rate - price_implied_rate` — edge against the prices actually
   paid, exactly what `measured_gross` now returns;
 - **`Edge.model_prob`**, which is now this candidate's own price plus the
-  bucket's edge rather than a pooled rate describing other prices.
+  transferable part of the bucket's edge, bounded by the binary payout,
+  rather than a pooled rate describing other prices.
 
 Until a bucket has both MIN_BUCKET_N settled results and MIN_BUCKET_DAYS
 distinct settlement days, the theory's declared prior stands in and the
@@ -87,6 +88,17 @@ def measured_gross(
     return (measured["win_rate"] - mean_entry_price) * 100.0
 
 
+def bounded_measured_gross(entry_price: float, gross: float) -> tuple[float, float]:
+    """Return a feasible candidate gross edge and its inferred probability.
+
+    A measured bucket transfers edge in points, but a binary contract cannot
+    pay below zero or above one. Near either boundary, only the portion of the
+    historical edge that fits inside that payout range can transfer.
+    """
+    probability = min(1.0, max(0.0, entry_price + gross / 100.0))
+    return (probability - entry_price) * 100.0, probability
+
+
 def edge_for(
     bucket: str,
     entry_price: float,
@@ -101,11 +113,13 @@ def edge_for(
     the bucket has enough settled history to speak for itself, otherwise
     "prior".
 
-    The gross claim does not depend on `entry_price` — that is the whole
-    correction. Only the fee does, because the fee genuinely is a function
-    of the price this candidate would be bought at.
+    The measured gross edge transfers unchanged while it fits inside the
+    binary payout. Near zero or one, the candidate can inherit only the
+    portion that keeps its inferred probability in [0, 1]. The fee remains
+    a function of the price this candidate would be bought at.
     """
     gross = measured_gross(bucket, rates, min_n, min_days)
     if gross is None:
         return float(priors.get(bucket, 0.0)), "prior"
+    gross, _ = bounded_measured_gross(entry_price, gross)
     return gross - fee_pts(entry_price), "measured"

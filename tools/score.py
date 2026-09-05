@@ -52,35 +52,59 @@ import statistics
 from tools.db import utcnow, write
 from tools.rank import realization as _realization
 from tools.sizing import fee_pts
-from tools import theories
+from tools import evidence, theories
 
 VALID_TIERS = ("A", "B", "C")
 
-# One row per (opportunity_id, run_id) -- the earliest attempt by
-# (decision_date, recorded_at) -- for a LEFT JOIN to price a run-scoped
-# observation without fanning it out.
-#
-# opportunity_attempts' primary key is (opportunity_id, decision_date,
-# run_id): one run proposing a position on two different decision dates is
-# the normal case, not an edge case, and produces two attempt rows sharing
-# an opportunity_id and run_id. Joining on (opportunity_id, run_id) alone
-# would match both and multiply that position into two observations under
-# `--run-id` -- the exact per-recording double counting this branch exists
-# to remove, just relocated from the position row to the join. Ranked with
-# ROW_NUMBER rather than aggregated with MIN/MAX, because the ledger's
-# "first sighting owns entry_price" rule (`record_opportunity`'s re-sighting
-# UPDATE) needs the whole earliest row's entry_price and edge_pts_net
-# together, not a column-wise blend that could pair one attempt's price
-# with another's edge.
-_EARLIEST_ATTEMPT_PER_RUN = """
-    SELECT opportunity_id, entry_price, edge_pts_net, decision_date FROM (
-        SELECT opportunity_id, entry_price, edge_pts_net, decision_date,
+# One coherent attempt per position. Judgment theories use the earliest
+# attempt that actually carries a confidence label, falling back to the
+# earliest attempt only when no label exists. Mechanical theories always use
+# the earliest attempt. The selected row supplies every attempt-level field;
+# nullable columns never fall through independently to a different attempt.
+_SCORING_ATTEMPTS = """
+    SELECT opportunity_id, entry_price, edge_pts_net, confidence,
+           decision_date, run_id, extra_json
+    FROM (
+        SELECT a.opportunity_id, a.entry_price, a.edge_pts_net, a.confidence,
+               a.decision_date, a.run_id, a.extra_json,
                ROW_NUMBER() OVER (
-                   PARTITION BY opportunity_id
-                   ORDER BY decision_date, recorded_at
+                   PARTITION BY a.opportunity_id
+                   ORDER BY
+                       CASE
+                           WHEN t.uses_llm_judgment = 1
+                                AND a.confidence IS NULL THEN 1
+                           ELSE 0
+                       END,
+                       a.decision_date, a.recorded_at
                ) AS rn
-        FROM opportunity_attempts
-        WHERE run_id = ?
+        FROM opportunity_attempts a
+        JOIN opportunities o2 ON o2.id = a.opportunity_id
+        JOIN theories t ON t.id = o2.theory_id
+    ) WHERE rn = 1
+"""
+
+# The same rule inside one requested run. A run may see one position on
+# several decision dates, but its score remains one settlement observation.
+_SCORING_ATTEMPT_PER_RUN = """
+    SELECT opportunity_id, entry_price, edge_pts_net, confidence,
+           decision_date, run_id, extra_json
+    FROM (
+        SELECT a.opportunity_id, a.entry_price, a.edge_pts_net, a.confidence,
+               a.decision_date, a.run_id, a.extra_json,
+               ROW_NUMBER() OVER (
+                   PARTITION BY a.opportunity_id
+                   ORDER BY
+                       CASE
+                           WHEN t.uses_llm_judgment = 1
+                                AND a.confidence IS NULL THEN 1
+                           ELSE 0
+                       END,
+                       a.decision_date, a.recorded_at
+               ) AS rn
+        FROM opportunity_attempts a
+        JOIN opportunities o2 ON o2.id = a.opportunity_id
+        JOIN theories t ON t.id = o2.theory_id
+        WHERE a.run_id = ?
     ) WHERE rn = 1
 """
 
@@ -120,10 +144,10 @@ _EARLIEST_ATTEMPT_PER_RUN = """
 #:    no interpreted attempts, so this rule is a no-op.
 _DECISION_ATTEMPTS = """
     SELECT opportunity_id, disposition, entry_price, edge_pts_net,
-           confidence, decision_date, run_id
+           confidence, decision_date, run_id, recorded_at, extra_json
     FROM (
         SELECT opportunity_id, disposition, entry_price, edge_pts_net,
-               confidence, decision_date, run_id,
+               confidence, decision_date, run_id, recorded_at, extra_json,
                LAG(disposition) OVER (
                    PARTITION BY opportunity_id
                    ORDER BY decision_date, recorded_at
@@ -140,6 +164,24 @@ _DECISION_ATTEMPTS = """
               AND pi.decision_date <= t.decision_date
         )
       )
+"""
+
+# A named pool scoped to one run may only use a decision made by that run.
+# If a run reached the same disposition more than once, keep its earliest
+# matching decision so one market settlement remains one observation in that
+# named pool under --run-id. Different dispositions remain separate decisions.
+_DECISION_ATTEMPT_PER_RUN = """
+    SELECT opportunity_id, disposition, entry_price, edge_pts_net,
+           confidence, decision_date, run_id, recorded_at, extra_json
+    FROM (
+        SELECT d.*,
+               ROW_NUMBER() OVER (
+                   PARTITION BY d.opportunity_id, d.disposition
+                   ORDER BY d.decision_date, d.recorded_at
+               ) AS rn
+        FROM (""" + _DECISION_ATTEMPTS + """) d
+        WHERE d.run_id = ?
+    ) WHERE rn = 1
 """
 
 EMPTY_SCORE = {
@@ -283,6 +325,12 @@ def observations(
     part — same identity, decision, and cluster semantics, because it is
     the same rows.
 
+    This is deliberately the raw diagnostic seam: it returns backtest rows
+    even when their provenance is tier C, NULL-tier, unregistered, or attached
+    to another theory/version. Decision-facing consumers pass these rows
+    through `tools.evidence.select_eligible`; the built-in score, bucket,
+    settlement-day, and slice consumers already do.
+
     `pool="version"` (default) scopes to `theory_version` alone, exactly
     as before this parameter existed. `pool="chain"` resolves
     `theories.carry_chain` and widens the segment to every version a
@@ -321,15 +369,19 @@ def compute_score(
 ) -> dict:
     """Score every settled opportunity matching the given segment.
 
-    Pass `run_id` to score a single run. Without it every run of the same
-    theory version pools together, so re-running a backtest over the same
-    markets multiplies `n` without adding a single real bet.
+    Pass `run_id` to score a single run. Without it runs pool through
+    `observations`, which collapses repeated sightings of the same position.
+    Eligibility checks every run that contributed to each observation.
 
     `run_mode` takes one mode or several. Several pools them into one
     score — a backtested settlement and a forward one are the same
     evidence (user ruling 2026-08-31), so the pooled figure is usually
-    the honest answer to "how is this theory doing". The result carries
-    `n_backtest` either way, so what the record rests on stays visible.
+    the honest answer to "how is this theory doing". Production scoring
+    admits only live outcomes and backtests whose every contributing run is
+    registered tier A/B for this observation's theory/version. Excluded rows
+    remain available from `observations` and are summarized under
+    `evidence_exclusions`. The result carries `n_backtest` either way, so what
+    the record rests on stays visible.
 
     `pool="version"` scopes to one theory version. `pool="chain"` widens
     to every version the evidence carries across — which, since a bump
@@ -350,7 +402,10 @@ def compute_score(
         for row in batch:
             row.setdefault("run_mode", mode)
         rows.extend(batch)
-    result = _aggregate(rows)
+    selected = evidence.select_eligible(conn, rows)
+    result = _aggregate(selected.eligible)
+    if selected.excluded:
+        result["evidence_exclusions"] = selected.counts
     if pool == "chain":
         chain = theories.carry_chain(conn, theory_id, theory_version)
         if len(chain) > 1:
@@ -438,28 +493,73 @@ def _single_leg_observations(
          " WHERE x.opportunity_id = o.id AND x.run_id = ?) AS n_attempts,",
          [run_id])
     )
-    # The LEFT JOIN prices a run-scoped observation at that run's own
-    # (earliest) attempt rather than the position's (possibly earlier)
-    # entry_price. When run_id is None the derived table's WHERE run_id = ?
-    # matches nothing -- SQL equality against a bound NULL is never true --
-    # so both COALESCEs fall through to the position row and pooled scoring
-    # reads exactly what it read before this join existed.
+    attempt_sql = (
+        _SCORING_ATTEMPTS if run_id is None else _SCORING_ATTEMPT_PER_RUN
+    )
+    attempt_params = [] if run_id is None else [run_id]
+    decision_sql = (
+        _DECISION_ATTEMPT_PER_RUN
+        if run_id is not None and disposition != "all"
+        else _DECISION_ATTEMPTS
+    )
+    decision_params = (
+        [run_id] if run_id is not None and disposition != "all" else []
+    )
+    if disposition == "all":
+        # Test row presence, not field nullness. Once an attempt is selected,
+        # all of its nullable fields travel together rather than falling
+        # through independently to the position rollup.
+        entry_expr = (
+            "CASE WHEN a.opportunity_id IS NOT NULL "
+            "THEN a.entry_price ELSE o.entry_price END"
+        )
+        attempt_edge_expr = (
+            "CASE WHEN a.opportunity_id IS NOT NULL "
+            "THEN a.edge_pts_net ELSE o.edge_pts_net END"
+        )
+        # Before revised edges were stamped onto attempts, a one-attempt
+        # interpreted position could carry its explicit revision only on the
+        # rollup. That legacy case is unambiguous. With two or more attempts
+        # it is not, so never spread a rollup revision across re-observations.
+        edge_expr = (
+            "CASE WHEN o.interpreted_at IS NOT NULL AND "
+            "(SELECT COUNT(*) FROM opportunity_attempts ie "
+            " WHERE ie.opportunity_id = o.id) = 1 THEN o.edge_pts_net "
+            "ELSE " + attempt_edge_expr + " END"
+            if run_id is None else attempt_edge_expr
+        )
+        confidence_expr = (
+            "CASE WHEN a.opportunity_id IS NOT NULL "
+            "THEN a.confidence ELSE o.confidence END"
+        )
+        date_expr = (
+            "CASE WHEN a.opportunity_id IS NOT NULL "
+            "THEN a.decision_date ELSE SUBSTR(o.first_seen_at, 1, 10) END"
+        )
+        run_expr = (
+            "CASE WHEN a.opportunity_id IS NOT NULL "
+            "THEN a.run_id ELSE o.run_id END"
+        )
+        extra_expr = (
+            "CASE WHEN a.opportunity_id IS NOT NULL "
+            "THEN a.extra_json ELSE o.extra_json END"
+        )
+    else:
+        entry_expr = "d.entry_price"
+        edge_expr = "d.edge_pts_net"
+        confidence_expr = "d.confidence"
+        date_expr = "d.decision_date"
+        run_expr = "d.run_id"
+        extra_expr = "d.extra_json"
+
     sql = (
-        "SELECT o.outcome, o.user_action, o.kalshi_ticker, o.extra_json,"
-        " COALESCE(a.entry_price, d.entry_price, o.entry_price) AS entry_price,"
-        " COALESCE(a.edge_pts_net, d.edge_pts_net, o.edge_pts_net) AS edge_pts_net,"
-        # Observation identity for consumers of `observations()` (slice
-        # scoring needs the fields a predicate and the out-of-sample split
-        # key on). Position-level values serve the 'all' path; the decision
-        # join's own values serve a named pool, so a flip-back's two
-        # decisions each carry their own confidence, date, and run.
-        " o.confidence AS position_confidence, o.run_id AS position_run_id,"
-        " d.confidence AS decision_confidence,"
-        " d.decision_date AS decision_decision_date,"
-        " d.run_id AS decision_run_id,"
-        " a.decision_date AS run_decision_date,"
-        " (SELECT MIN(x.decision_date) FROM opportunity_attempts x"
-        "  WHERE x.opportunity_id = o.id) AS first_decision_date,"
+        "SELECT o.theory_id, o.theory_version, o.outcome, o.user_action,"
+        " o.kalshi_ticker, " + extra_expr + " AS extra_json,"
+        " " + entry_expr + " AS entry_price,"
+        " " + edge_expr + " AS edge_pts_net,"
+        " " + confidence_expr + " AS confidence,"
+        " " + date_expr + " AS observation_decision_date,"
+        " " + run_expr + " AS observation_run_id,"
         # EVERY run that ever proposed this position, not just the first
         # seer. A position's own run_id is first-sighting only, and slice
         # out-of-sample designation must see a judged re-proposal: the
@@ -469,21 +569,14 @@ def _single_leg_observations(
         "    FROM opportunity_attempts x"
         "   WHERE x.opportunity_id = o.id) AS attempt_run_ids,"
         " " + n_attempts_sql +
-        # The fallback inside COALESCE must match the same run-scoped price
-        # `cost` below is built from -- bare o.entry_price would blend an
-        # unpriced fill at the wrong reference under --run-id, where the
-        # attempt's a.entry_price differs from the position row's own.
-        # Nesting COALESCE inside COALESCE just tries f.price, then
-        # a.entry_price, then o.entry_price -- SQL flattens it exactly like
-        # the `entry_price` column above.
         " (SELECT SUM(f.size *"
-        "         COALESCE(f.price, a.entry_price, d.entry_price, o.entry_price))"
+        "         COALESCE(f.price, " + entry_expr + "))"
         "    / NULLIF(SUM(f.size), 0)"
         "  FROM opportunity_fills f"
         "  WHERE f.opportunity_id = o.id) AS fill_price,"
         " s.result, s.resolved_at FROM opportunities o"
         " JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker"
-        " LEFT JOIN (" + _EARLIEST_ATTEMPT_PER_RUN + ") a"
+        " LEFT JOIN (" + attempt_sql + ") a"
         "   ON a.opportunity_id = o.id"
         # One row per DECISION when a pool is named; when disposition is
         # "all" this degenerates to one row per position, so the whole
@@ -494,14 +587,16 @@ def _single_leg_observations(
         # position exactly as before. When a pool IS named the NOT NULL
         # filter below turns this into an inner join, yielding one row per
         # DECISION -- so a flip-back contributes two rows to its pool.
-        + " LEFT JOIN (" + _DECISION_ATTEMPTS + ") d"
+        + " LEFT JOIN (" + decision_sql + ") d"
           "   ON d.opportunity_id = o.id AND d.disposition = ?"
         + where
         + " AND o.position_kind = 'single'"
         + ("" if disposition == "all" else " AND d.opportunity_id IS NOT NULL")
     )
     rows = conn.execute(
-        sql, n_attempts_params + [run_id, disposition] + params
+        sql,
+        n_attempts_params + attempt_params + decision_params
+        + [disposition] + params,
     ).fetchall()
     out = []
     for row in rows:
@@ -510,18 +605,10 @@ def _single_leg_observations(
         price = row["entry_price"]
         fee = fee_pts(price)
         paid = row["fill_price"]
-        # Which confidence/date/run identifies this observation depends on
-        # which unit it is: a named pool's row IS one decision, so the
-        # decision attempt's own values apply; the 'all' path counts each
-        # position once, priced at its earliest attempt, so the earliest
-        # date and the first-seeing run apply.
+        confidence = row["confidence"]
+        decision_date = row["observation_decision_date"]
+        obs_run = row["observation_run_id"]
         if disposition == "all":
-            confidence = row["position_confidence"]
-            decision_date = (
-                row["run_decision_date"] if run_id is not None
-                else row["first_decision_date"]
-            )
-            obs_run = run_id if run_id is not None else row["position_run_id"]
             # A named pool's row is one decision by one run; an 'all'-path
             # row is the whole position, which any number of runs touched.
             if run_id is not None:
@@ -529,11 +616,8 @@ def _single_leg_observations(
             else:
                 run_ids = [
                     r for r in (row["attempt_run_ids"] or "").split(",") if r
-                ] or [row["position_run_id"]]
+                ] or ([obs_run] if obs_run else [])
         else:
-            confidence = row["decision_confidence"]
-            decision_date = row["decision_decision_date"]
-            obs_run = row["decision_run_id"]
             run_ids = [obs_run] if obs_run else []
         try:
             extra = json.loads(row["extra_json"]) if row["extra_json"] else {}
@@ -543,6 +627,8 @@ def _single_leg_observations(
             extra = {}
         resolved = row["resolved_at"]
         out.append({
+            "theory_id": row["theory_id"],
+            "theory_version": row["theory_version"],
             "position_kind": "single",
             # The market this observation is about. Additive, and purely
             # identity: `_aggregate` ignores it. It is here because the
@@ -622,27 +708,60 @@ def _basket_observations(
          " WHERE x.opportunity_id = o.id AND x.run_id = ?) AS n_attempts,",
          [run_id])
     )
-    # Same LEFT JOIN + COALESCE as _single_leg_observations, and the same
-    # reason: price a run-scoped basket at that run's own earliest attempt,
-    # while pooled scoring (run_id is None, so the derived table matches
-    # nothing) reads the position row unchanged.
+    attempt_sql = (
+        _SCORING_ATTEMPTS if run_id is None else _SCORING_ATTEMPT_PER_RUN
+    )
+    attempt_params = [] if run_id is None else [run_id]
+    decision_sql = (
+        _DECISION_ATTEMPT_PER_RUN
+        if run_id is not None and disposition != "all"
+        else _DECISION_ATTEMPTS
+    )
+    decision_params = (
+        [run_id] if run_id is not None and disposition != "all" else []
+    )
+    if disposition == "all":
+        entry_expr = (
+            "CASE WHEN a.opportunity_id IS NOT NULL "
+            "THEN a.entry_price ELSE o.entry_price END"
+        )
+        attempt_edge_expr = (
+            "CASE WHEN a.opportunity_id IS NOT NULL "
+            "THEN a.edge_pts_net ELSE o.edge_pts_net END"
+        )
+        edge_expr = (
+            "CASE WHEN o.interpreted_at IS NOT NULL AND "
+            "(SELECT COUNT(*) FROM opportunity_attempts ie "
+            " WHERE ie.opportunity_id = o.id) = 1 THEN o.edge_pts_net "
+            "ELSE " + attempt_edge_expr + " END"
+            if run_id is None else attempt_edge_expr
+        )
+        run_expr = (
+            "CASE WHEN a.opportunity_id IS NOT NULL "
+            "THEN a.run_id ELSE o.run_id END"
+        )
+    else:
+        entry_expr = "d.entry_price"
+        edge_expr = "d.edge_pts_net"
+        run_expr = "d.run_id"
+
     headers = conn.execute(
-        "SELECT o.id, o.user_action, o.leg_count, o.max_payout, o.min_payout,"
-        " COALESCE(a.entry_price, d.entry_price, o.entry_price) AS entry_price,"
-        " COALESCE(a.edge_pts_net, d.edge_pts_net, o.edge_pts_net) AS edge_pts_net,"
+        "SELECT o.id, o.theory_id, o.theory_version, o.user_action,"
+        " o.leg_count, o.max_payout, o.min_payout,"
+        " " + run_expr + " AS observation_run_id,"
+        " (SELECT GROUP_CONCAT(DISTINCT x.run_id)"
+        "    FROM opportunity_attempts x"
+        "   WHERE x.opportunity_id = o.id) AS attempt_run_ids,"
+        " " + entry_expr + " AS entry_price,"
+        " " + edge_expr + " AS edge_pts_net,"
         " " + n_attempts_sql +
-        # Same run-scoped fallback as _single_leg_observations: an unpriced
-        # fill must blend at this basket's own COALESCE(a.entry_price,
-        # o.entry_price), not the bare position-row price, or a partially
-        # priced basket scored under --run-id would blend its unpriced fill
-        # at the wrong reference.
         " (SELECT SUM(f.size *"
-        "         COALESCE(f.price, a.entry_price, d.entry_price, o.entry_price))"
+        "         COALESCE(f.price, " + entry_expr + "))"
         "    / NULLIF(SUM(f.size), 0)"
         "  FROM opportunity_fills f"
         "  WHERE f.opportunity_id = o.id) AS fill_price"
         " FROM opportunities o"
-        " LEFT JOIN (" + _EARLIEST_ATTEMPT_PER_RUN + ") a"
+        " LEFT JOIN (" + attempt_sql + ") a"
         "   ON a.opportunity_id = o.id"
         # One row per DECISION when a pool is named; when disposition is
         # "all" this degenerates to one row per position, so the whole
@@ -653,12 +772,13 @@ def _basket_observations(
         # position exactly as before. When a pool IS named the NOT NULL
         # filter below turns this into an inner join, yielding one row per
         # DECISION -- so a flip-back contributes two rows to its pool.
-        + " LEFT JOIN (" + _DECISION_ATTEMPTS + ") d"
+        + " LEFT JOIN (" + decision_sql + ") d"
           "   ON d.opportunity_id = o.id AND d.disposition = ?"
         + where
         + " AND o.position_kind = 'basket'"
         + ("" if disposition == "all" else " AND d.opportunity_id IS NOT NULL"),
-        n_attempts_params + [run_id, disposition] + params,
+        n_attempts_params + attempt_params + decision_params
+        + [disposition] + params,
     ).fetchall()
 
     out = []
@@ -793,10 +913,19 @@ def _basket_observations(
                                rel_tol=1e-9, abs_tol=1e-9)
 
         out.append({
+            "theory_id": header["theory_id"],
+            "theory_version": header["theory_version"],
             # A basket has no single outcome, confidence, or leg price, so
             # it carries only its kind: slice predicates (tools/slices.py)
             # never match a basket, by construction of their vocabulary.
             "position_kind": "basket",
+            "run_id": header["observation_run_id"],
+            "run_ids": (
+                [r for r in (header["attempt_run_ids"] or "").split(",") if r]
+                if disposition == "all" else
+                ([header["observation_run_id"]]
+                 if header["observation_run_id"] else [])
+            ),
             "implied_rate": implied_rate,
             "won": won,
             "cost": cost,
@@ -1275,20 +1404,24 @@ def bucket_rates(
     `position_kind`, which says the exclusion out loud rather than leaving
     it to be inferred from a join.
 
-    **No tier filter, matching `compute_score`.** Tier C exclusion is the
-    slices layer's job (`tools/slices.py`), and inventing a second
-    convention here would make two functions disagree about what a
-    theory's evidence is. A caller pricing live decisions off buckets
-    should check its theory has no tier-C runs — `insider_judgment` has
-    none; all its judged replays are tier B.
+    Like `compute_score`, this applies the shared production evidence rule:
+    live outcomes and documented tier A/B replays count fully; tier C,
+    NULL-tier, unregistered, or mismatched replay registrations do not price
+    a live decision. `observations` plus `tools.evidence.select_eligible`
+    exposes the diagnostic population and exact exclusion reasons.
     """
     modes = (run_mode,) if isinstance(run_mode, str) else tuple(run_mode)
     rows: list[dict] = []
     for mode in modes:
-        rows.extend(observations(
+        batch = observations(
             conn, theory_id, theory_version, mode,
             run_id=run_id, pool=pool,
-        ))
+        )
+        for row in batch:
+            row.setdefault("run_mode", mode)
+        rows.extend(batch)
+
+    rows = evidence.select_eligible(conn, rows).eligible
 
     grouped: dict[str, list] = {}
     for row in rows:
@@ -1358,7 +1491,7 @@ def settlement_day_clusters(
     conn: sqlite3.Connection,
     theory_id: str,
     theory_version: int,
-    run_mode: str = "live",
+    run_mode: str | tuple[str, ...] | list[str] = "live",
     disposition: str = "all",
     *,
     run_id: str | None = None,
@@ -1398,12 +1531,15 @@ def settlement_day_clusters(
     appears in `settlements`.
 
     Priced the same way `compute_score` is, and for the same reason: under
-    `--run-id` this reads that run's own earliest attempt (via the same
-    `_EARLIEST_ATTEMPT_PER_RUN` join `_single_leg_observations` uses), not
-    the position row's `entry_price`, which can be a different run's first
-    sighting. `_segment_filter` already scopes both to the same rows; this
-    is what keeps them priced alike too, so this never silently disagrees
-    with `compute_score` on the price behind the edge it reports.
+    `--run-id` this reads that run's coherent scoring attempt (via the same
+    selector `_single_leg_observations` uses), not the position rollup,
+    which may describe a different run or combine first-entry and current
+    fields. `_segment_filter` already scopes both to the same rows; sharing
+    the observation builder keeps their prices identical too.
+
+    `run_mode` accepts one mode or a sequence, matching `compute_score`, so a
+    pooled report measures the same live + eligible-backtest population as its
+    headline score. `n_backtest` discloses the replay contribution.
 
     `pool="version"` (default) is today's behaviour, unchanged -- no
     existing caller's meaning moves. `pool="chain"` widens the segment
@@ -1420,53 +1556,41 @@ def settlement_day_clusters(
     """
     if pool not in ("version", "chain"):
         raise ValueError(f"invalid pool {pool!r}; expected 'version' or 'chain'")
-    versions = (
-        theories.carry_chain(conn, theory_id, theory_version)
-        if pool == "chain" else None
-    )
-    where, params = _segment_filter(
-        theory_id, theory_version, run_mode, disposition, run_id,
-        versions=versions,
-    )
-    # Same LEFT JOIN + COALESCE as _single_leg_observations, and the same
-    # reason: under --run-id this must price at that run's own earliest
-    # attempt, not the position row's (possibly earlier, possibly later)
-    # entry_price -- `_segment_filter` already scopes both functions to the
-    # same rows, and this join is what keeps them priced alike too. When
-    # run_id is None the derived table matches nothing and this reads
-    # o.entry_price unchanged, exactly as before this join existed.
-    sql = (
-        "SELECT o.outcome, COALESCE(a.entry_price, o.entry_price)"
-        " AS entry_price, s.result,"
-        " SUBSTR(COALESCE(s.resolved_at, ''), 1, 10) AS day"
-        " FROM opportunities o"
-        " JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker"
-        " LEFT JOIN (" + _EARLIEST_ATTEMPT_PER_RUN + ") a"
-        "   ON a.opportunity_id = o.id"
-        # Same decision join as compute_score, so the day breakdown always
-        # describes exactly the rows the score describes.
-        " LEFT JOIN (" + _DECISION_ATTEMPTS + ") d"
-        "   ON d.opportunity_id = o.id AND d.disposition = ?"
-        + where
-        + " AND o.position_kind = 'single'"
-        + ("" if disposition == "all" else " AND d.opportunity_id IS NOT NULL")
-    )
+    versions = theories.carry_chain(conn, theory_id, theory_version)
+    modes = (run_mode,) if isinstance(run_mode, str) else tuple(run_mode)
+    raw: list[dict] = []
+    for mode in modes:
+        batch = observations(
+            conn,
+            theory_id,
+            theory_version,
+            mode,
+            disposition,
+            run_id=run_id,
+            pool=pool,
+        )
+        for row in batch:
+            row.setdefault("run_mode", mode)
+        raw.extend(
+            row for row in batch
+            if row.get("position_kind") == "single" and not row.get("riskless")
+        )
+    selected = evidence.select_eligible(conn, raw)
 
     grouped: dict[str, list[dict]] = {}
     total = 0
-    for row in conn.execute(sql, [run_id, disposition] + params).fetchall():
+    for row in selected.eligible:
         # A settlement with no resolved_at cannot be assigned to a day. It
         # still counts in `n` so this never silently disagrees with
         # `compute_score`, but it forms no cluster.
         total += 1
-        day = row["day"]
+        day = row.get("resolved_day")
         if not day:
             continue
-        price = row["entry_price"]
         grouped.setdefault(day, []).append({
-            "won": _won(row["outcome"], row["result"]),
-            "implied_rate": price,
-            "fee_pts": fee_pts(price),
+            "won": row["won"],
+            "implied_rate": row["implied_rate"],
+            "fee_pts": row["fee_pts"],
         })
 
     days = []
@@ -1514,7 +1638,13 @@ def settlement_day_clusters(
         "calibration_edge": mean_edge,
         "calibration_edge_net": mean_edge_net,
         "day_clustered_se": clustered_se,
+        "n_backtest": sum(
+            1 for row in selected.eligible
+            if row.get("run_mode") == "backtest"
+        ),
     }
+    if selected.excluded:
+        result["evidence_exclusions"] = selected.counts
     if pool == "chain" and versions and len(versions) > 1:
         result["chain_versions"] = versions
     return result

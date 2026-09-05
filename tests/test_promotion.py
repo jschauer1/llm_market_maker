@@ -255,6 +255,56 @@ def test_quote_kills_a_stale_edge(conn):
     assert result.claimed_edge_pts < 0
 
 
+@pytest.mark.parametrize("first_price, latest_price", [(0.86, 0.81), (0.81, 0.86)])
+def test_requote_uses_latest_attempt_price_with_its_edge(conn, first_price, latest_price):
+    """A cheaper reobservation is not a second windfall on its new forecast."""
+    _evidence(conn)
+    opp = _record(conn, "RESEEN", price=first_price, edge=4.0,
+                  day="2026-08-27", run_id="first")
+    _record(conn, "RESEEN", price=latest_price, edge=0.75,
+            day="2026-08-28", run_id="latest")
+    result = promotion.promote(
+        conn, opp, market={"yes_bid": 1 - latest_price,
+                          "yes_ask": 1 - latest_price + 0.01})
+    assert result.claimed_edge_pts == pytest.approx(0.75)
+    assert result.rung == "R4"  # the real claim is inside the one-point spread
+    assert ledger.get_opportunity(conn, opp)["entry_price"] == first_price
+
+
+def test_older_attempt_ingested_later_does_not_replace_current_decision(conn):
+    _evidence(conn)
+    opp = _record(conn, "REORDERED", price=0.81, edge=0.75,
+                  day="2026-08-28", run_id="latest")
+    _record(conn, "REORDERED", price=0.86, edge=4.0,
+            day="2026-08-27", run_id="older-recovered")
+    result = promotion.promote(
+        conn, opp, market={"yes_bid": 0.19, "yes_ask": 0.20})
+    assert result.claimed_edge_pts == pytest.approx(0.75)
+    assert result.rung == "R4"
+
+
+@pytest.mark.parametrize("model_prob", [1.0019, float("inf"), -0.01])
+def test_legacy_impossible_probability_cannot_be_recommended(conn, model_prob):
+    _evidence(conn)
+    opp, _ = ledger.record_opportunity(
+        conn, theory_id="t", theory_version=1, kalshi_ticker="IMPOSSIBLE",
+        outcome="no", entry_price=0.96, edge_pts_net=3.92,
+        model_prob=model_prob, edge_basis="measured", confidence="strong",
+    )
+    result = promotion.promote(conn, opp,
+                               market={"yes_bid": 0.04, "yes_ask": 0.05})
+    assert result.rung == "R4"
+    assert any("probability" in reason for reason in result.reasons)
+
+
+def test_prior_claim_cannot_exceed_binary_payout_headroom(conn):
+    _evidence(conn)
+    opp = _record(conn, "IMPOSSIBLE-PRIOR", price=0.99, edge=4.0)
+    result = promotion.promote(conn, opp)
+    assert result.rung == "R4"
+    assert any("payout" in reason for reason in result.reasons)
+
+
 def test_spread_wider_than_edge_is_not_takeable(conn):
     _evidence(conn)
     opp = _record(conn, "OPEN1")

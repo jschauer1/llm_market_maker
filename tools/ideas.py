@@ -36,12 +36,13 @@ def record(
     slug: str,
     title: str,
     description: str = "",
-    source: str = "claude",
+    source: str | None = None,
     status: str = "considered",
     now: str | None = None,
 ) -> int:
     """Record an idea. Re-recording an existing slug updates it in place
-    without resetting its status or accumulated findings."""
+    without resetting its status or accumulated findings. An omitted source
+    becomes ``agent`` for a new row and preserves an existing attribution."""
     if status not in VALID_STATUSES:
         raise ValueError(
             f"invalid status {status!r}; expected one of {VALID_STATUSES}"
@@ -52,14 +53,14 @@ def record(
             """
             INSERT INTO ideas (slug, title, description, status, source,
                                created_at, updated_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, COALESCE(?, 'agent'), ?, ?)
             ON CONFLICT(slug) DO UPDATE SET
                 title = excluded.title,
                 description = excluded.description,
-                source = excluded.source,
+                source = COALESCE(?, ideas.source),
                 updated_at = excluded.updated_at
             """,
-            (slug, title, description, status, source, stamp, stamp),
+            (slug, title, description, status, source, stamp, stamp, source),
         )
     return conn.execute(
         "SELECT id FROM ideas WHERE slug = ?", (slug,)

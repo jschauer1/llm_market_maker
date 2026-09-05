@@ -105,10 +105,15 @@ def _cmd_provenance(args) -> int:
             _emit(_rows(provenance.list_judgment_runs(
                 conn, theory_id=args.theory, run_id=args.run)))
         elif args.action == "record":
+            rendered_prompt = (
+                args.rendered_prompt_file.read_text(encoding="utf-8")
+                if args.rendered_prompt_file is not None else None
+            )
             provenance.record_judgment_run(
                 conn, run_id=args.run, theory_id=args.theory,
                 theory_version=args.version, stage=args.stage,
                 model=args.model, prompt_path=args.prompt_path,
+                rendered_prompt=rendered_prompt,
                 effort=args.effort, web_search=args.web_search,
                 n_items=args.n_items, notes=args.notes,
             )
@@ -400,6 +405,7 @@ def _cmd_score(args) -> int:
         if args.action == "report":
             theory = theories.get(conn, args.theory_id)
             version = args.version or (theory["version"] if theory else 1)
+            modes = (args.run_mode,) if args.run_mode else slices.DEFAULT_RUN_MODES
             # The old refusal here ("the scores table has no column for
             # what pooled") is obsolete: `scores.pooled_versions` records
             # the span, and since the 2026-08-31 ruling a bump carries
@@ -409,7 +415,7 @@ def _cmd_score(args) -> int:
             results = {
                 disposition: score.compute_score(
                     conn, args.theory_id, version,
-                    args.run_mode or slices.DEFAULT_RUN_MODES,
+                    modes,
                     disposition, run_id=args.run_id, pool=args.pool,
                 )
                 for disposition in ("all", "screened", "endorsed",
@@ -434,7 +440,7 @@ def _cmd_score(args) -> int:
             # partition exists for. Report both, always.
             seg_report = slices.segment_report(
                 conn, args.theory_id, version, disposition="all",
-                pool=args.pool,
+                run_modes=modes, run_id=args.run_id, pool=args.pool,
             )
             segments = {
                 f"slice:{s['slug']}": {
@@ -478,6 +484,7 @@ def _cmd_score(args) -> int:
                     **results,
                     "notes": notes,
                     "segments": segments,
+                    "evidence_exclusions": seg_report["evidence_exclusions"],
                     **({"saved_score_ids": saved} if saved else {}),
                     # Reported alongside, never instead: `all` above counts
                     # rows, and rows that settled the same day are one draw
@@ -488,7 +495,7 @@ def _cmd_score(args) -> int:
                     "settlement_days": {
                         disposition: score.settlement_day_clusters(
                             conn, args.theory_id, version,
-                            args.run_mode or "live",
+                            modes,
                             disposition, run_id=args.run_id, pool=args.pool,
                         )
                         for disposition in ("all", "screened", "endorsed",
@@ -788,8 +795,8 @@ def build_parser() -> argparse.ArgumentParser:
     st.add_argument(
         "--authorized-by",
         dest="authorized_by",
-        default="claude",
-        choices=("claude", "user"),
+        default="agent",
+        choices=("agent", "claude", "codex", "user"),
         help=(
             "who is making this call. 'retired' requires 'user' -- only the "
             "user declares a theory dead"
@@ -846,11 +853,19 @@ def build_parser() -> argparse.ArgumentParser:
     pvr.add_argument("--run", required=True)
     pvr.add_argument("--stage", required=True,
                      choices=provenance.VALID_STAGES)
-    pvr.add_argument("--model", required=True,
-                     help="exact model id that judged, e.g. claude-opus-5")
+    pvr.add_argument(
+        "--model", required=True,
+        help=("actual requested model identifier, or an honestly labelled "
+              "runtime alias when the host does not reveal the resolved model"),
+    )
     pvr.add_argument("--prompt-path", dest="prompt_path", required=True,
                      help="repo path to the prompt file, so a change is "
                           "reviewable in git diff")
+    pvr.add_argument(
+        "--rendered-prompt-file", type=pathlib.Path,
+        help=("file containing the exact rendered prompt sent to the judge; "
+              "the prompt path remains the reviewable template source"),
+    )
     pvr.add_argument("--effort", default=None)
     pvr.add_argument("--web-search", dest="web_search", type=int, default=None,
                      choices=(0, 1))
@@ -910,7 +925,8 @@ def build_parser() -> argparse.ArgumentParser:
                       help="required for --lane theory; it lives in that "
                            "theory's folder")
     tnew.add_argument("--session", default=None,
-                      help="your session name, as ListAgents reports it")
+                      help="your session name as reported by the active "
+                           "agent runtime")
     tnew.add_argument(
         "--author-lane", dest="author_lane", default=None,
         choices=("floor", "theory", "study", "new-theory",
@@ -996,7 +1012,8 @@ def build_parser() -> argparse.ArgumentParser:
     fcl = fsub.add_parser(
         "claim", help="take floor duty; prints null if it is not yours to take")
     fcl.add_argument("--session", required=True,
-                     help="this session's name, as ListAgents reports it")
+                     help="this session's name as reported by the active "
+                          "agent runtime")
     fcl.add_argument(
         "--force", action="store_true",
         help="the user explicitly asked for a floor inside the 24h window; "
@@ -1025,7 +1042,11 @@ def build_parser() -> argparse.ArgumentParser:
     rec.add_argument("slug")
     rec.add_argument("title")
     rec.add_argument("--description", default="")
-    rec.add_argument("--source", default="claude")
+    rec.add_argument(
+        "--source", default=None,
+        help=("idea origin; new ideas default to 'agent', while omission on "
+              "an existing idea preserves its recorded source"),
+    )
     ist = isub.add_parser("status")
     ist.add_argument("slug")
     ist.add_argument("value", choices=ideas.VALID_STATUSES)

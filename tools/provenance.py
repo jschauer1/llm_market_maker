@@ -20,16 +20,17 @@ audited, and built on; the second is a story about the past.
 Prompts belong in the theory's own folder as files, so a change shows up in
 `git diff` and gets reviewed like any other procedure change. `prompt_path`
 records that file; `prompt_text` is the fallback for a prompt assembled
-inline. One of the two is required, and the sha always is.
+inline. When a file is a template, `rendered_prompt` records the exact text
+sent while `prompt_path` keeps the template source. One of the two prompt
+representations is required, and the sha always identifies the exact text.
 
-**Record what was actually specified, not what you believe it resolved to.**
-The Agent tool takes a model *alias* (`opus`, `sonnet`, `haiku`, `fable`) and
-resolves it harness-side without reporting back. A subagent stage therefore
-knows what was asked for and not what ran, and `model` should say so —
-`"opus (Agent tool alias)"`, not a pinned id nobody confirmed. An alias that
-silently remaps between runs is precisely the drift this table exists to
-expose; a fabricated pin hides it. Same rule for `effort`: leave it null when
-it was never passed rather than recording what the prompt seemed to ask for.
+**Record what the runtime actually exposed, not what you believe it resolved
+to.** When a runtime reports an exact requested model identifier, record it.
+When it accepts only an alias and does not reveal the resolved model, label
+that alias honestly, such as `"opus (Agent tool alias)"`; do not fabricate a
+pinned id. An alias that silently remaps between runs is precisely the drift
+this table exists to expose. The same rule applies to `effort`: leave it null
+when it was never passed or exposed rather than inferring it from the prompt.
 """
 
 from __future__ import annotations
@@ -84,6 +85,7 @@ def record_judgment_run(
     model: str,
     prompt_path: str | None = None,
     prompt_text: str | None = None,
+    rendered_prompt: str | None = None,
     effort: str | None = None,
     web_search: bool | None = None,
     n_items: int | None = None,
@@ -95,9 +97,14 @@ def record_judgment_run(
     Supply `prompt_path` (preferred — a file in the repo) or `prompt_text`.
     With a path, the file is read and hashed now, so the recorded sha is what
     was actually on disk at run time rather than what someone remembers.
+    If that file is a template, also supply `rendered_prompt`; the path remains
+    the reviewable source while `prompt_text` and its sha capture exactly what
+    the judge received. `prompt_text` with a path retains its historical
+    equality-check semantics and is not an alias for rendered text.
 
-    Re-recording the identical (run, stage, model, prompt) is a no-op, so a
-    scan that batches a stage across several calls records it once.
+    Re-recording the identical (run, stage, model, prompt) accumulates item
+    counts and may fill previously unknown effort/search values. Conflicting
+    known execution metadata requires a distinct run id.
     """
     if stage not in VALID_STAGES:
         raise ValueError(
@@ -107,6 +114,10 @@ def record_judgment_run(
         raise ValueError(
             "model is required: the whole point is knowing what judged"
         )
+    if rendered_prompt is not None and prompt_path is None:
+        raise ValueError("rendered_prompt requires prompt_path for its template")
+    if rendered_prompt is not None and prompt_text is not None:
+        raise ValueError("pass rendered_prompt or prompt_text, not both")
     if prompt_path is None and prompt_text is None:
         raise ValueError(
             "supply prompt_path or prompt_text — a judgment run whose prompt "
@@ -116,17 +127,44 @@ def record_judgment_run(
     text = prompt_text
     if prompt_path is not None:
         file_text, sha = read_prompt(prompt_path)
-        if prompt_text is not None and prompt_sha(prompt_text) != sha:
+        if rendered_prompt is not None:
+            text = rendered_prompt
+            sha = prompt_sha(rendered_prompt)
+        elif prompt_text is not None and prompt_sha(prompt_text) != sha:
             raise ValueError(
                 f"prompt_text does not match the contents of {prompt_path}; "
                 "pass one or the other, not two different prompts"
             )
-        text = None  # the file is the record; do not duplicate it inline
+        else:
+            text = None  # the file is the record; do not duplicate it inline
     else:
         sha = prompt_sha(text or "")
 
     stamp = now or utcnow()
+    web_value = None if web_search is None else int(web_search)
+    identity = (
+        run_id, theory_id, theory_version, stage, model, sha,
+    )
     with write(conn):
+        existing = conn.execute(
+            """
+            SELECT effort, web_search
+              FROM judgment_runs
+             WHERE run_id = ? AND theory_id = ? AND theory_version = ?
+               AND stage = ? AND model = ? AND prompt_sha256 = ?
+            """,
+            identity,
+        ).fetchone()
+        if existing is not None:
+            for field, old, new in (
+                ("effort", existing["effort"], effort),
+                ("web_search", existing["web_search"], web_value),
+            ):
+                if old is not None and new is not None and old != new:
+                    raise ValueError(
+                        f"conflicting {field} for an existing judgment run; "
+                        "use a distinct run_id for a distinct execution"
+                    )
         cur = conn.execute(
             """
             INSERT INTO judgment_runs (
@@ -137,6 +175,10 @@ def record_judgment_run(
             ON CONFLICT (run_id, theory_id, theory_version, stage, model,
                          prompt_sha256)
             DO UPDATE SET
+                effort = COALESCE(judgment_runs.effort, excluded.effort),
+                web_search = COALESCE(
+                    judgment_runs.web_search, excluded.web_search
+                ),
                 n_items = COALESCE(judgment_runs.n_items, 0)
                           + COALESCE(excluded.n_items, 0),
                 notes = COALESCE(excluded.notes, judgment_runs.notes)
@@ -145,7 +187,7 @@ def record_judgment_run(
                 run_id, theory_id, theory_version, stage, model, effort,
                 str(prompt_path) if prompt_path is not None else None,
                 sha, text,
-                None if web_search is None else int(web_search),
+                web_value,
                 n_items, notes, stamp,
             ),
         )

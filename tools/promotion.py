@@ -16,12 +16,13 @@ aggregate precedence and the no-mixing rule hold by construction.
 from __future__ import annotations
 
 import sqlite3
+import math
 from dataclasses import dataclass, field
 from typing import Mapping
 
-from tools import ledger, rank, sizing, slices, theories
+from tools import ledger, positions, rank, sizing, slices, theories
 
-KEY_VERSION = 4
+KEY_VERSION = 5
 
 RUNGS = {
     "R1": "RECOMMENDED",
@@ -91,21 +92,36 @@ def _claimed_at_ask(row: sqlite3.Row, ask: float) -> float:
     )
 
 
+def _current_single_decision(conn: sqlite3.Connection, row) -> dict:
+    """Pair the newest decision's price, claim and slice features.
+
+    The position retains its first entry for performance accounting, while
+    some other columns roll forward. It is not a coherent price forecast.
+    Keep position identity and explicit disposition; read decision fields
+    together from one attempt. Old imports without attempts retain their
+    original row. Baskets have a separate leg/cost contract.
+    """
+    current = dict(row)
+    if row["position_kind"] != "single":
+        return current
+    attempt = conn.execute(
+        "SELECT * FROM opportunity_attempts WHERE opportunity_id = ? "
+        "ORDER BY decision_date DESC, recorded_at DESC, rowid DESC LIMIT 1",
+        (row["id"],),
+    ).fetchone()
+    if attempt is not None:
+        for name in (
+            "entry_price", "spread_at_call", "volume_at_call", "model_prob",
+            "edge_pts_gross", "fee_pts", "edge_pts_net", "edge_basis",
+            "confidence", "judged_blind", "rationale", "extra_json",
+        ):
+            current[name] = attempt[name]
+    return current
+
+
 def _is_settled(conn: sqlite3.Connection, row: sqlite3.Row) -> bool:
     """Same semantics as ledger.list_opportunities(unsettled_only=True)."""
-    if row["position_kind"] == "basket":
-        done = conn.execute(
-            "SELECT COUNT(*) AS c FROM opportunity_legs l"
-            " WHERE l.opportunity_id = ?"
-            "   AND l.kalshi_ticker IN (SELECT kalshi_ticker FROM settlements)",
-            (row["id"],),
-        ).fetchone()["c"]
-        return done >= row["leg_count"]
-    hit = conn.execute(
-        "SELECT 1 FROM settlements WHERE kalshi_ticker = ?",
-        (row["kalshi_ticker"],),
-    ).fetchone()
-    return hit is not None
+    return positions.is_settled(conn, row["id"])
 
 
 def _superseded_by(
@@ -132,22 +148,7 @@ def _superseded_by(
     one. Absence of a successor is NOT supersession -- a market that
     simply was not screened today keeps its rung.
     """
-    trow = theories.get(conn, row["theory_id"])
-    if trow is None or row["theory_version"] >= trow["version"]:
-        return None
-    return conn.execute(
-        """
-        SELECT id, theory_version, disposition, confidence, edge_pts_net
-        FROM opportunities
-        WHERE theory_id = ? AND kalshi_ticker = ? AND outcome = ?
-          AND run_mode = ? AND lane = ? AND theory_version = ?
-          AND id != ?
-        ORDER BY id DESC
-        LIMIT 1
-        """,
-        (row["theory_id"], row["kalshi_ticker"], row["outcome"],
-         row["run_mode"], row["lane"], trow["version"], row["id"]),
-    ).fetchone()
+    return positions.superseded_by(conn, row["id"])
 
 
 def _basket_cost_with_fees(conn: sqlite3.Connection, row: sqlite3.Row) -> float:
@@ -180,6 +181,7 @@ def promote(
     row = ledger.get_opportunity(conn, opportunity_id)
     if row is None:
         raise KeyError(opportunity_id)
+    row = _current_single_decision(conn, row)
 
     def result(rung, *, segment=None, rank_inputs=None, ranked=None,
                claimed=None, quoted=False, reasons=(), chain=None):
@@ -219,6 +221,29 @@ def promote(
             f"this row is frozen at v{row['theory_version']}, a procedure "
             "the theory no longer runs"
         ])
+
+    # An old impossible forecast remains an audit record, never a bet.
+    # Do not silently clamp historical claims during promotion; the next
+    # correctly versioned decision must supply a valid one.
+    if row["position_kind"] == "single":
+        probability = row["model_prob"]
+        if probability is not None and (
+            not math.isfinite(probability) or not 0.0 <= probability <= 1.0
+        ):
+            return result("R4", claimed=row["edge_pts_net"], reasons=[
+                f"invalid recorded probability {probability!r}; requires "
+                "a new bounded decision"
+            ])
+        fee = row["fee_pts"]
+        if fee is None:
+            fee = sizing.fee_pts(row["entry_price"])
+        gross = row["edge_pts_net"] + fee
+        if (not math.isfinite(gross)
+                or gross > (1.0 - row["entry_price"]) * 100.0 + 1e-9):
+            return result("R4", claimed=row["edge_pts_net"], reasons=[
+                "recorded claim exceeds binary payout headroom; requires "
+                "a new bounded decision"
+            ])
 
     # --- R2: an arbitrage is not a forecast --------------------------------
     if row["position_kind"] == "basket":

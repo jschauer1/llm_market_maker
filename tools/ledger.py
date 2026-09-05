@@ -948,17 +948,8 @@ def list_opportunities(
         clauses.append("disposition = ?")
         params.append(disposition)
     if unsettled_only:
-        clauses.append(
-            "CASE WHEN position_kind = 'basket' THEN"
-            "  (SELECT COUNT(*) FROM opportunity_legs l"
-            "    WHERE l.opportunity_id = opportunities.id"
-            "      AND l.kalshi_ticker IN"
-            "          (SELECT kalshi_ticker FROM settlements))"
-            "  < opportunities.leg_count"
-            " ELSE"
-            "  kalshi_ticker NOT IN (SELECT kalshi_ticker FROM settlements)"
-            " END"
-        )
+        from tools.positions import settled_sql
+        clauses.append(f"NOT ({settled_sql('opportunities')})")
     where = f" WHERE {' AND '.join(clauses)}" if clauses else ""
     return conn.execute(
         f"SELECT * FROM opportunities{where} ORDER BY id", params
@@ -1064,7 +1055,8 @@ def interpret(
                 """
                 UPDATE opportunities
                 SET disposition = ?, interpretation = ?, interpreted_at = ?,
-                    edge_pts_net = ?
+                    edge_pts_net = ?, model_prob = NULL,
+                    edge_pts_gross = NULL, suggested_size = NULL
                 WHERE id = ?
                 """,
                 (
@@ -1089,18 +1081,40 @@ def interpret(
         # answers. It makes sure the per-attempt history is complete enough
         # that either answer stays computable, instead of the earlier run's
         # verdict being lost the moment a later one disagrees.
-        conn.execute(
-            """
-            UPDATE opportunity_attempts
-            SET disposition = ?
-            WHERE opportunity_id = ?
-              AND rowid = (SELECT rowid FROM opportunity_attempts
-                            WHERE opportunity_id = ?
-                            ORDER BY decision_date DESC, recorded_at DESC
-                            LIMIT 1)
-            """,
-            (disposition, opportunity_id, opportunity_id),
-        )
+        if revised_edge_pts_net is None:
+            conn.execute(
+                """
+                UPDATE opportunity_attempts
+                SET disposition = ?
+                WHERE opportunity_id = ?
+                  AND rowid = (SELECT rowid FROM opportunity_attempts
+                                WHERE opportunity_id = ?
+                                ORDER BY decision_date DESC, recorded_at DESC
+                                LIMIT 1)
+                """,
+                (disposition, opportunity_id, opportunity_id),
+            )
+        else:
+            # The revised edge belongs to the exact attempt being
+            # interpreted. Clear derived probability/size fields the caller
+            # did not revise; keeping them would create an impossible tuple
+            # even though price and fee still describe this same attempt.
+            conn.execute(
+                """
+                UPDATE opportunity_attempts
+                SET disposition = ?, edge_pts_net = ?, model_prob = NULL,
+                    edge_pts_gross = NULL, suggested_size = NULL
+                WHERE opportunity_id = ?
+                  AND rowid = (SELECT rowid FROM opportunity_attempts
+                                WHERE opportunity_id = ?
+                                ORDER BY decision_date DESC, recorded_at DESC
+                                LIMIT 1)
+                """,
+                (
+                    disposition, revised_edge_pts_net,
+                    opportunity_id, opportunity_id,
+                ),
+            )
 
 
 def mark_user_action(

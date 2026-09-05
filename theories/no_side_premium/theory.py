@@ -1,4 +1,4 @@
-"""no_side_premium — pre-registered forward test of the optimism tax.
+"""no_side_premium — pre-registered test of the optimism tax.
 
 This theory is a measurement instrument first and a bet source second.
 Two full-coverage tier-A backtests (mention fullcov n=3,441; insider
@@ -8,8 +8,8 @@ favorites overpriced — whose *band-specific* cells did not replicate
 across populations. The pairing discipline (CLAUDE.md) says a post-hoc
 pattern is a hypothesis to pre-register, never an edge to bet on the
 data that suggested it. So v1 records exactly the two cells
-pre-registered in idea `no-side-premium`'s revisit angle, on live
-boards, and waits for settlements:
+pre-registered in idea `no-side-premium`'s revisit angle. The cells are
+evaluated on eligible out-of-sample outcomes:
 
 - **Cell A** (disposition=`screened`, outcome=no): mention-family
   series, NO is the favorite, no-ask >= 0.85. Claimed prior +2.0 net.
@@ -20,8 +20,10 @@ boards, and waits for settlements:
 
 Every edge here is `edge_basis="prior"` — the originating measurement
 is real but out-of-population, and nothing this theory emits is a bet
-until its own forward settlements measure the cells. Scoring separates
-the cells for free: `disposition='screened'` scores cell A,
+until applicable evidence measures the cells. Independent tier A/B replays
+count fully alongside live settlements; the discovery samples cannot
+validate the cells they suggested. Scoring separates
+the cells: `disposition='screened'` scores cell A,
 `'rejected'` scores cell B.
 
 The population is drawn by `theories.insider_bias.screen.screen()` —
@@ -163,15 +165,17 @@ class NoSidePremiumTheory(Theory):
                     confidence="no_fav_mention_85",
                     disposition="screened",
                     rationale=(
-                        "Forward-test row, cell A (pre-registered "
+                        "Test row, cell A (pre-registered "
                         "2026-08-26): mention-family NO favorite at ask "
                         f"{c.entry_price:.2f} >= {CELL_A_MIN_NO_ASK}. "
                         "Prior +2.0 net from the originating sample's "
                         "NO>=0.90 cell (+2.25, mention fullcov n=3,441); "
                         "did not replicate on the non-mention population "
                         "(+1.04, p=0.09), hence prior, not measured. NOT "
-                        "a bet until this cell's own forward settlements "
-                        "measure it."),
+                        "a bet on this prior. This cell needs eligible "
+                        "out-of-sample measurement from live settlements or "
+                        "independent tier A/B replays; discovery samples "
+                        "cannot validate it."),
                 ))
             elif cell == "B":
                 out.append(ScoredCandidate(
@@ -180,7 +184,7 @@ class NoSidePremiumTheory(Theory):
                     confidence="yes_fav_8090_avoid",
                     disposition="rejected",
                     rationale=(
-                        "Forward-test row, cell B (pre-registered "
+                        "Test row, cell B (pre-registered "
                         "2026-08-26): non-mention YES favorite at ask "
                         f"{c.entry_price:.2f} in [0.80, 0.90] — the "
                         "AVOID cell. Measured -3.89 net on the "

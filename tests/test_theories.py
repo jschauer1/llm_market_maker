@@ -110,13 +110,24 @@ def test_evidence_level_statuses_are_accepted(conn):
 # --- retirement is the user's call -------------------------------------
 
 
-def test_claude_cannot_retire_a_theory(conn):
+@pytest.mark.parametrize("actor", ["agent", "claude", "codex"])
+def test_only_the_user_can_retire_a_theory(conn, actor):
     theories.register(conn, "t1", "One", "theories/t1", now=TS)
     theories.propose_retirement(conn, "t1", "screen and judgment both flat",
                                 now=TS)
     with pytest.raises(PermissionError):
-        theories.set_status(conn, "t1", "retired", now=TS)
+        theories.set_status(conn, "t1", "retired", now=TS,
+                            authorized_by=actor)
     assert theories.get(conn, "t1")["status"] != "retired"
+
+
+def test_explicit_claude_and_codex_can_make_non_user_status_changes(conn):
+    theories.register(conn, "t1", "One", "theories/t1", now=TS)
+    theories.set_status(conn, "t1", "testing", now=TS,
+                        authorized_by="claude")
+    theories.set_status(conn, "t1", "under_review", now=TS,
+                        authorized_by="codex")
+    assert theories.get(conn, "t1")["status"] == "under_review"
 
 
 def test_cannot_register_a_theory_as_retired(conn):

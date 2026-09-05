@@ -116,6 +116,8 @@ def test_run_scoped_pricing_matches_compute_score(conn):
     # position row's frozen entry_price -- or the two reports, printed
     # side by side by `score report`, disagree about the price behind the
     # edge they show.
+    score.record_backtest_run(conn, "r1", "t1", 1, tier="A")
+    score.record_backtest_run(conn, "r2", "t1", 1, tier="B")
     ledger.record_opportunity(
         conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
         outcome="yes", entry_price=0.50, edge_pts_net=6.0,
@@ -152,6 +154,8 @@ def test_pooled_clustering_still_reads_the_position_row(conn):
     # equality against a bound NULL is never true), so pooled clustering
     # keeps reading o.entry_price unchanged -- the same fallback
     # _single_leg_observations relies on.
+    score.record_backtest_run(conn, "r1", "t1", 1, tier="A")
+    score.record_backtest_run(conn, "r2", "t1", 1, tier="B")
     ledger.record_opportunity(
         conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
         outcome="yes", entry_price=0.50, edge_pts_net=6.0,

@@ -63,6 +63,25 @@ def test_unknown_bucket_gets_zero_edge():
     assert basis == "prior"
 
 
+def test_edge_for_bounds_measured_edge_to_binary_payout():
+    upper = {"strong": {"n": 25, "win_rate": 0.9,
+                        "mean_entry_price": 0.858081, "n_days": 9}}
+    lower = {"weak": {"n": 25, "win_rate": 0.6,
+                      "mean_entry_price": 0.7, "n_days": 9}}
+
+    high, high_basis = buckets.edge_for("strong", 0.97, upper, PRIORS)
+    low, low_basis = buckets.edge_for("weak", 0.05, lower, PRIORS)
+
+    assert high_basis == low_basis == "measured"
+    assert high == pytest.approx(3.0 - buckets.fee_pts(0.97))
+    assert low == pytest.approx(-5.0 - buckets.fee_pts(0.05))
+
+
+def test_edge_for_keeps_declared_prior_semantics_at_binary_boundary():
+    edge, basis = buckets.edge_for("strong", 0.99, {}, PRIORS)
+    assert (edge, basis) == (4.0, "prior")
+
+
 def test_bucket_rates_are_computed_per_bucket(conn):
     _bet(conn, "A", 0.50, "strong", won=True)
     _bet(conn, "B", 0.50, "strong", won=True)
@@ -118,6 +137,7 @@ def test_bucket_rates_are_segmented_by_version(conn):
 def test_bucket_rates_are_segmented_by_run_mode(conn):
     # Backtest results must not silently redefine what a live bucket means.
     _bet(conn, "A", 0.50, "strong", won=True)
+    score.record_backtest_run(conn, "bt-1", "t1", 1, tier="A")
     ledger.record_opportunity(
         conn, theory_id="t1", theory_version=1, kalshi_ticker="B",
         outcome="yes", entry_price=0.5, edge_pts_net=4.0,
@@ -139,6 +159,7 @@ def test_bucket_rates_can_be_scoped_to_a_single_run(conn):
     # (position-identity dedup), so pooled still counts it once -- one
     # settlement is one draw, however many runs proposed it.
     for run in ("run-a", "run-b"):
+        score.record_backtest_run(conn, run, "t1", 1, tier="A")
         ledger.record_opportunity(
             conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
             outcome="yes", entry_price=0.5, edge_pts_net=4.0,
@@ -200,10 +221,9 @@ def test_end_to_end_measurement_replaces_the_prior(conn):
     assert basis == "measured"
     assert edge == pytest.approx(25.0 - 1.75, abs=0.01)
 
-    # ... and the same 25 points at a different price, not 25 points
-    # rescaled by that price. Only the fee moves.
+    # At a price of 0.90, only 10 points fit below the binary payout ceiling.
     dear, _ = buckets.edge_for("strong", 0.90, rates, PRIORS)
-    assert dear == pytest.approx(25.0 - 0.63, abs=0.01)
+    assert dear == pytest.approx(10.0 - 0.63, abs=0.01)
 
 
 # --- the bucket contributes an EDGE, not a probability (2026-08-29) -------
@@ -234,9 +254,10 @@ def test_measured_edge_is_the_buckets_realized_edge_not_a_reprice():
 def test_measured_edge_does_not_move_one_for_one_with_price():
     cheap, _ = buckets.edge_for("strong", 0.50, {"strong": MEASURED}, PRIORS)
     dear, _ = buckets.edge_for("strong", 0.95, {"strong": MEASURED}, PRIORS)
-    # Only the fee differs; the claimed gross edge is the same 12 points.
+    # The measured 12 points transfer unchanged while feasible. At 0.95,
+    # the binary payout ceiling leaves room for only five gross points.
     assert cheap == pytest.approx(12.0 - 1.75, abs=0.01)
-    assert dear == pytest.approx(12.0 - 0.3325, abs=0.01)
+    assert dear == pytest.approx(5.0 - 0.3325, abs=0.01)
 
 
 def test_a_bucket_that_lost_money_claims_negative_edge_at_every_price():
@@ -333,6 +354,10 @@ def test_saved_bucket_rates_carry_the_day_count(conn):
 
 def _bet_at(conn, ticker, bucket, won, *, version=1, run_mode="live",
             run_id=None, entry_price=0.80, decision_date=None):
+    if run_mode == "backtest" and conn.execute(
+        "SELECT 1 FROM backtest_runs WHERE run_id = ?", (run_id,)
+    ).fetchone() is None:
+        score.record_backtest_run(conn, run_id, "t1", version, tier="A")
     ledger.record_opportunity(
         conn, theory_id="t1", theory_version=version, kalshi_ticker=ticker,
         outcome="yes", entry_price=entry_price, edge_pts_net=4.0,

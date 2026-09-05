@@ -194,6 +194,41 @@ def test_edge_from_bucket_falls_back_to_prior_below_min_days():
     assert e.basis == "prior" and e.pts_net == pytest.approx(4.0)
 
 
+def test_edge_from_bucket_bounds_measured_probability_and_rederives_edge():
+    from tools.sizing import fee_pts
+
+    # The live strong bucket carried 4.1919 gross points. At these prices,
+    # transferring all of it would imply impossible probabilities.
+    rates = {"strong": {"n": 25, "win_rate": 0.9,
+                        "mean_entry_price": 0.858081, "n_days": 9}}
+    at_96 = Edge.from_bucket("strong", 0.96, rates, {})
+    at_97 = Edge.from_bucket("strong", 0.97, rates, {})
+
+    assert at_96.model_prob == 1.0
+    assert at_96.pts_gross == pytest.approx(4.0)
+    assert at_96.pts_net == pytest.approx(4.0 - fee_pts(0.96))
+    assert at_97.model_prob == 1.0
+    assert at_97.pts_gross == pytest.approx(3.0)
+    assert at_97.pts_net == pytest.approx(3.0 - fee_pts(0.97))
+
+
+def test_edge_from_bucket_also_bounds_measured_probability_below_zero():
+    from tools.sizing import fee_pts
+
+    rates = {"weak": {"n": 25, "win_rate": 0.6,
+                      "mean_entry_price": 0.7, "n_days": 9}}
+    edge = Edge.from_bucket("weak", 0.05, rates, {})
+    assert edge.model_prob == 0.0
+    assert edge.pts_gross == pytest.approx(-5.0)
+    assert edge.pts_net == pytest.approx(-5.0 - fee_pts(0.05))
+
+
+def test_edge_from_bucket_does_not_reinterpret_prior_as_probability():
+    edge = Edge.from_bucket("strong", 0.99, {}, {"strong": 4.0})
+    assert (edge.basis, edge.pts_net) == ("prior", 4.0)
+    assert edge.pts_gross is None and edge.model_prob is None
+
+
 def test_verdict_requires_a_bucket_and_carries_no_number():
     """CLAUDE.md's 'never state a probability you introspected', as a
     property of the type: a judge has no numeric field to answer in."""

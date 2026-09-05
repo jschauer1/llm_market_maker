@@ -92,6 +92,54 @@ def test_resighting_does_not_overwrite_an_interpreted_edge(conn):
     assert row["edge_pts_net"] == pytest.approx(9.0)
     assert row["times_seen"] == 2
     assert row["last_seen_at"] == LATER
+    attempts = ledger.attempts(conn, opp_id)
+    assert [a["edge_pts_net"] for a in attempts] == pytest.approx([9.0, 4.0])
+
+
+def test_interpret_revised_edge_clears_stale_probability_metadata(conn):
+    opp_id, _ = _record(
+        conn, edge_pts_net=6.0, model_prob=0.47,
+        edge_pts_gross=7.0, fee_pts=1.0, suggested_size=25.0,
+    )
+
+    ledger.interpret(
+        conn, opp_id, "endorsed", "manual revision",
+        revised_edge_pts_net=9.0, now=LATER,
+    )
+
+    position = ledger.get_opportunity(conn, opp_id)
+    [attempt] = ledger.attempts(conn, opp_id)
+    assert position["edge_pts_net"] == pytest.approx(9.0)
+    assert attempt["edge_pts_net"] == pytest.approx(9.0)
+    assert position["model_prob"] is None
+    assert position["edge_pts_gross"] is None
+    assert attempt["model_prob"] is None
+    assert attempt["edge_pts_gross"] is None
+    assert position["suggested_size"] is None
+    assert attempt["suggested_size"] is None
+    assert attempt["fee_pts"] == pytest.approx(1.0)
+
+
+def test_interpret_breaks_identical_timestamp_ties_by_insertion_order(conn):
+    opp_id, _ = _record(
+        conn, run_id="z-first", decision_date="2026-08-23",
+        now=TS, edge_pts_net=6.0,
+    )
+    _record(
+        conn, run_id="a-second", decision_date="2026-08-23",
+        now=TS, edge_pts_net=4.0,
+    )
+
+    ledger.interpret(
+        conn, opp_id, "endorsed", "latest inserted attempt",
+        revised_edge_pts_net=9.0, now=LATER,
+    )
+
+    attempts = {row["run_id"]: row for row in ledger.attempts(conn, opp_id)}
+    assert attempts["z-first"]["disposition"] == "screened"
+    assert attempts["z-first"]["edge_pts_net"] == pytest.approx(6.0)
+    assert attempts["a-second"]["disposition"] == "endorsed"
+    assert attempts["a-second"]["edge_pts_net"] == pytest.approx(9.0)
 
 
 def test_resighting_an_uninterpreted_row_still_tracks_the_latest_screen(conn):

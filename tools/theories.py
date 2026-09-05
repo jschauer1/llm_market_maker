@@ -9,7 +9,7 @@ so that scoring can segment on it and a mid-stream change cannot silently
 merge two different theories into one track record.
 
 Status is an evidence level, not an administrative flag, and `retired` is
-reserved to the user. Claude diagnoses a failing theory and may *propose*
+reserved to the user. An agent diagnoses a failing theory and may *propose*
 retirement; declaring one dead is a call the user makes. See
 `propose_retirement` and `set_status`.
 """
@@ -42,7 +42,7 @@ VALID_STATUSES = (
 #: object, not trash: the cases where it is salvageable (fees ate a real edge,
 #: judgment is inverted but the screen is fine, one slice works, the sample is
 #: too small to reject zero) all look identical to death from the outside.
-#: Claude records a diagnosis via `propose_retirement`; the user rules.
+#: An agent records a diagnosis via `propose_retirement`; the user rules.
 USER_ONLY_STATUSES = ("retired",)
 
 #: Statuses whose theories still run. `under_review` is deliberately in here:
@@ -138,7 +138,7 @@ def set_status(
     theory_id: str,
     status: str,
     now: str | None = None,
-    authorized_by: str = "claude",
+    authorized_by: str = "agent",
 ) -> None:
     """Move a theory to `status`.
 
@@ -250,7 +250,7 @@ def withdraw_retirement(
 
 
 def list_pending_retirement(conn: sqlite3.Connection) -> list[sqlite3.Row]:
-    """Theories Claude has proposed retiring that the user has not ruled on."""
+    """Theories an agent proposed retiring that the user has not ruled on."""
     return conn.execute(
         """
         SELECT * FROM theories

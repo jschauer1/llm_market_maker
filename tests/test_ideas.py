@@ -17,8 +17,27 @@ def test_record_creates_an_idea(conn):
     row = ideas.get(conn, "polymarket-whale-copy")
     assert row["title"] == "Copy Polymarket whales into Kalshi"
     assert row["status"] == "considered"
-    assert row["source"] == "claude"
+    assert row["source"] == "agent"
     assert row["theory_id"] is None
+
+
+def test_record_accepts_explicit_codex_source(conn):
+    ideas.record(conn, "codex-idea", "Codex idea", source="codex", now=TS)
+    assert ideas.get(conn, "codex-idea")["source"] == "codex"
+
+
+def test_re_record_without_source_preserves_historical_attribution(conn):
+    ideas.record(conn, "legacy", "Legacy idea", source="claude", now=TS)
+    ideas.record(conn, "legacy", "Updated title", now=LATER)
+    row = ideas.get(conn, "legacy")
+    assert row["title"] == "Updated title"
+    assert row["source"] == "claude"
+
+
+def test_re_record_with_explicit_source_updates_attribution(conn):
+    ideas.record(conn, "handoff", "Handoff", source="claude", now=TS)
+    ideas.record(conn, "handoff", "Handoff", source="codex", now=LATER)
+    assert ideas.get(conn, "handoff")["source"] == "codex"
 
 
 def test_get_returns_none_for_unknown_idea(conn):

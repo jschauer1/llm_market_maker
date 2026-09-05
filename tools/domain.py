@@ -31,7 +31,7 @@ import math
 from dataclasses import dataclass, field, fields
 from typing import Protocol
 
-from tools.buckets import measured_gross
+from tools.buckets import bounded_measured_gross, measured_gross
 from tools.sizing import fee_pts
 
 VALID_EDGE_BASES = ("measured", "model", "prior")
@@ -366,16 +366,17 @@ class Edge:
         gross = measured_gross(bucket, rates)
         if gross is None:
             return cls(pts_net=float(priors.get(bucket, 0.0)), basis="prior")
+        gross, probability = bounded_measured_gross(entry_price, gross)
         fee = fee_pts(entry_price)
         return cls(
             pts_net=gross - fee,
             basis="measured",
             pts_gross=gross,
             fee_pts=fee,
-            # This candidate's own price plus the bucket's edge. The
-            # bucket's pooled win rate describes a different set of
-            # prices and is not this market's probability.
-            model_prob=entry_price + gross / 100.0,
+            # This candidate's own price plus the transferable bucket edge,
+            # bounded by the binary payout. The bucket's pooled win rate
+            # describes different prices and is not this market's probability.
+            model_prob=probability,
         )
 
 

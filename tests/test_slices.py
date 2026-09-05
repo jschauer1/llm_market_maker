@@ -273,8 +273,8 @@ def test_a_declared_mining_run_can_never_be_withdrawn(conn):
 
 def test_a_backtest_run_with_no_recorded_tier_does_not_vouch(conn):
     """Only a run whose tier was actually recorded as A or B counts. An
-    untiered replay has unknown provenance, and unknown resolves against
-    the slice exactly as an ambiguous settlement date does."""
+    untiered replay has unknown provenance and is excluded from every
+    production segment while remaining available through raw observations."""
     _register(conn)
 
     _settled(conn, "KXU-1", day="2026-06-02", run_id="bt-untiered",
@@ -282,7 +282,11 @@ def test_a_backtest_run_with_no_recorded_tier_does_not_vouch(conn):
 
     entry = slices.segment_report(conn, "t")["slices"][0]
     assert entry["oos"]["n"] == 0
-    assert entry["in_sample"]["n"] == 1
+    assert entry["in_sample"]["n"] == 0
+    report = slices.segment_report(conn, "t")
+    assert report["evidence_exclusions"] == {
+        "total": 1, "unregistered_run": 1
+    }
 
 
 def test_segment_score_discloses_how_much_evidence_is_backtested(conn):
@@ -327,6 +331,9 @@ def test_designation_reaches_a_position_first_seen_by_a_screen_run(conn):
     score.record_settlement(conn, "KXS-1", "no",
                             resolved_at="2026-06-05T00:00:00Z")
 
+    # This fixture is a judgment theory: its first interpretable decision
+    # is the labeled replay, not the earlier unlabeled mechanical screen.
+    theories.set_uses_llm_judgment(conn, "t", True)
     entry = slices.segment_report(conn, "t")["slices"][0]
     assert entry["oos"]["n"] == 1, (
         "the judged run's designation carries the position, whichever "

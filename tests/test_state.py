@@ -18,6 +18,127 @@ def test_absent_tables_render_stubs_not_errors(conn):
     assert "not yet tracked — table data_windows" in text
 
 
+def _queue_row(
+    conn, ticker, *, version=1, outcome="no", run_mode="live",
+    run_id="live", edge=2.0, decision_date=None,
+):
+    from tools import ledger
+
+    return ledger.record_opportunity(
+        conn, theory_id="t", theory_version=version,
+        kalshi_ticker=ticker, outcome=outcome, entry_price=0.85,
+        edge_pts_net=edge, edge_basis="prior", run_mode=run_mode,
+        run_id=run_id, decision_date=decision_date,
+    )[0]
+
+
+def test_queue_omits_an_old_endorsement_replaced_at_current_version(conn):
+    """The v4 incident must not remain in the orientation queue.
+
+    Promotion already classifies the old fork as R6. The queue is a
+    separate SQL surface, so it must apply the same current-version
+    successor rule instead of selecting every endorsed old row.
+    """
+    from tools import ledger, theories
+
+    theories.register(conn, "t", "T", "theories/t", status="testing")
+    old = _queue_row(conn, "FORK")
+    ledger.interpret(conn, old, "endorsed", "old recommendation")
+    theories.bump_version(conn, "t", kind="continues", justification="re-decided")
+    _queue_row(conn, "FORK", version=2, edge=-1.0)
+
+    lines = state._queue_panel(conn)
+    assert not any("FORK" in line for line in lines)
+    assert lines[-1] == "  (0 endorsed, untouched, unsettled in total)"
+
+
+def test_queue_keeps_an_old_endorsement_without_a_successor(conn):
+    """A version bump alone does not prove that a position was re-decided."""
+    from tools import ledger, theories
+
+    theories.register(conn, "t", "T", "theories/t", status="testing")
+    old = _queue_row(conn, "LONELY")
+    ledger.interpret(conn, old, "endorsed", "still live")
+    theories.bump_version(conn, "t", kind="continues", justification="procedure changed")
+
+    lines = state._queue_panel(conn)
+    assert any("LONELY" in line for line in lines)
+    assert lines[-1] == "  (1 endorsed, untouched, unsettled in total)"
+
+
+def test_queue_does_not_hide_a_row_from_a_future_version(conn):
+    """The comparator must not treat a lower current version as a successor."""
+    from tools import ledger, theories
+
+    theories.register(conn, "t", "T", "theories/t", status="testing")
+    _queue_row(conn, "FUTURE", version=1)
+    future = _queue_row(conn, "FUTURE", version=2)
+    ledger.interpret(conn, future, "endorsed", "future recommendation")
+
+    lines = state._queue_panel(conn)
+    assert any("FUTURE" in line for line in lines)
+    assert lines[-1] == "  (1 endorsed, untouched, unsettled in total)"
+
+
+def test_queue_successor_matching_keeps_other_position_identities(conn):
+    """Replay, experiment, and opposite-side rows do not supersede live NO."""
+    from tools import ledger, theories
+
+    theories.register(conn, "t", "T", "theories/t", status="testing")
+    for ticker, outcome in (("REPLAY", "no"), ("EXPERIMENT", "no"),
+                            ("SIDES", "no")):
+        old = _queue_row(conn, ticker, outcome=outcome)
+        ledger.interpret(conn, old, "endorsed", "live recommendation")
+    theories.bump_version(conn, "t", kind="continues", justification="re-decided")
+    _queue_row(conn, "REPLAY", version=2, run_mode="backtest",
+               run_id="bt/test", decision_date="2026-09-01")
+    _queue_row(conn, "EXPERIMENT", version=2, run_id="exp/test")
+    _queue_row(conn, "SIDES", version=2, outcome="yes")
+
+    lines = state._queue_panel(conn)
+    assert all(any(ticker in line for line in lines)
+               for ticker in ("REPLAY", "EXPERIMENT", "SIDES"))
+    assert lines[-1] == "  (3 endorsed, untouched, unsettled in total)"
+
+
+def test_queue_reports_total_before_limiting_visible_rows(conn):
+    from tools import ledger, theories
+
+    theories.register(conn, "t", "T", "theories/t", status="testing")
+    for i in range(12):
+        opp = _queue_row(conn, f"QUEUE-{i}")
+        ledger.interpret(conn, opp, "endorsed", "recommendation")
+
+    lines = state._queue_panel(conn)
+    assert len(lines) == 11                 # ten rows plus the total line
+    assert lines[-1] == "  (12 endorsed, untouched, unsettled in total)"
+
+
+def test_queue_and_ledger_agree_when_a_basket_finishes_settling(conn):
+    """The synthetic header never settles; completion follows every leg."""
+    from tools import ledger, promotion, score, theories
+
+    theories.register(conn, "t", "T", "theories/t", status="testing")
+    basket, _ = ledger.record_basket(
+        conn, theory_id="t", theory_version=1,
+        legs=[{"kalshi_ticker": ticker, "outcome": "no", "entry_price": 0.45}
+              for ticker in ("LEG-A", "LEG-B")],
+        max_payout=2.0, edge_pts_net=4.0, edge_basis="model", run_id="live",
+    )
+    ledger.interpret(conn, basket, "endorsed", "two-leg recommendation")
+    for ticker in (None, "LEG-A"):
+        if ticker:
+            score.record_settlement(conn, ticker, "no")
+        assert [row["id"] for row in ledger.list_opportunities(
+            conn, unsettled_only=True)] == [basket]
+        assert state._queue_panel(conn)[-1].startswith("  (1 endorsed")
+
+    score.record_settlement(conn, "LEG-B", "yes")
+    assert ledger.list_opportunities(conn, unsettled_only=True) == []
+    assert promotion.promote(conn, basket).rung == "R6"
+    assert state._queue_panel(conn) == ["  (0 endorsed, untouched, unsettled in total)"]
+
+
 def test_state_reflects_theories_and_freshness(conn):
     from tools import theories
     theories.register(conn, "demo_theory", "Demo", "theories/demo")

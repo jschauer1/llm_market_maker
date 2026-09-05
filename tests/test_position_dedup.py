@@ -30,6 +30,10 @@ def conn(conn):
 def _rec(conn, *, ticker="A", outcome="yes", price=0.60, edge=6.0,
          theory="t1", version=1, run_mode="live", run_id=None, now=TS,
          decision_date=None):
+    if run_mode == "backtest" and run_id and conn.execute(
+        "SELECT 1 FROM backtest_runs WHERE run_id = ?", (run_id,)
+    ).fetchone() is None:
+        score.record_backtest_run(conn, run_id, theory, version, tier="A")
     return ledger.record_opportunity(
         conn, theory_id=theory, theory_version=version, kalshi_ticker=ticker,
         outcome=outcome, entry_price=price, edge_pts_net=edge,
@@ -279,12 +283,40 @@ def test_pooled_scoring_still_excludes_experiments(conn):
 
 
 def test_bucket_rates_count_positions_not_recordings(conn):
-    _rec(conn, ticker="A", price=0.50, run_id="r1")
-    conn.execute(
-        "UPDATE opportunities SET confidence = 'strong' WHERE kalshi_ticker = 'A'"
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
+        outcome="yes", entry_price=0.50, edge_pts_net=6.0,
+        confidence="strong", run_id="r1", now=TS,
     )
-    conn.commit()
     _settle(conn, "A", "yes")
-    _rec(conn, ticker="A", price=0.50, run_id="r2")
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
+        outcome="yes", entry_price=0.70, edge_pts_net=1.0,
+        confidence="strong", run_id="r2", now=TS2,
+    )
     rates = score.bucket_rates(conn, "t1", 1)
     assert rates["strong"]["n"] == 1, "one settlement is one draw"
+    assert rates["strong"]["mean_entry_price"] == pytest.approx(0.50)
+
+
+def test_mechanical_pool_keeps_price_and_edge_from_earliest_attempt(conn):
+    _rec(conn, ticker="A", price=0.50, edge=6.0, run_id="r1", now=TS)
+    _rec(conn, ticker="A", price=0.70, edge=1.0, run_id="r2", now=TS2)
+    _settle(conn, "A", "yes")
+
+    [row] = score.observations(conn, "t1", 1)
+    assert row["entry_price"] == pytest.approx(0.50)
+    assert row["edge_pts_net"] == pytest.approx(6.0)
+
+
+def test_scoring_breaks_identical_timestamp_ties_by_insertion_order(conn):
+    _rec(conn, ticker="A", price=0.50, edge=6.0, run_id="z-first",
+         now=TS, decision_date="2026-08-26")
+    _rec(conn, ticker="A", price=0.70, edge=1.0, run_id="a-second",
+         now=TS, decision_date="2026-08-26")
+    _settle(conn, "A", "yes")
+
+    [row] = score.observations(conn, "t1", 1)
+    assert row["entry_price"] == pytest.approx(0.50)
+    assert row["edge_pts_net"] == pytest.approx(6.0)
+    assert row["run_id"] == "z-first"

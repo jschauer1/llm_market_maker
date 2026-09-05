@@ -140,6 +140,7 @@ def test_scores_can_be_scoped_to_a_single_run(conn):
     # that one position, because the position is "in" every run that
     # proposed it.
     for run in ("run-a", "run-b"):
+        score.record_backtest_run(conn, run, "t1", 1, tier="A")
         ledger.record_opportunity(
             conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
             outcome="yes", entry_price=0.50, edge_pts_net=6.0,

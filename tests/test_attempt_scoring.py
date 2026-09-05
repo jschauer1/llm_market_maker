@@ -118,6 +118,96 @@ def test_all_disposition_still_counts_each_position_once(conn):
     assert score.compute_score(conn, "t", 1, disposition="all")["n"] == 1
 
 
+def test_all_pool_uses_one_earliest_judged_attempt_tuple(conn):
+    """A judgment label, price, and claimed edge must describe one call."""
+    ledger.record_opportunity(
+        conn, theory_id="t", theory_version=1, kalshi_ticker="KXJ-1",
+        outcome="yes", entry_price=0.50, edge_pts_net=0.0,
+        edge_basis="model", run_id="screen", decision_date="2026-08-26",
+    )
+    ledger.record_opportunity(
+        conn, theory_id="t", theory_version=1, kalshi_ticker="KXJ-1",
+        outcome="yes", entry_price=0.60, edge_pts_net=4.0,
+        edge_basis="model", confidence="moderate", run_id="judge-1",
+        decision_date="2026-08-27",
+    )
+    ledger.record_opportunity(
+        conn, theory_id="t", theory_version=1, kalshi_ticker="KXJ-1",
+        outcome="yes", entry_price=0.70, edge_pts_net=1.0,
+        edge_basis="model", confidence="moderate", run_id="judge-2",
+        decision_date="2026-08-28",
+    )
+    theories.set_uses_llm_judgment(conn, "t", True)
+    score.record_settlement(
+        conn, "KXJ-1", "yes", resolved_at="2026-09-01T00:00:00Z"
+    )
+
+    [row] = score.observations(conn, "t", 1)
+    assert row["confidence"] == "moderate"
+    assert row["entry_price"] == pytest.approx(0.60)
+    assert row["edge_pts_net"] == pytest.approx(4.0)
+    assert row["decision_date"] == "2026-08-27"
+    assert row["run_id"] == "judge-1"
+
+
+def test_named_pool_scoped_to_run_cannot_borrow_another_runs_decision(conn):
+    """Run scope applies to the decision attempt, not merely its position."""
+    _flip(conn, "KXK-1")
+    score.record_settlement(
+        conn, "KXK-1", "yes", resolved_at="2026-09-01T00:00:00Z"
+    )
+
+    assert score.observations(
+        conn, "t", 1, disposition="endorsed",
+        run_id="live-2026-08-28",
+    ) == []
+    [rejected] = score.observations(
+        conn, "t", 1, disposition="rejected",
+        run_id="live-2026-08-28",
+    )
+    assert rejected["entry_price"] == pytest.approx(0.77)
+    assert rejected["run_id"] == "live-2026-08-28"
+
+
+def test_named_run_scores_each_disposition_change_once(conn):
+    _record(conn, "KXL-1", disposition="endorsed", price=0.70,
+            day="2026-08-27", run_id="r1")
+    _record(conn, "KXL-1", disposition="rejected", price=0.80,
+            day="2026-08-28", run_id="r1")
+    score.record_settlement(
+        conn, "KXL-1", "yes", resolved_at="2026-09-01T00:00:00Z"
+    )
+
+    [endorsed] = score.observations(
+        conn, "t", 1, disposition="endorsed", run_id="r1"
+    )
+    [rejected] = score.observations(
+        conn, "t", 1, disposition="rejected", run_id="r1"
+    )
+    assert endorsed["entry_price"] == pytest.approx(0.70)
+    assert rejected["entry_price"] == pytest.approx(0.80)
+
+
+def test_named_run_preserves_a_genuine_flipback(conn):
+    _record(conn, "KXM-1", disposition="endorsed", price=0.70,
+            day="2026-08-27", run_id="r1")
+    _record(conn, "KXM-1", disposition="rejected", price=0.80,
+            day="2026-08-28", run_id="r1")
+    _record(conn, "KXM-1", disposition="endorsed", price=0.60,
+            day="2026-08-29", run_id="r1")
+    score.record_settlement(
+        conn, "KXM-1", "yes", resolved_at="2026-09-01T00:00:00Z"
+    )
+
+    endorsed = score.observations(
+        conn, "t", 1, disposition="endorsed", run_id="r1"
+    )
+    assert [row["entry_price"] for row in endorsed] == pytest.approx(
+        [0.70, 0.60]
+    )
+    assert len(score.observations(conn, "t", 1, run_id="r1")) == 1
+
+
 def test_a_flip_BACK_scores_both_decisions(conn):
     """endorsed -> rejected -> endorsed. The re-endorsement is a real
     changed mind at its own price, so it scores too.

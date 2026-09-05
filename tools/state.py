@@ -13,7 +13,7 @@ import sqlite3
 from datetime import datetime
 from pathlib import Path
 
-from tools import theories
+from tools import positions, theories
 from tools.db import utcnow, _table_exists
 
 _STUB = "  (not yet tracked — table {table} has not shipped)"
@@ -290,22 +290,22 @@ def _windows_panel(conn) -> list[str]:
 
 
 def _queue_panel(conn) -> list[str]:
+    # Match promotion._superseded_by: only a same-position row at the
+    # registry's CURRENT version suppresses an older endorsement. A bump
+    # without a real successor must leave the old candidate visible, and
+    # replay/experiment/opposite-side rows must not suppress a live one.
     rows = conn.execute(
-        """
-        SELECT o.id, o.theory_id, o.kalshi_ticker, o.first_seen_at
+        f"""
+        SELECT o.id, o.theory_id, o.kalshi_ticker, o.first_seen_at,
+               COUNT(*) OVER() AS total
           FROM opportunities o
-          LEFT JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
          WHERE o.disposition = 'endorsed' AND o.user_action = 'untouched'
-           AND s.kalshi_ticker IS NULL
+           AND NOT ({positions.settled_sql()})
+           AND {positions.superseder_id_sql()} IS NULL
          ORDER BY o.first_seen_at DESC LIMIT 10
         """
     ).fetchall()
-    total = _one(conn, """
-        SELECT COUNT(*) FROM opportunities o
-          LEFT JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
-         WHERE o.disposition = 'endorsed' AND o.user_action = 'untouched'
-           AND s.kalshi_ticker IS NULL
-    """)
+    total = rows[0]["total"] if rows else 0
     lines = [f"  {r['id']:>6}  {r['theory_id']:<22} {r['kalshi_ticker']}"
              f"  since {str(r['first_seen_at'])[:10]}" for r in rows]
     lines.append(f"  ({total or 0} endorsed, untouched, unsettled in total)")

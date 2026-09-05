@@ -106,6 +106,29 @@ def test_record_rejects_text_that_contradicts_the_file(conn, prompt_file):
         )
 
 
+def test_rendered_prompt_keeps_template_path_and_hashes_exact_text(
+        conn, prompt_file):
+    rendered = "Judge 3 events from C:/work/input.json as of 2026-09-04."
+    provenance.record_judgment_run(
+        conn, run_id="r1", theory_id="t1", theory_version=1,
+        stage="analysis", model="gpt-6-astra",
+        prompt_path=str(prompt_file), rendered_prompt=rendered, now=TS,
+    )
+    row = provenance.list_judgment_runs(conn, theory_id="t1")[0]
+    assert row["prompt_path"] == str(prompt_file)
+    assert row["prompt_text"] == rendered
+    assert row["prompt_sha256"] == provenance.prompt_sha(rendered)
+
+
+def test_rendered_prompt_requires_a_template_path(conn):
+    with pytest.raises(ValueError, match="prompt_path"):
+        provenance.record_judgment_run(
+            conn, run_id="r1", theory_id="t1", theory_version=1,
+            stage="analysis", model="gpt-6-astra",
+            rendered_prompt="exact prompt", now=TS,
+        )
+
+
 def test_re_recording_the_same_pairing_accumulates_items(conn):
     # A stage batched across several calls is one pairing, not several.
     for _ in range(3):
@@ -117,6 +140,62 @@ def test_re_recording_the_same_pairing_accumulates_items(conn):
     rows = provenance.list_judgment_runs(conn, theory_id="t1")
     assert len(rows) == 1
     assert rows[0]["n_items"] == 48
+
+
+@pytest.mark.parametrize(
+    ("first", "second", "field"),
+    [
+        ({"effort": "low"}, {"effort": "high"}, "effort"),
+        ({"web_search": False}, {"web_search": True}, "web_search"),
+    ],
+)
+def test_re_recording_refuses_conflicting_execution_metadata(
+        conn, first, second, field):
+    common = dict(
+        run_id="r1", theory_id="t1", theory_version=1,
+        stage="analysis", model="gpt-6-astra", prompt_text="p", now=TS,
+    )
+    provenance.record_judgment_run(conn, **common, **first)
+    with pytest.raises(ValueError, match=field):
+        provenance.record_judgment_run(conn, **common, **second)
+
+
+@pytest.mark.parametrize(
+    ("field", "known", "stored"),
+    [
+        ("effort", "high", "high"),
+        ("web_search", True, 1),
+    ],
+)
+def test_re_recording_can_enrich_unknown_execution_metadata(
+        conn, field, known, stored):
+    common = dict(
+        run_id="r1", theory_id="t1", theory_version=1,
+        stage="analysis", model="gpt-6-astra", prompt_text="p", now=TS,
+    )
+    provenance.record_judgment_run(conn, **common)
+    provenance.record_judgment_run(conn, **common, **{field: known})
+    row = provenance.list_judgment_runs(conn, theory_id="t1")[0]
+    assert row[field] == stored
+
+
+@pytest.mark.parametrize(
+    ("field", "known", "stored"),
+    [
+        ("effort", "high", "high"),
+        ("web_search", True, 1),
+    ],
+)
+def test_re_recording_with_unknown_metadata_retains_known_value(
+        conn, field, known, stored):
+    common = dict(
+        run_id="r1", theory_id="t1", theory_version=1,
+        stage="analysis", model="gpt-6-astra", prompt_text="p", now=TS,
+    )
+    provenance.record_judgment_run(conn, **common, **{field: known})
+    provenance.record_judgment_run(conn, **common)
+    row = provenance.list_judgment_runs(conn, theory_id="t1")[0]
+    assert row[field] == stored
 
 
 def test_a_different_prompt_is_a_different_row(conn):

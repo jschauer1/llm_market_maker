@@ -96,7 +96,7 @@ import sqlite3
 import statistics
 from typing import Callable, Mapping
 
-from tools import score, theories
+from tools import evidence, score, theories
 from tools.db import utcnow, write
 from tools.rank import PROBATION_N
 
@@ -495,12 +495,12 @@ def _with_days(obs: list[dict]) -> dict:
 
 
 def _evaluate(
-    srow: sqlite3.Row, obs: list[dict], ab_run_ids: frozenset[str] = frozenset()
+    srow: sqlite3.Row, obs: list[dict]
 ) -> tuple[dict, Callable[[Mapping], bool]]:
     """One slice's evidence split over an already-tier-filtered pool.
 
-    `ab_run_ids` are the backtest runs recorded at tier A or B — the
-    replays that count as evidence under the 2026-08-31 ruling.
+    Every backtest observation in `obs` has already passed the shared
+    production selector, so it is documented tier A/B evidence in full.
     """
     predicate = json.loads(srow["predicate_json"])
     matcher = build_matcher(predicate)
@@ -532,9 +532,8 @@ def _evaluate(
         # (user ruling 2026-08-31 — a backtested edge is evidence
         # exactly as a forward-settled one is, and the tier is what
         # already rules out a model recalling outcomes it was trained
-        # on). An untiered replay qualifies for none of these: unknown
-        # provenance resolves against the slice, exactly as a settlement
-        # ON the registration day does.
+        # on). Untiered and contaminated replays were removed by the
+        # shared selector before this slice-specific split.
         #
         # The mining exception overrides all three. A pattern found by
         # slicing a run's own rows can never cite that run, however good
@@ -546,7 +545,7 @@ def _evaluate(
         elif (
             (runs & oos_ids)
             or (day and str(day) > registered_day)
-            or (o.get("run_mode") == "backtest" and (runs & ab_run_ids))
+            or o.get("run_mode") == "backtest"
         ):
             oos.append(o)
         else:
@@ -593,12 +592,14 @@ def segment_report(
     out-of-sample and in-sample scores, each with `n_days`, plus the
     readiness verdict), and `complement` — the pool minus every READY
     slice's matches, or None when no slice is ready (rank on the
-    aggregate then, exactly as before slices existed). Tier-C rows are
-    excluded from the entire pool — contaminated evidence feeds no
-    segment — and counted in `tier_c_excluded_rows`.
+    aggregate then, exactly as before slices existed). Shared production
+    eligibility is applied before slice-specific mining/OOS logic: tier C,
+    NULL-tier, unregistered, and mismatched replay registrations feed no
+    segment. `evidence_exclusions` reports each reason; the older
+    `tier_c_excluded_rows` key remains as a compatibility view.
 
-    `pool="version"` (default) is today's behaviour, unchanged — no
-    existing caller's meaning moves. `pool="chain"` widens the evidence
+    `pool="version"` restricts the sample to the requested version.
+    The default `pool="chain"` widens the evidence
     pool the same way `score.compute_score(pool="chain")` does (spec
     2.5): every observation query runs over the maximal run of
     consecutive versions a proven `carry` bump links back to
@@ -618,10 +619,6 @@ def segment_report(
             raise ValueError(f"unknown theory {theory_id!r}")
         theory_version = trow["version"]
 
-    tiers = {
-        r["run_id"]: r["tier"]
-        for r in conn.execute("SELECT run_id, tier FROM backtest_runs")
-    }
     raw_obs: list[dict] = []
     for mode in run_modes:
         rows = score.observations(
@@ -636,20 +633,13 @@ def segment_report(
             o["run_mode"] = mode
         raw_obs.extend(rows)
 
-    def _touched_by_tier_c(o: dict) -> bool:
-        # ANY touching run, not just the first seer: a position's rollup
-        # (its confidence, in particular) can come from a later run, so a
-        # tier-C touch contaminates the row wherever it sits.
-        runs = o.get("run_ids") or ([o["run_id"]] if o.get("run_id") else [])
-        return any(tiers.get(r) == "C" for r in runs)
-
-    obs = [o for o in raw_obs if not _touched_by_tier_c(o)]
-    ab_run_ids = frozenset(r for r, t in tiers.items() if t in ("A", "B"))
+    selected = evidence.select_eligible(conn, raw_obs)
+    obs = selected.eligible
 
     evaluated: list[dict] = []
     ready_matchers: list[Callable[[Mapping], bool]] = []
     for srow in list_slices(conn, theory_id):
-        result, matcher = _evaluate(srow, obs, ab_run_ids)
+        result, matcher = _evaluate(srow, obs)
         evaluated.append(result)
         if result["ready"]:
             ready_matchers.append(matcher)
@@ -665,7 +655,10 @@ def segment_report(
         "theory_version": theory_version,
         "disposition": disposition,
         "run_modes": list(run_modes),
-        "tier_c_excluded_rows": len(raw_obs) - len(obs),
+        # Compatibility key retained for callers written before the shared
+        # selector distinguished every exclusion reason.
+        "tier_c_excluded_rows": selected.counts.get("tier_c", 0),
+        "evidence_exclusions": selected.counts,
         "aggregate": _with_days(obs),
         "slices": evaluated,
         "complement": complement,

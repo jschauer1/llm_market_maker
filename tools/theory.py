@@ -26,14 +26,37 @@ from __future__ import annotations
 import json
 import sqlite3
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import datetime
 from functools import partial
-from typing import Callable, ClassVar
+from typing import Callable, ClassVar, Iterable
 
 from tools import ledger, provenance
 from tools.domain import (Candidate, ScanResult, ScoredCandidate,
                           ScreenResult, Verdict)
+
+
+@dataclass(frozen=True, slots=True)
+class JudgmentExecution:
+    """What actually ran for one judging dispatch.
+
+    A cascade may use different models and effort per stage. Keeping each
+    execution immutable and stage-labelled prevents one parent model string
+    from being stamped across work done by several judges. `rendered_prompt`
+    is optional because a prompt file with no substitutions is already exact.
+    """
+
+    stage: str
+    model: str
+    effort: str | None = None
+    web_search: bool | None = None
+    rendered_prompt: str | None = None
+
+    def __post_init__(self) -> None:
+        if not self.stage or not self.stage.strip():
+            raise ValueError("judgment execution stage is required")
+        if not self.model or not self.model.strip():
+            raise ValueError("judgment execution model is required")
 
 
 @dataclass(frozen=True, slots=True)
@@ -49,18 +72,41 @@ class TheoryContext:
     run_mode: str = "live"
     judge_model: str | None = None     # set by the dispatching parent (4.9)
     bucket_rates: Callable | None = None
+    judgment_executions: tuple[JudgmentExecution, ...] = ()
+
+    def __post_init__(self) -> None:
+        try:
+            executions = tuple(self.judgment_executions)
+        except TypeError as exc:
+            raise TypeError(
+                "judgment_executions must contain JudgmentExecution values"
+            ) from exc
+        if any(not isinstance(item, JudgmentExecution) for item in executions):
+            raise TypeError(
+                "judgment_executions must contain JudgmentExecution values"
+            )
+        if self.judge_model is not None and executions:
+            raise ValueError(
+                "pass judge_model for the legacy single-stage path or "
+                "judgment_executions for stage-specific provenance, not both"
+            )
+        object.__setattr__(self, "judgment_executions", executions)
 
     @classmethod
     def build(cls, conn, board, now, *, run_id: str = "live",
               run_mode: str = "live",
-              judge_model: str | None = None) -> "TheoryContext":
+              judge_model: str | None = None,
+              judgment_executions: Iterable[JudgmentExecution] = (),
+              ) -> "TheoryContext":
         """The live constructor: binds score.bucket_rates to the connection
         (a per-instance binding cannot be a dataclass default). Tests build
         the dataclass directly with fakes."""
         from tools import score
+        executions = tuple(judgment_executions)
         return cls(conn=conn, board=board, now=now, run_id=run_id,
                    run_mode=run_mode, judge_model=judge_model,
-                   bucket_rates=partial(score.bucket_rates, conn))
+                   bucket_rates=partial(score.bucket_rates, conn),
+                   judgment_executions=executions)
 
 
 class Theory(ABC):
@@ -167,6 +213,11 @@ class TheoryRun:
 
     def __init__(self, theory: Theory, ctx: TheoryContext,
                  screen_result: ScreenResult):
+        self._initialize(theory, ctx, screen_result)
+        self.payload = theory.judgment_payload(self.candidates)
+
+    def _initialize(self, theory: Theory, ctx: TheoryContext,
+                    screen_result: ScreenResult) -> None:
         self.theory = theory
         self.ctx = ctx
         # A theory may hand back a cached or module-level ScreenResult (or
@@ -181,8 +232,25 @@ class TheoryRun:
             gate_removed=dict(screen_result.gate_removed),
         )
         self.candidates: list[Candidate] = list(screen_result.candidates)
-        self.payload = theory.judgment_payload(self.candidates)
         self.verdicts: dict[str, Verdict] | None = None
+        self._attached_batches: tuple = ()
+
+    @classmethod
+    def from_persisted(cls, *, theory: Theory, ctx: TheoryContext,
+                       screen_result: ScreenResult,
+                       candidates: Iterable[Candidate],
+                       payload) -> "TheoryRun":
+        """Rebuild saved run state without calling screen/payload builders.
+
+        `tools.judgments.load_run_state` is the public persistence boundary;
+        this constructor exists so recovery cannot accidentally re-screen a
+        newer board or recompute a changed payload after model spend.
+        """
+        run = cls.__new__(cls)
+        run._initialize(theory, ctx, screen_result)
+        run.candidates = list(candidates)
+        run.payload = payload
+        return run
 
     @property
     def needs_judgment(self) -> bool:
@@ -205,6 +273,141 @@ class TheoryRun:
             )
         self.verdicts = dict(verdicts)
         return self
+
+    def attach_completed_batches(self, batches, *, verdict_stage=None
+                                 ) -> "TheoryRun":
+        """Validate and attach persisted batch results to this run.
+
+        Every declared prompt stage must be represented.  For a one-stage
+        theory that stage supplies the Verdicts.  A multi-stage caller names
+        the stage whose categorical results are final; earlier stages remain
+        persisted and become provenance, but do not overwrite final verdicts.
+        """
+        from tools.judgments import JudgmentBatchReceipt
+
+        batches = tuple(batches)
+        if not batches:
+            raise ValueError("completed judgment batches must not be empty")
+        if any(not isinstance(batch, JudgmentBatchReceipt)
+               for batch in batches):
+            raise TypeError(
+                "completed batches must contain JudgmentBatchReceipt values"
+            )
+        if self._attached_batches:
+            if batches == self._attached_batches:
+                return self
+            raise ValueError(
+                "different judgment batches are already attached to this run"
+            )
+        if self.ctx.judge_model is not None or self.ctx.judgment_executions:
+            raise ValueError(
+                "cannot attach persisted batches to a run that already has "
+                "judgment execution metadata"
+            )
+        incomplete = [
+            (batch.request.stage, batch.request.batch_id)
+            for batch in batches if not batch.completed
+        ]
+        if incomplete:
+            raise RuntimeError(
+                f"judgment batches are not complete: {incomplete}"
+            )
+        expected_identity = (
+            self.ctx.run_id, self.theory.id, self.theory.version,
+        )
+        unique: dict[tuple[str, str], JudgmentBatchReceipt] = {}
+        known = {candidate.key for candidate in self.candidates}
+        for batch in batches:
+            request = batch.request
+            actual_identity = (
+                request.run_id, request.theory_id, request.theory_version,
+            )
+            if actual_identity != expected_identity:
+                raise ValueError(
+                    "judgment batch run identity does not match TheoryRun: "
+                    f"expected={expected_identity!r}, "
+                    f"actual={actual_identity!r}"
+                )
+            expected_context = (
+                self.ctx.run_mode, self.ctx.now.isoformat(),
+            )
+            actual_context = (request.run_mode, request.decision_at)
+            if actual_context != expected_context:
+                raise ValueError(
+                    "judgment batch run context does not match TheoryRun: "
+                    f"expected={expected_context!r}, "
+                    f"actual={actual_context!r}"
+                )
+            if request.stage not in self.theory.prompts:
+                raise ValueError(
+                    f"judgment batch stage {request.stage!r} is not declared "
+                    f"by {self.theory.id}.prompts"
+                )
+            unknown = sorted(set(request.candidate_keys) - known)
+            if unknown:
+                raise ValueError(
+                    f"judgment batch keys match no candidate: {unknown}"
+                )
+            batch_identity = (request.stage, request.batch_id)
+            previous = unique.get(batch_identity)
+            if previous is not None and previous != batch:
+                raise ValueError(
+                    f"conflicting duplicate judgment batch: {batch_identity}"
+                )
+            unique[batch_identity] = batch
+        batches = tuple(unique.values())
+        actual_stages = {batch.request.stage for batch in batches}
+        expected_stages = set(self.theory.prompts)
+        if actual_stages != expected_stages:
+            raise ValueError(
+                "judgment batches do not cover declared prompt stages; "
+                f"missing={sorted(expected_stages - actual_stages)}, "
+                f"unexpected={sorted(actual_stages - expected_stages)}"
+            )
+        if verdict_stage is None:
+            if len(expected_stages) != 1:
+                raise ValueError(
+                    "verdict_stage is required for a multi-stage theory"
+                )
+            verdict_stage = next(iter(expected_stages))
+        if verdict_stage not in expected_stages:
+            raise ValueError(
+                f"verdict_stage {verdict_stage!r} is not a declared prompt "
+                "stage"
+            )
+        verdicts: dict[str, Verdict] = {}
+        owners: dict[str, str] = {}
+        for batch in batches:
+            if batch.request.stage != verdict_stage:
+                continue
+            for key, verdict in batch.verdicts.items():
+                if key in owners:
+                    raise ValueError(
+                        f"candidate {key!r} belongs to more than one batch: "
+                        f"{owners[key]!r} and {batch.request.batch_id!r}"
+                    )
+                owners[key] = batch.request.batch_id
+                verdicts[key] = verdict
+        missing = sorted(known - set(verdicts))
+        if missing:
+            raise ValueError(
+                f"completed {verdict_stage!r} batches are missing candidate "
+                f"keys: {missing}"
+            )
+        executions = tuple(
+            JudgmentExecution(
+                stage=batch.request.stage,
+                model=batch.completion.model,
+                effort=batch.completion.effort,
+                web_search=batch.completion.web_search,
+                rendered_prompt=batch.request.rendered_prompt,
+            )
+            for batch in batches
+        )
+        self.ctx = replace(
+            self.ctx, judge_model=None, judgment_executions=executions)
+        self._attached_batches = batches
+        return self.apply(verdicts)
 
     def finish(self, *, dry_run: bool = False) -> ScanResult:
         """price -> provenance -> ledger -> ScanResult. Never overridden.
@@ -254,7 +457,7 @@ class TheoryRun:
         )
 
     def _record_provenance(self) -> None:
-        """Model + prompt per judging stage, before any row lands.
+        """Model + prompt per judging dispatch, before any row lands.
 
         The model recorded is the JUDGING model (ctx.judge_model -- the
         subagent's, when one was dispatched), never implicitly this
@@ -264,31 +467,81 @@ class TheoryRun:
         web_search follows the same split, and for a factual reason, not a
         cosmetic one: a run recorded as 'none (deterministic)' had no model
         in the loop at all, so it categorically did no web search --
-        'False' is correct regardless of run_mode, live included. An LLM
-        judgment run is different: web search is off in every *backtest*
-        judgment (CLAUDE.md), so backtest still records False, but a live
-        judgment run genuinely might have used it and 'None' (unknown)
-        stays honest rather than guessing."""
+        'False' is correct regardless of run_mode, live included. New explicit
+        execution metadata must say False for every backtest batch; None would
+        invent certainty when coerced. The legacy one-model path still records
+        the historical backtest default for compatibility."""
         model = self.ctx.judge_model
+        explicit_executions = bool(self.ctx.judgment_executions)
         if self.theory.uses_llm_judgment:
-            if not model:
-                raise RuntimeError(
-                    f"{self.theory.id} uses LLM judgment but "
-                    "ctx.judge_model is not set; recording the parent's "
-                    "model for a judgment it did not make would corrupt "
-                    "provenance (spec 4.9)"
+            executions = self.ctx.judgment_executions
+            if explicit_executions:
+                expected = set(self.theory.prompts)
+                actual = {execution.stage for execution in executions}
+                if actual != expected:
+                    missing = sorted(expected - actual)
+                    unexpected = sorted(actual - expected)
+                    raise RuntimeError(
+                        f"{self.theory.id} judgment_executions do not match "
+                        f"its prompt stages; missing={missing}, "
+                        f"unexpected={unexpected}"
+                    )
+            else:
+                if len(self.theory.prompts) != 1:
+                    raise RuntimeError(
+                        f"{self.theory.id} has multiple judging stages; one "
+                        "ctx.judge_model cannot truthfully describe all of "
+                        "them. Pass at least one JudgmentExecution for each "
+                        "stage."
+                    )
+                if not model:
+                    raise RuntimeError(
+                        f"{self.theory.id} uses LLM judgment but "
+                        "ctx.judge_model is not set; recording the parent's "
+                        "model for a judgment it did not make would corrupt "
+                        "provenance (spec 4.9)"
+                    )
+                only_stage = next(iter(self.theory.prompts))
+                executions = (
+                    JudgmentExecution(stage=only_stage, model=model),
                 )
-            web = False if self.ctx.run_mode == "backtest" else None
         else:
             model = model or "none (deterministic)"
-            web = False
-        for stage, path in self.theory.prompts.items():
-            provenance.record_judgment_run(
-                self.ctx.conn, run_id=self.ctx.run_id,
-                theory_id=self.theory.id,
-                theory_version=self.theory.version,
-                stage=stage, model=model, prompt_path=path, web_search=web,
-            )
+            executions = ()
+
+        if self.theory.uses_llm_judgment:
+            for execution in executions:
+                stage = execution.stage
+                path = self.theory.prompts[stage]
+                if (explicit_executions
+                        and self.ctx.run_mode == "backtest"
+                        and execution.web_search is not False):
+                    raise RuntimeError(
+                        f"{self.theory.id} stage {stage!r} backtest execution "
+                        "must set web_search explicitly to False"
+                    )
+                stage_model = execution.model
+                effort = execution.effort
+                web = (execution.web_search if explicit_executions else
+                       (False if self.ctx.run_mode == "backtest" else None))
+                rendered_prompt = execution.rendered_prompt
+                provenance.record_judgment_run(
+                    self.ctx.conn, run_id=self.ctx.run_id,
+                    theory_id=self.theory.id,
+                    theory_version=self.theory.version,
+                    stage=stage, model=stage_model, prompt_path=path,
+                    rendered_prompt=rendered_prompt, effort=effort,
+                    web_search=web,
+                )
+        else:
+            for stage, path in self.theory.prompts.items():
+                provenance.record_judgment_run(
+                    self.ctx.conn, run_id=self.ctx.run_id,
+                    theory_id=self.theory.id,
+                    theory_version=self.theory.version,
+                    stage=stage, model=model, prompt_path=path,
+                    web_search=False,
+                )
 
     def _registry_status(self) -> str:
         try:

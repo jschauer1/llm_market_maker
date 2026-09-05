@@ -6,7 +6,7 @@ import pytest
 from tools import db, ledger, provenance, theories
 from tools.domain import (Candidate, Edge, Leg, Market, ScoredCandidate,
                           ScreenResult, Verdict)
-from tools.theory import Theory, TheoryContext
+from tools.theory import JudgmentExecution, Theory, TheoryContext
 
 NOW = datetime(2026, 8, 24, 12, 0, tzinfo=timezone.utc)
 TS = "2026-08-24T12:00:00Z"
@@ -105,9 +105,36 @@ class JudgedNoPrompts(Theory):
                 for c in cands]
 
 
+class JudgedTwoStages(Judged):
+    id = "stub_judged_two_stages"
+    prompts = {
+        "gate": "theories/_TEMPLATE/THEORY.md",
+        "analysis": "theories/_TEMPLATE/THEORY.md",
+    }
+
+
 def fake_ctx(board=(), conn=None, judge_model=None):
     return TheoryContext(conn=conn, board=list(board), now=NOW,
                          judge_model=judge_model)
+
+
+def test_theory_context_keeps_existing_positional_bucket_rates_slot():
+    rates = lambda *_: {}  # noqa: E731 - identity matters in this regression
+    ctx = TheoryContext(None, [], NOW, "r1", "live", "opus", rates)
+    assert ctx.bucket_rates is rates
+    assert ctx.judgment_executions == ()
+
+
+def test_direct_theory_context_freezes_and_validates_stage_executions():
+    execution = JudgmentExecution(stage="analysis", model="gpt-6-astra")
+    ctx = TheoryContext(None, [], NOW, judgment_executions=[execution])
+    assert ctx.judgment_executions == (execution,)
+
+    with pytest.raises(ValueError, match="not both"):
+        TheoryContext(None, [], NOW, judge_model="opus",
+                      judgment_executions=[execution])
+    with pytest.raises(TypeError, match="JudgmentExecution"):
+        TheoryContext(None, [], NOW, judgment_executions=["analysis"])
 
 
 def test_theory_is_abstract():
@@ -151,6 +178,127 @@ def test_apply_rejects_a_non_verdict_value():
         run.apply({"KXT": 0.78})
 
 
+def test_attach_completed_batches_rejects_duplicate_candidate_ownership():
+    """Two distinct dispatches cannot both own one candidate result."""
+    from tools.judgments import (BatchCompletion, BatchRequest,
+                                 JudgmentBatchReceipt)
+
+    request_a = BatchRequest.build(
+        run_id="live", theory_id="stub_judged", theory_version=1,
+        run_mode="live", decision_at=NOW.isoformat(),
+        requested_model="m", requested_effort=None,
+        requested_web_search=True, output_path="a.verdicts.json",
+        stage="analysis", batch_id="a", candidate_keys=("KXT",),
+        payload=[{"key": "KXT"}], rendered_prompt="Prompt A")
+    request_b = BatchRequest.build(
+        run_id="live", theory_id="stub_judged", theory_version=1,
+        run_mode="live", decision_at=NOW.isoformat(),
+        requested_model="m", requested_effort=None,
+        requested_web_search=True, output_path="b.verdicts.json",
+        stage="analysis", batch_id="b", candidate_keys=("KXT",),
+        payload=[{"key": "KXT"}], rendered_prompt="Prompt B")
+    completion = BatchCompletion.build(
+        model="m", effort=None, web_search=True,
+        results={"KXT": Verdict(bucket="strong")},
+        completed_at="2026-09-04T12:00:00+00:00")
+    batches = (
+        JudgmentBatchReceipt(request_a, completion),
+        JudgmentBatchReceipt(request_b, completion),
+    )
+
+    with pytest.raises(ValueError, match="more than one batch"):
+        Judged().start(fake_ctx([mkm()])).attach_completed_batches(batches)
+
+
+def test_attach_completed_batches_validates_run_identity():
+    from tools.judgments import (BatchCompletion, BatchRequest,
+                                 JudgmentBatchReceipt)
+
+    request = BatchRequest.build(
+        run_id="another-run", theory_id="stub_judged", theory_version=1,
+        run_mode="live", decision_at=NOW.isoformat(),
+        requested_model="m", requested_effort=None,
+        requested_web_search=True, output_path="a.verdicts.json",
+        stage="analysis", batch_id="a", candidate_keys=("KXT",),
+        payload=[{"key": "KXT"}], rendered_prompt="Prompt A")
+    completion = BatchCompletion.build(
+        model="m", effort=None, web_search=True,
+        results={"KXT": Verdict(bucket="strong")},
+        completed_at="2026-09-04T12:00:00+00:00")
+
+    with pytest.raises(ValueError, match="run identity"):
+        Judged().start(fake_ctx([mkm()])).attach_completed_batches(
+            (JudgmentBatchReceipt(request, completion),))
+
+
+def test_attach_completed_batches_uses_named_final_stage_in_a_cascade():
+    from tools.judgments import (BatchCompletion, BatchRequest,
+                                 JudgmentBatchReceipt)
+
+    gate_request = BatchRequest.build(
+        run_id="live", theory_id="stub_judged_two_stages", theory_version=1,
+        run_mode="live", decision_at=NOW.isoformat(),
+        requested_model="small", requested_effort="minimal",
+        requested_web_search=False, output_path="gate.verdicts.json",
+        stage="gate", batch_id="gate-a", candidate_keys=("KXT",),
+        payload=[{"key": "KXT"}], rendered_prompt="Gate prompt")
+    analysis_request = BatchRequest.build(
+        run_id="live", theory_id="stub_judged_two_stages", theory_version=1,
+        run_mode="live", decision_at=NOW.isoformat(),
+        requested_model="strong", requested_effort="high",
+        requested_web_search=True, output_path="analysis.verdicts.json",
+        stage="analysis", batch_id="analysis-a", candidate_keys=("KXT",),
+        payload=[{"key": "KXT"}], rendered_prompt="Analysis prompt")
+    gate_completion = BatchCompletion.build(
+        model="small", effort="minimal", web_search=False,
+        results={"KXT": Verdict(bucket="weak")},
+        completed_at="2026-09-04T12:00:00+00:00")
+    analysis_completion = BatchCompletion.build(
+        model="strong", effort="high", web_search=True,
+        results={"KXT": Verdict(bucket="strong")},
+        completed_at="2026-09-04T12:01:00+00:00")
+    batches = (
+        JudgmentBatchReceipt(gate_request, gate_completion),
+        JudgmentBatchReceipt(analysis_request, analysis_completion),
+    )
+
+    run = JudgedTwoStages().start(fake_ctx([mkm()]))
+    run.attach_completed_batches(batches, verdict_stage="analysis")
+
+    assert run.verdicts == {"KXT": Verdict(bucket="strong")}
+    assert [(execution.stage, execution.model)
+            for execution in run.ctx.judgment_executions] == [
+        ("gate", "small"), ("analysis", "strong"),
+    ]
+
+
+@pytest.mark.parametrize(
+    ("run_mode", "decision_at"),
+    [("backtest", NOW.isoformat()),
+     ("live", "2026-08-25T12:00:00+00:00")],
+)
+def test_attach_completed_batches_validates_persisted_run_context(
+        run_mode, decision_at):
+    from tools.judgments import (BatchCompletion, BatchRequest,
+                                 JudgmentBatchReceipt)
+
+    request = BatchRequest.build(
+        run_id="live", theory_id="stub_judged", theory_version=1,
+        run_mode=run_mode, decision_at=decision_at,
+        requested_model="m", requested_effort=None,
+        requested_web_search=False, output_path="a.verdicts.json",
+        stage="analysis", batch_id="a", candidate_keys=("KXT",),
+        payload=[{"key": "KXT"}], rendered_prompt="Prompt A")
+    completion = BatchCompletion.build(
+        model="m", effort=None, web_search=False,
+        results={"KXT": Verdict(bucket="strong")},
+        completed_at="2026-09-04T12:00:00+00:00")
+
+    with pytest.raises(ValueError, match="run context"):
+        Judged().start(fake_ctx([mkm()])).attach_completed_batches(
+            (JudgmentBatchReceipt(request, completion),))
+
+
 def test_dry_run_scores_without_writing():
     run = Judged().start(fake_ctx([mkm()]))     # conn=None: any DB touch throws
     result = run.apply({"KXT": Verdict(bucket="strong")}).finish(dry_run=True)
@@ -169,6 +317,175 @@ def test_finish_requires_judge_model_for_an_llm_theory(tmp_path):
     run.apply({"KXT": Verdict(bucket="strong")})
     with pytest.raises(RuntimeError, match="judge_model"):
         run.finish()
+    conn.close()
+
+
+def test_one_legacy_judge_model_cannot_describe_multiple_stages(tmp_path):
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "stub_judged_two_stages", "Stub", "x", now=TS)
+    theories.set_uses_llm_judgment(conn, "stub_judged_two_stages", True)
+    run = JudgedTwoStages().start(
+        fake_ctx([mkm()], conn=conn, judge_model="gpt-6-astra"))
+    run.apply({"KXT": Verdict(bucket="strong")})
+    with pytest.raises(RuntimeError, match="multiple.*stages"):
+        run.finish()
+    conn.close()
+
+
+def test_stage_executions_record_distinct_models_effort_search_and_prompt(
+        tmp_path):
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "stub_judged_two_stages", "Stub", "x", now=TS)
+    theories.set_uses_llm_judgment(conn, "stub_judged_two_stages", True)
+    executions = (
+        JudgmentExecution(stage="gate", model="gpt-5.6-luna",
+                          effort="minimal", web_search=False,
+                          rendered_prompt="Gate the candidate from input A."),
+        JudgmentExecution(stage="analysis", model="gpt-6-astra",
+                          effort="high", web_search=True,
+                          rendered_prompt="Analyze the candidate from input B."),
+    )
+    ctx = TheoryContext.build(conn=conn, board=[mkm()], now=NOW,
+                              judgment_executions=executions)
+    JudgedTwoStages().start(ctx).apply(
+        {"KXT": Verdict(bucket="strong")}).finish()
+
+    rows = {r["stage"]: r for r in provenance.list_judgment_runs(
+        conn, theory_id="stub_judged_two_stages")}
+    assert rows["gate"]["model"] == "gpt-5.6-luna"
+    assert rows["gate"]["effort"] == "minimal"
+    assert rows["gate"]["web_search"] == 0
+    assert rows["gate"]["prompt_text"] == "Gate the candidate from input A."
+    assert rows["analysis"]["model"] == "gpt-6-astra"
+    assert rows["analysis"]["effort"] == "high"
+    assert rows["analysis"]["web_search"] == 1
+    assert rows["analysis"]["prompt_text"] == \
+        "Analyze the candidate from input B."
+    conn.close()
+
+
+def test_multiple_executions_in_one_stage_record_every_rendered_prompt(
+        tmp_path):
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "stub_judged", "Stub", "x", now=TS)
+    theories.set_uses_llm_judgment(conn, "stub_judged", True)
+    executions = (
+        JudgmentExecution(stage="analysis", model="gpt-6-astra",
+                          effort="high", web_search=True,
+                          rendered_prompt="Analyze batch A."),
+        JudgmentExecution(stage="analysis", model="gpt-5.6-luna",
+                          effort="medium", web_search=False,
+                          rendered_prompt="Analyze batch B."),
+    )
+    ctx = TheoryContext.build(conn=conn, board=[mkm()], now=NOW,
+                              judgment_executions=executions)
+    Judged().start(ctx).apply(
+        {"KXT": Verdict(bucket="strong")}).finish()
+
+    rows = provenance.list_judgment_runs(conn, theory_id="stub_judged")
+    assert [(row["model"], row["effort"], row["web_search"],
+             row["prompt_text"]) for row in rows] == [
+        ("gpt-6-astra", "high", 1, "Analyze batch A."),
+        ("gpt-5.6-luna", "medium", 0, "Analyze batch B."),
+    ]
+    conn.close()
+
+
+def test_exact_duplicate_stage_execution_is_idempotent(tmp_path):
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "stub_judged", "Stub", "x", now=TS)
+    theories.set_uses_llm_judgment(conn, "stub_judged", True)
+    execution = JudgmentExecution(
+        stage="analysis", model="gpt-6-astra", effort="high",
+        web_search=True, rendered_prompt="Analyze batch A.")
+    ctx = TheoryContext.build(
+        conn=conn, board=[mkm()], now=NOW,
+        judgment_executions=(execution, execution))
+    Judged().start(ctx).apply(
+        {"KXT": Verdict(bucket="strong")}).finish()
+    assert len(provenance.list_judgment_runs(
+        conn, theory_id="stub_judged")) == 1
+    conn.close()
+
+
+@pytest.mark.parametrize(
+    ("executions", "message"),
+    [
+        ((JudgmentExecution(stage="gate", model="m", web_search=False),),
+         "missing=.*analysis"),
+        ((JudgmentExecution(stage="gate", model="m", web_search=False),
+          JudgmentExecution(stage="analysis", model="m", web_search=False),
+          JudgmentExecution(stage="other", model="m", web_search=False)),
+         "unexpected=.*other"),
+    ],
+)
+def test_stage_executions_require_exact_prompt_stage_coverage(
+        tmp_path, executions, message):
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "stub_judged_two_stages", "Stub", "x", now=TS)
+    theories.set_uses_llm_judgment(conn, "stub_judged_two_stages", True)
+    ctx = TheoryContext.build(conn=conn, board=[mkm()], now=NOW,
+                              judgment_executions=executions)
+    run = JudgedTwoStages().start(ctx).apply(
+        {"KXT": Verdict(bucket="strong")})
+    with pytest.raises(RuntimeError, match=message):
+        run.finish()
+    conn.close()
+
+
+@pytest.mark.parametrize("web_search", [None, True])
+def test_explicit_backtest_execution_requires_web_search_false(
+        tmp_path, web_search):
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "stub_judged", "Stub", "x", now=TS)
+    theories.set_uses_llm_judgment(conn, "stub_judged", True)
+    execution = JudgmentExecution(
+        stage="analysis", model="gpt-6-astra", web_search=web_search)
+    ctx = TheoryContext.build(
+        conn=conn, board=[mkm()], now=NOW, run_mode="backtest",
+        judgment_executions=(execution,))
+    run = Judged().start(ctx).apply({"KXT": Verdict(bucket="strong")})
+    with pytest.raises(RuntimeError, match="explicit.*False"):
+        run.finish()
+    conn.close()
+
+
+def test_explicit_backtest_execution_records_web_search_false(tmp_path):
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "stub_judged", "Stub", "x", now=TS)
+    theories.set_uses_llm_judgment(conn, "stub_judged", True)
+    execution = JudgmentExecution(
+        stage="analysis", model="gpt-6-astra", web_search=False)
+    ctx = TheoryContext.build(
+        conn=conn, board=[mkm()], now=NOW, run_mode="backtest",
+        run_id="backtest-explicit", judgment_executions=(execution,))
+    Judged().start(ctx).apply(
+        {"KXT": Verdict(bucket="strong")}).finish()
+    row = provenance.list_judgment_runs(conn, theory_id="stub_judged")[0]
+    assert row["web_search"] == 0
+    conn.close()
+
+
+def test_legacy_backtest_judge_model_still_records_web_search_false(tmp_path):
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "stub_judged", "Stub", "x", now=TS)
+    theories.set_uses_llm_judgment(conn, "stub_judged", True)
+    ctx = TheoryContext.build(
+        conn=conn, board=[mkm()], now=NOW, run_mode="backtest",
+        run_id="backtest-legacy",
+        judge_model="legacy-model")
+    Judged().start(ctx).apply(
+        {"KXT": Verdict(bucket="strong")}).finish()
+    row = provenance.list_judgment_runs(conn, theory_id="stub_judged")[0]
+    assert row["web_search"] == 0
     conn.close()
 
 
