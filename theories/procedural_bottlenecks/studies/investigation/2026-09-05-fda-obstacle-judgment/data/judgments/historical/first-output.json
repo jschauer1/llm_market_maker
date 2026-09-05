@@ -1,0 +1,163 @@
+{
+  "results": [
+    {
+      "case_id": "historical/baxdrostat",
+      "label": "plausible_path",
+      "necessary_step": "FDA completion of NDA review and issuance of an approval letter for baxdrostat for hard-to-control hypertension before the exclusive June 1, 2026 deadline.",
+      "obstacle_and_deadline": "As of May 15, the approval letter remained unfinished and the deadline was close. The packet does not identify an application-specific deficiency, adverse FDA finding, or other substantive barrier. Its timing statement places the anticipated PDUFA action somewhere in the second quarter, which includes dates on both sides of June 1 and therefore does not itself establish a timing conflict.",
+      "affirmative_path": "The NDA had been accepted for Priority Review for the contract-matching hard-to-control hypertension population, following use of a Priority Review voucher. The supporting BaxHTN trial met its primary and all secondary endpoints, while the issuer reported no unanticipated safety findings. Together these facts affirmatively support a live expedited route to approval before June 1, although they do not establish that FDA would act by then.",
+      "bypass_assessment": "No bypass is required on the supplied record because the identified route is the pending priority-reviewed NDA itself. Accelerated approval or another alternative is not supported by application-specific evidence. The FDA could act before its anticipated quarter-end timing, but the exact action date and review status are unknown.",
+      "citations": [
+        {
+          "source_id": "bax-release-nda-2025-12-02",
+          "quote": "has been accepted for Priority Review"
+        },
+        {
+          "source_id": "bax-release-nda-2025-12-02",
+          "quote": "The Prescription Drug User Fee Act (PDUFA) date is anticipated during the second quarter of 2026"
+        },
+        {
+          "source_id": "bax-release-nda-2025-12-02",
+          "quote": "met the primary and all secondary endpoints"
+        },
+        {
+          "source_id": "bax-release-nda-2025-12-02",
+          "quote": "There were no unanticipated safety findings"
+        }
+      ],
+      "missing_evidence": [
+        "Exact PDUFA goal date",
+        "Contemporaneous application-specific FDA review status or identified deficiencies",
+        "Public evidence that FDA had completed substantive review by May 15"
+      ],
+      "rationale": "The packet supplies more than mere absence of a barrier: it documents an accepted, priority-reviewed NDA for the exact indication, positive pivotal efficacy, and favorable stated safety, with anticipated action in a quarter that still allowed approval before June 1. The remaining uncertainty is ordinary pending-review uncertainty, so plausible_path is the best categorical label."
+    },
+    {
+      "case_id": "historical/camizestrant",
+      "label": "substantive_barrier",
+      "necessary_step": "FDA must complete review, resolve the benefit-risk questions raised in its briefing, and issue an NDA approval letter for the ESR1-mutated HR+/HER2- advanced-breast-cancer indication before June 1, 2026.",
+      "obstacle_and_deadline": "FDA expressly stated uncertainty that SERENA-6 demonstrated a favorable benefit-risk profile, questioned whether the observed progression-free-survival result was clinically meaningful, and said final overall-survival data were not anticipated until approximately 2028. The April 30 advisory committee then voted 3 to 6 and did not reach a majority in favor. These are active, application-specific substantive issues with only about sixteen days remaining as of the assessment date, materially obstructing a before-deadline approval even though they do not make it impossible.",
+      "affirmative_path": "The NDA was accepted in July 2025, received Breakthrough Therapy designation, and was supported by a trial reporting a statistically significant 56% reduction in progression or death. FDA had also previously agreed that the efficacy and safety data supported filing. Those facts preserve a possible route to approval but do not resolve the benefit-risk concerns identified during review.",
+      "bypass_assessment": "The clearest alternative is FDA approval despite the unfavorable advisory vote, because the supplied release says FDA is not bound by the committee. FDA could also conclude that the PFS evidence and existing safety package suffice without mature overall survival. The packet contains no later, pre-cutoff FDA resolution of its stated concerns, so neither route overcomes the obstacle on the supplied evidence.",
+      "citations": [
+        {
+          "source_id": "cam-fda-briefing-2026-04-28",
+          "quote": "FDA is uncertain that overall positive benefit-risk for camizestrant has been demonstrated"
+        },
+        {
+          "source_id": "cam-fda-briefing-2026-04-28",
+          "quote": "final OS not anticipated until sometime in 2028"
+        },
+        {
+          "source_id": "cam-release-odac-2026-04-30",
+          "quote": "The Committee voted 3 to 6."
+        },
+        {
+          "source_id": "cam-release-odac-2026-04-30",
+          "quote": "The FDA is not bound by the Committee's guidance"
+        }
+      ],
+      "missing_evidence": [
+        "A post-committee, pre-cutoff FDA resolution of the identified benefit-risk issues",
+        "Evidence that existing PFS and safety data were sufficient for approval before June 1"
+      ],
+      "rationale": "An accepted NDA and positive PFS result provide a route, but FDA's own dated briefing establishes unresolved, indication-specific efficacy and safety concerns, reinforced by the negative committee vote and the long horizon for mature OS data. With the exclusive deadline imminent, this meets the substantive_barrier standard."
+    },
+    {
+      "case_id": "historical/cagrisema",
+      "label": "insufficient_evidence",
+      "necessary_step": "FDA acceptance and substantive review of the December 2025 CagriSema weight-management submission, followed by issuance of an approval letter before July 1, 2026; the packet does not establish the application's exact review status.",
+      "obstacle_and_deadline": "The sponsor says an FDA decision is anticipated by late 2026, after the contract deadline in ordinary usage, but that forecast is not a statutory floor or a demonstrated FDA constraint. The packet contains no application-specific FDA document, accepted-filing notice, PDUFA goal date, review designation, deficiency, or complete account of the pivotal REDEFINE 1 and REDEFINE 2 evidence. REDEFINE 4's failure to establish non-inferiority is unfavorable but it is not identified as the basis of the submitted application and therefore does not establish an applicable approval barrier.",
+      "affirmative_path": "The weight-management application was submitted in December 2025 based on two pivotal trials. The packet also reports 23% weight loss and an apparently safe, well-tolerated profile in REDEFINE 4. These facts show ongoing development and a filed route, but do not establish that FDA accepted the application or that approval before July 1 remained operationally viable.",
+      "bypass_assessment": "An earlier-than-forecast FDA action could place approval before July 1, because the sponsor's late-2026 expectation is not binding. No application-specific evidence establishes Priority Review, rolling review, accelerated approval, a voucher, or another mechanism that would make that accelerated timing affirmative rather than speculative.",
+      "citations": [
+        {
+          "source_id": "cag-release-redefine4-2026-02-23",
+          "quote": "submitted to the US FDA in December 2025 based on the REDEFINE 1 and REDEFINE 2 pivotal trials"
+        },
+        {
+          "source_id": "cag-release-redefine4-2026-02-23",
+          "quote": "an FDA decision is anticipated by late 2026"
+        },
+        {
+          "source_id": "cag-release-redefine4-2026-02-23",
+          "quote": "The trial did not achieve its primary endpoint of demonstrating non-inferiority"
+        },
+        {
+          "source_id": "cag-release-redefine4-2026-02-23",
+          "quote": "CagriSema appeared to have a safe and well-tolerated profile"
+        }
+      ],
+      "missing_evidence": [
+        "FDA acceptance-for-filing status and exact review timeline",
+        "Any application-specific expedited-review designation",
+        "FDA assessment of the submitted REDEFINE 1 and REDEFINE 2 package",
+        "Whether any unresolved clinical, manufacturing, or labeling issue existed as of May 15"
+      ],
+      "rationale": "The sponsor's late-2026 forecast cannot be converted into a hard timing barrier, while submission and favorable trial statements alone do not affirmatively establish a viable approval route before July 1. Decisive application-status and review evidence is missing, requiring insufficient_evidence."
+    },
+    {
+      "case_id": "historical/cytisinicline",
+      "label": "substantive_barrier",
+      "necessary_step": "Resolve the named commercial manufacturer's cGMP/OAI problem, obtain an approvable manufacturing arrangement in the NDA, and receive an FDA approval letter for adult smoking cessation before July 1, 2026.",
+      "obstacle_and_deadline": "A third-party manufacturer named in the accepted NDA had an Official Action Indicated classification and warning letter, including observations related to solid oral-dose manufacturing. The sponsor expected a Complete Response Letter by the June 20 PDUFA date and said that this would delay approval. Its planned cure was to name Adare as the commercial manufacturer in an NDA resubmission during the fourth quarter of 2026, necessarily after the July 1 contract deadline. This is an active application-specific manufacturing obstacle paired with a concrete post-deadline remediation schedule.",
+      "affirmative_path": "The NDA had been accepted for review with a June 20 goal date, rested on two completed Phase 3 studies and an open-label safety study, and the sponsor had completed analytical-method transfer plus a first engineering batch at Adare. These steps support eventual resubmission but do not show that the alternative facility could be incorporated and approved before July 1.",
+      "bypass_assessment": "The observations were general facility matters and not specific to cytisinicline, leaving a theoretical route if FDA accepted remediation at the original site or an accelerated switch to Adare. Yet the sponsor's own dated SEC filing expected a CRL and a fourth-quarter resubmission. The packet supplies no FDA acceptance of either faster route, and the smoking-cessation contract cannot rely on the separately mentioned voucher for vaping cessation.",
+      "citations": [
+        {
+          "source_id": "cyt-sec-10q-2026q1",
+          "quote": "received an Official Action Indicated, or OAI, classification and a warning letter"
+        },
+        {
+          "source_id": "cyt-sec-10q-2026q1",
+          "quote": "We expect to receive a Complete Response Letter, or CRL, from the FDA on or before our June 20, 2026 PDUFA targeted action date"
+        },
+        {
+          "source_id": "cyt-sec-10q-2026q1",
+          "quote": "We intend to resubmit the NDA naming Adare as our manufacturer for commercial supply in the fourth quarter of 2026"
+        },
+        {
+          "source_id": "cyt-release-q1-2026-05-12",
+          "quote": "successfully manufactured its first cytisinicline engineering batch"
+        }
+      ],
+      "missing_evidence": [
+        "FDA confirmation that the original facility could be cleared before July 1",
+        "FDA acceptance of Adare into the pending NDA without a post-deadline resubmission"
+      ],
+      "rationale": "Unlike ordinary pending-review uncertainty, the immutable pre-cutoff filing identifies a current manufacturing compliance problem, an expected CRL, and remediation scheduled after the contract deadline. The existing alternative manufacturer supports a later route but does not overcome the documented timing conflict, so substantive_barrier applies."
+    },
+    {
+      "case_id": "historical/gedatolisib",
+      "label": "plausible_path",
+      "necessary_step": "FDA completion of substantive NDA review and issuance of an approval letter for gedatolisib in HR+/HER2-, PIK3CA wild-type advanced breast cancer before the exclusive July 1, 2026 deadline.",
+      "obstacle_and_deadline": "The assigned PDUFA goal date was July 17, sixteen days after the contract deadline, but a goal date is not a binding prohibition on earlier action. The packet identifies no active application-specific clinical, manufacturing, or safety deficiency. The remaining approval decision was unfinished, and the absence of a public FDA review document leaves uncertainty, but the July 17 target alone does not establish a substantive barrier.",
+      "affirmative_path": "The sponsor used FDA's Real-Time Oncology Review process, completed the final NDA submission in November 2025, and received formal acceptance, Priority Review, and the July 17 goal date in January 2026. The application matches the contract population. The issuer also reported Phase 3 PIK3CA wild-type results that it characterized as supporting a potential new standard of care. These application-specific facts affirmatively support an expedited route on which FDA could act before July 1.",
+      "bypass_assessment": "The relevant route is early action on the already accepted priority-reviewed NDA; no separate accelerated-approval theory is needed or supported. Real-Time Oncology Review and Priority Review show expedited handling, but the packet does not say that they require or guarantee a decision before July 17. A before-deadline approval therefore remains viable rather than assured.",
+      "citations": [
+        {
+          "source_id": "ged-sec-10q-2026q1",
+          "quote": "The FDA granted the Company's request to submit its NDA via the FDA's RTOR program"
+        },
+        {
+          "source_id": "ged-sec-10q-2026q1",
+          "quote": "completed the final NDA submission to the FDA on November 17, 2025"
+        },
+        {
+          "source_id": "ged-sec-10q-2026q1",
+          "quote": "formally accepted our NDA submission on January 16, 2026, designated it for Priority Review"
+        },
+        {
+          "source_id": "ged-sec-10q-2026q1",
+          "quote": "assigned a PDUFA target goal date of July 17, 2026"
+        }
+      ],
+      "missing_evidence": [
+        "Contemporaneous FDA review findings or unresolved deficiencies",
+        "Evidence that substantive review was complete by May 15",
+        "Any FDA indication that action would occur before July 1"
+      ],
+      "rationale": "The dated record supplies a concrete expedited path through RTOR, completed submission, formal acceptance, and Priority Review for the exact population. Because the post-deadline PDUFA goal is nonbinding and no specific obstacle is established, the evidence supports plausible_path while leaving ordinary timing and review uncertainty."
+    }
+  ]
+}

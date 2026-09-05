@@ -1,0 +1,112 @@
+[
+  {
+    "case_id": "current/cagrisema",
+    "source_id": "cag_novo_20251218_nda_submission",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/cagrisema",
+    "source_id": "cag_novo_20251218_nda_submission",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/cagrisema",
+    "source_id": "cag_novo_20260527_ada_preview",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/cytisinicline",
+    "source_id": "cyt_fda_20260620_crl_nda218995",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/cytisinicline",
+    "source_id": "cyt_fda_20260620_crl_nda218995",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/cytisinicline",
+    "source_id": "cyt_achieve_20260811_q2",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/midomafetamine_mdma_for_ptsd",
+    "source_id": "mdma_fda_20240808_crl_nda215455",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/midomafetamine_mdma_for_ptsd",
+    "source_id": "mdma_fda_20240808_crl_nda215455",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/midomafetamine_mdma_for_ptsd",
+    "source_id": "mdma_lykos_20250116_fda_meeting",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/comp360_psilocybin",
+    "source_id": "cmps_20260805_q2",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/comp360_psilocybin",
+    "source_id": "cmps_20260513_q1",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/comp360_psilocybin",
+    "source_id": "cmps_20260513_q1",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/retatrutide",
+    "source_id": "reta_lilly_20260723_phase3",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/retatrutide",
+    "source_id": "reta_lilly_20260723_phase3",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/retatrutide",
+    "source_id": "reta_lilly_20260805_q2",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/v940_intismeran_autogene",
+    "source_id": "v940_merck_moderna_20260819_phase3",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/v940_intismeran_autogene",
+    "source_id": "v940_merck_moderna_20260819_phase3",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/v940_intismeran_autogene",
+    "source_id": "v940_merck_moderna_20260819_phase3",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/lonvoguran_ziclumeran_lonvo_z",
+    "source_id": "lonvo_intellia_20260427_rolling_bla",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/lonvoguran_ziclumeran_lonvo_z",
+    "source_id": "lonvo_intellia_20260427_rolling_bla",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/lonvoguran_ziclumeran_lonvo_z",
+    "source_id": "lonvo_intellia_20260806_q2",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "current/lonvoguran_ziclumeran_lonvo_z",
+    "source_id": "lonvo_intellia_20260427_rolling_bla",
+    "exact_quote_found": true
+  }
+]

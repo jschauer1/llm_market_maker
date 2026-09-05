@@ -1,0 +1,102 @@
+[
+  {
+    "case_id": "historical/baxdrostat",
+    "source_id": "bax-release-nda-2025-12-02",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/baxdrostat",
+    "source_id": "bax-release-nda-2025-12-02",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/baxdrostat",
+    "source_id": "bax-release-nda-2025-12-02",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/baxdrostat",
+    "source_id": "bax-release-nda-2025-12-02",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/camizestrant",
+    "source_id": "cam-fda-briefing-2026-04-28",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/camizestrant",
+    "source_id": "cam-fda-briefing-2026-04-28",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/camizestrant",
+    "source_id": "cam-release-odac-2026-04-30",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/camizestrant",
+    "source_id": "cam-release-odac-2026-04-30",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/cagrisema",
+    "source_id": "cag-release-redefine4-2026-02-23",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/cagrisema",
+    "source_id": "cag-release-redefine4-2026-02-23",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/cagrisema",
+    "source_id": "cag-release-redefine4-2026-02-23",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/cagrisema",
+    "source_id": "cag-release-redefine4-2026-02-23",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/cytisinicline",
+    "source_id": "cyt-sec-10q-2026q1",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/cytisinicline",
+    "source_id": "cyt-sec-10q-2026q1",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/cytisinicline",
+    "source_id": "cyt-sec-10q-2026q1",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/cytisinicline",
+    "source_id": "cyt-release-q1-2026-05-12",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/gedatolisib",
+    "source_id": "ged-sec-10q-2026q1",
+    "exact_quote_found": false
+  },
+  {
+    "case_id": "historical/gedatolisib",
+    "source_id": "ged-sec-10q-2026q1",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/gedatolisib",
+    "source_id": "ged-sec-10q-2026q1",
+    "exact_quote_found": true
+  },
+  {
+    "case_id": "historical/gedatolisib",
+    "source_id": "ged-sec-10q-2026q1",
+    "exact_quote_found": true
+  }
+]

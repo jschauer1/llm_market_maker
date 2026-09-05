@@ -7,7 +7,16 @@ created_by: codex-astra-fda-study
 ---
 # FDA obstacle judgment versus explicit disclosure
 
-**Date:** 2026-09-05 · **Tier:** pending input/provenance audit · **Verdict:** Investigation in progress.
+**Date:** 2026-09-05 · **Tier:** C · **Verdict:** Retain the sparse mechanism; deprioritize broad FDA semantic development. No validated monetary edge.
+
+The finite experiment is complete: judgment added one defensible historical
+risk signal, but all history was exposed; on seven current subjects it selected
+exactly the same two NO cases as the disclosure baseline. Current prices leave
+only $5.66–$5.67 total after-fee payoff if both win at 100 contracts each,
+against roughly $194.34 paid. This is a conditional payoff ceiling, not
+expected profit. Retain the mechanism for rare fresh disclosures or meaningful
+repricing; this evidence does not justify a broad FDA judging build. No theory
+was retired, no production probability was recorded and no bet was placed.
 
 ## Question and approved scope
 
@@ -182,3 +191,165 @@ and each source's timestamp/vintage explanation, with a neutral incomplete-
 packet notice. The historical packet's coverage notes were limited to missing
 documents and vintage and were already frozen. Filename/path compatibility
 was corrected in the packager; neither parser nor judge instructions changed.
+
+## Input completeness checks
+
+Schema, hashes and word counts did not catch an initial extraction failure:
+generic SEC risk text displaced named-program filing timelines, while scanned
+FDA pages hid substantive manufacturing and clinical deficiencies. The operator
+checked actual status sections against the originals; collectors repaired
+these omissions before each cohort was frozen. The current collector also
+supplied interpretive coverage prose, which was excluded from blind input.
+Future collection should locate complete program-status sections and inspect
+scanned pages before imposing a prose budget. The retained source reviews and
+packets document these repairs; no paid judgment was rerun after them.
+
+## Historical diagnostic result
+
+The first independent Sol/high output selected two barriers from five subjects.
+The deterministic deadline-aware baseline and warning control both selected
+only cytisinicline. All five outcomes had already been exposed during the
+viability review. The judge's source-only context does not undo that exposure.
+
+| Subject / earliest deadline | Judgment | Disclosure selects NO | Entry NO ask | Outcome |
+|---|---|---:|---:|---|
+| Baxdrostat / June 1 | Plausible path | No | $0.83 | YES |
+| Camizestrant / June 1 | Substantive barrier | No | $0.81 | NO |
+| CagriSema / July 1 | Insufficient evidence | No | $0.40 | NO |
+| Cytisinicline / July 1 | Substantive barrier | Yes | $0.50 | NO |
+| Gedatolisib / July 1 | Plausible path | No | $0.76 | NO |
+
+Entries are the first qualifying candle closes in the prescribed May 15
+12:15–13:15 UTC window: 12:41 for BAX and 12:55 for the others. Quote-side
+identity is `NO ask = 1 − YES bid`. Historical resting size is unavailable.
+Current July 7 fee documentation cannot establish the May 15 fee schedule;
+the following numbers are explicitly fee sensitivities, not realized profits
+or qualifying backtest estimates. Research costs are unmeasured and excluded.
+
+| Procedure | Selections | Gross total at hypothetical 100 per selection | After-fee sensitivity | After-fee per selected contract | After-fee per admitted subject-contract |
+|---|---:|---:|---:|---:|---:|
+| Disclosure / warning control | 1 | $50.00 | $48.25 | $0.4825 | $0.09650 |
+| Semantic judgment | 2 | $69.00 | $66.17 | $0.33085 | $0.13234 |
+| All NO | 5 | $70.00 | $63.22 | $0.12644 | $0.12644 |
+
+Assumption: quadratic multiplier 1, `ceil-cent(0.07 × N × p × (1−p))` per
+order. At one contract per selection, after-fee totals are $0.48, $0.65 and
+$0.61 respectively. The 100-contract column does not establish fill capacity.
+Semantic selection adds $17.92 over disclosure but only $2.95 over all NO at
+the hypothetical equal size. Its mean return per selection is lower than
+disclosure's. These exposed contrasts carry no statistical confirmation.
+
+The one substantive disagreement is camizestrant. The FDA briefing identifies
+application-specific uncertainty about clinical benefit and cardiac safety;
+the packet also retains the sponsor's positive case. This is a defensible
+additional qualitative risk signal beyond late-filing extraction. It is not
+proof that mature overall-survival data were legally required before approval,
+nor proof of an inability to act before June 1. The later September approval
+must not be folded into this earliest-deadline result or treated as permanent
+drug failure. Cytisinicline repeats the explicit disclosure signal.
+
+Nineteen of twenty exact-quote checks passed. The remaining GED quotation
+changes curly apostrophes to straight ones; the complete factual sentence is
+present. Original first outputs remain unchanged. Evidence and review:
+[first judgments](data/judgments/historical/first-output.json),
+[comparison rows](data/historical-results.json),
+[source-correctness review](data/historical-source-review.json), and
+[market receipts](data/market_audit/capture_manifest.json). The separate
+[independent arithmetic and receipt audit](data/market_audit/historical_results_review.json)
+reconstructed every historical selection and comparison, plus both current
+selected depth curves, with no material errors. Binary-float display tails
+below 1e-12 in derived aggregates do not alter the reported rounded values.
+
+## Current diagnostic and dollar capacity
+
+The separately dispatched first Sol/high output contains two substantive
+barriers, two plausible paths, three insufficient-evidence abstentions and no
+formalities-only cases. It adds zero current NO selections to the primary
+baseline; the warning-only baseline selects CYT alone. All 22 source quotations
+match the supplied text. These are seven unresolved decisions across seven
+subjects, including two already in the historical diagnostic; there are ten
+distinct subjects across both cohorts, not twelve independent observations.
+
+| Subject / deadline | Judgment | Disclosure selects NO | Captured best NO ask |
+|---|---|---:|---:|
+| CagriSema / Oct 1, 2026 | Insufficient evidence | No | $0.82 |
+| Cytisinicline / Oct 1, 2026 | Substantive barrier | Yes | $0.97 |
+| MDMA for PTSD / Jan 1, 2027 | Insufficient evidence | No | $0.90 |
+| COMP360 / Jan 1, 2027 | Plausible path | No | $0.70 |
+| Retatrutide / Jan 1, 2027 | Substantive barrier | Yes | $0.95 |
+| V940 / Apr 1, 2027 | Insufficient evidence | No | Unavailable |
+| Lonvo-z / July 1, 2027 | Plausible path | No | $0.70 |
+
+The substantive reasons are explicit: CYT's current CRL and planned Q4
+resubmission, and retatrutide's unfinished CMC package and planned Q1 2027
+filing. Both are sponsor guidance, not immutable legal timing floors. Judgment
+correctly leaves stale MDMA deficiencies unknown and considers COMP360's actual
+rolling-review/voucher route. Those useful distinctions do not beat the
+deadline-aware baseline, which already abstains on both controls. The review
+also flags two wording defects without altering first labels: Q4 is an interval,
+and an “if approved” commercial-launch target is not an FDA approval forecast.
+
+Books for every selected and control case were captured at 19:07:51 UTC,
+approximately 69 seconds after the first output file was saved and 37m51s after
+the frozen source cutoff. The operator acted on the judge's completion notice;
+the elapsed delay remains explicit. These are delayed observation quotes, not
+18:30 entries. V940 returned a book with no YES bids, hence no payable NO ask;
+it was not silently dropped or assigned a stale quote. Series fees were checked
+with the capture; all four relevant series reported quadratic multiplier 1.
+
+| NO selection | Target | Available quantity used | Average ask | Conditional dollars if NO wins, after fee |
+|---|---:|---:|---:|---:|
+| CYT | 100 | 100 | $0.9795 | $1.89–$1.90 |
+| CYT | 500 | 500 | $0.9821 | $8.32–$8.33 |
+| CYT | 1,000 | 940 | $0.98580 | $12.41–$12.43 |
+| Retatrutide | 100 | 100 | $0.9595 | $3.77 |
+| Retatrutide | 500 | 500 | $0.9599 | $18.69–$18.70 |
+| Retatrutide | 1,000 | 1,000 | $0.9619 | $35.52–$35.53 |
+
+Ranges show aggregate versus per-price-level cent rounding. Quantities are
+displayed-book projections, not actual fills. At the larger targets, the two
+selected books offer only $47.93–$47.96 if both resolve NO, against about
+$1,892 paid. The entire payment is at risk if both resolve YES. Research cost
+is excluded, and no success probability is estimated. The 100-contract
+break-even NO probabilities would be roughly 98.1% and 96.23%; the study does
+not establish either threshold. Best displayed prices each had only five
+contracts. Other bids at worse prices do not rescue the economic case.
+
+Evidence: [first current judgments](data/judgments/current/first-output.json),
+[source review](data/current-source-review.json),
+[all seven depth and fee comparisons](data/current-results.json), and
+[original books](data/market_audit/current_books_20260905T190750789026Z.json).
+
+## Decision, limitations and reuse
+
+The continuation bar was met narrowly by camizestrant's additional qualitative
+risk signal. This supports keeping the mechanism, not declaring it a profitable
+LLM strategy. Current semantic selection duplicates cheap disclosures, and
+current dollar capacity is small. Do not build a broad FDA semantic production
+theory from this sample or repeat these exposed cases to find a nicer result.
+Reopen investment when a fresh, dated obstacle is not already reflected in
+payable prices with useful size, or an independently frozen population can
+measure incremental net return. Rare opportunities remain valid; no arbitrary
+market-count minimum is imposed. The registered legislation theory is unchanged.
+
+No historical observation here qualifies for production calibration. Outcome
+exposure, uncertain historical rule/source vintages, missing depth and unverified
+May 15 fees all matter. The current outcomes may later be scored from the frozen
+receipts, retaining source exposure and same-subject overlap; they cannot be
+retroactively called untouched inputs. This finite diagnostic is answered even
+though those future outcomes are unknown. No automation was created.
+
+The protocol was committed at `f214a8d`, parser/prompt at `b6dc2ce`, historical
+inputs at `8d2d9bc` and current inputs at `e83dcaa`, all before their respective
+comparisons. Requested judges were `gpt-5.6-sol`, high effort, web search off;
+the runtime did not resolve a snapshot. The official provider document with
+the February 16, 2026 cutoff is retained under [model provenance](data/model/).
+No first judgment was replaced or rerun. Direct source packets and complete
+originals are retained, including failures and excerpt repairs before dispatch.
+
+**Retained:** `data/` holds perishable source originals, rules, candles, books,
+hash/query receipts, exact paid inputs/prompts/first outputs/completions, exposure
+audit, reviews and cited comparison rows. Raw source material cannot reliably
+be recollected after sites or API retention change. This corpus is retrieved
+by question; it is not startup context. The large raw directory is gitignored
+across study states; paid judgment records are separately committed.
