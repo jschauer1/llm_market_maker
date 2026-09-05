@@ -73,6 +73,7 @@ def _register_matching(conn):
         ("news_drift", "News Drift", 1, False),
         ("weather_model_gap", "Weather Model Gap", 1, False),
         ("tsa_remainder_gap", "TSA Remainder Gap", 1, False),
+        ("inflation_nowcast_gap", "Inflation Nowcast Gap", 1, False),
     ):
         theories.register(conn, tid, name, f"theories/{tid}", now=TS)
         with db.write(conn):
@@ -183,7 +184,8 @@ def test_running_returns_scannable_theories_and_raises_on_drift(conn):
     # calibration_harvest and mention_family are registered by the fixture
     # but `retired`, so both are absent here: running() is
     # SCANNABLE_STATUSES only.
-    assert ids == ["deadline_drift", "insider_judgment", "news_drift",
+    assert ids == ["deadline_drift", "inflation_nowcast_gap",
+                   "insider_judgment", "news_drift",
                    "no_side_premium", "structural_arb", "taker_flow",
                    "tsa_remainder_gap", "weather_model_gap"]
     with db.write(conn):

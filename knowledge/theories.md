@@ -13,6 +13,7 @@ Sub-theory findings keep their narrower applicability in their own cards.
 
 - [weather_model_gap](../theories/weather_model_gap/learnings/README.md) — Exact-run weather forecasts and station errors; evaluate city-specific evidence and executable entry constraints.
 - [tsa_remainder_gap](../theories/tsa_remainder_gap/learnings/README.md) — Partial-week passenger counts; distinguish historical source revisions from executable remainder-model evidence.
+- [inflation_nowcast_gap](../theories/inflation_nowcast_gap/learnings/README.md) — Official CPI nowcast versus Kalshi ladders; the frozen ING-1 protocol exists, its collector has not yet produced a dataset.
 
 Retired theories remain useful research memory. Their historical findings do
 not establish the performance of a current theory.

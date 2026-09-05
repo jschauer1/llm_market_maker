@@ -63,3 +63,30 @@ The 2026-09-04 official page showed August headline CPI at 0.36% m/m. The cached
 ## build — 2026-09-05
 
 Build authorized: official daily nowcast history plus 60 headline and 49 core CPI Kalshi release dates support a fully mechanical tier-A implementation; freeze protocol before any outcome or return join.
+
+## review — 2026-09-05
+
+Reviewed by the Claude session before commit. The collector had never been run
+against its sources; probing them with the theory's own parsers found:
+
+- `data.parse_nowcasts` rejects the real Cleveland payload on its first
+  envelope. Event labels such as `CPI Aug` and `PCE Jul` occupy the category
+  list but have no data slot, so every dataset array is shorter than its label
+  list and the length check raises. Align by date labels only.
+- `data.parse_contract` accepts only `KXCPI-`/`KXCPICORE-` event tickers. The
+  archive holds 41 of 60 headline and 29 of 49 core release months under the
+  legacy `CPI-`/`CPICORE-` prefixes with the same rules format, so 19 months
+  per series survive, all from Dec 2024. The 30-traded-date bar is unreachable
+  as built. The protocol names series tickers, so accepting legacy event
+  prefixes is a code fix, not a protocol change, provided it lands before any
+  outcome join.
+- BLS answered 403 to the collector's five backoff attempts and 200 to the same
+  user agent a minute later. Six parallel workers over about 157 archive pages
+  will be blocked; serialize with a pause, or take first prints from ALFRED.
+- No replay driver or `run` module exists, though the RUNBOOK names one. The
+  screen reads quotes, open interest and open status from board `Market`
+  objects and nothing builds those from the dataset's candles at entry. The
+  historical candlestick endpoint itself works and returns the fields
+  `normalize_candle` expects.
+- Cleveland's own `Actual CPI Inflation` series is unrounded current vintage
+  (Feb 2024 reads 0.442, first print 0.4), so the BLS first-print choice stands.
